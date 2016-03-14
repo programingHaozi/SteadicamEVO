@@ -1,0 +1,121 @@
+{
+  "name": "TFUILib_iOS",
+  "version": "0.0.27",
+  "summary": "TFUILib_iOS",
+  "description": "TFUILib description",
+  "homepage": "http://git01.dds.com/MP/TFUILib_iOS",
+  "license": "MIT",
+  "authors": {
+    "xiayiyong": "xiayiyong@chexiang.com"
+  },
+  "source": {
+    "git": "http://git01.dds.com/MP/TFUILib_iOS.git",
+    "tag": "0.0.27",
+    "submodules": true
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "public_header_files": "TFUILib/TFUILib.h",
+  "source_files": "TFUILib/TFUILib.h",
+  "dependencies": {
+    "MJRefresh": [
+      "3.1.0"
+    ],
+    "Masonry": [
+      "0.6.4"
+    ],
+    "SDWebImage": [
+      "3.7.5"
+    ],
+    "IQKeyboardManager": [
+      "3.3.6"
+    ],
+    "pop": [
+      "1.0.8"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Core-3rd",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFUILib/Classes/Core-3rd/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-3rd/*.h",
+      "source": {
+        "submodules": true
+      },
+      "subspecs": [
+        {
+          "name": "LGProgressHudView",
+          "platforms": {
+            "ios": null
+          },
+          "source_files": "TFUILib/Classes/Core-3rd/LGProgressHudView/*.{h,m}",
+          "public_header_files": "TFUILib/Classes/Core-3rd/LGProgressHudView/*.h",
+          "source": {
+            "submodules": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Core-Category",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFUILib/Classes/Core-Category/**/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-Category/**/*.h"
+    },
+    {
+      "name": "Core-Manager",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFUILib/Classes/Core-Manager/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-Manager/*.h"
+    },
+    {
+      "name": "Core-Model",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFUILib/Classes/Core-Model/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-Model/*.h"
+    },
+    {
+      "name": "Core-View",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFUILib/Classes/Core-View/**/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-View/**/*.h"
+    },
+    {
+      "name": "Core-Util",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFUILib/Classes/Core-Util/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-Util/*.h"
+    },
+    {
+      "name": "Core-ViewController",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFUILib/Classes/Core-ViewController/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-ViewController/*.h"
+    },
+    {
+      "name": "Core-ViewModel",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFUILib/Classes/Core-ViewModel/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-ViewModel/*.h"
+    }
+  ]
+}

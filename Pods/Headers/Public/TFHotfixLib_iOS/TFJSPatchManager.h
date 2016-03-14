@@ -1,0 +1,1 @@
+../../../TFHotfixLib_iOS/TFHotfixLib/Classes/JSPatchManager/TFJSPatchManager.h

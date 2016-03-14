@@ -1,0 +1,237 @@
+{
+  "name": "TFThirdLib_iOS",
+  "version": "0.0.13",
+  "summary": "TFThirdLib_iOS",
+  "description": "TFThirdLib description",
+  "homepage": "http://git01.dds.com/MP/TFThirdLib_iOS",
+  "license": "MIT",
+  "authors": {
+    "xiayiyong": "xiayiyong@chexiang.com"
+  },
+  "source": {
+    "git": "http://git01.dds.com/MP/TFThirdLib_iOS.git",
+    "tag": "0.0.13",
+    "submodules": true
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "public_header_files": "TFThirdLib/TFThirdLib.h",
+  "source_files": "TFThirdLib/TFThirdLib.h",
+  "frameworks": [
+    "Foundation",
+    "UIKit",
+    "CoreGraphics",
+    "CoreText",
+    "CoreTelephony",
+    "Security",
+    "ImageIO",
+    "QuartzCore",
+    "SystemConfiguration"
+  ],
+  "default_subspecs": "JPush",
+  "dependencies": {
+    "Aspects": [
+      "1.4.1"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "JPush",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFThirdLib/Classes/JPush/*.{h,m}",
+      "public_header_files": "TFThirdLib/Classes/JPush/*.h",
+      "libraries": [
+        "stdc++",
+        "sqlite3"
+      ],
+      "vendored_libraries": "TFThirdLib/Classes/JPush/*.{a}",
+      "vendored_frameworks": "TFThirdLib/Classes/JPush/*.{framework}",
+      "source": {
+        "submodules": true
+      }
+    },
+    {
+      "name": "OpenSSL",
+      "platforms": {
+        "ios": null
+      },
+      "libraries": [
+        "stdc++",
+        "z",
+        "c++"
+      ],
+      "source_files": "TFThirdLib/Classes/OpenSSL/**/*.{h,m}",
+      "public_header_files": "TFThirdLib/Classes/OpenSSL/**/*.h",
+      "vendored_libraries": "TFThirdLib/Classes/OpenSSL/*.{a}",
+      "vendored_frameworks": "TFThirdLib/Classes/OpenSSL/*.{framework}",
+      "requires_arc": false
+    },
+    {
+      "name": "AliPay",
+      "platforms": {
+        "ios": null
+      },
+      "frameworks": "CoreMotion",
+      "source_files": "TFThirdLib/Classes/AliPay/*.{h,m}",
+      "public_header_files": "TFThirdLib/Classes/AliPay/*.h",
+      "libraries": [
+        "stdc++",
+        "sqlite3"
+      ],
+      "vendored_libraries": "TFThirdLib/Classes/AliPay/*.{a}",
+      "vendored_frameworks": "TFThirdLib/Classes/AliPay/*.{framework}",
+      "resources": "TFThirdLib/Classes/AliPay/*.{bundle}",
+      "dependencies": {
+        "TFThirdLib_iOS/OpenSSL": [
+
+        ]
+      },
+      "source": {
+        "submodules": true
+      },
+      "subspecs": [
+        {
+          "name": "Util",
+          "platforms": {
+            "ios": null
+          },
+          "source_files": "TFThirdLib/Classes/Alipay/Util/*.{h,m}",
+          "public_header_files": "TFThirdLib/Classes/Alipay/Util/*.h"
+        }
+      ]
+    },
+    {
+      "name": "UnionPay",
+      "platforms": {
+        "ios": null
+      },
+      "frameworks": [
+        "Security",
+        "QuartzCore"
+      ],
+      "libraries": [
+        "stdc++",
+        "sqlite3"
+      ],
+      "source_files": "TFThirdLib/Classes/UnionPay/*.{h,m,mm}",
+      "public_header_files": "TFThirdLib/Classes/UnionPay/*.h",
+      "vendored_libraries": "TFThirdLib/Classes/UnionPay/*.{a}",
+      "vendored_frameworks": "TFThirdLib/Classes/UnionPay/*.{framework}",
+      "resources": "TFThirdLib/Classes/UnionPay/*.{bundle}",
+      "source": {
+        "submodules": true
+      }
+    },
+    {
+      "name": "WXPay",
+      "platforms": {
+        "ios": null
+      },
+      "frameworks": [
+        "AudioToolbox",
+        "CoreAudio",
+        "MediaPlayer",
+        "AVFoundation",
+        "Security",
+        "QuartzCore"
+      ],
+      "libraries": [
+        "stdc++",
+        "sqlite3",
+        "z",
+        "c++"
+      ],
+      "source_files": "TFThirdLib/Classes/WXPay/*.{h,m}",
+      "public_header_files": "TFThirdLib/Classes/WXPay/*.h",
+      "vendored_libraries": "TFThirdLib/Classes/WXPay/*.{a}",
+      "vendored_frameworks": "TFThirdLib/Classes/WXPay/*.{framework}",
+      "resources": "TFThirdLib/Classes/WXPay/*.{bundle}",
+      "source": {
+        "submodules": true
+      }
+    },
+    {
+      "name": "AMap",
+      "source_files": "TFThirdLib/Classes/AMap/*.{h,m}",
+      "public_header_files": "TFThirdLib/Classes/AMap/*.h",
+      "dependencies": {
+        "AMap2DMap": [
+          "3.3.0"
+        ],
+        "AMapSearch": [
+          "3.2.0"
+        ]
+      }
+    },
+    {
+      "name": "UMengAnalytics",
+      "source_files": "TFThirdLib/Classes/UMengAnalytics/*.{h,m}",
+      "public_header_files": "TFThirdLib/Classes/UMengAnalytics/*.h",
+      "dependencies": {
+        "UMengAnalytics": [
+          "3.6.6"
+        ]
+      }
+    },
+    {
+      "name": "UMengSocial",
+      "source_files": "TFThirdLib/Classes/UMengSocial/*.{h,m}",
+      "public_header_files": "TFThirdLib/Classes/UMengSocial/*.h",
+      "dependencies": {
+        "UMengSocial": [
+          "4.4"
+        ]
+      }
+    },
+    {
+      "name": "Bugly",
+      "frameworks": [
+        "SystemConfiguration",
+        "Security",
+        "JavaScriptCore"
+      ],
+      "libraries": [
+        "c++",
+        "z"
+      ],
+      "source_files": "TFThirdLib/Classes/Bugly/*.{h,m}",
+      "public_header_files": "TFThirdLib/Classes/Bugly/*.h",
+      "vendored_libraries": "TFThirdLib/Classes/Bugly/*.{a}",
+      "vendored_frameworks": "TFThirdLib/Classes/Bugly/*.{framework}"
+    },
+    {
+      "name": "FLEX",
+      "source_files": "TFThirdLib/Classes/FLEX/*.{h,m}",
+      "public_header_files": "TFThirdLib/Classes/FLEX/*.h",
+      "dependencies": {
+        "FLEX": [
+          "2.1.1"
+        ]
+      }
+    },
+    {
+      "name": "RongCloudIM",
+      "source_files": "TFThirdLib/Classes/RongCloudIM/*.{h,m}",
+      "public_header_files": "TFThirdLib/Classes/RongCloudIM/*.h",
+      "dependencies": {
+        "RongCloudIMKit": [
+          "2.4.5"
+        ]
+      }
+    },
+    {
+      "name": "BaiduMap",
+      "source_files": "TFThirdLib/Classes/BaiduMap/*.{h,m}",
+      "public_header_files": "TFThirdLib/Classes/BaiduMap/*.h",
+      "dependencies": {
+        "BaiduMapKit": [
+          "2.9.1"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+../../../TFBaseLib_iOS/TFBaseLib/Classes/Core-3rd/AFNetworking-AutoRetry/AFHTTPSessionManager+AutoRetry.h

@@ -1,0 +1,294 @@
+PODS:
+  - AFNetworking (3.0.4):
+    - AFNetworking/NSURLSession (= 3.0.4)
+    - AFNetworking/Reachability (= 3.0.4)
+    - AFNetworking/Security (= 3.0.4)
+    - AFNetworking/Serialization (= 3.0.4)
+    - AFNetworking/UIKit (= 3.0.4)
+  - AFNetworking/NSURLSession (3.0.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.0.4)
+  - AFNetworking/Security (3.0.4)
+  - AFNetworking/Serialization (3.0.4)
+  - AFNetworking/UIKit (3.0.4):
+    - AFNetworking/NSURLSession
+  - Aspects (1.4.1)
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.2.0):
+    - CocoaLumberjack/Default
+  - IQKeyboardManager (3.3.6)
+  - JSPatch (0.1.5):
+    - JSPatch/Core (= 0.1.5)
+  - JSPatch/Core (0.1.5)
+  - Masonry (0.6.4)
+  - MJExtension (3.0.10)
+  - MJRefresh (3.1.0)
+  - ObjcAssociatedObjectHelpers (2.0.1):
+    - ObjcAssociatedObjectHelpers/Core (= 2.0.1)
+    - ObjcAssociatedObjectHelpers/NSObject+Dictionary (= 2.0.1)
+  - ObjcAssociatedObjectHelpers/Core (2.0.1)
+  - ObjcAssociatedObjectHelpers/NSObject+Dictionary (2.0.1):
+    - ObjcAssociatedObjectHelpers/Core
+  - pop (1.0.8)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - SSKeychain (1.3.1)
+  - TFBaseLib_iOS (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+    - TFBaseLib_iOS/Core-3rd (= 0.0.35)
+    - TFBaseLib_iOS/Core-Category (= 0.0.35)
+    - TFBaseLib_iOS/Core-DataHelper (= 0.0.35)
+    - TFBaseLib_iOS/Core-Macro (= 0.0.35)
+    - TFBaseLib_iOS/Core-Manager (= 0.0.35)
+    - TFBaseLib_iOS/Core-Util (= 0.0.35)
+  - TFBaseLib_iOS/Core-3rd (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+    - TFBaseLib_iOS/Core-3rd/AFNetworking-AutoRetry (= 0.0.35)
+    - TFBaseLib_iOS/Core-3rd/SafeKit (= 0.0.35)
+  - TFBaseLib_iOS/Core-3rd/AFNetworking-AutoRetry (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+  - TFBaseLib_iOS/Core-3rd/SafeKit (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+  - TFBaseLib_iOS/Core-Category (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+  - TFBaseLib_iOS/Core-DataHelper (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+    - TFBaseLib_iOS/Core-DataHelper/TFAutoCodingCopying (= 0.0.35)
+    - TFBaseLib_iOS/Core-DataHelper/TFGCDQueue (= 0.0.35)
+    - TFBaseLib_iOS/Core-DataHelper/TFKeyChain (= 0.0.35)
+    - TFBaseLib_iOS/Core-DataHelper/TFUserDefaults (= 0.0.35)
+  - TFBaseLib_iOS/Core-DataHelper/TFAutoCodingCopying (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+  - TFBaseLib_iOS/Core-DataHelper/TFGCDQueue (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+  - TFBaseLib_iOS/Core-DataHelper/TFKeyChain (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+  - TFBaseLib_iOS/Core-DataHelper/TFUserDefaults (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+  - TFBaseLib_iOS/Core-Macro (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+  - TFBaseLib_iOS/Core-Manager (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+  - TFBaseLib_iOS/Core-Util (0.0.35):
+    - AFNetworking (= 3.0.4)
+    - Aspects (= 1.4.1)
+    - CocoaLumberjack (= 2.2.0)
+    - MJExtension (= 3.0.10)
+    - ObjcAssociatedObjectHelpers (= 2.0.1)
+    - SSKeychain (= 1.3.1)
+  - TFHotfixLib_iOS (0.0.15):
+    - JSPatch (= 0.1.5)
+    - TFHotfixLib_iOS/JSPatchManager (= 0.0.15)
+    - TFHotfixLib_iOS/Model (= 0.0.15)
+    - TFHotfixLib_iOS/Service (= 0.0.15)
+  - TFHotfixLib_iOS/JSPatchManager (0.0.15):
+    - JSPatch (= 0.1.5)
+  - TFHotfixLib_iOS/Model (0.0.15):
+    - JSPatch (= 0.1.5)
+  - TFHotfixLib_iOS/Service (0.0.15):
+    - JSPatch (= 0.1.5)
+  - TFThirdLib_iOS/AliPay (0.0.13):
+    - Aspects (= 1.4.1)
+    - TFThirdLib_iOS/AliPay/Util (= 0.0.13)
+    - TFThirdLib_iOS/OpenSSL
+  - TFThirdLib_iOS/AliPay/Util (0.0.13):
+    - Aspects (= 1.4.1)
+    - TFThirdLib_iOS/OpenSSL
+  - TFThirdLib_iOS/JPush (0.0.13):
+    - Aspects (= 1.4.1)
+  - TFThirdLib_iOS/OpenSSL (0.0.13):
+    - Aspects (= 1.4.1)
+  - TFThirdLib_iOS/UnionPay (0.0.13):
+    - Aspects (= 1.4.1)
+  - TFThirdLib_iOS/WXPay (0.0.13):
+    - Aspects (= 1.4.1)
+  - TFUILib_iOS (0.0.27):
+    - IQKeyboardManager (= 3.3.6)
+    - Masonry (= 0.6.4)
+    - MJRefresh (= 3.1.0)
+    - pop (= 1.0.8)
+    - SDWebImage (= 3.7.5)
+    - TFUILib_iOS/Core-3rd (= 0.0.27)
+    - TFUILib_iOS/Core-Category (= 0.0.27)
+    - TFUILib_iOS/Core-Manager (= 0.0.27)
+    - TFUILib_iOS/Core-Model (= 0.0.27)
+    - TFUILib_iOS/Core-Util (= 0.0.27)
+    - TFUILib_iOS/Core-View (= 0.0.27)
+    - TFUILib_iOS/Core-ViewController (= 0.0.27)
+    - TFUILib_iOS/Core-ViewModel (= 0.0.27)
+  - TFUILib_iOS/Core-3rd (0.0.27):
+    - IQKeyboardManager (= 3.3.6)
+    - Masonry (= 0.6.4)
+    - MJRefresh (= 3.1.0)
+    - pop (= 1.0.8)
+    - SDWebImage (= 3.7.5)
+    - TFUILib_iOS/Core-3rd/LGProgressHudView (= 0.0.27)
+  - TFUILib_iOS/Core-3rd/LGProgressHudView (0.0.27):
+    - IQKeyboardManager (= 3.3.6)
+    - Masonry (= 0.6.4)
+    - MJRefresh (= 3.1.0)
+    - pop (= 1.0.8)
+    - SDWebImage (= 3.7.5)
+  - TFUILib_iOS/Core-Category (0.0.27):
+    - IQKeyboardManager (= 3.3.6)
+    - Masonry (= 0.6.4)
+    - MJRefresh (= 3.1.0)
+    - pop (= 1.0.8)
+    - SDWebImage (= 3.7.5)
+  - TFUILib_iOS/Core-Manager (0.0.27):
+    - IQKeyboardManager (= 3.3.6)
+    - Masonry (= 0.6.4)
+    - MJRefresh (= 3.1.0)
+    - pop (= 1.0.8)
+    - SDWebImage (= 3.7.5)
+  - TFUILib_iOS/Core-Model (0.0.27):
+    - IQKeyboardManager (= 3.3.6)
+    - Masonry (= 0.6.4)
+    - MJRefresh (= 3.1.0)
+    - pop (= 1.0.8)
+    - SDWebImage (= 3.7.5)
+  - TFUILib_iOS/Core-Util (0.0.27):
+    - IQKeyboardManager (= 3.3.6)
+    - Masonry (= 0.6.4)
+    - MJRefresh (= 3.1.0)
+    - pop (= 1.0.8)
+    - SDWebImage (= 3.7.5)
+  - TFUILib_iOS/Core-View (0.0.27):
+    - IQKeyboardManager (= 3.3.6)
+    - Masonry (= 0.6.4)
+    - MJRefresh (= 3.1.0)
+    - pop (= 1.0.8)
+    - SDWebImage (= 3.7.5)
+  - TFUILib_iOS/Core-ViewController (0.0.27):
+    - IQKeyboardManager (= 3.3.6)
+    - Masonry (= 0.6.4)
+    - MJRefresh (= 3.1.0)
+    - pop (= 1.0.8)
+    - SDWebImage (= 3.7.5)
+  - TFUILib_iOS/Core-ViewModel (0.0.27):
+    - IQKeyboardManager (= 3.3.6)
+    - Masonry (= 0.6.4)
+    - MJRefresh (= 3.1.0)
+    - pop (= 1.0.8)
+    - SDWebImage (= 3.7.5)
+
+DEPENDENCIES:
+  - TFBaseLib_iOS (from `http://git01.dds.com/MP/TFBaseLib_iOS.git`)
+  - TFHotfixLib_iOS (from `http://git01.dds.com/MP/TFHotfixLib_iOS.git`)
+  - TFThirdLib_iOS/AliPay (from `http://git01.dds.com/MP/TFThirdLib_iOS.git`)
+  - TFThirdLib_iOS/JPush (from `http://git01.dds.com/MP/TFThirdLib_iOS.git`)
+  - TFThirdLib_iOS/UnionPay (from `http://git01.dds.com/MP/TFThirdLib_iOS.git`)
+  - TFThirdLib_iOS/WXPay (from `http://git01.dds.com/MP/TFThirdLib_iOS.git`)
+  - TFUILib_iOS (from `http://git01.dds.com/MP/TFUILib_iOS.git`)
+
+EXTERNAL SOURCES:
+  TFBaseLib_iOS:
+    :git: http://git01.dds.com/MP/TFBaseLib_iOS.git
+  TFHotfixLib_iOS:
+    :git: http://git01.dds.com/MP/TFHotfixLib_iOS.git
+  TFThirdLib_iOS:
+    :git: http://git01.dds.com/MP/TFThirdLib_iOS.git
+  TFUILib_iOS:
+    :git: http://git01.dds.com/MP/TFUILib_iOS.git
+
+CHECKOUT OPTIONS:
+  TFBaseLib_iOS:
+    :commit: df14bbcc3846350d9394460f5070038644aeb4ad
+    :git: http://git01.dds.com/MP/TFBaseLib_iOS.git
+  TFHotfixLib_iOS:
+    :commit: f87e87a86ead8553a828da4e9be6cdbd3eb1f065
+    :git: http://git01.dds.com/MP/TFHotfixLib_iOS.git
+  TFThirdLib_iOS:
+    :commit: 6dcac6e36bb58af5d43b735ebedd3d1487a005f3
+    :git: http://git01.dds.com/MP/TFThirdLib_iOS.git
+  TFUILib_iOS:
+    :commit: 2148ca9483973a9a87c55d011b2edeb926141077
+    :git: http://git01.dds.com/MP/TFUILib_iOS.git
+
+SPEC CHECKSUMS:
+  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  IQKeyboardManager: 037cf3aec1d0a045108859a47818714eb1bfc149
+  JSPatch: 405b5f5990643e6717dd6715ac60d6a2b582a6ba
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  ObjcAssociatedObjectHelpers: 686c291f292c26a49b9b1fa7d58130a8d35d59d2
+  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
+  TFBaseLib_iOS: 88a36dfadae793dd25f48f0afcb95a45d0fcf5c2
+  TFHotfixLib_iOS: c59f61024d55428b9f6e261db8283edd4bd16cbe
+  TFThirdLib_iOS: 0d3b0ca8c43e5ec57a5102620052560cc7555f6c
+  TFUILib_iOS: 5d87ca9844d60bf2633c565cda6625e2607e42a8
+
+COCOAPODS: 0.39.0

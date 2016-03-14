@@ -1,0 +1,180 @@
+{
+  "name": "TFBaseLib_iOS",
+  "version": "0.0.35",
+  "summary": "TFBaseLib_iOS",
+  "description": "the description for TFBaseLib_iOS only pod code",
+  "homepage": "http://git01.dds.com/MP/TFBaseLib_iOS",
+  "license": "MIT",
+  "authors": {
+    "xiayiyong": "xiayiyong@chexiang.com"
+  },
+  "source": {
+    "git": "http://git01.dds.com/MP/TFBaseLib_iOS.git",
+    "tag": "0.0.35",
+    "submodules": true
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "public_header_files": "TFBaseLib/TFBaseLib.h",
+  "source_files": "TFBaseLib/TFBaseLib.h",
+  "frameworks": [
+    "Foundation",
+    "UIKit",
+    "CoreGraphics",
+    "CoreText",
+    "CoreTelephony",
+    "CoreLocation",
+    "Security",
+    "ImageIO",
+    "QuartzCore",
+    "SystemConfiguration"
+  ],
+  "dependencies": {
+    "Aspects": [
+      "1.4.1"
+    ],
+    "SSKeychain": [
+      "1.3.1"
+    ],
+    "AFNetworking": [
+      "3.0.4"
+    ],
+    "MJExtension": [
+      "3.0.10"
+    ],
+    "ObjcAssociatedObjectHelpers": [
+      "2.0.1"
+    ],
+    "CocoaLumberjack": [
+      "2.2.0"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Core-3rd",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFBaseLib/Classes/Core-3rd/*.{h,m}",
+      "public_header_files": "TFBaseLib/Classes/Core-3rd/*.h",
+      "source": {
+        "submodules": true
+      },
+      "subspecs": [
+        {
+          "name": "AFNetworking-AutoRetry",
+          "platforms": {
+            "ios": null
+          },
+          "source_files": "TFBaseLib/Classes/Core-3rd/AFNetworking-AutoRetry/*.{h,m}",
+          "public_header_files": "TFBaseLib/Classes/Core-3rd/AFNetworking-AutoRetry/*.h",
+          "source": {
+            "submodules": true
+          }
+        },
+        {
+          "name": "SafeKit",
+          "platforms": {
+            "ios": null
+          },
+          "source_files": "TFBaseLib/Classes/Core-3rd/SafeKit/*.{h,m}",
+          "public_header_files": "TFBaseLib/Classes/Core-3rd/SafeKit/*.h",
+          "source": {
+            "submodules": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Core-Category",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFBaseLib/Classes/Core-Category/**/*.{h,m}",
+      "public_header_files": "TFBaseLib/Classes/Core-Category/**/*.h"
+    },
+    {
+      "name": "Core-DataHelper",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFBaseLib/Classes/Core-DataHelper/*.{h,m}",
+      "public_header_files": "TFBaseLib/Classes/Core-DataHelper/*.h",
+      "source": {
+        "submodules": true
+      },
+      "subspecs": [
+        {
+          "name": "TFAutoCodingCopying",
+          "platforms": {
+            "ios": null
+          },
+          "source_files": "TFBaseLib/Classes/Core-DataHelper/TFAutoCodingCopying/*.{h,m}",
+          "public_header_files": "TFBaseLib/Classes/Core-DataHelper/TFAutoCodingCopying/*.h",
+          "source": {
+            "submodules": true
+          }
+        },
+        {
+          "name": "TFUserDefaults",
+          "platforms": {
+            "ios": null
+          },
+          "source_files": "TFBaseLib/Classes/Core-DataHelper/TFUserDefaults/*.{h,m}",
+          "public_header_files": "TFBaseLib/Classes/Core-DataHelper/TFUserDefaults/*.h",
+          "source": {
+            "submodules": true
+          }
+        },
+        {
+          "name": "TFKeyChain",
+          "platforms": {
+            "ios": null
+          },
+          "source_files": "TFBaseLib/Classes/Core-DataHelper/TFKeyChain/*.{h,m}",
+          "public_header_files": "TFBaseLib/Classes/Core-DataHelper/TFKeyChain/*.h",
+          "source": {
+            "submodules": true
+          }
+        },
+        {
+          "name": "TFGCDQueue",
+          "platforms": {
+            "ios": null
+          },
+          "source_files": "TFBaseLib/Classes/Core-DataHelper/TFGCDQueue/*.{h,m}",
+          "public_header_files": "TFBaseLib/Classes/Core-DataHelper/TFGCDQueue/*.h",
+          "source": {
+            "submodules": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Core-Macro",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFBaseLib/Classes/Core-Macro/*.{h,m}",
+      "public_header_files": "TFBaseLib/Classes/Core-Macro/*.h"
+    },
+    {
+      "name": "Core-Manager",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFBaseLib/Classes/Core-Manager/*.{h,m}",
+      "public_header_files": "TFBaseLib/Classes/Core-Manager/*.h"
+    },
+    {
+      "name": "Core-Util",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFBaseLib/Classes/Core-Util/*.{h,m}",
+      "public_header_files": "TFBaseLib/Classes/Core-Util/*.h"
+    }
+  ]
+}
