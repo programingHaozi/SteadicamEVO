@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5B967DFDDC50486EBFDFA6D6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43686846EEC97D5B9EA405C7 /* libPods.a */; };
 		8700361E1C97D3D400AAB595 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8700361D1C97D3D400AAB595 /* SplashViewController.m */; };
+		870036291C97DF9200AAB595 /* BTConnectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 870036281C97DF9200AAB595 /* BTConnectManager.m */; };
+		8700362D1C97E7EF00AAB595 /* BTDeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8700362C1C97E7EF00AAB595 /* BTDeviceModel.m */; };
 		870668E01C959D260031381C /* Localizable.sh in Resources */ = {isa = PBXBuildFile; fileRef = 870668DD1C959D260031381C /* Localizable.sh */; };
 		870668E11C959D260031381C /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 870668DF1C959D260031381C /* LocalizationManager.m */; };
 		870668E61C959D5E0031381C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870668E81C959D5E0031381C /* Localizable.strings */; };
@@ -26,6 +28,12 @@
 		8700361C1C97D3D400AAB595 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		8700361D1C97D3D400AAB595 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		870036211C97D7E800AAB595 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		870036251C97DF5100AAB595 /* BTConnectInterFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectInterFace.h; sourceTree = "<group>"; };
+		870036261C97DF6B00AAB595 /* BTConnectTypeDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTConnectTypeDefine.h; sourceTree = "<group>"; };
+		870036271C97DF9200AAB595 /* BTConnectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectManager.h; sourceTree = "<group>"; };
+		870036281C97DF9200AAB595 /* BTConnectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTConnectManager.m; sourceTree = "<group>"; };
+		8700362B1C97E7EF00AAB595 /* BTDeviceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDeviceModel.h; sourceTree = "<group>"; };
+		8700362C1C97E7EF00AAB595 /* BTDeviceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDeviceModel.m; sourceTree = "<group>"; };
 		870668DD1C959D260031381C /* Localizable.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = Localizable.sh; sourceTree = "<group>"; };
 		870668DE1C959D260031381C /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationManager.h; sourceTree = "<group>"; };
 		870668DF1C959D260031381C /* LocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationManager.m; sourceTree = "<group>"; };
@@ -67,6 +75,23 @@
 				DC984F69B58C1D9DFA3D12CB /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		870036241C97DF5100AAB595 /* BTConnectInterface */ = {
+			isa = PBXGroup;
+			children = (
+				870036251C97DF5100AAB595 /* BTConnectInterFace.h */,
+			);
+			path = BTConnectInterface;
+			sourceTree = "<group>";
+		};
+		8700362A1C97E7D600AAB595 /* BTDeviceModel */ = {
+			isa = PBXGroup;
+			children = (
+				8700362B1C97E7EF00AAB595 /* BTDeviceModel.h */,
+				8700362C1C97E7EF00AAB595 /* BTDeviceModel.m */,
+			);
+			path = BTDeviceModel;
 			sourceTree = "<group>";
 		};
 		870668DC1C959D260031381C /* LocalizationManager */ = {
@@ -160,23 +185,18 @@
 		87EF955A1C8C4130002241B2 /* ConnectManager */ = {
 			isa = PBXGroup;
 			children = (
-				87EF955B1C8C4130002241B2 /* BTConnectInterface */,
+				870036241C97DF5100AAB595 /* BTConnectInterface */,
 				87EF955D1C8C4130002241B2 /* BTConnectTypeDefine */,
 				87EF955C1C8C4130002241B2 /* BTConnectManager */,
 			);
 			path = ConnectManager;
 			sourceTree = "<group>";
 		};
-		87EF955B1C8C4130002241B2 /* BTConnectInterface */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = BTConnectInterface;
-			sourceTree = "<group>";
-		};
 		87EF955C1C8C4130002241B2 /* BTConnectManager */ = {
 			isa = PBXGroup;
 			children = (
+				870036271C97DF9200AAB595 /* BTConnectManager.h */,
+				870036281C97DF9200AAB595 /* BTConnectManager.m */,
 			);
 			path = BTConnectManager;
 			sourceTree = "<group>";
@@ -184,6 +204,7 @@
 		87EF955D1C8C4130002241B2 /* BTConnectTypeDefine */ = {
 			isa = PBXGroup;
 			children = (
+				870036261C97DF6B00AAB595 /* BTConnectTypeDefine.h */,
 			);
 			path = BTConnectTypeDefine;
 			sourceTree = "<group>";
@@ -298,6 +319,7 @@
 		87EF956B1C8C4281002241B2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8700362A1C97E7D600AAB595 /* BTDeviceModel */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -434,10 +456,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8700362D1C97E7EF00AAB595 /* BTDeviceModel.m in Sources */,
 				8700361E1C97D3D400AAB595 /* SplashViewController.m in Sources */,
 				870668E11C959D260031381C /* LocalizationManager.m in Sources */,
 				87EF954D1C8C36C1002241B2 /* main.m in Sources */,
 				87EF95481C8C36C1002241B2 /* AppDelegate.m in Sources */,
+				870036291C97DF9200AAB595 /* BTConnectManager.m in Sources */,
 				87943A2F1C8D7D860024497B /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
