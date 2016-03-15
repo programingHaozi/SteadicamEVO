@@ -10,7 +10,6 @@
 #import "TFNavigationController.h"
 #import "LGProgressHud.h"
 #import "UIView+TFLoading.h"
-#import "UIView+TFEmptyView.h"
 #import "TFUICategory.h"
 #import "TFUIUtil.h"
 
@@ -20,7 +19,9 @@
 @interface TFViewController ()
 
 @property(nonatomic,strong)NSMutableArray *activeRequests;
+
 @property(nonatomic,strong)UIView *headView;
+
 @property(nonatomic,strong)UIView *footView;
 
 @property(nonatomic,strong)TFLoadingView *loadingView;
@@ -29,71 +30,37 @@
 
 @implementation TFViewController
 
-#pragma mark   Requests
-- (void) addRequest:(NSObject*)request
-{
-    if(_activeRequests==nil)
-    {
-        _activeRequests = [[NSMutableArray alloc] init];
-    }
-    [_activeRequests addObject:request];
-}
+#pragma mark- init
 
-- (void) removeRequest:(NSObject*)request
+- (id)initWithResultBlock:(TFViewControllerResultBlock)block
 {
-    if([_activeRequests containsObject:request])
-        [_activeRequests removeObject:request];
-}
-
-- (void) cancelRequests
-{
-    if(_activeRequests)
-    {
-        for(NSObject* request in _activeRequests)
-        {
-            if ([request respondsToSelector:@selector(cancel)])
-            {
-                [request performSelector:@selector(cancel) withObject:nil];
-            }
-        }
-    }
-}
-
-- (NSInteger) activeRequestCount
-{
-    return _activeRequests.count;
-}
-
-#pragma mark- TFViewController init
-
-- (id)initWithBlock:(TFViewControllerBlock)block
-{
-    return [self initWithViewModel:nil block:block];
+    return [self initWithViewModel:nil resultBlock:block];
 }
 
 - (id)initWithViewModel:(id)viewModel
 {
-    return [self initWithViewModel:viewModel block:nil];
+    return [self initWithViewModel:viewModel resultBlock:nil];
 }
 
-- (id)initWithViewModel:(id)viewModel block:(TFViewControllerBlock)block
+- (id)initWithViewModel:(id)viewModel resultBlock:(TFViewControllerResultBlock)block
 {
     self = [super init];
     if (self)
     {
         // Initialization code
-        self.viewModel=viewModel;
-        self.block=block;
+        self.viewModel = viewModel;
+        self.block     = block;
     }
+    
     return self;
 }
 
 - (id)initWithData:(NSDictionary*)data
 {
-    return [self initWithData:nil block:nil];
+    return [self initWithData:nil resultBlock:nil];
 }
 
-- (id)initWithData:(NSDictionary*)data block:(TFViewControllerBlock)block
+- (id)initWithData:(NSDictionary*)data resultBlock:(TFViewControllerResultBlock)block
 {
     self = [super init];
     if (self)
@@ -102,17 +69,21 @@
         self.block=block;
         
         NSString *viewControllerClassName = NSStringFromClass([self class]);
-        NSString *viewModelClassName= [viewControllerClassName stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewModel"];
+        NSString *viewModelClassName      = [viewControllerClassName stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewModel"];
+        
         Class viewModel = NSClassFromString(viewModelClassName);
         if (viewModel)
         {
             self.viewModel = [viewModel mj_objectWithKeyValues:data];
         }
     }
+    
     return self;
 }
 
-- (id)initWithViewModel:(id)viewModel nibName:(NSString *)nibName bundle:(NSBundle *)bundle
+- (id)initWithViewModel:(id)viewModel
+                nibName:(NSString *)nibName
+                 bundle:(NSBundle *)bundle
 {
     self = [super initWithNibName:nibName bundle:bundle];
     if (self == nil) return nil;
@@ -125,10 +96,12 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
         
     }
+    
     return self;
 }
 
@@ -137,15 +110,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor=UIColor.whiteColor;
+    self.view.backgroundColor = UIColor.whiteColor;
     
     [self initBackButton];
     
     if ([self.viewModel respondsToSelector:@selector(title)])
     {
-        if ([self.viewModel title]!=nil)
+        if ([self.viewModel title] != nil)
         {
-            self.title=[self.viewModel title];
+            self.title = [self.viewModel title];
         }
     }
     
@@ -158,16 +131,48 @@
     }
     
     //self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets           = NO;
     self.navigationController.navigationBar.translucent = NO;
-    self.tabBarController.tabBar.translucent = NO;
+    
+    [self initViews];
+    [self autolayoutViews];
+    [self bindData];
     
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark- init autolayout bind
+
+- (void)initViews
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSString *className=NSStringFromClass([self class]);
+    if (![className isEqualToString:NSStringFromClass([TFViewController class])])
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                     userInfo:nil];
+    }
+}
+
+- (void)autolayoutViews
+{
+    NSString *className=NSStringFromClass([self class]);
+    if (![className isEqualToString:NSStringFromClass([TFViewController class])])
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                     userInfo:nil];
+    }
+}
+
+- (void)bindData
+{
+    NSString *className=NSStringFromClass([self class]);
+    if (![className isEqualToString:NSStringFromClass([TFViewController class])])
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                     userInfo:nil];
+    }
 }
 
 - (void)dealloc
@@ -197,7 +202,7 @@
     [TFUIUtil presentViewController:self];
 }
 
-- (void) dismissViewController
+- (void)dismissViewController
 {
     [TFUIUtil dismissViewController:self];
 }
@@ -207,18 +212,19 @@
     [TFUIUtil popModuleViewController];
 }
 
--(void)back
+- (void)back
 {
-    if (self.presentingViewController!=nil)
+    if (self.presentingViewController != nil)
     {
-        if (self.navigationController==nil)
+        if (self.navigationController == nil)
         {
             [self dismissViewControllerAnimated:YES completion:nil];
+            
             return;
         }
         
-        NSArray *arr=self.navigationController.viewControllers;
-        if ([arr count]>0)
+        NSArray *arr = self.navigationController.viewControllers;
+        if ([arr count] > 0)
         {
             if (self==self.navigationController.viewControllers[0])
             {
@@ -236,7 +242,7 @@
     }
     else
     {
-        if (self.navigationController==nil)
+        if (self.navigationController == nil)
         {
             return;
         }
@@ -247,28 +253,29 @@
 
 #pragma mark button event
 
--(void)hideBack
+- (void)hideBack
 {
     self.navigationItem.hidesBackButton = YES;
     
     // 禁用左滑手势
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
 }
 
--(void)hideLeft
+- (void)hideLeft
 {
     self.navigationItem.leftBarButtonItem = nil;
     [self hideBack];
 }
 
--(void)hideRight
+- (void)hideRight
 {
     self.navigationItem.rightBarButtonItem = nil;
 }
 
--(void)enableLeft
+- (void)enableLeft
 {
     if (self.navigationItem.leftBarButtonItem)
     {
@@ -276,7 +283,7 @@
     }
 }
 
--(void)enableRight
+- (void)enableRight
 {
     if (self.navigationItem.rightBarButtonItem)
     {
@@ -284,7 +291,7 @@
     }
 }
 
--(void)disableLeft
+- (void)disableLeft
 {
     if (self.navigationItem.leftBarButtonItem)
     {
@@ -292,7 +299,7 @@
     }
 }
 
--(void)disableRight
+- (void)disableRight
 {
     if (self.navigationItem.rightBarButtonItem)
     {
@@ -307,24 +314,26 @@
     self.navigationItem.titleView = view;
 }
 
--(void)initLeftImage:(NSString *)strImage
+- (void)initLeftImage:(NSString *)strImage
 {
-    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    CGRect rect   = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
     UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
     [btn addTarget:self action:@selector(leftEvent:) forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
-    btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     btn.backgroundColor = [UIColor clearColor];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = item;
 }
 
--(void)initLeftImage:(NSString *)strImage selector:(SEL)selector
+- (void)initLeftImage:(NSString *)strImage selector:(SEL)selector
 {
-    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    CGRect rect   = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
     UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
@@ -335,9 +344,10 @@
     self.navigationItem.leftBarButtonItem = item;
 }
 
--(void)initLeftTitle:(NSString *)strTitle
+- (void)initLeftTitle:(NSString *)strTitle
 {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
+    
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
@@ -350,9 +360,10 @@
     
 }
 
--(void)initLeftTitle:(NSString *)strTitle selector:(SEL)selector
+- (void)initLeftTitle:(NSString *)strTitle selector:(SEL)selector
 {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
+    
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
@@ -364,9 +375,10 @@
     self.navigationItem.leftBarButtonItem = item;
 }
 
--(void)initLeftTitle:(NSString *)strTitle color:(UIColor *)color
+- (void)initLeftTitle:(NSString *)strTitle color:(UIColor *)color
 {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
+    
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:color forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
@@ -378,9 +390,12 @@
     self.navigationItem.leftBarButtonItem = item;
 }
 
--(void)initLeftTitle:(NSString *)strTitle color:(UIColor *)color selector:(SEL)selector
+- (void)initLeftTitle:(NSString *)strTitle
+               color:(UIColor *)color
+            selector:(SEL)selector
 {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
+    
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:color forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
@@ -392,69 +407,83 @@
     self.navigationItem.leftBarButtonItem = item;
 }
 
--(void)initLeftImage:(NSString *)strImage title:(NSString *)strTitle color:(UIColor *)color
+- (void)initLeftImage:(NSString *)strImage
+               title:(NSString *)strTitle
+               color:(UIColor *)color
 {
     CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
     UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
     [btn addTarget:self action:@selector(leftEvent:) forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:color forState:UIControlStateNormal];
-    btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     btn.backgroundColor = [UIColor clearColor];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = item;
 }
 
--(void)initLeftImage:(NSString *)strImage title:(NSString *)strTitle color:(UIColor *)color selector:(SEL)selector
+- (void)initLeftImage:(NSString *)strImage
+               title:(NSString *)strTitle
+               color:(UIColor *)color
+            selector:(SEL)selector
 {
     CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
     UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:color forState:UIControlStateNormal];
-    btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     btn.backgroundColor = [UIColor clearColor];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = item;
 }
 
--(void)initRightImage:(NSString *)strImage
+- (void)initRightImage:(NSString *)strImage
 {
     CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
     UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
     [btn addTarget:self action:@selector(rightEvent:) forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
-    btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     btn.backgroundColor = [UIColor clearColor];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
 }
 
--(void)initRightImage:(NSString *)strImage selector:(SEL)selector
+- (void)initRightImage:(NSString *)strImage selector:(SEL)selector
 {
     CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
     UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
-    btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     btn.backgroundColor = [UIColor clearColor];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
 }
 
--(void)initRightTitle:(NSString *)strTitle
+- (void)initRightTitle:(NSString *)strTitle
 {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
+    
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
@@ -466,9 +495,10 @@
     self.navigationItem.rightBarButtonItem = item;
 }
 
--(void)initRightTitle:(NSString *)strTitle selector:(SEL)selector
+- (void)initRightTitle:(NSString *)strTitle selector:(SEL)selector
 {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
+    
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
@@ -480,9 +510,10 @@
     self.navigationItem.rightBarButtonItem = item;
 }
 
--(void)initRightTitle:(NSString *)strTitle color:(UIColor *)color;
+- (void)initRightTitle:(NSString *)strTitle color:(UIColor *)color;
 {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
+    
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:color forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
@@ -494,9 +525,12 @@
     self.navigationItem.rightBarButtonItem = item;
 }
 
--(void)initRightTitle:(NSString *)strTitle color:(UIColor *)color selector:(SEL)selector
+- (void)initRightTitle:(NSString *)strTitle
+                color:(UIColor *)color
+             selector:(SEL)selector
 {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
+    
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:color forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
@@ -508,16 +542,20 @@
     self.navigationItem.rightBarButtonItem = item;
 }
 
--(void)initRightImage:(NSString *)strImage title:(NSString *)strTitle color:(UIColor *)color
+- (void)initRightImage:(NSString *)strImage
+                title:(NSString *)strTitle
+                color:(UIColor *)color
 {
     CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
     UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
     [btn addTarget:self action:@selector(rightEvent:) forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:color forState:UIControlStateNormal];
-    btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     btn.backgroundColor = [UIColor clearColor];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
@@ -525,28 +563,33 @@
 
 }
 
--(void)initRightImage:(NSString *)strImage title:(NSString *)strTitle color:(UIColor *)color selector:(SEL)selector
+- (void)initRightImage:(NSString *)strImage
+                title:(NSString *)strTitle
+                color:(UIColor *)color
+             selector:(SEL)selector
 {
     CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
     UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:color forState:UIControlStateNormal];
-    btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     btn.backgroundColor = [UIColor clearColor];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
 }
 
--(void)resetLeftTitle:(NSString*)str
+- (void)resetLeftTitle:(NSString*)str
 {
     self.navigationItem.leftBarButtonItem.title = str;
 }
 
--(void)resetRightTitle:(NSString*)str
+- (void)resetRightTitle:(NSString*)str
 {
     self.navigationItem.rightBarButtonItem.title = str;
 }
@@ -580,26 +623,35 @@
     
 }
 
--(void)showEmptyView
+#pragma mark- showNavigationBar
+
+- (void)setNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated
 {
-    [self.view showEmptyView];
+    
 }
 
--(void)hideEmptyView
+- (void)showNavigationBar
 {
-    [self.view hideEmptyView];
+    
 }
 
--(void)showLoadingHud
+- (void)hideNavigationBar
+{
+    
+}
+
+#pragma mark HUD
+
+- (void)showLoadingHud
 {
     [self showLoadingHudWithText:@""];
 }
 
--(void)showLoadingHudWithText:(NSString*)text
+- (void)showLoadingHudWithText:(NSString*)text
 {
-    if (text==nil||[text length]==0)
+    if (text == nil || [text length] == 0)
     {
-        text=@"正在请求中...";
+        text = @"正在请求中...";
     }
     
     [LGProgressHud showLoadingHud:[UIApplication sharedApplication].keyWindow
@@ -608,59 +660,83 @@
                          animated:HudAnimatedTypeNone];
 }
 
--(void)hideLoadingHud
+- (void)hideLoadingHud
 {
     [LGProgressHud hideAllHudInView:[UIApplication sharedApplication].keyWindow
                            animated:HudAnimatedTypeNone];
 }
 
--(void)showLoading
+#pragma mark loading
+
+- (void)showLoading
 {
     [self.view showLoadingWithText:@"加载中..." ];
 }
 
--(void)showLoadingWithText:(NSString*)text
+- (void)showLoadingWithText:(NSString*)text
 {
     [self.view showLoadingWithText:text];
 }
 
--(void)hideLoading
+- (void)hideLoading
 {
     [self.view hideLoading];
 }
 
--(void)startLoadData
+#pragma mark toast
+
+- (void)showToast:(NSString*)text
+{
+    [self showToast:text duration:2.0 position:TFToastPositionTop];
+}
+
+- (void)showToast:(NSString*)text duration:(NSTimeInterval)duration position:(id)position
+{
+    [[UIApplication sharedApplication].keyWindow makeToast:text
+                                                  duration:duration
+                                                  position:position];
+}
+
+#pragma mark load data
+
+- (void)startLoadData
 {
     
 }
 
--(void)endLoadData
+- (void)endLoadData
 {
     [self hideLoadingHud];
 }
 
--(void)showCustomNaviBar:(UIView*)customNaviBar;
+- (void)showCustomNaviBar:(UIView*)customNaviBar;
 {
     self.customNaviBarView = customNaviBar;
     
     UIView *view = [self findView:self.navigationController.navigationBar withName:@"_UINavigationBarBackground"];
+    
     [view addSubview:self.customNaviBarView];
     self.customNaviBarView.alpha = 0;
+    
     [UIView animateWithDuration:0.25 animations:^{
+        
         self.customNaviBarView.alpha = 1;
     }];
 }
 
--(void)hideCustomNaviBar
+- (void)hideCustomNaviBar
 {
     [UIView animateWithDuration:0.25 animations:^{
+        
         self.customNaviBarView.alpha = 0;
+        
     } completion:^(BOOL finished) {
+        
         [self.customNaviBarView removeFromSuperview];
     }];
 }
 
--(UIView *)findView:(UIView *)aView withName:(NSString *)name
+- (UIView *)findView:(UIView *)aView withName:(NSString *)name
 {
     Class cl = [aView class];
     NSString *desc = [cl description];
@@ -679,28 +755,63 @@
             return subView;
         }
     }
+    
     return nil;
 }
 
-- (void)showToast:(NSString*)text
-{
-    [self showToast:text duration:2.0 position:TFToastPositionTop];
-}
+#pragma mark- handle
 
-- (void)showToast:(NSString*)text duration:(NSTimeInterval)duration position:(id)position
+-(void) handleData:(id)data
 {
-    [[UIApplication sharedApplication].keyWindow makeToast:text
-                                                  duration:duration
-                                                  position:position];
+    if ([data isKindOfClass:[UITableViewCell class]])
+    {
+
+    }
+    else if ([data isKindOfClass:[TFActionModel class]])
+    {
+        
+    }
+    else if ([data isKindOfClass:[TFWebModel class]])
+    {
+        
+    }
+    else if ([data isKindOfClass:[TFTableRowModel class]])
+    {
+        TFTableRowModel *item=(TFTableRowModel *)data;
+        
+        Class viewModelClass = NSClassFromString(item.vc);
+        if (viewModelClass!=nil)
+        {
+            [self pushViewController:[[viewModelClass alloc]init]];
+            return;
+        }
+        
+        SEL selector = NSSelectorFromString(item.method);
+        if ([self respondsToSelector:selector])
+        {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [self performSelector:selector withObject:nil];
+#pragma clang diagnostic pop
+            return;
+        }
+        
+    }
+    else if ([data isKindOfClass:[TFModel class]])
+    {
+        
+    }
 }
 
 #pragma mark- setter getter
+
 - (id)viewModel
 {
     if (_viewModel == nil)
     {
         NSString *viewControllerClassName = NSStringFromClass([self class]);
-        NSString *viewModelClassName= [viewControllerClassName stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewModel"];
+        NSString *viewModelClassName      = [viewControllerClassName stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewModel"];
+        
         Class viewModel = NSClassFromString(viewModelClassName);
         if (viewModel)
         {

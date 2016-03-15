@@ -8,35 +8,41 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  带回调block的UIAlertController
+ */
 @interface UIAlertController (Block)
 
-#pragma mark - alertview
-
+/**
+ *   显示UIAlertView
+ *
+ *  @param title             视图标题
+ *  @param message           内容
+ *  @param cancelButtonTitle 取消按钮标题
+ *  @param otherButtonTitles 其他按钮标题
+ *  @param block             按钮点击事件block
+ */
 + (void)showWithTitle:(NSString *)title
               message:(NSString *)message
     cancelButtonTitle:(NSString *)cancelButtonTitle
     otherButtonTitles:(NSArray *)otherButtonTitles
                 block:(void (^)(UIAlertController *alertView, NSInteger buttonIndex))block;
 
-+ (void)showWithTitle:(NSString *)title
-              message:(NSString *)message
-    buttonTitle:(NSArray *)buttonTitle
-                block:(void (^)(UIAlertController *alertView, NSInteger buttonIndex))block;
-
-#pragma mark - alertview
-
-+ (void)showWithTitle:(NSString *)title
-    cancelButtonTitle:(NSString *)cancelButtonTitle
+/**
+ *  显示UIActionSheet
+ *
+ *  @param title                  视图标题
+ *  @param cancelButtonTitle      取消按钮标题
+ *  @param destructiveButtonTitle 特殊标记按钮标题
+ *  @param otherButtonTitles      其他按钮标题
+ *  @param block                  按钮点击事件block
+ */
++ (void) showWithTitle:(NSString *)title
+     cancelButtonTitle:(NSString *)cancelButtonTitle
 destructiveButtonTitle:(NSString *)destructiveButtonTitle
-    otherButtonTitles:(NSArray *)otherButtonTitles
-                block:(void (^)(UIAlertController *, NSInteger))block;
+     otherButtonTitles:(NSArray *)otherButtonTitles
+                 block:(void (^)(UIAlertController *, NSInteger))block;
 
-+ (void)showWithTitle:(NSString *)title
-    cancelButtonTitle:(NSString *)cancelButtonTitle
-         buttonTitles:(NSArray *)buttonTitles
-                block:(void (^)(UIAlertController *, NSInteger))block;
 
-#pragma mark - show
-- (void)show;
 
 @end

@@ -13,10 +13,12 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    
+    if (self)
+    {
         // Custom initialization
-        
     }
+    
     return self;
 }
 
@@ -28,75 +30,107 @@
     [self.view addSubview:self.scrollView];
     
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
         make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
 }
 
--(void)showRefreshHeader
+#pragma mark- init autolayout bind
+
+- (void)initViews
 {
-    self.scrollView.mj_header.hidden=NO;
+    NSString *className=NSStringFromClass([self class]);
+    if (![className isEqualToString:NSStringFromClass([TFScrollViewController class])])
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                     userInfo:nil];
+    }
 }
 
--(void)hideRefreshHeader
+- (void)autolayoutViews
 {
-    self.scrollView.mj_header.hidden=YES;
+    NSString *className=NSStringFromClass([self class]);
+    if (![className isEqualToString:NSStringFromClass([TFScrollViewController class])])
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                     userInfo:nil];
+    }
 }
 
--(void)showRefreshFooter
+- (void)bindData
 {
-    self.scrollView.mj_footer.hidden=NO;
+    NSString *className=NSStringFromClass([self class]);
+    if (![className isEqualToString:NSStringFromClass([TFScrollViewController class])])
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                     userInfo:nil];
+    }
 }
 
--(void)hideRefreshFooter
+#pragma mark -  对上拉和下拉控件操作
+
+- (void)showRefreshHeader
 {
-    self.scrollView.mj_footer.hidden=YES;
+    self.scrollView.mj_header.hidden = NO;
 }
 
--(void)refreshNewData
+- (void)hideRefreshHeader
+{
+    self.scrollView.mj_header.hidden = YES;
+}
+
+- (void)refreshNewData
 {
     [self.scrollView.mj_header beginRefreshing];
 }
 
--(void)loadNewData
+#pragma mark -  加载数据方法
+
+- (void)loadNewData
 {
     
 }
 
--(void)loadMoreData
+- (void)loadMoreData
 {
     
 }
 
--(void)endLoadData
+- (void)endLoadData
 {
     [super endLoadData];
     [self.scrollView.mj_header endRefreshing];
-    [self.scrollView.mj_footer endRefreshing];
 }
 
--(UIScrollView *)tableView
+#pragma mark -  get set
+
+- (UIScrollView *)scrollView
 {
-    if (_scrollView==nil)
+    if (_scrollView == nil)
     {
         _scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
         //_scrollView.frame =CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
         //_scrollView.frame=self.view.bounds;
         _scrollView.delegate = self;
         
-        _scrollView.backgroundColor = [UIColor whiteColor];
+        _scrollView.backgroundColor                = [UIColor whiteColor];
         [_scrollView setKeyboardDismissMode:UIScrollViewKeyboardDismissModeOnDrag];
-        _scrollView.showsVerticalScrollIndicator=NO;
-        _scrollView.showsHorizontalScrollIndicator=NO;
+        _scrollView.showsVerticalScrollIndicator   = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
         
-        _scrollView.mj_header=[MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-        _scrollView.mj_footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+        _scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+
+        _scrollView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+        
         _scrollView.mj_footer.automaticallyHidden = NO;
-        _scrollView.mj_header.hidden=YES;
-        _scrollView.mj_footer.hidden=YES;
+        _scrollView.mj_header.hidden              = YES;
+        _scrollView.mj_footer.hidden              = YES;
     }
     
     return _scrollView;
 }
-
 
 @end

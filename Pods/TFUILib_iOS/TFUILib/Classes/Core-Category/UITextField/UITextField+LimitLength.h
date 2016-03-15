@@ -10,6 +10,11 @@
 
 @interface UITextField (LimitLength)
 
+/**
+ *  限制UItextfield输入长度
+ *
+ *  @param length 限制输入长度
+ */
 - (void)limitTextLength:(int)length;
 
 @end

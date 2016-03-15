@@ -9,32 +9,32 @@
 #import <UIKit/UIKit.h>
 #import "LGProgressObject.h"
 
-typedef enum{
+typedef NS_ENUM(NSUInteger, HudType){
     HudTypeHud,
     HudTypeProgress,
     HudTypeLoading,
     HudTypeLoadingText
-}HudType;
+};
 
-typedef enum{
+typedef NS_ENUM(NSUInteger, TextPositionType){
     TextPositionTypeLeft,
     TextPositionTypeTop,
     TextPositionTypeRight,
     TextPositionTypeBottle,
     TextPositionTypeCentre
     
-}TextPositionType;
+};
 
-typedef enum{
+typedef NS_ENUM(NSUInteger, ImagePositionType){
     ImagePositionTypeLeft,
     ImagePositionTypeTop,
     ImagePositionTypeRight,
     ImagePositionTypeBottle,
     ImagePositionTypeCentre
     
-}ImagePositionType;
+};
 
-typedef enum{
+typedef NS_ENUM(NSUInteger, HudAnimatedType){
     HudAnimatedTypeNone,
     HudAnimatedTypeLeft,
     HudAnimatedTypeTop,
@@ -44,8 +44,7 @@ typedef enum{
 //    HudAnimatedTypeScaleBigger,
 //    HudAnimatedTypeScaleSmaller,
 //    HudAnimatedTypeFade
-    
-}HudAnimatedType;
+};
 
 typedef void (^LGProgressHudBlock)();
 

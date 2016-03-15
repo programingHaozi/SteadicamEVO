@@ -20,5 +20,9 @@
  */
 @property (nonatomic, strong) NSString *parameter;
 
+/**
+ *  是否原生
+ */
+@property (nonatomic, assign) BOOL isNative;
 
 @end

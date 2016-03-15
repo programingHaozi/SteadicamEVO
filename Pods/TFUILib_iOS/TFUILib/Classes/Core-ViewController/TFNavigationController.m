@@ -25,4 +25,50 @@
     }
 }
 
+- (void)setNavigationBarBackgroundColor:(UIColor *)color alph:(NSInteger)alph
+{
+    [self.navigationBar setBgColor:color];
+    [self.navigationBar setElementsAlpha:alph];
+}
+
+
+#pragma mark- init autolayout bind
+
+- (void)initViews
+{
+    
+}
+
+- (void)autolayoutViews
+{
+    
+}
+
+- (void)bindData
+{
+    
+}
+
+#pragma mark - Setter Getter -
+
+- (UIViewController *)previousViewController
+{
+    UIViewController *previousVC = nil;
+    if (self.viewControllers.count != 0) {
+        previousVC = self.viewControllers[self.viewControllers.count-1];
+    }
+    
+    return previousVC;
+}
+
+-(void)setRootViewController:(TFViewController *)rootViewController
+{
+    
+}
+
+-(TFViewController *)rootViewController
+{
+    return self.viewControllers.firstObject;
+}
+
 @end

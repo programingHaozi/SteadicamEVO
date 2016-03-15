@@ -15,6 +15,13 @@
 
 #pragma mark - push
 
+void tf_handleData(id data)
+{
+    [TFUIUtil handleData:data];
+}
+
+#pragma mark - push
+
 void tf_pushViewController(UIViewController *vc)
 {
     [TFUIUtil pushViewController:vc];
@@ -23,6 +30,16 @@ void tf_pushViewController(UIViewController *vc)
 void tf_pushViewControllerFromViewController(UIViewController *vc,UIViewController *fromVC)
 {
     [TFUIUtil pushViewController:vc from:fromVC];
+}
+
+void tf_pushActionViewController(TFActionModel *vc)
+{
+    [TFUIUtil pushActionViewController:vc];
+}
+
+void tf_pushActionViewControllerFromViewController(TFActionModel *vc,UIViewController *fromVC)
+{
+    [TFUIUtil pushActionViewController:vc from:fromVC];
 }
 
 #pragma mark - pop
@@ -47,6 +64,7 @@ void tf_popToRootViewController()
 }
 
 #pragma mark - present dismiss
+
 void tf_presentViewController(UIViewController *vc)
 {
     [TFUIUtil presentViewController:vc];
@@ -74,12 +92,25 @@ UIViewController *tf_getRootViewController()
 
 @implementation TFUIUtil
 
++(void) handleData:(id)data
+{
+    if ([data isKindOfClass:[TFActionModel class]])
+    {
+        
+    }
+    else if ([data isKindOfClass:[TFModel class]])
+    {
+        
+    }
+}
+
 /*
  push pop
  */
 +(void) pushViewController:(UIViewController *)vc
 {
     UIViewController *rootVC=[TFUIUtil getRootViewController];
+    
     if (![rootVC isKindOfClass:[UINavigationController class]])
     {
         return;
@@ -132,7 +163,7 @@ UIViewController *tf_getRootViewController()
     NSString *fielPath = [[NSBundle mainBundle] pathForResource:@"ActionConfig" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:fielPath];
     
-    if (dict==nil)
+    if (dict == nil)
     {
         return NO;
     }
@@ -140,7 +171,7 @@ UIViewController *tf_getRootViewController()
     NSString *action = model.action;
     NSString *vcClassName=[dict objectForKey:action];
     
-    if (vcClassName==nil)
+    if (vcClassName == nil)
     {
         return NO;
     }
@@ -152,7 +183,7 @@ UIViewController *tf_getRootViewController()
     }
     
     Class vcClass = NSClassFromString(vcClassName);
-    if (vcClass==nil)
+    if (vcClass == nil)
     {
         NSCAssert(NO, ([NSString stringWithFormat:@"%@不存在",vcClassName]));
         return NO;
@@ -163,17 +194,19 @@ UIViewController *tf_getRootViewController()
     if (![vc isKindOfClass:[TFViewController class]])
     {
         NSCAssert(NO, ([NSString stringWithFormat:@"%@不是TFViewController",vcClassName]));
+        
         return NO;
     }
     
-    id parameter= model.parameter;
+    id parameter = model.parameter;
     
     // 有parameter参数需要把parameter赋值给ViewModel
-    if (parameter!=nil)
+    if (parameter != nil)
     {
         NSString *viewModelClassName= [vcClassName stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewModel"];
         Class viewModelClass = NSClassFromString(viewModelClassName);
-        if (viewModelClass==nil)
+        
+        if (viewModelClass == nil)
         {
             NSCAssert(NO, ([NSString stringWithFormat:@"%@不存在",viewModelClassName]));
             return NO;
@@ -187,9 +220,10 @@ UIViewController *tf_getRootViewController()
         else if ([parameter isKindOfClass:[NSString class]])
         {
             NSDictionary *dict=[[self class] parseString:parameter];
-            if (dict==nil)
+            if (dict == nil)
             {
                 NSCAssert(NO, ([NSString stringWithFormat:@"%@不和规范",parameter]));
+                
                 return NO;
             }
             else
@@ -200,17 +234,19 @@ UIViewController *tf_getRootViewController()
         else
         {
             NSCAssert(NO, ([NSString stringWithFormat:@"parameter不符合参数类型"]));
+            
             return NO;
         }
     }
     
     [TFUIUtil pushViewController:vc from:fromVC];
+    
     return YES;
 }
 
 +(void) popToViewController:(UIViewController *)vc
 {
-    if (vc==nil)
+    if (vc == nil)
     {
         return;
     }
@@ -220,12 +256,13 @@ UIViewController *tf_getRootViewController()
 
 +(void) popToViewControllerWithClassName:(NSString *)className
 {
-    if (className==nil||className.length==0)
+    if (className == nil || className.length == 0)
     {
         return;
     }
     
-    UIViewController *rootVC=[TFUIUtil getRootViewController];
+    UIViewController *rootVC = [TFUIUtil getRootViewController];
+    
     if (![rootVC isKindOfClass:[UINavigationController class]])
     {
         return;
@@ -233,18 +270,20 @@ UIViewController *tf_getRootViewController()
     
     UINavigationController *rootNav= (UINavigationController *)rootVC;
     NSMutableArray *vcs = [NSMutableArray arrayWithArray:rootNav.viewControllers];
+    
     for (NSInteger i=vcs.count-1; i<vcs.count; i--)
     {
         UIViewController *vc = vcs[i];
         if ([vc isKindOfClass:NSClassFromString(className)])
         {
             [rootNav popToViewController:vc animated:YES];
+            
             return;
         }
     }
 }
 
-+(void) popViewController
++ (void)popViewController
 {
     UIViewController *rootVC=[TFUIUtil getRootViewController];
     if (![rootVC isKindOfClass:[UINavigationController class]])
@@ -256,7 +295,7 @@ UIViewController *tf_getRootViewController()
     [rootNav popViewControllerAnimated:YES];
 }
 
-+(void) popToRootViewController
++ (void)popToRootViewController
 {
     UIViewController *rootVC=[TFUIUtil getRootViewController];
     if (![rootVC isKindOfClass:[UINavigationController class]])
@@ -268,7 +307,7 @@ UIViewController *tf_getRootViewController()
     [rootNav popToRootViewControllerAnimated:YES];
 }
 
-+(void) popModuleViewController
++ (void)popModuleViewController
 {
     UIViewController *rootVC=[TFUIUtil getRootViewController];
     if (![rootVC isKindOfClass:[UINavigationController class]])
@@ -281,7 +320,7 @@ UIViewController *tf_getRootViewController()
     for (NSInteger i=vcs.count-1; i>=0; i--)
     {
         UIViewController *vc = (UIViewController *)vcs[i];
-        if (vc.view.tag==MODLUE_VIEW_CONTROLLER_TAG)
+        if (vc.view.tag == MODLUE_VIEW_CONTROLLER_TAG)
         {
             if (i>0)
             {
@@ -296,7 +335,7 @@ UIViewController *tf_getRootViewController()
 /*
  present dismiss
  */
-+(void) presentViewController:(UIViewController *)vc
++ (void)presentViewController:(UIViewController *)vc
 {
     UIViewController *rootVC=[TFUIUtil getRootViewController];
     TFNavigationController *nav=[[TFNavigationController alloc]initWithRootViewController:vc];
@@ -305,14 +344,14 @@ UIViewController *tf_getRootViewController()
     }];
 }
 
-+(void) dismissViewController:(UIViewController *)vc
++ (void)dismissViewController:(UIViewController *)vc
 {
     [vc dismissViewControllerAnimated:YES completion:^{
         
     }];
 }
 
-+(void) back
++ (void)back
 {
     UIViewController *rootVC=[TFUIUtil getRootViewController];
     if ([rootVC isKindOfClass:[UINavigationController class]])
@@ -322,9 +361,10 @@ UIViewController *tf_getRootViewController()
     }
 }
 
-+(UIViewController *) getRootViewController
++ (UIViewController *)getRootViewController
 {
     UIViewController *rootVC=[[UIApplication sharedApplication].delegate window].rootViewController;
+    
     return rootVC;
 }
 

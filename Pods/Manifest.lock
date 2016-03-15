@@ -211,6 +211,7 @@ PODS:
     - SDWebImage (= 3.7.5)
     - TFUILib_iOS/Core-3rd (= 0.0.27)
     - TFUILib_iOS/Core-Category (= 0.0.27)
+    - TFUILib_iOS/Core-CustomControl (= 0.0.27)
     - TFUILib_iOS/Core-Manager (= 0.0.27)
     - TFUILib_iOS/Core-Model (= 0.0.27)
     - TFUILib_iOS/Core-Util (= 0.0.27)
@@ -231,6 +232,12 @@ PODS:
     - pop (= 1.0.8)
     - SDWebImage (= 3.7.5)
   - TFUILib_iOS/Core-Category (0.0.27):
+    - IQKeyboardManager (= 3.3.6)
+    - Masonry (= 0.6.4)
+    - MJRefresh (= 3.1.0)
+    - pop (= 1.0.8)
+    - SDWebImage (= 3.7.5)
+  - TFUILib_iOS/Core-CustomControl (0.0.27):
     - IQKeyboardManager (= 3.3.6)
     - Masonry (= 0.6.4)
     - MJRefresh (= 3.1.0)
@@ -294,7 +301,7 @@ DEPENDENCIES:
   - TFThirdLib_iOS/JPush (from `http://git01.dds.com/MP/TFThirdLib_iOS.git`)
   - TFThirdLib_iOS/UnionPay (from `http://git01.dds.com/MP/TFThirdLib_iOS.git`)
   - TFThirdLib_iOS/WXPay (from `http://git01.dds.com/MP/TFThirdLib_iOS.git`)
-  - TFUILib_iOS (from `http://git01.dds.com/MP/TFUILib_iOS.git`)
+  - TFUILib_iOS (from `http://git01.dds.com/MP/TFUILib_iOS.git`, branch `forDevelop`)
   - TorqueSDK (from `http://git01.dds.com/cm/torque_sdk_ios.git`, branch `develop`,
     tag `2.0.31`)
 
@@ -308,6 +315,7 @@ EXTERNAL SOURCES:
   TFThirdLib_iOS:
     :git: http://git01.dds.com/MP/TFThirdLib_iOS.git
   TFUILib_iOS:
+    :branch: forDevelop
     :git: http://git01.dds.com/MP/TFUILib_iOS.git
   TorqueSDK:
     :branch: develop
@@ -328,7 +336,7 @@ CHECKOUT OPTIONS:
     :commit: 6dcac6e36bb58af5d43b735ebedd3d1487a005f3
     :git: http://git01.dds.com/MP/TFThirdLib_iOS.git
   TFUILib_iOS:
-    :commit: 3bc6891b221fdc5c5b4dc148def40cd7a24d6d61
+    :commit: e6820f9aab1ce817905b625b90e54b702dfcf0a0
     :git: http://git01.dds.com/MP/TFUILib_iOS.git
   TorqueSDK:
     :branch: develop
@@ -361,7 +369,7 @@ SPEC CHECKSUMS:
   TFCoreLib_iOS: bbeab827b921c90c8ca15bba00b752bfc149f658
   TFHotfixLib_iOS: c59f61024d55428b9f6e261db8283edd4bd16cbe
   TFThirdLib_iOS: 0d3b0ca8c43e5ec57a5102620052560cc7555f6c
-  TFUILib_iOS: 5d87ca9844d60bf2633c565cda6625e2607e42a8
+  TFUILib_iOS: e95720962ac5fdb5d9e99c5aac0bba63af183381
   TorqueSDK: 81b3ca6fb258802b17db837952e59389329befa8
   TransitionKit: 9ceccda4cd0cdc0a05ef85eb235e5a3292c3c250
 

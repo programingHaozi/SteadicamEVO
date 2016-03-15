@@ -2,12 +2,11 @@
 //  UIAlertView+Block.m
 //  UIAlertView+Block
 //
-//  Created by Jonghwan Hyeon on 8/14/14.
-//  Copyright (c) 2014 Jonghwan Hyeon. All rights reserved.
+//  Created by xiayiyong on 16/1/28.
+//  Copyright © 2016年 上海赛可电子商务有限公司. All rights reserved.
 //
 
 #import "UIAlertView+Block.h"
-#import <objc/runtime.h>
 
 @interface UIAlertView () <UIAlertViewDelegate>
 
@@ -19,79 +18,55 @@
 
 + (void)showWithTitle:(NSString *)title
               message:(NSString *)message
-    cancelButtonTitle:(NSString *)cancelButtonTitle
+    cancelButtonTitle:cancelButtonTitle
     otherButtonTitles:(NSArray *)otherButtonTitles
                 block:(void (^)(UIAlertView *alertView, NSInteger buttonIndex))block
 {
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:title
+    UIAlertView *alert=[UIAlertView alertWithTitle:title
                                                  message:message
                                        cancelButtonTitle:cancelButtonTitle
                                        otherButtonTitles:otherButtonTitles
-                                                   block:nil];
-    [alert showUsingBlock:block];
+                                                   block:block];
+    [alert show];
 }
 
-+ (void)showWithTitle:(NSString *)title
-              message:(NSString *)message
-         buttonTitles:(NSArray *)buttonTitles
-                block:(void (^)(UIAlertView *alertView, NSInteger buttonIndex))block
-{
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:title
-                                                 message:message
-                                       cancelButtonTitle:nil
-                                       otherButtonTitles:buttonTitles
-                                                   block:nil];
-    [alert showUsingBlock:block];
-}
-
-- (instancetype)initWithTitle:(NSString *)title
++ (instancetype)alertWithTitle:(NSString *)title
                       message:(NSString *)message
             cancelButtonTitle:(NSString *)cancelButtonTitle
             otherButtonTitles:(NSArray *)otherButtonTitles
                         block:(void (^)(UIAlertView *alertView, NSInteger buttonIndex))block
 {
-    self = [self initWithTitle:title
-                       message:message
-                      delegate:self
-             cancelButtonTitle:cancelButtonTitle
-             otherButtonTitles:nil];
-    if (self) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                      message:message
+                                     delegate:nil
+                            cancelButtonTitle:nil
+                            otherButtonTitles:nil];
+    
+    if (alert)
+    {
+        NSInteger buttonIndex = 0;
+        
+        if (cancelButtonTitle != nil && cancelButtonTitle.length > 0)
+        {
+            [alert addButtonWithTitle:cancelButtonTitle];
+            alert.cancelButtonIndex = buttonIndex++;
+        }
+        
         for (NSString *otherButtonTitle in otherButtonTitles)
         {
-            [self addButtonWithTitle:otherButtonTitle];
+            [alert addButtonWithTitle:otherButtonTitle];
+            ++buttonIndex;
         }
     }
     
-    self.block=block;
-    return self;
+    alert.block = block;
+    alert.delegate=alert;
+    return alert;
 }
 
-- (instancetype)initWithTitle:(NSString *)title
-                      message:(NSString *)message
-            cancelButtonTitle:(NSString *)cancelButtonTitle
-            otherButtonTitles:(NSArray *)otherButtonTitles
-{
-    self = [self initWithTitle:title message:message cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles block:nil];
-    return self;
-}
+#pragma mark - delegate
 
-- (void)setBlock:(void (^)(UIAlertView *, NSInteger))block
-{
-    objc_setAssociatedObject(self, @selector(block), block, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-- (void (^)(UIAlertView *, NSInteger))block
-{
-    return objc_getAssociatedObject(self, @selector(block));
-}
-
-- (void)showUsingBlock:(void (^)(UIAlertView *, NSInteger))block
-{
-    self.block = block;
-    [self show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (self.block)
     {

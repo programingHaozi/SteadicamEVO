@@ -10,4 +10,24 @@
 
 @implementation TFWebView
 
+- (void)loadURL:(NSURL *)aURL
+{
+    [self loadUrl:[NSURLRequest requestWithURL:aURL]];
+}
+
+- (void)loadURLString:(NSString *)string;
+{
+    [self loadUrl:[NSURLRequest requestWithURL:[NSURL URLWithString:string]]];
+}
+
+- (void)loadRequest:(NSURLRequest *)aRequest;
+{
+    [self loadUrl:aRequest];
+}
+
+- (void)loadHTMLString:(NSString *)string;
+{
+    [self loadHTMLString:string baseURL:nil];
+}
+
 @end

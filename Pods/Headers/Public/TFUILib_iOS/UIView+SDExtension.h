@@ -1,1 +1,1 @@
-../../../TFUILib_iOS/TFUILib/Classes/Core-View/TFLoopScrollView/UIView+SDExtension.h
+../../../TFUILib_iOS/TFUILib/Classes/Core-View/TFImageLoopView/UIView+SDExtension.h

@@ -8,6 +8,10 @@
 
 #import "TFTextView.h"
 
+@interface TFTextView ()
+
+@end
+
 @implementation TFTextView
 
 @end

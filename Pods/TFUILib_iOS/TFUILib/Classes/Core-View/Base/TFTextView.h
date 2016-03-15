@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UITextView+Category.h"
 
 /**
- *  TextView的基类
+ *  TextView的基类 实现placeholder
  */
 @interface TFTextView : UITextView
+
+/**
+ *  text最大长度
+ */
+@property (nonatomic, assign) NSUInteger maxLength;
 
 @end

@@ -8,9 +8,7 @@
 
 #import "TFAbstractDotView.h"
 
-
 @implementation TFAbstractDotView
-
 
 - (id)init
 {
@@ -18,7 +16,6 @@
                                    reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
                                  userInfo:nil];
 }
-
 
 - (void)changeActivityState:(BOOL)active
 {

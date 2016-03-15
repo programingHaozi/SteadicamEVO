@@ -11,7 +11,14 @@
 
 @interface TFWebModel : TFModel
 
+/**
+ *  页面标题
+ */
 @property (nonatomic,strong) NSString *title;
+
+/**
+ *  H5链接
+ */
 @property (nonatomic,strong) NSString *url;
 
 @end

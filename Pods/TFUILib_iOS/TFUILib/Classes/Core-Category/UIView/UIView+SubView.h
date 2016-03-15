@@ -10,28 +10,18 @@
 
 @interface UIView (SubView)
 
+/**
+ *  移除所有子视图
+ */
 - (void)removeAllSubviews;
 
+/**
+ *  根据tag获取子视图
+ *
+ *  @param tag 子视图tag
+ *
+ *  @return 子视图
+ */
 - (UIView *)subViewWithTag:(int)tag;
-
-- (UILabel *)labelWithTag:(NSInteger)tag;
-- (UIButton *)buttonWithTag:(NSInteger)tag;
-- (UITextField *)textFieldWithTag:(NSInteger)tag;
-- (UITextView *)textViewWithTag:(NSInteger)tag;
-- (UIScrollView *)scrollViewWithTag:(NSInteger)tag;
-- (UITableView *)tableViewWithTag:(NSInteger)tag;
-- (UITableViewCell *)tableCellWithTag:(NSInteger)tag;
-- (UIWindow *)windowWithTag:(NSInteger)tag;
-- (UITabBar *)tabbarWithTag:(NSInteger)tag;
-- (UITabBarItem *)tabbarItemWithTag:(NSInteger)tag;
-- (UISwitch *)switchWithTag:(NSInteger)tag;
-- (UIStepper *)stepperWithTag:(NSInteger)tag;
-- (UISlider *)sliderWithTag:(NSInteger)tag;
-- (UISegmentedControl *)segmentWithTag:(NSInteger)tag;
-- (UITableViewHeaderFooterView *)tableHeaderFooterWithTag:(NSInteger)tag;
-- (UIToolbar *)toolbarWithTag:(NSInteger)tag;
-- (UIWebView *)webViewWithTag:(NSInteger)tag;
-- (UICollectionViewCell *)collectionCellWithTag:(NSInteger)tag;
-- (UICollectionView *)collectionViewWithTag:(NSInteger)tag;
 
 @end

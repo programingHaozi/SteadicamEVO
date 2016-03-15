@@ -10,10 +10,10 @@
 
 @implementation UIView (SuperView)
 
-- (UIView *)findSuperViewWithClass:(Class)superViewClass
+- (UIView *)superViewWithClass:(Class)superViewClass
 {
     
-    UIView *superView = self.superview;
+    UIView *superView      = self.superview;
     UIView *foundSuperView = nil;
     
     while (nil != superView && nil == foundSuperView)
@@ -27,6 +27,7 @@
             superView = superView.superview;
         }
     }
+    
     return foundSuperView;
 }
 

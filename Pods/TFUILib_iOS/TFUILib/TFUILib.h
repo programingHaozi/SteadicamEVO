@@ -27,7 +27,6 @@ FOUNDATION_EXPORT const unsigned char TFUILibVersionString[];
 #import "TFUIUtil.h"
 
 #import "TFKeyboardManager.h"
-#import "TFPushManager.h"
 
 #import "TFModel.h"
 #import "TFActionModel.h"
@@ -54,7 +53,6 @@ FOUNDATION_EXPORT const unsigned char TFUILibVersionString[];
 #import "TFImageView.h"
 #import "TFSegmentedControl.h"
 #import "TFSegmentedView.h"
-#import "TFPicker.h"
 #import "TFDatePicker.h"
 #import "TFYearPicker.h"
 #import "TFActionSheet.h"
@@ -62,4 +60,13 @@ FOUNDATION_EXPORT const unsigned char TFUILibVersionString[];
 
 #import "TFTableViewCell.h"
 #import "TFCollectionViewCell.h"
+
+#import "TFLineLayout.h"
+#import "TFGridLayout.h"
+#import "TFWaterflowLayout.h"
+#import "TFCircleLayout.h"
+
+#import "TFHubView.h"
+#import "TFImageLoopView.h"
+#import "TFNewsLoopView.h"
 

@@ -1,55 +1,130 @@
-/***************************************************************************
- 
-UIView+TFToast.h
-Toast
-
-Copyright (c) 2014 Charles Scalesse.
- 
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
- 
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
- 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- 
-***************************************************************************/
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  顶部显示toast
+ */
 extern NSString * const TFToastPositionTop;
+
+/**
+ *  中部显示toast
+ */
 extern NSString * const TFToastPositionCenter;
+
+/**
+ *  底部显示toast
+ */
 extern NSString * const TFToastPositionBottom;
 
 @interface UIView (TFToast)
 
 // each makeToast method creates a view and displays it as toast
+
+/**
+ *  显示toast
+ *
+ *  @param message 信息
+ */
 - (void)makeToast:(NSString *)message;
-- (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position;
-- (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position image:(UIImage *)image;
-- (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position title:(NSString *)title;
+
+/**
+ *  显示toast
+ *
+ *  @param message  信息
+ *  @param interval 持续时间
+ *  @param position 位置（NSString：top，center，bottom，或者是CGPoint）
+ */
+- (void)makeToast:(NSString *)message
+         duration:(NSTimeInterval)interval
+         position:(id)position;
+
+/**
+ *  显示toast
+ *
+ *  @param message  信息
+ *  @param interval 持续时间
+ *  @param position 位置（NSString：top，center，bottom，或者是CGPoint）
+ *  @param image    图片
+ */
+- (void)makeToast:(NSString *)message
+         duration:(NSTimeInterval)interval
+         position:(id)position
+            image:(UIImage *)image;
+
+/**
+ *  显示toast
+ *
+ *  @param message  信息
+ *  @param interval 持续时间
+ *  @param position 位置（NSString：top，center，bottom，或者是CGPoint）
+ *  @param title    标题
+ */
+- (void)makeToast:(NSString *)message
+         duration:(NSTimeInterval)interval
+         position:(id)position
+            title:(NSString *)title;
+
+/**
+ *  显示toast
+ *
+ *  @param message  信息
+ *  @param interval 持续时间
+ *  @param position 位置（NSString：top，center，bottom，或者是CGPoint）（NSString：top，center，bottom，或者是CGPoint）
+ *  @param title    标题
+ *  @param image    图片
+ */
 - (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position title:(NSString *)title image:(UIImage *)image;
 
 // displays toast with an activity spinner
+
+/**
+ *  显示指示器toast
+ */
 - (void)makeToastActivity;
+
+/**
+ *  显示指示器toast
+ *
+ *  @param position 位置（NSString：top，center，bottom，或者是CGPoint）
+ */
 - (void)makeToastActivity:(id)position;
+
+/**
+ *  隐藏toast指示器
+ */
 - (void)hideToastActivity;
 
 // the showToast methods display any view as toast
+
+/**
+ *  显示带视图的toast
+ *
+ *  @param toast 视图
+ */
 - (void)showToast:(UIView *)toast;
-- (void)showToast:(UIView *)toast duration:(NSTimeInterval)interval position:(id)point;
-- (void)showToast:(UIView *)toast duration:(NSTimeInterval)interval position:(id)point
+
+/**
+ *  显示带视图的toast
+ *
+ *  @param toast    视图
+ *  @param interval 持续时间
+ *  @param point    位置（NSString：top，center，bottom，或者是CGPoint）
+ */
+- (void)showToast:(UIView *)toast
+         duration:(NSTimeInterval)interval
+         position:(id)point;
+
+/**
+ *  显示带视图的toast
+ *
+ *  @param toast       视图
+ *  @param interval    持续时间
+ *  @param point       位置（NSString：top，center，bottom，或者是CGPoint）
+ *  @param tapCallback 点击回调
+ */
+- (void)showToast:(UIView *)toast
+         duration:(NSTimeInterval)interval
+         position:(id)point
       tapCallback:(void(^)(void))tapCallback;
 
 @end

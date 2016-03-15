@@ -17,9 +17,9 @@
 
 - (void)setLeft:(CGFloat)x
 {
-    CGRect frame = self.frame;
+    CGRect frame   = self.frame;
     frame.origin.x = x;
-    self.frame = frame;
+    self.frame     = frame;
 }
 
 - (CGFloat)right
@@ -29,9 +29,9 @@
 
 - (void)setRight:(CGFloat)right
 {
-    CGRect frame = self.frame;
+    CGRect frame   = self.frame;
     frame.origin.x = right - frame.size.width;
-    self.frame = frame;
+    self.frame     = frame;
 }
 
 - (CGFloat)top
@@ -41,9 +41,9 @@
 
 - (void)setTop:(CGFloat)y
 {
-    CGRect frame = self.frame;
+    CGRect frame   = self.frame;
     frame.origin.y = y;
-    self.frame = frame;
+    self.frame     = frame;
 }
 
 - (CGFloat)bottom
@@ -53,9 +53,9 @@
 
 - (void)setBottom:(CGFloat)bottom
 {
-    CGRect frame = self.frame;
+    CGRect frame   = self.frame;
     frame.origin.y = bottom - frame.size.height;
-    self.frame = frame;
+    self.frame     = frame;
 }
 
 - (CGFloat)width
@@ -65,9 +65,9 @@
 
 - (void)setWidth:(CGFloat)width
 {
-    CGRect frame = self.frame;
+    CGRect frame     = self.frame;
     frame.size.width = width;
-    self.frame = frame;
+    self.frame       = frame;
 }
 
 - (CGFloat)height
@@ -77,9 +77,9 @@
 
 - (void)setHeight:(CGFloat)height
 {
-    CGRect frame = self.frame;
+    CGRect frame      = self.frame;
     frame.size.height = height;
-    self.frame = frame;
+    self.frame        = frame;
 }
 
 - (CGFloat)centerX
@@ -90,6 +90,7 @@
 - (void)setCenterX:(CGFloat)centerX
 {
     self.center = CGPointMake(centerX, self.center.y);
+    
     return;
 }
 
@@ -101,6 +102,7 @@
 - (void)setCenterY:(CGFloat)centerY
 {
     self.center = CGPointMake(self.center.x, centerY);
+    
     return;
 }
 
@@ -113,7 +115,8 @@
 {
     CGRect frame = self.frame;
     frame.origin = origin;
-    self.frame = frame;
+    self.frame   = frame;
+    
     return;
 }
 
@@ -127,6 +130,7 @@
     CGRect frame = self.frame;
     frame.size = size;
     self.frame = frame;
+    
     return;
 }
 
@@ -138,6 +142,7 @@
 - (void)setCornerRadius:(CGFloat)cornerRadius
 {
     self.layer.cornerRadius = cornerRadius;
+    self.clipsToBounds = cornerRadius > 0.0;
 }
 
 - (UIColor *)borderColor
@@ -160,14 +165,14 @@
     self.layer.borderWidth = borderWidth;
 }
 
-- (UIColor *)shaddowColor
+- (UIColor *)shadowColor
 {
     return [[UIColor alloc] initWithCGColor:self.layer.shadowColor];
 }
 
-- (void)setShaddowColor:(UIColor *)shaddowColor
+- (void)setShadowColor:(UIColor *)shadowColor
 {
-    self.layer.shadowColor = shaddowColor.CGColor;
+    self.layer.shadowColor = shadowColor.CGColor;
 }
 
 @end

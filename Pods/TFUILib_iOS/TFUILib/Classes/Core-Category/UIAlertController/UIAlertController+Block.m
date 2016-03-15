@@ -23,24 +23,27 @@
                                                                    message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
-    if (cancelButtonTitle!=nil && cancelButtonTitle.length>0)
+    if (cancelButtonTitle != nil && cancelButtonTitle.length > 0)
     {
+        int start=0;
+        
         UIAlertAction *alertAction = [UIAlertAction actionWithTitle:cancelButtonTitle
                                                               style:UIAlertActionStyleCancel
                                                             handler:^(UIAlertAction *action) {
                                                                 if (block!=nil)
                                                                 {
-                                                                    block(alert,0);
+                                                                    block(alert,start);
                                                                 }
                                                             }];
         
         [alert addAction:alertAction];
     }
     
-    if (otherButtonTitles!=nil)
+    if (otherButtonTitles != nil)
     {
         int start=0;
-        if (cancelButtonTitle!=nil&&cancelButtonTitle.length>0)
+        
+        if (cancelButtonTitle != nil && cancelButtonTitle.length > 0)
         {
             start++;
         }
@@ -63,6 +66,7 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^(void){
+        
         [alert show];
     });
 }
@@ -72,52 +76,66 @@
           buttonTitle:(NSArray *)buttonTitle
                 block:(void (^)(UIAlertController *alertView, NSInteger buttonIndex))block
 {
-    [[self class]showWithTitle:title message:message cancelButtonTitle:nil otherButtonTitles:buttonTitle block:block];
+    [[self class]showWithTitle:title
+                       message:message
+             cancelButtonTitle:nil
+             otherButtonTitles:buttonTitle
+                         block:block];
 }
 
 #pragma mark - actionsheet
 
-+ (void)showWithTitle:(NSString *)title
-    cancelButtonTitle:(NSString *)cancelButtonTitle
++ (void) showWithTitle:(NSString *)title
+     cancelButtonTitle:(NSString *)cancelButtonTitle
 destructiveButtonTitle:(NSString *)destructiveButtonTitle
-    otherButtonTitles:(NSArray *)otherButtonTitles
-                block:(void (^)(UIAlertController *, NSInteger))block
+     otherButtonTitles:(NSArray *)otherButtonTitles
+                 block:(void (^)(UIAlertController *, NSInteger))block
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                    message:nil
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
     
-    if (cancelButtonTitle!=nil && cancelButtonTitle.length>0)
+    if (cancelButtonTitle != nil && cancelButtonTitle.length > 0)
     {
+        int start=0;
+        
         UIAlertAction *alertAction = [UIAlertAction actionWithTitle:cancelButtonTitle
                                                               style:UIAlertActionStyleCancel
                                                             handler:^(UIAlertAction *action) {
                                                                 if (block!=nil)
                                                                 {
-                                                                    block(alert,0);
+                                                                    block(alert,start);
                                                                 }
                                                             }];
         
         [alert addAction:alertAction];
     }
     
-    if (destructiveButtonTitle!=nil && destructiveButtonTitle.length>0)
+    if (destructiveButtonTitle != nil && destructiveButtonTitle.length > 0)
     {
+        int start=0;
+        
+        if (cancelButtonTitle!=nil&&cancelButtonTitle.length>0)
+        {
+            start++;
+        }
+        
         UIAlertAction *alertAction = [UIAlertAction actionWithTitle:destructiveButtonTitle
                                                               style:UIAlertActionStyleDestructive
                                                             handler:^(UIAlertAction *action) {
                                                                 if (block!=nil)
                                                                 {
-                                                                    block(alert,1);
+                                                                    block(alert,start);
                                                                 }
                                                             }];
         
         [alert addAction:alertAction];
     }
     
-    if (otherButtonTitles!=nil)
+    if (otherButtonTitles != nil)
     {
         int start=0;
+        
         if (cancelButtonTitle!=nil&&cancelButtonTitle.length>0)
         {
             start++;
@@ -127,9 +145,9 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
             start++;
         }
         
-        for (int i=0; i<otherButtonTitles.count; i++)
+        for (int i = 0; i < otherButtonTitles.count; i++)
         {
-            NSString *item=otherButtonTitles[i];
+            NSString *item = otherButtonTitles[i];
             UIAlertAction *alertAction = [UIAlertAction actionWithTitle:item
                                                                   style:UIAlertActionStyleDefault
                                                                 handler:^(UIAlertAction *action) {
@@ -145,6 +163,7 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
     }
     
     dispatch_async(dispatch_get_main_queue(), ^(void){
+        
         [alert show];
     });
 }
@@ -154,15 +173,22 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
          buttonTitles:(NSArray *)buttonTitles
                 block:(void (^)(UIAlertController *, NSInteger))block
 {
-    [[self class]showWithTitle:title cancelButtonTitle:cancelButtonTitle destructiveButtonTitle:nil otherButtonTitles:buttonTitles block:block];
+    [[self class]showWithTitle:title
+             cancelButtonTitle:cancelButtonTitle
+        destructiveButtonTitle:nil
+             otherButtonTitles:buttonTitles
+                         block:block];
 }
 
 - (void)show
 {
-    [[self topShowViewController] presentViewController:self animated:YES completion:nil];
+    [[self topShowViewController] presentViewController:self
+                                               animated:YES
+                                             completion:nil];
 }
 
 #pragma --mark t
+
 - (UIViewController*)topShowViewController
 {
     return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
@@ -173,16 +199,19 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
     if ([rootViewController isKindOfClass:[UITabBarController class]])
     {
         UITabBarController* tabBarController = (UITabBarController*)rootViewController;
+        
         return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
     }
     else if ([rootViewController isKindOfClass:[UINavigationController class]])
     {
         UINavigationController* navigationController = (UINavigationController*)rootViewController;
+        
         return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
     }
     else if (rootViewController.presentedViewController)
     {
         UIViewController* presentedViewController = rootViewController.presentedViewController;
+        
         return [self topViewControllerWithRootViewController:presentedViewController];
     }
     else
@@ -190,4 +219,10 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
         return rootViewController;
     }
 }
+
++ (BOOL)isIosVersion8AndAfter
+{
+    return [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 ;
+}
+
 @end

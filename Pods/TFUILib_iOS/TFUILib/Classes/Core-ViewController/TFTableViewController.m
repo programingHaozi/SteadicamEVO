@@ -8,9 +8,17 @@
 
 #import "TFTableViewController.h"
 #import "UIView+Category.h"
+#import "TFTableViewCell.h"
+#import "TFActionModel.h"
+#import "TFBaseMacro+Color.h"
+#import "TFUIUtil.h"
+#import "TFView.h"
+#import "TFLabel.h"
 
 @interface TFTableViewController ()
+
 @property (nonatomic,assign) UITableViewStyle style;
+
 @end
 
 @implementation TFTableViewController
@@ -18,13 +26,16 @@
 - (instancetype) init
 {
     self = [self initWithStyle:UITableViewStyleGrouped];
+    
     return self;
 }
 
 - (instancetype) initWithStyle:(UITableViewStyle)style
 {
-    if(!(self = [super init])) return nil;
+    if(!(self  = [super init])) return nil;
     self.style = style;
+    self.headerViewHeight=0.1;
+    self.footerViewHeight=0.1;
     return self;
 }
 
@@ -36,157 +47,264 @@
     [self.view addSubview:self.tableView];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
         make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
-
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+    [self registerCell];
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark- init autolayout bind
+
+- (void)initViews
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSString *className=NSStringFromClass([self class]);
+    if (![className isEqualToString:NSStringFromClass([TFTableViewController class])])
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                     userInfo:nil];
+    }
+}
+
+- (void)autolayoutViews
+{
+    NSString *className=NSStringFromClass([self class]);
+    if (![className isEqualToString:NSStringFromClass([TFTableViewController class])])
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                     userInfo:nil];
+    }
+}
+
+- (void)bindData
+{
+    NSString *className=NSStringFromClass([self class]);
+    if (![className isEqualToString:NSStringFromClass([TFTableViewController class])])
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                     userInfo:nil];
+    }
+}
+
+- (void)registerCell
+{
+    NSString *className=NSStringFromClass([self class]);
+    NSString *cellClassName   = [className stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewCell"];
+    Class cellClass = NSClassFromString(cellClassName);
+    if (cellClass)
+    {
+        [self.tableView registerClass:cellClass forCellReuseIdentifier:cellClassName];
+    }
+    
+    if (![className isEqualToString:NSStringFromClass([TFTableViewController class])])
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                     userInfo:nil];
+    }
 }
 
 #pragma mark -  UITableViewDataSource
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.isUseTemplate?[self.viewModel numberOfSections]:1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.isUseTemplate?[self.viewModel numberOfRowsInSection:section]:0;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.05;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 0.05;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 0;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"UITableViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    if (self.isUseTemplate)
+    {
+        NSString *className=NSStringFromClass([self class]);
+        NSString *cellClassName   = [className stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewCell"];
+        TFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClassName];
+        cell.data=[self.viewModel dataAtIndexPath:indexPath];
+        return cell;
     }
-    
-    //config the cell
-    return cell;
+    else
+    {
+        UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class])];
+        return cell;
+    }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    id data = [self.viewModel dataAtIndexPath:indexPath];
+    [self handleData:data];
 }
 
--(void)showRefreshHeader
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    self.tableView.mj_header.hidden=NO;
+    if (self.isUseTemplate)
+    {
+       return !tf_isEmpty([self.viewModel titleAtSection:section])?44.0:0.05;
+    }
+    else
+    {
+        return 0.05;
+    }
 }
 
--(void)hideRefreshHeader
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    self.tableView.mj_header.hidden=YES;
+    if (self.isUseTemplate)
+    {
+        TFLabel *label=[[TFLabel alloc]init];
+        label.backgroundColor = [UIColor lightGrayColor];
+        label.text=[self.viewModel titleAtSection:section];
+        label.textColor=[UIColor blackColor];
+        label.font=[UIFont systemFontOfSize:14];
+        return label;
+    }
+    else
+    {
+        TFLabel *label=[[TFLabel alloc]init];
+        return label;
+    }
 }
 
--(void)showRefreshFooter
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    self.tableView.mj_footer.hidden=NO;
+    return 0.05;
 }
 
--(void)hideRefreshFooter
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    self.tableView.mj_footer.hidden=YES;
+    TFLabel *label=[[TFLabel alloc]init];
+    return label;
 }
 
--(void)refreshNewData
+#pragma mark -  对上拉和下拉控件操作
+
+- (void)showRefreshHeader
+{
+    self.tableView.mj_header.hidden = NO;
+}
+
+- (void)hideRefreshHeader
+{
+    self.tableView.mj_header.hidden = YES;
+}
+
+- (void)showRefreshFooter
+{
+    self.tableView.mj_footer.hidden = NO;
+}
+
+- (void)hideRefreshFooter
+{
+    self.tableView.mj_footer.hidden = YES;
+}
+
+#pragma mark -  加载数据方法
+
+- (void)refreshNewData
 {
     [self.tableView.mj_header beginRefreshing];
 }
 
--(void)loadNewData
+- (void)loadNewData
 {
-    
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                 userInfo:nil];
 }
 
--(void)loadMoreData
+- (void)loadMoreData
 {
-    
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
+                                 userInfo:nil];
 }
 
--(void)endLoadData
+- (void)endLoadData
 {
     [super endLoadData];
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
 }
 
--(UITableView *)tableView
+#pragma mark -  get set
+
+- (UITableView *)tableView
 {
     if (_tableView==nil)
     {
         _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:_style];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
+        _tableView.delegate                       = self;
+        _tableView.dataSource                     = self;
         
-        _tableView.backgroundColor = [UIColor whiteColor];
-        _tableView.backgroundView = UIView.new;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.backgroundColor                = [UIColor whiteColor];
+        _tableView.backgroundView                 = UIView.new;
+        _tableView.separatorStyle                 = UITableViewCellSeparatorStyleSingleLine;
         [_tableView setKeyboardDismissMode:UIScrollViewKeyboardDismissModeOnDrag];
-        _tableView.showsVerticalScrollIndicator=NO;
-        _tableView.showsHorizontalScrollIndicator=NO;
+        _tableView.showsVerticalScrollIndicator   = NO;
+        _tableView.showsHorizontalScrollIndicator = NO;
         
-        _tableView.mj_header=[MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-        _tableView.mj_footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+        _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+        
         _tableView.mj_footer.automaticallyHidden = NO;
-        _tableView.mj_header.hidden=YES;
-        _tableView.mj_footer.hidden=YES;
+        _tableView.mj_header.hidden              = YES;
+        _tableView.mj_footer.hidden              = YES;
         
     }
     
     return _tableView;
 }
 
--(UIView *)tableHeaderView
+- (UIView *)headerView
 {
-    if (_tableHeaderView==nil)
+    if (_headerView==nil)
     {
-        _tableHeaderView=UIView.new;
-        _tableHeaderView.height=0.1;
-        self.tableView.tableHeaderView=_tableHeaderView;
+        _headerView               = UIView.new;
+        _headerView.height        = self.headerViewHeight;
+        self.tableView.tableHeaderView = _headerView;
     }
     
-    return _tableHeaderView;
+    return _headerView;
 }
 
--(UIView *)tableFooterView
+- (UIView *)footerView
 {
-    if (_tableFooterView==nil)
+    if (_footerView==nil)
     {
-        _tableFooterView=UIView.new;
-        _tableFooterView.height=0.1;
-        self.tableView.tableFooterView=_tableFooterView;
+        _footerView               = UIView.new;
+        _footerView.height        = self.footerViewHeight;
+        self.tableView.tableFooterView = _footerView;
     }
     
-    return _tableFooterView;
+    return _footerView;
 }
 
--(void)setTableHeaderHeight:(CGFloat)height
+-(void)setHeaderViewHeight:(CGFloat)headerViewHeight
 {
-    self.tableHeaderView.height=height;
-    self.tableView.tableHeaderView=self.tableHeaderView;
+    _headerViewHeight=headerViewHeight;
+    self.headerView.height    = headerViewHeight;
+    self.tableView.tableHeaderView = self.headerView;
 }
 
--(void)setTableFooterHeight:(CGFloat)height
+-(void)setFooterViewHeight:(CGFloat)footerViewHeight
 {
-    self.tableFooterView.height=height;
-    self.tableView.tableFooterView=self.tableFooterView;
+    _footerViewHeight=footerViewHeight;
+    self.footerView.height    = footerViewHeight;
+    self.tableView.tableFooterView = self.footerView;
 }
 
 @end

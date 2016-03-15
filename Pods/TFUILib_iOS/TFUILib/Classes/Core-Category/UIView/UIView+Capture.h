@@ -10,7 +10,18 @@
 
 @interface UIView (Capture)
 
+/**
+ *  截图
+ *
+ *  @return 截图Image
+ */
 - (UIImage *)captureScreenshot;
+
+/**
+ *  截图
+ *
+ *  @return 截图Image
+ */
 - (UIImage *)takeScreenshot;
 
 @end

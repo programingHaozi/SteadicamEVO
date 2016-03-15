@@ -14,28 +14,29 @@
 - (instancetype)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         [self initialization];
     }
     
     return self;
 }
 
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+    {
         [self initialization];
     }
     return self;
 }
 
-
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    if (self) {
+    if (self)
+    {
         [self initialization];
     }
     
@@ -50,12 +51,14 @@
     self.layer.borderWidth  = 2;
 }
 
-
 - (void)changeActivityState:(BOOL)active
 {
-    if (active) {
+    if (active)
+    {
         self.backgroundColor = [UIColor whiteColor];
-    } else {
+    }
+    else
+    {
         self.backgroundColor = [UIColor clearColor];
     }
 }

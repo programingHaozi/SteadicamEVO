@@ -1,1 +1,1 @@
-../../../TFUILib_iOS/TFUILib/Classes/Core-View/Base/TFCollectionViewCell.h
+../../../TFUILib_iOS/TFUILib/Classes/Core-View/Cell/TFCollectionViewCell.h

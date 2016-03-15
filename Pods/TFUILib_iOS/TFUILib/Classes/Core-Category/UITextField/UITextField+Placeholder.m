@@ -10,9 +10,19 @@
 
 @implementation UITextField (Placeholder)
 
+- (UIColor *)placeholderColor
+{
+    return [self valueForKey:@"_placeholderLabel.textColor"];
+}
+
 - (void)setPlaceholderColor:(UIColor *)placeholderColor
 {
   [self setValue:placeholderColor forKeyPath:@"_placeholderLabel.textColor"];
+}
+
+- (UIFont *)placeholderFont
+{
+    return [self valueForKey:@"_placeholderLabel.font"];
 }
 
 - (void)setPlaceholderFont:(UIFont *)placeholderFont

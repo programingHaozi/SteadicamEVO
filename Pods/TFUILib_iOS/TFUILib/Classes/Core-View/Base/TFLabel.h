@@ -8,9 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
-/**
- *  Label的基类
- */
+typedef enum {
+    /**
+     *  水平顶端对齐
+     */
+    TFLabelVerticalTextAlignmentTop = UIControlContentVerticalAlignmentTop,
+    
+    /**
+     *  水平居中对齐
+     */
+    TFLabelVerticalTextAlignmentMiddle = UIControlContentVerticalAlignmentCenter,
+    
+    /**
+     *  水平底对齐
+     */
+    TFLabelVerticalTextAlignmentBottom = UIControlContentVerticalAlignmentBottom
+} TFLabelVerticalTextAlignment;
+
 @interface TFLabel : UILabel
+
+@property (nonatomic, assign) TFLabelVerticalTextAlignment verticalTextAlignment;
+
+@property (nonatomic, assign) UIEdgeInsets textEdgeInsets;
 
 @end

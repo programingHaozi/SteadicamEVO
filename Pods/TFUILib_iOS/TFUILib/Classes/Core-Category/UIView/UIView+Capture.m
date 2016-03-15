@@ -22,8 +22,10 @@
                                      @selector(drawViewHierarchyInRect:afterScreenUpdates:)]];
         [invocation setTarget:self];
         [invocation setSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)];
+        
         CGRect arg2 = self.bounds;
-        BOOL arg3 = YES;
+        BOOL arg3   = YES;
+        
         [invocation setArgument:&arg2 atIndex:2];
         [invocation setArgument:&arg3 atIndex:3];
         [invocation invoke];
@@ -35,6 +37,7 @@
     
     UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
     return screenshot;
 }
 
@@ -56,6 +59,7 @@
     }
     
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, self.center.x, self.center.y);

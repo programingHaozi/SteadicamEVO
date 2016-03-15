@@ -17,15 +17,30 @@
  */
 -(void)masViewEqualToSuperViewWithInsets:(UIEdgeInsets)insets;
 
-//居中显示
+/**
+ *  居中显示
+ *
+ *  @param view 视图
+ *  @param size 视图大小
+ */
 + (void)centerView:(UIView *)view size:(CGSize)size;
 
+/**
+ *  含有边距显示
+ *
+ *  @param view       视图
+ *  @param edgeInsets 边距
+ */
++ (void)view:(UIView *)view edgeInset:(UIEdgeInsets)edgeInsets;
 
-//含有边距
-+ (void)view:(UIView *)view EdgeInset:(UIEdgeInsets)edgeInsets;
-
-
-//view的数目大于两个
+/**
+ *  view的数目大于两个时等距显示
+ *
+ *  @param views          视图
+ *  @param width          视图宽度
+ *  @param height         视图高度
+ *  @param superViewWidth 父视图宽度
+ */
 + (void)equalSpacingView:(NSArray *)views
                viewWidth:(CGFloat)width
               viewHeight:(CGFloat)height

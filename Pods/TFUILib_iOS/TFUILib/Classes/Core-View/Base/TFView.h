@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIView+Category.h"
+#import <Masonry.h>
+#import <POP.h>
+#import <TFBaseLib.h>
 
 @interface TFView : UIView
 

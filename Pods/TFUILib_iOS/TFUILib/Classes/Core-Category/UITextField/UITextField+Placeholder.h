@@ -11,17 +11,13 @@
 @interface UITextField (Placeholder)
 
 /**
- * 设置占位符的文字颜色
- *
- * @param placeholderColor 新颜色
+ *  占位符颜色
  */
-- (void)setPlaceholderColor:(UIColor *)placeholderColor;
+@property (nonatomic, strong) UIColor *placeholderColor;
 
 /**
- * 设置占位符的文字字体
- *
- * @param placeholderFont 新字体
+ *  占位符字体
  */
-- (void)setPlaceholderFont:(UIFont *)placeholderFont;
+@property (nonatomic, strong) UIFont *placeholderFont;
 
 @end

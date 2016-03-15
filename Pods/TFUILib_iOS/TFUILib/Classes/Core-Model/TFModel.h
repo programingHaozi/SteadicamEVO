@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark -
+#pragma mark - TFModel
+@protocol TFModel <NSObject>
+@end
+
 @interface TFModel : NSObject
 
 @end

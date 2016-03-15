@@ -10,6 +10,13 @@
 
 @interface UIView (SuperView)
 
-- (UIView *)findSuperViewWithClass:(Class)superViewClass;
+/**
+ *  根据类型取父视图
+ *
+ *  @param superViewClass 父视图类型
+ *
+ *  @return 父视图
+ */
+- (UIView *)superViewWithClass:(Class)superViewClass;
 
 @end

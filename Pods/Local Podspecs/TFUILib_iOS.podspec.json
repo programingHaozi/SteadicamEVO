@@ -70,6 +70,14 @@
       "public_header_files": "TFUILib/Classes/Core-Category/**/*.h"
     },
     {
+      "name": "Core-CustomControl",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFUILib/Classes/Core-CustomControl/**/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-CustomControl/**/*.h"
+    },
+    {
       "name": "Core-Manager",
       "platforms": {
         "ios": null

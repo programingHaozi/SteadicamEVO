@@ -2,7 +2,7 @@ platform :ios, '7.1'
 
 ##开发阶段不用指定tag号，测试阶段需要打tag
 pod 'TFBaseLib_iOS',    				:git => 'http://git01.dds.com/MP/TFBaseLib_iOS.git'##, :tag => '0.0.32'
-pod 'TFUILib_iOS',      				:git => 'http://git01.dds.com/MP/TFUILib_iOS.git'##, :tag => '0.0.22'
+pod 'TFUILib_iOS',      :git => 'http://git01.dds.com/MP/TFUILib_iOS.git',:branch =>'forDevelop'##, :tag => '0.0.22'
 pod 'TFCoreLib_iOS',    :git => 'http://git01.dds.com/MP/TFCoreLib_iOS.git'##, :tag => '0.0.15'
 
 pod 'TFHotfixLib_iOS',  				:git => 'http://git01.dds.com/MP/TFHotfixLib_iOS.git'#, :tag => '0.0.11'

@@ -15,28 +15,30 @@ static CGFloat const kAnimateDuration = 1;
 - (instancetype)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         [self initialization];
     }
     
     return self;
 }
 
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+    {
         [self initialization];
     }
+    
     return self;
 }
-
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    if (self) {
+    if (self)
+    {
         [self initialization];
     }
     
@@ -61,27 +63,31 @@ static CGFloat const kAnimateDuration = 1;
 
 - (void)changeActivityState:(BOOL)active
 {
-    if (active) {
+    if (active)
+    {
         [self animateToActiveState];
-    } else {
+    }
+    else
+    {
         [self animateToDeactiveState];
     }
 }
 
-
 - (void)animateToActiveState
 {
     [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:-20 options:UIViewAnimationOptionCurveLinear animations:^{
+        
         self.backgroundColor = _dotColor;
-        self.transform = CGAffineTransformMakeScale(1.4, 1.4);
+        self.transform       = CGAffineTransformMakeScale(1.4, 1.4);
     } completion:nil];
 }
 
 - (void)animateToDeactiveState
 {
     [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        
         self.backgroundColor = [UIColor clearColor];
-        self.transform = CGAffineTransformIdentity;
+        self.transform       = CGAffineTransformIdentity;
     } completion:nil];
 }
 

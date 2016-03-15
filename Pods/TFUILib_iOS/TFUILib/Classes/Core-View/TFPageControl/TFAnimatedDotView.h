@@ -10,6 +10,9 @@
 
 @interface TFAnimatedDotView : TFAbstractDotView
 
+/**
+ *  点的颜色
+ */
 @property (nonatomic, strong) UIColor *dotColor;
 
 @end

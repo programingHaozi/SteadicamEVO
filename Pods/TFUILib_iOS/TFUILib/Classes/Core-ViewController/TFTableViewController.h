@@ -10,32 +10,95 @@
 #import "TFViewController.h"
 #import "Masonry.h"
 #import "MJRefresh.h"
+#import "TFTableView.h"
 
-@interface TFTableViewController : TFViewController
-<
-UITableViewDelegate,
-UITableViewDataSource
->
+@interface TFTableViewController : TFViewController<
+                                                    UITableViewDelegate,
+                                                    UITableViewDataSource
+                                                    >
 
+/**
+ *  TableView风格
+ */
 @property (nonatomic, readonly) UITableViewStyle style;
 
+/**
+ *  tableView
+ */
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) UIView *tableHeaderView;
-@property (nonatomic, strong) UIView *tableFooterView;
 
-@property (nonatomic, assign) CGFloat tableHeaderHeight;
-@property (nonatomic, assign) CGFloat tableFooterHeight;
+/**
+ *  tableView的HeaderView
+ */
+@property (nonatomic, strong) UIView *headerView;
 
--(instancetype) initWithStyle:(UITableViewStyle)style;
+/**
+ *  tableView的FooterView
+ */
+@property (nonatomic, strong) UIView *footerView;
 
--(void)showRefreshHeader;
--(void)hideRefreshHeader;
--(void)showRefreshFooter;
--(void)hideRefreshFooter;
+/**
+ *  tableView的Header高度
+ */
+@property (nonatomic, assign) CGFloat headerViewHeight;
 
--(void)refreshNewData;       //下拉刷新
--(void)loadNewData;          //加载第一页  无下拉效果
--(void)loadMoreData;      //加载下一页
--(void)endLoadData;       //结束加载
+/**
+ *  tableView的Footer高度
+ */
+@property (nonatomic, assign) CGFloat footerViewHeight;
+
+/**
+ *  是否需要使用JSON文件模板
+ */
+@property (nonatomic, assign) BOOL isUseTemplate;
+
+/**
+ *  初始化TableView
+ *
+ *  @param style TableView风格
+ *
+ *  @return TableView
+ */
+- (instancetype)initWithStyle:(UITableViewStyle)style;
+
+/**
+ *  显示Header
+ */
+- (void)showRefreshHeader;
+
+/**
+ *  隐藏Header
+ */
+- (void)hideRefreshHeader;
+
+/**
+ *  显示Footer
+ */
+- (void)showRefreshFooter;
+
+/**
+ *  隐藏Footer
+ */
+- (void)hideRefreshFooter;
+
+/**
+ *  下拉刷新
+ */
+- (void)refreshNewData;
+
+/**
+ *  加载第一页  无下拉效果
+ */
+- (void)loadNewData;
+
+/**
+ *  加载下一页
+ */
+- (void)loadMoreData;
+
+/**
+ *  结束加载
+ */
+- (void)endLoadData;
 
 @end

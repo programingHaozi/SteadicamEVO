@@ -13,6 +13,12 @@
 #import "UIAlertView+Category.h"
 #import "UIButton+Category.h"
 #import "UIView+Category.h"
+#import "UIImageView+Category.h"
+#import "UILabel+Category.h"
+#import "UITableViewCell+Category.h"
+#import "UITableView+Category.h"
+#import "UIScrollView+Category.h"
+#import "UINavigationBar+Category.h"
 
 
 

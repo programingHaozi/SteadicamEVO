@@ -10,4 +10,25 @@
 
 @interface TFCollectionView : UICollectionView
 
+/**
+ *  注册cell
+ *
+ *  @param cellClass
+ */
+-(void)registerCell:(Class)cellClass;
+
+/**
+ *  注册headview
+ *
+ *  @param viewClass
+ */
+-(void)registerHeaderClass:(Class)viewClass;
+
+/**
+ *  注册footview
+ *
+ *  @param cellClass
+ */
+-(void)registerFooterClass:(Class)cellClass;
+
 @end

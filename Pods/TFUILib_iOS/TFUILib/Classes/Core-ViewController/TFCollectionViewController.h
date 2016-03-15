@@ -11,22 +11,79 @@
 #import "MJRefresh.h"
 #import "Masonry.h"
 
-@interface TFCollectionViewController : TFViewController
-<
-UICollectionViewDataSource,
-UICollectionViewDelegate
->
+@interface TFCollectionViewController : TFViewController<
+                                                        UICollectionViewDataSource,
+                                                        UICollectionViewDelegate
+                                                        >
 
+/**
+ *  collectionView
+ */
 @property (nonatomic,strong) UICollectionView *collectionView;
 
--(void)showRefreshHeader;
--(void)hideRefreshHeader;
--(void)showRefreshFooter;
--(void)hideRefreshFooter;
+/**
+ *  collectionView的HeaderView
+ */
+@property (nonatomic, strong) UIView *headerView;
 
--(void)refreshNewData;       //下拉刷新
--(void)loadNewData;          //加载第一页
--(void)loadMoreData;      //加载下一页
--(void)endLoadData;       //结束加载
+/**
+ *  collectionView的FooterView
+ */
+@property (nonatomic, strong) UIView *footerView;
+
+/**
+ *  collectionView的Header高度
+ */
+@property (nonatomic, assign) CGFloat headerViewHeight;
+
+/**
+ *  collectionView的Footer高度
+ */
+@property (nonatomic, assign) CGFloat footerViewHeight;
+
+/**
+ *  是否需要使用JSON文件模板
+ */
+@property (nonatomic, assign) BOOL isUseTemplate;
+
+/**
+ *  显示Header
+ */
+- (void)showRefreshHeader;
+
+/**
+ *  隐藏Header
+ */
+- (void)hideRefreshHeader;
+
+/**
+ *  显示Footer
+ */
+- (void)showRefreshFooter;
+
+/**
+ *  隐藏Footer
+ */
+- (void)hideRefreshFooter;
+
+/**
+ *  下拉刷新
+ */
+- (void)refreshNewData;
+
+/**
+ *  加载第一页
+ */
+- (void)loadNewData;
+
+/**
+ *  加载下一页
+ */
+- (void)loadMoreData;
+
+/**
+ *  结束加载
+ */
+- (void)endLoadData;       
 
 @end

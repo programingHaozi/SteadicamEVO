@@ -9,22 +9,51 @@
 #import "Masonry.h"
 #import "TFViewController.h"
 #import "MJRefresh.h"
+#import "TFView.h"
 
-@interface TFScrollViewController : TFViewController
-<
-UIScrollViewDelegate
->
+@interface TFScrollViewController : TFViewController<
+                                                    UIScrollViewDelegate
+                                                    >
 
+/**
+ *  scrollView
+ */
 @property (nonatomic, strong) UIScrollView *scrollView;
 
--(void)showRefreshHeader;
--(void)hideRefreshHeader;
--(void)showRefreshFooter;
--(void)hideRefreshFooter;
 
--(void)refreshNewData;       //下拉刷新
--(void)loadNewData;          //加载第一页
--(void)loadMoreData;      //加载下一页
--(void)endLoadData;       //结束加载
+/**
+ *  scrollView的HeaderView
+ */
+@property (nonatomic, strong) TFView *headerView;
+
+/**
+ *  scrollView的Header高度
+ */
+@property (nonatomic, assign) CGFloat headerViewHeight;
+
+/**
+ *  显示Header
+ */
+- (void)showRefreshHeader;
+
+/**
+ *  隐藏Header
+ */
+- (void)hideRefreshHeader;
+
+/**
+ *  下拉刷新
+ */
+- (void)refreshNewData;
+
+/**
+ *  加载第一页
+ */
+- (void)loadNewData;
+
+/**
+ *  结束加载
+ */
+- (void)endLoadData;
 
 @end
