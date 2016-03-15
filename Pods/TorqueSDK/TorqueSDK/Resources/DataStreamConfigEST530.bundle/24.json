@@ -1,0 +1,10 @@
+{"type" : 24,
+ "name" : "退出PID模式",
+ "command" : "ATPIDOFF",
+ "dataHead" : "$EST530,+PIDOFF",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "结果",
+            "unit" : ""}],
+    "split" : "",
+    "disposable" : 1 }

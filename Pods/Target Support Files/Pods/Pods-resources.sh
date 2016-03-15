@@ -62,12 +62,20 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "JSPatch/JSPatch/JSPatch.js"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "TFThirdLib_iOS/TFThirdLib/Classes/Alipay/AlipaySDK.bundle"
+  install_resource "TorqueSDK/TorqueSDK/Resources/DataStreamConfigEST527.bundle"
+  install_resource "TorqueSDK/TorqueSDK/Resources/DataStreamConfigEST530.bundle"
+  install_resource "TorqueSDK/TorqueSDK/Resources/TorqueCommon.bundle"
+  install_resource "TorqueSDK/TorqueSDK/Resources/TorqueModel.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "IQKeyboardManager/IQKeyBoardManager/Resources/IQKeyboardManager.bundle"
   install_resource "JSPatch/JSPatch/JSPatch.js"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "TFThirdLib_iOS/TFThirdLib/Classes/Alipay/AlipaySDK.bundle"
+  install_resource "TorqueSDK/TorqueSDK/Resources/DataStreamConfigEST527.bundle"
+  install_resource "TorqueSDK/TorqueSDK/Resources/DataStreamConfigEST530.bundle"
+  install_resource "TorqueSDK/TorqueSDK/Resources/TorqueCommon.bundle"
+  install_resource "TorqueSDK/TorqueSDK/Resources/TorqueModel.bundle"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

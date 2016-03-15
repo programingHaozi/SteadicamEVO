@@ -1,0 +1,84 @@
+{
+  "name": "TFCoreLib_iOS",
+  "version": "0.0.16",
+  "summary": "TFCoreLib_iOS",
+  "description": "TFCoreLib_iOS  description here",
+  "homepage": "http://git01.dds.com/MP/TFCoreLib_iOS",
+  "license": "MIT",
+  "authors": {
+    "xiayiyong": "xiayiyong@chexiang.com"
+  },
+  "source": {
+    "git": "http://git01.dds.com/MP/TFCoreLib_iOS.git",
+    "tag": "0.0.16",
+    "submodules": true
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "public_header_files": "TFCoreLib/TFCoreLib.h",
+  "source_files": "TFCoreLib/TFCoreLib.h",
+  "frameworks": [
+    "Foundation",
+    "UIKit",
+    "CoreGraphics",
+    "CoreText",
+    "CoreTelephony",
+    "CoreLocation",
+    "Security",
+    "ImageIO",
+    "QuartzCore",
+    "SystemConfiguration"
+  ],
+  "subspecs": [
+    {
+      "name": "Core-AOP",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFCoreLib/Classes/Core-AOP/*.{h,m}",
+      "public_header_files": "TFCoreLib/Classes/Core-AOP/*.h"
+    },
+    {
+      "name": "Core-Data",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFCoreLib/Classes/Core-Data/*.{h,m}",
+      "public_header_files": "TFCoreLib/Classes/Core-Data/*.h"
+    },
+    {
+      "name": "Core-HTTPManager",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFCoreLib/Classes/Core-HTTPManager/*.{h,m}",
+      "public_header_files": "TFCoreLib/Classes/Core-HTTPManager/*.h"
+    },
+    {
+      "name": "Core-Model",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFCoreLib/Classes/Core-Model/*.{h,m}",
+      "public_header_files": "TFCoreLib/Classes/Core-Model/*.h"
+    },
+    {
+      "name": "Core-Service",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFCoreLib/Classes/Core-Service/*.{h,m}",
+      "public_header_files": "TFCoreLib/Classes/Core-Service/*.h"
+    },
+    {
+      "name": "Core-Util",
+      "platforms": {
+        "ios": null
+      },
+      "source_files": "TFCoreLib/Classes/Core-Util/*.{h,m}",
+      "public_header_files": "TFCoreLib/Classes/Core-Util/*.h"
+    }
+  ]
+}

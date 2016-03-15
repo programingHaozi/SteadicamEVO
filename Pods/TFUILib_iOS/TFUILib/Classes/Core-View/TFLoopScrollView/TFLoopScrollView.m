@@ -198,6 +198,7 @@ NSString * const ID = @"cycleCell";
     if ([self.pageControl isKindOfClass:[TFPageControl class]])
     {
         TFPageControl *pageControl = (TFPageControl *)_pageControl;
+        pageControl.dotSize = _pageControlDotSize;
         if (isCurrentPageDot)
         {
             pageControl.currentDotImage = image;
@@ -296,6 +297,7 @@ NSString * const ID = @"cycleCell";
             pageControl.numberOfPages = self.imagesGroup.count;
             pageControl.dotColor = self.currentPageDotColor;
             pageControl.userInteractionEnabled = NO;
+            pageControl.dotSize = _pageControlDotSize;
             [self addSubview:pageControl];
             _pageControl = pageControl;
         }
@@ -388,6 +390,7 @@ NSString * const ID = @"cycleCell";
     if ([self.pageControl isKindOfClass:[TFPageControl class]])
     {
         TFPageControl *pageControl = (TFPageControl *)_pageControl;
+        pageControl.dotSize = _pageControlDotSize;
         size = [pageControl sizeForNumberOfPages:self.imagesGroup.count];
     }
     else
@@ -405,6 +408,7 @@ NSString * const ID = @"cycleCell";
     if ([self.pageControl isKindOfClass:[TFPageControl class]])
     {
         TFPageControl *pageControl = (TFPageControl *)_pageControl;
+        pageControl.dotSize = _pageControlDotSize;
         [pageControl sizeToFit];
     }
     
@@ -512,6 +516,7 @@ NSString * const ID = @"cycleCell";
     if ([self.pageControl isKindOfClass:[TFPageControl class]])
     {
         TFPageControl *pageControl = (TFPageControl *)_pageControl;
+        pageControl.dotSize = _pageControlDotSize;
         pageControl.currentPage = indexOnPageControl;
     }
     else

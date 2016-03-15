@@ -1,0 +1,10 @@
+{"type" : 256,
+"name" : "写入OBD行程数据",
+"command" : "ATWRD",
+"dataHead" : "$EST530,+WRD",
+"items" : [{"index" : 0,
+"split" : "",
+"itemName" : "",
+"unit" : ""}],
+"split" : ",",
+"disposable" : 1 }

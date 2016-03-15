@@ -1,0 +1,10 @@
+{"type" : 39,
+ "name" : "固件升级,bin文件发送结束",
+ "command" : "",
+ "dataHead" : "A6",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "结果",
+            "unit" : ""}],
+ "split" : ",",
+ "disposable" : 1 }

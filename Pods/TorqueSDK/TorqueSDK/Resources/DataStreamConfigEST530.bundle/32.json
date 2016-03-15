@@ -1,0 +1,10 @@
+{"type" : 32,
+ "name" : "进入固件升级模式",
+ "command" : "ATUPGRADE",
+ "dataHead" : "$EST530,+UPGRADE",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "结果",
+            "unit" : ""}],
+ "split" : ",",
+ "disposable" : 1 }

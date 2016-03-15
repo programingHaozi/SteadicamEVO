@@ -1,0 +1,10 @@
+{"type" : 51,
+ "name" : "清除盒子是否插拔过",
+ "command" : "ATCLPLT",
+ "dataHead" : "$EST530,+CLPLT",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "结果",
+            "unit" : ""}],
+ "split" : ",",
+ "disposable" : 1 }

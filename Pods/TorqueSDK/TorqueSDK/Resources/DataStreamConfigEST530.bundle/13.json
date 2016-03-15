@@ -1,0 +1,10 @@
+{"type" : 13,
+ "name" : "设置终端震动唤醒阀值",
+ "command" : "ATVIB",
+ "dataHead" : "$EST530,+VIB",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "结果",
+            "unit" : ""}],
+    "split" : "",
+    "disposable" : 1 }

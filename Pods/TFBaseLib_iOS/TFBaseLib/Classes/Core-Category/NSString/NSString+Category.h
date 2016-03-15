@@ -13,6 +13,7 @@
 #import "NSString+URL.h"
 #import "NSString+TFEncrypt.h"
 #import "NSString+TFBase64.h"
+#import "NSString+Font.h"
 
 
 

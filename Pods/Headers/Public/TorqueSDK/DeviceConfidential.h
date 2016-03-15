@@ -1,0 +1,1 @@
+../../../TorqueSDK/TorqueSDK/Classes/TorqueDevice/DeviceConfidential.h

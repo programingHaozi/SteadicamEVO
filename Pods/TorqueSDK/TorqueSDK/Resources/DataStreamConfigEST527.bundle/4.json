@@ -1,0 +1,10 @@
+{"type" : 4,
+ "name" : "车辆VIN码",
+ "command" : "ATVIN",
+ "dataHead" : "$OBD-VIN",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "",
+            "unit" : ""}],
+ "split" : "=",
+ "disposable" : 1 }

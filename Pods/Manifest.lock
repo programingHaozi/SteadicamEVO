@@ -23,7 +23,10 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
+  - Expecta (0.3.1)
   - IQKeyboardManager (3.3.6)
+  - ISO8601DateFormatterValueTransformer (0.6.1):
+    - RKValueTransformers (~> 1.1.0)
   - JSPatch (0.1.5):
     - JSPatch/Core (= 0.1.5)
   - JSPatch/Core (0.1.5)
@@ -36,10 +39,27 @@ PODS:
   - ObjcAssociatedObjectHelpers/Core (2.0.1)
   - ObjcAssociatedObjectHelpers/NSObject+Dictionary (2.0.1):
     - ObjcAssociatedObjectHelpers/Core
+  - OCHamcrest (3.0.1)
+  - OCMock (2.2.4)
   - pop (1.0.8)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - RKValueTransformers (1.1.3)
+  - SBJson (4.0.2)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
+  - SOCKit (1.1)
+  - SQLCipher (3.1.0):
+    - SQLCipher/standard (= 3.1.0)
+  - SQLCipher/common (3.1.0)
+  - SQLCipher/standard (3.1.0):
+    - SQLCipher/common
   - SSKeychain (1.3.1)
   - TFBaseLib_iOS (0.0.35):
     - AFNetworking (= 3.0.4)
@@ -144,6 +164,19 @@ PODS:
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
     - SSKeychain (= 1.3.1)
+  - TFCoreLib_iOS (0.0.16):
+    - TFCoreLib_iOS/Core-AOP (= 0.0.16)
+    - TFCoreLib_iOS/Core-Data (= 0.0.16)
+    - TFCoreLib_iOS/Core-HTTPManager (= 0.0.16)
+    - TFCoreLib_iOS/Core-Model (= 0.0.16)
+    - TFCoreLib_iOS/Core-Service (= 0.0.16)
+    - TFCoreLib_iOS/Core-Util (= 0.0.16)
+  - TFCoreLib_iOS/Core-AOP (0.0.16)
+  - TFCoreLib_iOS/Core-Data (0.0.16)
+  - TFCoreLib_iOS/Core-HTTPManager (0.0.16)
+  - TFCoreLib_iOS/Core-Model (0.0.16)
+  - TFCoreLib_iOS/Core-Service (0.0.16)
+  - TFCoreLib_iOS/Core-Util (0.0.16)
   - TFHotfixLib_iOS (0.0.15):
     - JSPatch (= 0.1.5)
     - TFHotfixLib_iOS/JSPatchManager (= 0.0.15)
@@ -239,30 +272,55 @@ PODS:
     - MJRefresh (= 3.1.0)
     - pop (= 1.0.8)
     - SDWebImage (= 3.7.5)
+  - TorqueSDK (2.0.31):
+    - CocoaLumberjack (~> 2.2.0)
+    - Expecta (= 0.3.1)
+    - ISO8601DateFormatterValueTransformer (~> 0.6.1)
+    - OCHamcrest (= 3.0.1)
+    - OCMock (= 2.2.4)
+    - RKValueTransformers (~> 1.1.0)
+    - SBJson
+    - SOCKit
+    - SQLCipher (~> 3.1.0)
+    - TransitionKit (~> 2.2)
+  - TransitionKit (2.2.1)
 
 DEPENDENCIES:
+  - ReactiveCocoa (= 2.5)
   - TFBaseLib_iOS (from `http://git01.dds.com/MP/TFBaseLib_iOS.git`)
+  - TFCoreLib_iOS (from `http://git01.dds.com/MP/TFCoreLib_iOS.git`)
   - TFHotfixLib_iOS (from `http://git01.dds.com/MP/TFHotfixLib_iOS.git`)
   - TFThirdLib_iOS/AliPay (from `http://git01.dds.com/MP/TFThirdLib_iOS.git`)
   - TFThirdLib_iOS/JPush (from `http://git01.dds.com/MP/TFThirdLib_iOS.git`)
   - TFThirdLib_iOS/UnionPay (from `http://git01.dds.com/MP/TFThirdLib_iOS.git`)
   - TFThirdLib_iOS/WXPay (from `http://git01.dds.com/MP/TFThirdLib_iOS.git`)
   - TFUILib_iOS (from `http://git01.dds.com/MP/TFUILib_iOS.git`)
+  - TorqueSDK (from `http://git01.dds.com/cm/torque_sdk_ios.git`, branch `develop`,
+    tag `2.0.31`)
 
 EXTERNAL SOURCES:
   TFBaseLib_iOS:
     :git: http://git01.dds.com/MP/TFBaseLib_iOS.git
+  TFCoreLib_iOS:
+    :git: http://git01.dds.com/MP/TFCoreLib_iOS.git
   TFHotfixLib_iOS:
     :git: http://git01.dds.com/MP/TFHotfixLib_iOS.git
   TFThirdLib_iOS:
     :git: http://git01.dds.com/MP/TFThirdLib_iOS.git
   TFUILib_iOS:
     :git: http://git01.dds.com/MP/TFUILib_iOS.git
+  TorqueSDK:
+    :branch: develop
+    :git: http://git01.dds.com/cm/torque_sdk_ios.git
+    :tag: 2.0.31
 
 CHECKOUT OPTIONS:
   TFBaseLib_iOS:
-    :commit: df14bbcc3846350d9394460f5070038644aeb4ad
+    :commit: eebf856541a81f188880a59d3a9a25faf145c786
     :git: http://git01.dds.com/MP/TFBaseLib_iOS.git
+  TFCoreLib_iOS:
+    :commit: 65ba2dd9d5a017e9db07110a6830f7ee53943bca
+    :git: http://git01.dds.com/MP/TFCoreLib_iOS.git
   TFHotfixLib_iOS:
     :commit: f87e87a86ead8553a828da4e9be6cdbd3eb1f065
     :git: http://git01.dds.com/MP/TFHotfixLib_iOS.git
@@ -270,25 +328,41 @@ CHECKOUT OPTIONS:
     :commit: 6dcac6e36bb58af5d43b735ebedd3d1487a005f3
     :git: http://git01.dds.com/MP/TFThirdLib_iOS.git
   TFUILib_iOS:
-    :commit: 2148ca9483973a9a87c55d011b2edeb926141077
+    :commit: 3bc6891b221fdc5c5b4dc148def40cd7a24d6d61
     :git: http://git01.dds.com/MP/TFUILib_iOS.git
+  TorqueSDK:
+    :branch: develop
+    :git: http://git01.dds.com/cm/torque_sdk_ios.git
+    :tag: 2.0.31
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  Expecta: a354d4633409dd9fe8c4f5ff5130426adbe31628
   IQKeyboardManager: 037cf3aec1d0a045108859a47818714eb1bfc149
+  ISO8601DateFormatterValueTransformer: 52da467d6ec899d6aedda8e48280ac92e8ee97e6
   JSPatch: 405b5f5990643e6717dd6715ac60d6a2b582a6ba
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   ObjcAssociatedObjectHelpers: 686c291f292c26a49b9b1fa7d58130a8d35d59d2
+  OCHamcrest: e19857683e4eefab64b878668eac04c2f4567118
+  OCMock: a6a7dc0e3997fb9f35d99f72528698ebf60d64f2
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  RKValueTransformers: e5ed67e3811229b616fe01bddeeafe3bb337b1b9
+  SBJson: c18691cc18375b14664ff0fec841f8c4faef1934
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SOCKit: c7376ac262bea9115b8f749358f762522a47d392
+  SQLCipher: 4684434d5791db86512cd7e02172aefba575849e
   SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
   TFBaseLib_iOS: 88a36dfadae793dd25f48f0afcb95a45d0fcf5c2
+  TFCoreLib_iOS: bbeab827b921c90c8ca15bba00b752bfc149f658
   TFHotfixLib_iOS: c59f61024d55428b9f6e261db8283edd4bd16cbe
   TFThirdLib_iOS: 0d3b0ca8c43e5ec57a5102620052560cc7555f6c
   TFUILib_iOS: 5d87ca9844d60bf2633c565cda6625e2607e42a8
+  TorqueSDK: 81b3ca6fb258802b17db837952e59389329befa8
+  TransitionKit: 9ceccda4cd0cdc0a05ef85eb235e5a3292c3c250
 
 COCOAPODS: 0.39.0

@@ -1,0 +1,10 @@
+{"type" : 44,
+    "name" : "行程记录读取结束",
+    "command" : "",
+    "dataHead" : "$EST530,+HISEND",
+    "items" : [{"index" : 0,
+               "split" : "",
+               "itemName" : "结果",
+               "unit" : ""}],
+    "split" : ",",
+    "disposable" : 1 }

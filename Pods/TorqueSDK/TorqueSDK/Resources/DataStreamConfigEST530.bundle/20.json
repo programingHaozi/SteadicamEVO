@@ -1,0 +1,10 @@
+{"type" : 20,
+ "name" : "车辆总里程校准",
+ "command" : "ATADJ",
+ "dataHead" : "$EST530,+OBDADJ",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "结果",
+            "unit" : ""}],
+    "split" : "",
+    "disposable" : 1 }

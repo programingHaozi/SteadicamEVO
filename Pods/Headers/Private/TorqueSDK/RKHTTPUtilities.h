@@ -1,0 +1,1 @@
+../../../TorqueSDK/TorqueSDK/Classes/RESTKit/ObjectMapping/RKHTTPUtilities.h

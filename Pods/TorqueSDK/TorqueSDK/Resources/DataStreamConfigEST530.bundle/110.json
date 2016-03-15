@@ -1,0 +1,10 @@
+{"type" : 110,
+ "name" : "密码鉴权",
+ "command" : "",
+ "dataHead" : "$EST530,+AKEY",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "结果",
+            "unit" : ""}],
+ "split" : ",",
+ "disposable" : 1 }

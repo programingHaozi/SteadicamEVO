@@ -1,0 +1,1 @@
+../../../TFCoreLib_iOS/TFCoreLib/Classes/Core-HTTPManager/TFURLManager.h

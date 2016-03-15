@@ -1,0 +1,10 @@
+{"type" : 7,
+ "name" : "ECU断开连接",
+ "command" : "",
+ "dataHead" : "$EST530,+OBDSTOP",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "时间",
+            "unit" : ""}],
+    "split" : "",
+    "disposable" : 0 }

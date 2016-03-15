@@ -1,0 +1,1 @@
+../../../TorqueSDK/TorqueSDK/Classes/OBDDevice/OBDDeviceFuncMacro.h

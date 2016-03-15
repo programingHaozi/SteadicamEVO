@@ -1,0 +1,62 @@
+[
+ {
+ "version"       : "0.3.6",
+ "mandatory"     : 1,
+ "publishDate"   : "2015-04-07",
+ "description"   : "1，识别车辆方法的返回值错误。"
+ },
+ {
+ "version"       : "0.3.5",
+ "mandatory"     : 1,
+ "publishDate"   : "2015-04-03",
+ "description"   : "1，连接断开时，不再自动重连。"
+ },
+ {
+ "version"       : "0.3.4",
+ "mandatory"     : 1,
+ "publishDate"   : "2015-04-03",
+ "description"   : "1，自动上传数据时，判断是否有数据需要上传。2，盒子连接上之后，如果没有插拔过，将盒子里保存的车辆vin设置为currCar。"
+ },
+ {
+ "version"       : "0.3.3",
+ "mandatory"     : 1,
+ "publishDate"   : "2015-04-02",
+ "description"   : "1，发现设备时，正常连接上之后返回的TorqueResult对象的succeed的值应该为YES。"
+ },
+ {
+ "version"       : "0.3.2",
+ "mandatory"     : 1,
+ "publishDate"   : "2015-04-01",
+ "description"   : "1，当前用户、设备、车辆信息丢失问题。2，用户关闭了“允许3G网络上传数据”之后，避免3G下上传数据。"
+ },
+ {
+ "version"       : "0.3.1",
+ "mandatory"     : 1,
+ "publishDate"   : "2015-03-31",
+ "description"   : "1，DeviceInfoModel中添加deviceId。使用前需要把App中Documents/TorqueModel.sqlite文件删除。2，发现设备时超时时间改为20秒。3，工况中当前行驶时长不准确问题。"
+ },
+ {
+ "version"       : "0.3.0.1",
+ "mandatory"     : 1,
+ "publishDate"   : "2015-03-28",
+ "description"   : "1、新增RESTKIT的POST依法的重载方法，用于适配POST请求后返回值需要Mapping解析的情况。 2、注册设备成功后，根据返回的设备信息设定TorqueGlobal中的设备信息。3、空中升级握手次数由之前的4次改为15次"
+ },
+ {
+ "version"       : "0.3.0.0",
+ "mandatory"     : 1,
+ "publishDate"   : "2015-03-26",
+ "description"   : "1、SDK用到的本地sqlite数据库做了加密。使用前需要把App中Documents/TorqueModel.sqlite文件删除。 2、服务端启用了Token机制，SDK做了相应修改。"
+ },
+ {
+ "version"       : "0.1.15.1",
+ "mandatory"     : 1,
+ "publishDate"   : "2015-03-12",
+ "description"   : "1、去除userInit、setAppId、setSDKHttpHeader方法，使用initTorqueSDK代替 2、不显示调试log，只显示警告及异常级别的log 3、TorqueCommon类中添加version属性，返回ReleaseNote类型对象，用于查看SDK版本信息"
+ },
+ {
+ "version"       : "0.1.14",
+ "mandatory"     : 0,
+ "publishDate"   : "2015-03-02",
+ "description"   : ""
+ }
+]

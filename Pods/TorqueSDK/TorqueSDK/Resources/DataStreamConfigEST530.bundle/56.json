@@ -1,0 +1,10 @@
+{"type" : 56,
+ "name" : "读取盒子记录的车辆VIN",
+ "command" : "ATREVIN",
+ "dataHead" : "$EST530,+REVIN",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "结果",
+            "unit" : ""}],
+ "split" : ",",
+ "disposable" : 1 }

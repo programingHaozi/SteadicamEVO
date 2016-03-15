@@ -1,0 +1,10 @@
+{"type" : 28,
+ "name" : "退出百公里测试模式",
+ "command" : "ATACC",
+ "dataHead" : "$EST530,+OBDACCEXIT",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "时间",
+            "unit" : ""}],
+    "split" : "",
+    "disposable" : 1 }

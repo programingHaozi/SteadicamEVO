@@ -1,0 +1,1 @@
+../../../TorqueSDK/TorqueSDK/Classes/CoreDataModel/DeviceInfoModel.h

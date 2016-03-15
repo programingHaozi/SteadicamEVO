@@ -1,0 +1,10 @@
+{"type" : 55,
+ "name" : "盒子记录车辆VIN",
+ "command" : "ATSTVIN",
+ "dataHead" : "$EST530,+STVIN",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "结果",
+            "unit" : ""}],
+ "split" : ",",
+ "disposable" : 1 }

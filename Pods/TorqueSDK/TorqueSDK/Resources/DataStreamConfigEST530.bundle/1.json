@@ -1,0 +1,10 @@
+{"type" : 1,
+ "name" : "关闭OBD实时数据流",
+ "command" : "ATROFF",
+ "dataHead" : "$EST530,+ROFF",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "关闭",
+            "unit" : ""}],
+    "split" : "",
+    "disposable" : 1 }

@@ -1,0 +1,10 @@
+{"type" : 8,
+ "name" : "设备休眠",
+ "command" : "",
+ "dataHead" : "$EST530,+OBDSLEEP",
+ "items" : [{"index" : 0,
+            "split" : "",
+            "itemName" : "时间",
+            "unit" : ""}],
+    "split" : "",
+    "disposable" : 1 }

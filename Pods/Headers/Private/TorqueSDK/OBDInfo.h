@@ -1,0 +1,1 @@
+../../../TorqueSDK/TorqueSDK/Classes/TorqueModel/OBDInfo.h

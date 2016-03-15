@@ -1,0 +1,10 @@
+{"type" : 29,
+    "name" : "终止百公里测试模式",
+    "command" : "ATACC",
+    "dataHead" : "$EST530,+OBDACC",
+    "items" : [{"index" : 0,
+               "split" : "",
+               "itemName" : "状态",
+               "unit" : ""}],
+    "split" : "",
+    "disposable" : 1 }

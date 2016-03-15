@@ -1,0 +1,1 @@
+../../../TorqueSDK/TorqueSDK/Classes/3rd/EncryptedCoreData/EncryptedStore.h
