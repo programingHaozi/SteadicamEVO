@@ -66,9 +66,9 @@
         
         DDLogDebug(@"disconnection error:%@", error.localizedDescription);
         
-        if (disconnection)
+        if (disconnectionBlock)
         {
-            disconnection(error);
+            disconnectionBlock(error);
         }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotifactionDisConnected object:nil];

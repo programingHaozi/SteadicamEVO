@@ -120,4 +120,11 @@
     return storyboard ;
 }
 
+-(UINib *)localizedNibWithName:(NSString *)nibName
+{
+    UINib *nib = [UINib nibWithNibName:nibName bundle:_languageBundle];
+    
+    return nib;
+}
+
 @end
