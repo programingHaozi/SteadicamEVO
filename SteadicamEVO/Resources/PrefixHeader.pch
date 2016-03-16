@@ -15,8 +15,10 @@
 #import "TFBaseLib.h"
 #import "TFUILib.h"
 #import <TorqueSDK.h>
+#import <TFCoreLib.h>
 
 #import "LocalizationManager.h"
 #import "BTConnectTypeDefine.h"
+#import "TFUserDefaults+SCE.h"
 
 #endif /* PrefixHeader_pch */

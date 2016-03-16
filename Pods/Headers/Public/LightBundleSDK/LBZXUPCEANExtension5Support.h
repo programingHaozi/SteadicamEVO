@@ -1,0 +1,1 @@
+../../../LightBundleSDK/LightBundle/LightBundle/private/LBZXingObjC/oned/LBZXUPCEANExtension5Support.h

@@ -7,6 +7,7 @@
 //
 
 #import "UIAlertView+Block.h"
+#import <objc/runtime.h>
 
 @interface UIAlertView () <UIAlertViewDelegate>
 
@@ -14,64 +15,80 @@
 
 @end
 
+
 @implementation UIAlertView (Block)
 
 + (void)showWithTitle:(NSString *)title
               message:(NSString *)message
-    cancelButtonTitle:cancelButtonTitle
+    cancelButtonTitle:(NSString *)cancelButtonTitle
     otherButtonTitles:(NSArray *)otherButtonTitles
                 block:(void (^)(UIAlertView *alertView, NSInteger buttonIndex))block
 {
-    UIAlertView *alert=[UIAlertView alertWithTitle:title
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:title
                                                  message:message
                                        cancelButtonTitle:cancelButtonTitle
                                        otherButtonTitles:otherButtonTitles
                                                    block:block];
-    [alert show];
+    [alert showUsingBlock:block];
 }
 
-+ (instancetype)alertWithTitle:(NSString *)title
+- (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message
             cancelButtonTitle:(NSString *)cancelButtonTitle
             otherButtonTitles:(NSArray *)otherButtonTitles
                         block:(void (^)(UIAlertView *alertView, NSInteger buttonIndex))block
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                      message:message
-                                     delegate:nil
-                            cancelButtonTitle:nil
-                            otherButtonTitles:nil];
-    
-    if (alert)
+    self = [self initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+    if (self)
     {
         NSInteger buttonIndex = 0;
         
         if (cancelButtonTitle != nil && cancelButtonTitle.length > 0)
         {
-            [alert addButtonWithTitle:cancelButtonTitle];
-            alert.cancelButtonIndex = buttonIndex++;
+            [self addButtonWithTitle:cancelButtonTitle];
+            self.cancelButtonIndex = buttonIndex++;
         }
         
         for (NSString *otherButtonTitle in otherButtonTitles)
         {
-            [alert addButtonWithTitle:otherButtonTitle];
+            [self addButtonWithTitle:otherButtonTitle];
             ++buttonIndex;
         }
+        
+        self.block = block;
     }
     
-    alert.block = block;
-    alert.delegate=alert;
-    return alert;
+    return self;
+}
+
+- (void)showUsingBlock:(void (^)(UIAlertView *, NSInteger))block
+{
+    self.delegate = self;
+    self.block = block;
+    
+    [self show];
 }
 
 #pragma mark - delegate
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (self.block)
     {
         self.block(alertView, buttonIndex);
     }
+}
+
+#pragma mark - set get
+
+- (void)setBlock:(void (^)(UIAlertView *, NSInteger))block
+{
+    objc_setAssociatedObject(self, @selector(block), block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void (^)(UIAlertView *, NSInteger))block
+{
+    return objc_getAssociatedObject(self, @selector(block));
 }
 
 @end

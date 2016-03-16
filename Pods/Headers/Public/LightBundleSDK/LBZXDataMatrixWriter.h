@@ -1,0 +1,1 @@
+../../../LightBundleSDK/LightBundle/LightBundle/private/LBZXingObjC/datamatrix/LBZXDataMatrixWriter.h

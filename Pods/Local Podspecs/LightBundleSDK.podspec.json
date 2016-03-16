@@ -1,0 +1,101 @@
+{
+  "name": "LightBundleSDK",
+  "platforms": {
+    "ios": "7.0"
+  },
+  "version": "2.0.23",
+  "license": "MIT",
+  "summary": "LightBundleSDK for cxb.",
+  "homepage": "http://git01.dds.com/MP/",
+  "authors": {
+    "renwenchao": "renwenchao@chexiang.com"
+  },
+  "source": {
+    "git": "http://git01.dds.com/MP/LightBundle_SDK_iOS.git",
+    "tag": "2.0.23"
+  },
+  "source_files": "LightBundle/LightBundle/*.{h,m}",
+  "requires_arc": true,
+  "frameworks": [
+    "AVFoundation",
+    "MessageUI",
+    "Foundation",
+    "CoreLocation",
+    "UIKit",
+    "WebKit"
+  ],
+  "subspecs": [
+    {
+      "name": "BasePlugin",
+      "source_files": "LightBundle/LightBundle/BasePlugin/*.{h,m}",
+      "public_header_files": "LightBundle/LightBundle/BasePlugin/*.h"
+    },
+    {
+      "name": "model",
+      "source_files": "LightBundle/LightBundle/model/*.{h,m}",
+      "public_header_files": "LightBundle/LightBundle/model/*.h"
+    },
+    {
+      "name": "ServicePlugin",
+      "source_files": "LightBundle/LightBundle/ServicePlugin/*.{h,m}",
+      "public_header_files": "LightBundle/LightBundle/ServicePlugin/*.h"
+    },
+    {
+      "name": "private",
+      "source_files": "LightBundle/LightBundle/private/*.{h,m}",
+      "public_header_files": "LightBundle/LightBundle/private/*.h",
+      "subspecs": [
+        {
+          "name": "LBAes",
+          "source_files": "LightBundle/LightBundle/private/LBAes/*.{h,m}",
+          "public_header_files": "LightBundle/LightBundle/private/LBAes/*.h"
+        },
+        {
+          "name": "LBAlertView",
+          "source_files": "LightBundle/LightBundle/private/LBAlertView/*.{h,m}",
+          "public_header_files": "LightBundle/LightBundle/private/LBAlertView/*.h"
+        },
+        {
+          "name": "LBToast",
+          "source_files": "LightBundle/LightBundle/private/LBToast/*.{h,m}",
+          "public_header_files": "LightBundle/LightBundle/private/LBToast/*.h"
+        },
+        {
+          "name": "LBZXingObjC",
+          "source_files": "LightBundle/LightBundle/private/LBZXingObjC/**/*.{h,m}",
+          "public_header_files": "LightBundle/LightBundle/private/LBZXingObjC/**/*.h"
+        },
+        {
+          "name": "LBCustomPicker",
+          "source_files": "LightBundle/LightBundle/private/LBCustomPicker/*.{h,m}",
+          "public_header_files": "LightBundle/LightBundle/private/LBCustomPicker/*.h"
+        },
+        {
+          "name": "LBNSDataBase64",
+          "source_files": "LightBundle/LightBundle/private/LBNSDataBase64/*.{h,m}",
+          "public_header_files": "LightBundle/LightBundle/private/LBNSDataBase64/*.h"
+        },
+        {
+          "name": "LBMBProgressHUD",
+          "source_files": "LightBundle/LightBundle/private/LBMBProgressHUD/*.{h,m}",
+          "public_header_files": "LightBundle/LightBundle/private/LBMBProgressHUD/*.h"
+        },
+        {
+          "name": "LBLocationManager",
+          "source_files": "LightBundle/LightBundle/private/LBLocationManager/*.{h,m}",
+          "public_header_files": "LightBundle/LightBundle/private/LBLocationManager/*.h"
+        },
+        {
+          "name": "LBNJKWebViewProgress",
+          "source_files": "LightBundle/LightBundle/private/LBNJKWebViewProgress/*.{h,m}",
+          "public_header_files": "LightBundle/LightBundle/private/LBNJKWebViewProgress/*.h"
+        },
+        {
+          "name": "LBQRCodeReaderViewController",
+          "source_files": "LightBundle/LightBundle/private/LBQRCodeReaderViewController/*.{h,m}",
+          "public_header_files": "LightBundle/LightBundle/private/LBQRCodeReaderViewController/*.h"
+        }
+      ]
+    }
+  ]
+}

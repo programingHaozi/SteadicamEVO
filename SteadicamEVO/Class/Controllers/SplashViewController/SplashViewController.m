@@ -83,6 +83,16 @@
     }
 }
 
+- (void)autolayoutViews
+{
+    
+}
+
+- (void)bindData
+{
+    
+}
+
 #pragma mark -
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

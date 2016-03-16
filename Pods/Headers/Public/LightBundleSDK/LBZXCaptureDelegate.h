@@ -1,0 +1,1 @@
+../../../LightBundleSDK/LightBundle/LightBundle/private/LBZXingObjC/client/LBZXCaptureDelegate.h

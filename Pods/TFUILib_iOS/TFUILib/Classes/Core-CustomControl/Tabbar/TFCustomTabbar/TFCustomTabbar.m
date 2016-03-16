@@ -94,7 +94,6 @@
     
     if (tabbarItems.count > 0)
     {
-        float singleBarWidth = SCREEN_WIDTH / tabbarItems.count;
         
         WS(weakSelf)
         __block void(^touchActionBlcok)(TFCustomTabbarItem *) = ^(TFCustomTabbarItem *barItem) {
@@ -122,17 +121,22 @@
             }
         };
         
-        if ( tabbarItems.count <= 5)
+        if (tabbarItems.count > 5)
         {
-            [tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                obj.frame = CGRectMake(singleBarWidth * idx, 1, singleBarWidth, 48);
-                [self addSubview:obj];
-                
-                obj.touchActionBlock = touchActionBlcok;
-            }];
-    
-            self.tabbarItems[0].touchActionBlock(self.tabbarItems[0]);
+            tabbarItems = [tabbarItems subarrayWithRange:NSMakeRange(0, 5)];
         }
+        
+        float singleBarWidth = SCREEN_WIDTH / tabbarItems.count;
+        
+        [tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.frame = CGRectMake(singleBarWidth * idx, 1, singleBarWidth, 48);
+            [self addSubview:obj];
+            
+            obj.touchActionBlock = touchActionBlcok;
+        }];
+        
+        self.tabbarItems[0].touchActionBlock(self.tabbarItems[0]);
+        
     }
 }
 

@@ -1,0 +1,1 @@
+../../../LightBundleSDK/LightBundle/LightBundle/model/LBShareInfoModel.h

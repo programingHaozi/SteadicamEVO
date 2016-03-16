@@ -14,6 +14,8 @@ pod 'TFThirdLib_iOS/WXPay',         	:git => 'http://git01.dds.com/MP/TFThirdLib
 
 pod 'TorqueSDK',    :git => 'http://git01.dds.com/cm/torque_sdk_ios.git', :branch => 'develop', :tag => '2.0.31'
 
+pod 'LightBundleSDK',       :git => 'http://git01.dds.com/MP/LightBundle_SDK_iOS.git'
+
 pod 'ReactiveCocoa', '2.5'
 
 inhibit_all_warnings!

@@ -265,6 +265,14 @@
     self.tabBar.badgeStringColor = badgeStringColor;
 }
 
+-(void)setTabBarBackgroundImage:(UIImage *)tabBarBackgroundImage
+{
+    _tabBarBackgroundImage = tabBarBackgroundImage;
+    
+    self.tabBar.backgroundImage = tabBarBackgroundImage;
+}
+
+
 #pragma mark - Public Method -
 
 - (void)removeViewControllerAtIndex:(NSUInteger)index
@@ -281,6 +289,7 @@
               selectedImage:(UIImage *)selectedImage
                     atIndex:(NSUInteger)index
 {
+    
     vc.tabbarItem = [[TFCustomTabbarItem alloc]initWithTitle:title
                                                  normalImage:normalImage
                                                selectedImage:selectedImage];

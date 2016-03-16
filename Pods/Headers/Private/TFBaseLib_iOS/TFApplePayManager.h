@@ -1,0 +1,1 @@
+../../../TFBaseLib_iOS/TFBaseLib/Classes/Core-Manager/TFApplePayManager.h

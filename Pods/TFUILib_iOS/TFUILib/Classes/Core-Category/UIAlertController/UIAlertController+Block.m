@@ -71,18 +71,6 @@
     });
 }
 
-+ (void)showWithTitle:(NSString *)title
-              message:(NSString *)message
-          buttonTitle:(NSArray *)buttonTitle
-                block:(void (^)(UIAlertController *alertView, NSInteger buttonIndex))block
-{
-    [[self class]showWithTitle:title
-                       message:message
-             cancelButtonTitle:nil
-             otherButtonTitles:buttonTitle
-                         block:block];
-}
-
 #pragma mark - actionsheet
 
 + (void) showWithTitle:(NSString *)title
@@ -166,18 +154,6 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
         
         [alert show];
     });
-}
-
-+ (void)showWithTitle:(NSString *)title
-    cancelButtonTitle:(NSString *)cancelButtonTitle
-         buttonTitles:(NSArray *)buttonTitles
-                block:(void (^)(UIAlertController *, NSInteger))block
-{
-    [[self class]showWithTitle:title
-             cancelButtonTitle:cancelButtonTitle
-        destructiveButtonTitle:nil
-             otherButtonTitles:buttonTitles
-                         block:block];
 }
 
 - (void)show

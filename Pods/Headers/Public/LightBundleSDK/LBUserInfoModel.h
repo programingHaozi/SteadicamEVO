@@ -1,0 +1,1 @@
+../../../LightBundleSDK/LightBundle/LightBundle/model/LBUserInfoModel.h

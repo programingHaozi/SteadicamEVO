@@ -41,7 +41,7 @@
      cancelButtonTitle:(NSString *)cancelButtonTitle
 destructiveButtonTitle:(NSString *)destructiveButtonTitle
      otherButtonTitles:(NSArray *)otherButtonTitles
-                 block:(void (^)(UIAlertController *, NSInteger))block;
+                 block:(void (^)(UIAlertController *alertController, NSInteger buttonIndex))block;
 
 
 

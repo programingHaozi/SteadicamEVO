@@ -1,0 +1,1 @@
+../../../LightBundleSDK/LightBundle/LightBundle/private/LBZXingObjC/datamatrix/encoder/LBZXDataMatrixHighLevelEncoder.h

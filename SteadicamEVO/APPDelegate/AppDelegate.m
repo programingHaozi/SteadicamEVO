@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "SplashViewController.h"
+#import "HomeTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +19,73 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    [self showADView];
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
+}
+
+/**
+ *  判断是否是新版本
+ *
+ *  @return 是否最新版本
+ */
+- (BOOL)checkIsNewVersion
+{
+    if (kSCEUserDefaults.lastAPPVersion !=nil && [kSCEUserDefaults.lastAPPVersion isEqualToString:tf_getAPPVersion()])
+    {
+        return NO;
+    }
+    
+    kSCEUserDefaults.lastAPPVersion = tf_getAPPVersion();
+    
+    return YES;
+}
+
+/*
+ 显示广告页面
+ */
+- (void)showADView
+{
+    WS(weakSelf);
+    
+    if ([weakSelf checkIsNewVersion])
+    {
+        [weakSelf showSplashView];
+    }
+    else
+    {
+//        AdViewController *vc = [[AdViewController alloc] initWithBlock:^(id data) {
+//            [self goToRootViewController];
+//        }];
+//        [self.window setRootViewController:[[UINavigationController alloc] initWithRootViewController:vc]];
+        [self goToRootViewController];
+    }
+}
+
+/*
+ 显示启动页面
+ */
+- (void)showSplashView
+{
+    SplashViewController *vc = [[SplashViewController alloc] initWithResultBlock:^(id data) {
+        
+        [self goToRootViewController];
+    }];
+    
+    [self.window setRootViewController:vc];
+}
+
+- (void)goToRootViewController
+{
+    HomeTabBarController *vc =[[HomeTabBarController alloc]init];
+    
+    [self.window setRootViewController:vc];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
