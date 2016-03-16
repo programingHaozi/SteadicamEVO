@@ -188,10 +188,9 @@ alpha:a]
 // 绘制按钮时添加path遮罩
 - (void)drawRect:(CGRect)rect
 {
-    //    [super drawRect:rect];
-    
     if (self.path)
     {
+         [super drawRect:rect];
         CAShapeLayer *shapLayer = [CAShapeLayer layer];
         shapLayer.path = self.path.CGPath;
         self.layer.mask = shapLayer;

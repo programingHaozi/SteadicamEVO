@@ -33,7 +33,7 @@ typedef void(^SelectBarItemBlock)(NSUInteger idx);
 @property (nullable, nonatomic, strong) id<TFCustomTabBarSelectDelegate> delegate;
 
 /**
- *  背景图片
+ *  背景图片(设置image为空时，恢复默认半透明效果；image不为空时，没有半透明效果)
  */
 @property (nullable, nonatomic, strong) UIImage *backgroundImage;
 

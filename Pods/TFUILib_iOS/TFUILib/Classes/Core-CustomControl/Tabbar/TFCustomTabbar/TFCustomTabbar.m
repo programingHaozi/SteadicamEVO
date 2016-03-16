@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) UIImageView *separateLine;
 
+@property (nonatomic, strong) UIToolbar   *blurView;
+
 @end
 
 @implementation TFCustomTabbar
@@ -43,8 +45,11 @@
 {
     self.backgroundColor = [UIColor clearColor];
     
+    _blurView = [[UIToolbar alloc]init];
+    [self addSubview:_blurView];
+    
     _backgroundImageView = [[UIImageView alloc]init];
-    _backgroundImageView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];
+    _backgroundImageView.backgroundColor = [UIColor clearColor];
     [self addSubview:_backgroundImageView];
     
     _separateLine = [[UIImageView alloc]init];
@@ -58,6 +63,14 @@
     [super layoutSubviews];
     
     WS(weakSelf)
+    [self.blurView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(weakSelf.mas_top).offset(0);
+        make.right.equalTo(weakSelf.mas_right).offset(0);
+        make.bottom.equalTo(weakSelf.mas_bottom).offset(0);
+        make.left.equalTo(weakSelf.mas_left).offset(0);
+    }];
+    
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.equalTo(weakSelf.mas_top).offset(0);
@@ -73,6 +86,19 @@
         make.right.equalTo(weakSelf.mas_right).offset(0);
         make.left.equalTo(weakSelf.mas_left).offset(0);
     }];
+    
+    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        float leftOffset = idx * weakSelf.width/weakSelf.tabbarItems.count;
+        
+        [obj mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.width.equalTo(weakSelf.mas_width).dividedBy(weakSelf.tabbarItems.count);
+            make.height.equalTo(@48);
+            make.left.equalTo(weakSelf.mas_left).offset(leftOffset);
+            make.bottom.equalTo(weakSelf.mas_bottom).offset(0);
+        }];
+    }];
 }
 
 #pragma mark - Setter -
@@ -80,6 +106,7 @@
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
     _backgroundImage = backgroundImage;
+    
     [self.backgroundImageView setImage:backgroundImage];
 }
 
@@ -125,11 +152,9 @@
         {
             tabbarItems = [tabbarItems subarrayWithRange:NSMakeRange(0, 5)];
         }
-        
-        float singleBarWidth = SCREEN_WIDTH / tabbarItems.count;
-        
+
         [tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            obj.frame = CGRectMake(singleBarWidth * idx, 1, singleBarWidth, 48);
+
             [self addSubview:obj];
             
             obj.touchActionBlock = touchActionBlcok;
@@ -262,8 +287,6 @@
         if (hidden)
         {
             POPBasicAnimation *animation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewCenter];
-            
-            NSLog(@"x , y , h : %f,%f,%f",self.centerX, self.centerY,self.centerY - self.height);
             animation.toValue = [NSValue valueWithCGPoint:CGPointMake(self.centerX, self.centerY + 2 * self.height)];
             animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
             animation.duration = 0.5;

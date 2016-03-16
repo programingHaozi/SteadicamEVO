@@ -81,7 +81,7 @@
 @property (nonatomic, assign) BOOL tabBarTranslucent;
 
 /**
- *  tabBar背景图片
+ *  tabBar背景图片(设置image为空时，恢复默认半透明效果；image不为空时，没有半透明效果)
  */
 @property (nullable, nonatomic, strong) UIImage * tabBarBackgroundImage;
 
