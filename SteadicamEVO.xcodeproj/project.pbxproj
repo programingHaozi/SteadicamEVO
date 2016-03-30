@@ -33,6 +33,7 @@
 		87C6E9141CABBD1E003ACA26 /* AboutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E9131CABBD1E003ACA26 /* AboutViewModel.m */; };
 		87C6E9181CABBD43003ACA26 /* CompanyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E9171CABBD43003ACA26 /* CompanyViewModel.m */; };
 		87C6E91C1CABBD65003ACA26 /* LanguageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E91B1CABBD65003ACA26 /* LanguageViewModel.m */; };
+		87C6E9211CABCDB2003ACA26 /* GuideViewCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E9201CABCDB2003ACA26 /* GuideViewCollectionCell.m */; };
 		87EF95481C8C36C1002241B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EF953F1C8C36C1002241B2 /* AppDelegate.m */; };
 		87EF95491C8C36C1002241B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87EF95411C8C36C1002241B2 /* Assets.xcassets */; };
 		87EF954A1C8C36C1002241B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87EF95421C8C36C1002241B2 /* LaunchScreen.storyboard */; };
@@ -99,6 +100,8 @@
 		87C6E9171CABBD43003ACA26 /* CompanyViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyViewModel.m; sourceTree = "<group>"; };
 		87C6E91A1CABBD65003ACA26 /* LanguageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageViewModel.h; sourceTree = "<group>"; };
 		87C6E91B1CABBD65003ACA26 /* LanguageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewModel.m; sourceTree = "<group>"; };
+		87C6E91F1CABCDB2003ACA26 /* GuideViewCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewCollectionCell.h; sourceTree = "<group>"; };
+		87C6E9201CABCDB2003ACA26 /* GuideViewCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewCollectionCell.m; sourceTree = "<group>"; };
 		87EF951D1C8C35A3002241B2 /* SteadicamEVO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteadicamEVO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87EF953E1C8C36C1002241B2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87EF953F1C8C36C1002241B2 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -200,6 +203,7 @@
 		87C6E8E01CAB9949003ACA26 /* GuideVIewController */ = {
 			isa = PBXGroup;
 			children = (
+				87C6E91E1CABCD8A003ACA26 /* GuideViewCollectionCell */,
 				87C6E9051CABBC85003ACA26 /* GuideViewModel */,
 				87C6E8E11CAB9949003ACA26 /* GuideViewController.h */,
 				87C6E8E21CAB9949003ACA26 /* GuideViewController.m */,
@@ -296,6 +300,15 @@
 				87C6E91B1CABBD65003ACA26 /* LanguageViewModel.m */,
 			);
 			path = LanguageViewModel;
+			sourceTree = "<group>";
+		};
+		87C6E91E1CABCD8A003ACA26 /* GuideViewCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				87C6E91F1CABCDB2003ACA26 /* GuideViewCollectionCell.h */,
+				87C6E9201CABCDB2003ACA26 /* GuideViewCollectionCell.m */,
+			);
+			path = GuideViewCollectionCell;
 			sourceTree = "<group>";
 		};
 		87EF95141C8C35A3002241B2 = {
@@ -532,6 +545,7 @@
 				87EF951B1C8C35A3002241B2 /* Resources */,
 				FE53EEEC9EE99B17F7D87B55 /* Embed Pods Frameworks */,
 				A2C4347B08CC7A756DE77A0F /* Copy Pods Resources */,
+				87C6E91D1CABC13B003ACA26 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -607,6 +621,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		87C6E91D1CABC13B003ACA26 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PROJECT_DIR}/SteadicamEVO/Class/Managers/LocalizationManager/Localizable.sh ${SRCROOT}/${TARGET_NAME}";
+		};
 		A2C4347B08CC7A756DE77A0F /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -644,6 +671,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87C6E8FC1CABB8BC003ACA26 /* SCEViewModel.m in Sources */,
+				87C6E9211CABCDB2003ACA26 /* GuideViewCollectionCell.m in Sources */,
 				87C6E8E71CAB9949003ACA26 /* GuideViewController.m in Sources */,
 				87C6E8E61CAB9949003ACA26 /* BalanceViewController.m in Sources */,
 				8700362D1C97E7EF00AAB595 /* BTDeviceModel.m in Sources */,
