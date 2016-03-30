@@ -1,6 +1,6 @@
 {
   "name": "TFBaseLib_iOS",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "summary": "TFBaseLib_iOS",
   "description": "the description for TFBaseLib_iOS only pod code",
   "homepage": "http://git01.dds.com/MP/TFBaseLib_iOS",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "http://git01.dds.com/MP/TFBaseLib_iOS.git",
-    "tag": "0.0.35",
+    "tag": "0.0.36",
     "submodules": true
   },
   "platforms": {
@@ -81,6 +81,19 @@
           },
           "source_files": "TFBaseLib/Classes/Core-3rd/SafeKit/*.{h,m}",
           "public_header_files": "TFBaseLib/Classes/Core-3rd/SafeKit/*.h",
+          "source": {
+            "submodules": true
+          }
+        },
+        {
+          "name": "SafeKitMRC",
+          "platforms": {
+            "ios": null
+          },
+          "source_files": "TFBaseLib/Classes/Core-3rd/SafeKitMRC/*.{h,m}",
+          "public_header_files": "TFBaseLib/Classes/Core-3rd/SafeKitMRC/*.h",
+          "requires_arc": false,
+          "compiler_flags": "-ObjC",
           "source": {
             "submodules": true
           }

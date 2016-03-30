@@ -344,14 +344,12 @@
     self.maskButton.alpha = 0;
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     
-    self.alertView.transform = CGAffineTransformScale(self.alertView.transform,0.1,0.1);
     [UIView animateWithDuration:ANIMATION_DURATION_TIME
                           delay:0
-                        options:UIViewAnimationOptionCurveLinear
+                        options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
                          self.maskButton.alpha = 1;
-                         self.alertView.transform = CGAffineTransformIdentity;
                      } completion:^(BOOL finished) {
                          
                          if (completion)
@@ -366,7 +364,7 @@
 {
     [UIView animateWithDuration:0.3
                           delay:0
-                        options:UIViewAnimationOptionCurveLinear
+                        options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
                      }

@@ -8,16 +8,28 @@
 
 #import "TFWebViewController.h"
 #import "TFBaseLib.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #define LINE_HEIGHT 3
 
-@interface TFWebViewController ()<LBWebViewDelegate>
+@interface TFWebViewController ()
 
 @property (nonatomic, readwrite, strong) NSURLRequest* loadRequest;
+
 @property (nonatomic, strong) void(^requestBlock)(NSURLRequest *request);
 @property (nonatomic, strong) void(^didStarBlock)();
 @property (nonatomic, strong) void(^didFinishBlock)();
 @property (nonatomic, strong) void(^didFailBlock)(NSError *error);
+
+/**
+ *  导航栏返回按钮
+ */
+@property (nonatomic, strong) UIBarButtonItem *backButtonItem;
+
+/**
+ *  导航栏关闭按钮
+ */
+@property (nonatomic, strong) UIBarButtonItem *closeButtonItem;
 
 @property (nonatomic, assign) BOOL isCanClose;
 
@@ -29,29 +41,25 @@
         isNeedMulilayerBack:(BOOL)needBack
                 isNeedClose:(BOOL)isNeedClose
                       title:(NSString *)title
-             isNeedProgress:(BOOL)isNeedProgress
  shouldStartLoadWithRequest:(void(^)(NSURLRequest *request))requestBlock
                didStartLoad:(void(^)())didStarBlock
               DidFinishLoad:(void(^)())didFinishBlock
-                didFailLoad:(void(^)(NSError *error))didFailBlock;
-{
+                didFailLoad:(void(^)(NSError *error))didFailBlock;{
     self = [super initWithNibName:nil bundle:nil];
-    
+
     if (self)
     {
-        [self addwebView:self.view.frame];
         self.isNeedClose = isNeedClose;
         self.isNeedMulilayerBack = needBack;
         self.title = title;
         _urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:URL]];
-        [self loadUrl];
-        self.isNeedProgressView = isNeedProgress;
+
         self.requestBlock = requestBlock;
         self.didStarBlock = didStarBlock;
         self.didFinishBlock = didFinishBlock;
         self.didFailBlock = didFailBlock;
     }
-    
+
     return self;
 }
 
@@ -66,67 +74,101 @@
     self.didFailBlock = didFailBlock;
 }
 
+- (void)initBackButtonImage:(NSString *)strImage
+                      title:(NSString *)strTitle
+                      color:(UIColor *)color;
+{
+    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 30, 44);
+
+    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+
+    [btn addTarget:self action:@selector(leftButtonEvent) forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
+    [btn setTitle:strTitle forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+    [btn setTitleColor:color forState:UIControlStateNormal];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    btn.backgroundColor = [UIColor clearColor];
+
+    self.backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+
+    [self updateLeftAndRightButton];
+}
+
+- (void)initCloseButtonImage:(NSString *)strImage
+                       title:(NSString *)strTitle
+                       color:(UIColor *)color;
+{
+
+    CGRect rect = CGRectMake(0, 0, 30, 44);
+
+    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+
+    [btn addTarget:self action:@selector(rightButtonEvent) forControlEvents:UIControlEventTouchUpInside];
+    btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
+    [btn setTitle:strTitle forState:UIControlStateNormal];
+    [btn setTitleColor:color forState:UIControlStateNormal];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    btn.backgroundColor = [UIColor clearColor];
+
+    self.closeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (self.model)
+    {
+        self.isNeedProgressView = self.model.isNeedProgress;
+    }
+    self.isNeedProgressView = self.isNeedProgressView;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self addwebView:self.view.frame];
-    self.view.backgroundColor = [UIColor clearColor];
-    [self initDataWithParam];
+    [self initWebView];
+    [self loadUrl];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+
+    if (self.progressView)
+    {
+        [self.progressView removeFromSuperview];
+        self.progressView = nil;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    if (self.progressView) {
+
+    if (self.progressView)
+    {
         [self.progressView removeFromSuperview];
+        self.progressView = nil;
     }
 }
 
 #pragma mark- init autolayout bind
-
-- (void)initViews
-{
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFWebViewController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
-
-- (void)autolayoutViews
-{
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFWebViewController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
-
-- (void)bindData
-{
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFWebViewController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
 
 /**
  *  初始化数据
  */
 - (void)initDataWithParam
 {
-    if (self.placeholderTitle) {
+    if (self.placeholderTitle)
+    {
         [self setTitle:self.placeholderTitle];
     }
-    if (self.fixedTitle) {
+
+    if (self.fixedTitle)
+    {
         [self setTitle:self.fixedTitle];
     }
 }
@@ -165,17 +207,60 @@
 - (void)addProgressViewAboveWebView:(UIColor*)proColor y:(float)y
 {
     CGFloat progressBarHeight = 2.f;
-    
+
     CGRect frame = CGRectMake(0, y, self.webView.frame.size.width, progressBarHeight);
     self.progressView = [[TFProgressView alloc] initWithFrame:frame color:proColor];
     [self.webView addSubview:self.progressView];
 }
 
+#pragma mark- init autolayout bind
+
+- (void)initWebView
+{
+    [self addwebView:CGRectZero];
+    self.view.backgroundColor = [UIColor clearColor];
+    [self initDataWithParam];
+
+    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0);
+    }];
+
+    @weakify(self);
+    [[RACObserve(self, model) filter:^BOOL(id value) {
+        return (value) ? YES : NO;
+    }] subscribeNext:^(TFWebModel *model) {
+        @strongify(self);
+        self.isNeedClose = self.model.isNeedClose;
+        self.isNeedMulilayerBack = self.model.isNeedMulilayerBack;
+        self.urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:self.model.url]];
+        self.fixedTitle = self.model.fixedTitle;
+        self.placeholderTitle = self.model.placeholderTitle;
+        self.progressViewColor = self.model.progressViewColor;
+
+        if (self.placeholderTitle)
+        {
+            [self setTitle:self.placeholderTitle];
+        }
+
+        if (self.fixedTitle)
+        {
+            [self setTitle:self.fixedTitle];
+        }
+
+        [self loadUrl];
+    }];
+}
+
 // 加载url
 - (void)loadUrl
 {
-    if ([self.urlRequest.URL.absoluteString rangeOfString:@"http://"].length || [self.urlRequest.URL.absoluteString rangeOfString:@"https://"].length) {
-        
+
+    if (self.urlRequest == nil)
+    {
+        return;
+    }
+    if ([self.urlRequest.URL.absoluteString rangeOfString:@"http://"].length || [self.urlRequest.URL.absoluteString rangeOfString:@"https://"].length)
+    {
         [self.webView loadUrl:self.urlRequest];
     }
     else
@@ -202,23 +287,24 @@
 /**
  *  点击导航栏左按钮
  */
-- (void)leftEvent:(UIButton *)button
+- (void)leftButtonEvent
 {
     if ([self.webView canGoBack] && self.isNeedMulilayerBack)
     {
         self.isCanClose = YES;
         [self.webView goBack];
+        [self updateLeftAndRightButton];
     }
-    else {
+    else
+    {
         [self back];
     }
 }
 
-
 /**
  *  点击导航栏右按钮
  */
-- (void)rightEvent:(UIButton *)button
+- (void)rightButtonEvent
 {
     [self back];
 }
@@ -236,7 +322,7 @@
     {
         self.requestBlock(request);
     }
-    
+
     return YES;
 }
 
@@ -246,17 +332,17 @@
      {
          [self setNavTitle:ret];
      }];
-    
+
     if (self.isNeedClose)
     {
         [self updateLeftAndRightButton];
     }
-    
+
     if (self.didStarBlock)
     {
         self.didStarBlock();
     }
-    
+
 }
 
 - (void)LBWebViewDidFinishLoad:(LBWebView *)webView
@@ -265,16 +351,28 @@
      {
          [self setNavTitle:ret];
      }];
-    
+
     if (self.isNeedClose)
     {
         [self updateLeftAndRightButton];
     }
-    
+
     if (self.didFinishBlock)
     {
         self.didFinishBlock();
     }
+
+    if (!self.model.isNeedAllowGesture)
+    {
+        [self.webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';" completionHandler:^(id ret, NSError *error) {
+
+        }];
+
+        [self.webView evaluateJavaScript:@"document.documentElement.style.webkitTouchCallout='none';" completionHandler:^(id ret, NSError *error) {
+
+        }];
+    }
+
 }
 
 - (void)LBWebView:(LBWebView *)webView didFailLoadWithError:(NSError *)error
@@ -282,17 +380,17 @@
     [self.webView evaluateJavaScript:@"document.title" completionHandler:^(id ret, NSError *error) {
         [self setNavTitle:ret];
     }];
-    
+
     if (self.isNeedClose)
     {
         [self updateLeftAndRightButton];
     }
-    
+
     if (self.progressView)
     {
         [self.progressView setProgress:1.0];
     }
-    
+
     if (self.didFailBlock)
     {
         self.didFailBlock(error);
@@ -321,11 +419,22 @@
     }
 }
 
+- (void)setUrlRequest:(NSURLRequest *)urlRequest
+{
+    _urlRequest = urlRequest;
+    [self loadUrl];
+}
+
 - (void)setIsNeedProgressView:(BOOL)isNeedProgressView
 {
     _isNeedProgressView = isNeedProgressView;
     if (isNeedProgressView)
     {
+        if (self.progressView)
+        {
+            [self.progressView removeFromSuperview];
+            self.progressView = nil;
+        }
         UIColor *color;
         if (self.progressViewColor)
         {
@@ -336,14 +445,8 @@
             // 默认color
             color = [UIColor colorWithHexString:@"0X03A9F4"];
         }
-        if (self.navigationController)
-        {
-            [self addProgressViewAboveNaviBar:color];
-        }
-        else
-        {
-            [self addProgressViewAboveWebView:color y:0];
-        }
+        [self addProgressViewAboveNaviBar:color];
+
     }
 }
 
@@ -353,22 +456,34 @@
     self.progressView.progressBarView.backgroundColor = progressViewColor;
 }
 
-- (UIColor *)closeButtonColor
-{
-    if (!_closeButtonColor)
-    {
-        _closeButtonColor = [UIColor blackColor];
-    }
-    
-    return _closeButtonColor;
-}
-
 /**
  *  设置返回按钮
  */
 - (void)leftBackButton
 {
-    [self hideRight];
+    self.navigationItem.leftBarButtonItems = nil;
+
+    UIBarButtonItem *leftBarItem = nil;
+
+    if (self.backButtonItem) {
+        leftBarItem = self.backButtonItem;
+    }
+    else {
+
+        CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 30, 44);
+
+        UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+
+        [btn addTarget:self action:@selector(leftButtonEvent) forControlEvents:UIControlEventTouchUpInside];
+        [btn setTitle:@"返回" forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        btn.backgroundColor = [UIColor clearColor];
+        leftBarItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+
+    }
+    self.navigationItem.leftBarButtonItem = leftBarItem;
 }
 
 /**
@@ -376,18 +491,59 @@
  */
 - (void)leftBackButtonAndRightCloseButton
 {
-    [self initRightTitle:@"关闭" color:self.closeButtonColor];
-    
-    if (!self.isNeedClose)
-    {
-        [self hideRight];
+    self.navigationItem.leftBarButtonItems = nil;
+
+    UIBarButtonItem *leftBarItem = nil;
+    if (self.backButtonItem) {
+        leftBarItem = self.backButtonItem;
     }
+    else {
+        CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 30, 44);
+
+        UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+
+        [btn addTarget:self action:@selector(leftButtonEvent) forControlEvents:UIControlEventTouchUpInside];
+        [btn setTitle:@"返回" forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        btn.backgroundColor = [UIColor clearColor];
+        leftBarItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    }
+
+    UIBarButtonItem *rightBarItem = nil;
+    if (self.closeButtonItem) {
+        rightBarItem = self.closeButtonItem;
+    }
+    else {
+        CGRect rect = CGRectMake(0, 0, 30, 44);
+
+        UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+
+        [btn addTarget:self action:@selector(rightButtonEvent) forControlEvents:UIControlEventTouchUpInside];
+        btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+        [btn setTitle:@"关闭" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        btn.backgroundColor = [UIColor clearColor];
+
+        rightBarItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    }
+
+    if (self.isNeedClose) {
+        self.navigationItem.leftBarButtonItem = leftBarItem;
+        self.navigationItem.leftBarButtonItems = @[leftBarItem, rightBarItem];
+    }
+    else {
+        self.navigationItem.leftBarButtonItem = leftBarItem;
+    }
+
 }
 
 - (void)setUaDicton:(NSDictionary *)uaDicton
 {
     _uaDicton = uaDicton;
-    
+
     [[NSUserDefaults standardUserDefaults] registerDefaults:[[NSDictionary alloc] initWithObjectsAndKeys:[[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:uaDicton options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@""], @"UserAgent", nil]];
 }
 

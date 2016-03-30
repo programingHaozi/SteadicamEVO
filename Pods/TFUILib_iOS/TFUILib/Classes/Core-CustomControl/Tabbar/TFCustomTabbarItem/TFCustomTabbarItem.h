@@ -1,5 +1,5 @@
 //
-//  TFCustomTabbarItem.h
+//  TFCustomTabBarItem.h
 //  TFUILib
 //
 //  Created by Chen Hao 陈浩 on 16/3/9.
@@ -9,14 +9,14 @@
 #import "TFView.h"
 
 /**
- *  TFCustomTabbarItem
+ *  TFCustomTabBarItem
  */
-@interface TFCustomTabbarItem : TFView
+@interface TFCustomTabBarItem : TFView
 
 /**
  *  点击回调
  */
-typedef void(^TouchActionBlock)(TFCustomTabbarItem *);
+typedef void(^TouchActionBlock)(TFCustomTabBarItem *);
 
 /**
  *  是否被选择(单独更改无法切换Controller)
@@ -89,13 +89,13 @@ typedef void(^TouchActionBlock)(TFCustomTabbarItem *);
 @property (nonatomic, strong) TouchActionBlock touchActionBlock;
 
 /**
- *  初始化TFCustomTabbarItem
+ *  初始化TFCustomTabBarItem
  *
  *  @param title         标题
  *  @param normalImage   正常图片
  *  @param selectedImage 选中图片
  *
- *  @return TFCustomTabbarItem
+ *  @return TFCustomTabBarItem
  */
 - (instancetype)initWithTitle:(NSString *)title
                   normalImage:(UIImage *)normalImage

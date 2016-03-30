@@ -29,6 +29,21 @@
  *  @param color 背景颜色
  *  @param alph  透明度
  */
-- (void)setNavigationBarBackgroundColor:(UIColor *)color alph:(NSInteger)alph;
+- (void)setNavigationBarBackgroundColor:(UIColor *)color alpha:(NSInteger)alpha;
+
+/**
+ *  初始化视图
+ */
+- (void)initViews;
+
+/**
+ *  自动布局视图
+ */
+- (void)autolayoutViews;
+
+/**
+ *  绑定数据
+ */
+- (void)bindData;
 
 @end

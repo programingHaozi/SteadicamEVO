@@ -14,8 +14,9 @@
 #define OPENAPI_REGISTER_DEVICE                   @"/RigidaDeviceService20/init"           //注册设备
 #define OPENAPI_UNREGISTER_DEVICE                 @"/RigidaDeviceService20/remove"         //注销设备
 
-#define OPENAPI_LOGIN                             @"/RigidaUserService20/doLogin"          //用户登录
-#define OPENAPI_REGISTER                          @"/RigidaUserService20/doRegister"       //用户注册
+#define OPENAPI_LOGIN                             @"/RigidaUserService30/doLogin"//@"/RigidaUserService20/doLogin"          //用户登录
+
+#define OPENAPI_REGISTER                          @"/RigidaUserService30/doRegister"       //用户注册
 #define OPENAPI_RESETPSWD                         @"/RigidaUserService20/resetPwd"         //重置密码
 #define OPENAPI_CHANGEPSWD                        @"/RigidaUserService20/updateUserPwd"    //修改密码
 #define OPENAPI_GETSMSCODE                        @"/RigidaUserService20/getSmsCode"       //短信验证码

@@ -200,24 +200,21 @@ alpha:a]
 //覆盖方法，点击时判断点是否在path内，YES则响应，NO则不响应
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
 {
+    BOOL resutl = [super pointInside:point withEvent:event];
+    
     if (self.path)
     {
-        BOOL res = [super pointInside:point withEvent:event];
-        if (res)
+        //BOOL res = [super pointInside:point withEvent:event];
+        if (resutl)
         {
             if ([self.path containsPoint:point])
             {
-                return YES;
+                resutl = YES;
             }
-            return NO;
         }
-        return NO;
-    }
-    else
-    {
-        return YES;
     }
     
+    return resutl;
 }
 
 #pragma mark - touch

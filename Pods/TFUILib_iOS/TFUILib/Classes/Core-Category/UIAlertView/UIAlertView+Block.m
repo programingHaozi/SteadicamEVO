@@ -11,7 +11,7 @@
 
 @interface UIAlertView () <UIAlertViewDelegate>
 
-@property (copy, nonatomic) void (^block)(UIAlertView *UIAlertView, NSInteger buttonIndex);
+@property (copy, nonatomic) void (^block)(NSInteger buttonIndex);
 
 @end
 
@@ -22,7 +22,7 @@
               message:(NSString *)message
     cancelButtonTitle:(NSString *)cancelButtonTitle
     otherButtonTitles:(NSArray *)otherButtonTitles
-                block:(void (^)(UIAlertView *alertView, NSInteger buttonIndex))block
+                block:(void (^)(NSInteger buttonIndex))block
 {
     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:title
                                                  message:message
@@ -36,7 +36,7 @@
                       message:(NSString *)message
             cancelButtonTitle:(NSString *)cancelButtonTitle
             otherButtonTitles:(NSArray *)otherButtonTitles
-                        block:(void (^)(UIAlertView *alertView, NSInteger buttonIndex))block
+                        block:(void (^)(NSInteger buttonIndex))block
 {
     self = [self initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
     if (self)
@@ -61,7 +61,7 @@
     return self;
 }
 
-- (void)showUsingBlock:(void (^)(UIAlertView *, NSInteger))block
+- (void)showUsingBlock:(void (^)(NSInteger))block
 {
     self.delegate = self;
     self.block = block;
@@ -75,18 +75,18 @@
 {
     if (self.block)
     {
-        self.block(alertView, buttonIndex);
+        self.block(buttonIndex);
     }
 }
 
 #pragma mark - set get
 
-- (void)setBlock:(void (^)(UIAlertView *, NSInteger))block
+- (void)setBlock:(void (^)(NSInteger))block
 {
     objc_setAssociatedObject(self, @selector(block), block, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (void (^)(UIAlertView *, NSInteger))block
+- (void (^)(NSInteger))block
 {
     return objc_getAssociatedObject(self, @selector(block));
 }

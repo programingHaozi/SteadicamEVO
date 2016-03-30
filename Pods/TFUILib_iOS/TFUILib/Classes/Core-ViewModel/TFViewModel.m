@@ -7,9 +7,7 @@
 //
 
 #import "TFViewModel.h"
-
-#define TWO_DIMISION 2  //二维数组
-#define ONE_DIMISION 1  //一维数组
+#import "TFBaseLib.h"
 
 @implementation TFViewModel
 
@@ -22,6 +20,18 @@
     }
     
     return self;
+}
+
+-(NSArray *)dataArray
+{
+    if(_dataArray==nil)
+    {
+        NSString *className=NSStringFromClass([self class]);
+        NSString *fileName=[NSString stringWithFormat:@"%@.json",className];
+        NSDictionary *data = [NSString jsonDataFromFileName:fileName];
+        _dataArray=[TFTableSectionModel mj_objectArrayWithKeyValuesArray:data];
+    }
+    return _dataArray;
 }
 
 -(NSInteger)numberOfSections

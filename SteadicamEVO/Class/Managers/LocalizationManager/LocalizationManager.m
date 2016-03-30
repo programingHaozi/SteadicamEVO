@@ -82,6 +82,7 @@
     self.languageBundle = [NSBundle bundleWithPath:languagePath];
     
     [kUserDefault setValue:userLanguage forKey:kUserLanguage];
+    
     [kUserDefault synchronize];
     
 }

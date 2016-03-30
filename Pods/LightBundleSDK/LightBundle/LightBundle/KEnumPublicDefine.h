@@ -24,7 +24,9 @@ typedef enum {
     LBJsCallOcFuncTypeAlipay    = 3,    // 支付宝支付
     LBJsCallOcFuncTypeShareInfo = 4,    // 分享
     LBJsCallOcFuncTypeCheckOut  = 5,    // 收银台
-    LBJsCallOcFuncTypeCarInfo   = 6,    // 收银台
+    LBJsCallOcFuncTypeCarInfo   = 6,    // 车辆列表
+    LBJsCallOcFuncTypeDeviceInfo    = 7,    // 设备信息
+    LBJsCallOcFuncTypeCloseWebview  = 8,    // 关闭网页
 }LBJsCallOcFuncType;
 
 // redirect

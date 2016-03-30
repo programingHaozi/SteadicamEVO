@@ -1,6 +1,6 @@
 {
   "name": "TFCoreLib_iOS",
-  "version": "0.0.16",
+  "version": "0.0.18",
   "summary": "TFCoreLib_iOS",
   "description": "TFCoreLib_iOS  description here",
   "homepage": "http://git01.dds.com/MP/TFCoreLib_iOS",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "http://git01.dds.com/MP/TFCoreLib_iOS.git",
-    "tag": "0.0.16",
+    "tag": "0.0.18",
     "submodules": true
   },
   "platforms": {

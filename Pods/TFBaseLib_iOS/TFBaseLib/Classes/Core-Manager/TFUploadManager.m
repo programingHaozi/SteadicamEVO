@@ -35,7 +35,7 @@
     {
         _paths = [[NSMutableArray alloc] init];
     }
-    
+
     return _paths;
 }
 
@@ -46,19 +46,17 @@
     return [[self alloc] fileSizeForPath:path];
 }
 
-+(void)uploadFileToURL:(NSString *)URLString
-               fileData:(NSData *)fileData
-             httpMethod:(NSString *)method
++ (void)uploadFileToURL:(NSString *)URLString
+constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))block
                progress:(UploadProgress)progressBlock
                 success:(void (^)(id backData))successBlock
                 failure:(void (^)(NSError *error))failureBlock;
 {
     return [[self class]uploadFileToURL:URLString
-                                fileData:fileData
-                              httpMethod:method
-                                progress:progressBlock
-                                 success:successBlock
-                                 failure:failureBlock];
+              constructingBodyWithBlock:block
+                               progress:progressBlock
+                                success:successBlock
+                                failure:failureBlock];
 }
 
 + (void)pauseWithURL:(NSString *)URLString
@@ -75,76 +73,81 @@
 
 - (unsigned long long)fileSizeForPath:(NSString *)path
 {
-    
+
     signed long long fileSize = 0;
-    
+
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    
+
     if ([fileManager fileExistsAtPath:path])
     {
-        
+
         NSError *error = nil;
-        
+
         NSDictionary *fileDict = [fileManager attributesOfItemAtPath:path error:&error];
-        
+
         if (!error && fileDict)
         {
-            
+
             fileSize = [fileDict fileSize];
         }
     }
-    
+
     return fileSize;
 }
 
 -(void)uploadFileToURL:(NSString *)URLString
-               fileData:(NSData *)fileData
-             httpMethod:(NSString *)method
-               progress:(UploadProgress)progressBlock
-                success:(void (^)(id backData))successBlock
-                failure:(void (^)(NSError *error))failureBlock
+constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))block
+              progress:(UploadProgress)progressBlock
+               success:(void (^)(id backData))successBlock
+               failure:(void (^)(NSError *error))failureBlock;
 {
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:method URLString:URLString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        nil;
-    } error:nil];
-    
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer]
+                                    multipartFormRequestWithMethod:@"POST"
+                                    URLString:URLString
+                                    parameters:nil
+                                    constructingBodyWithBlock:block
+                                    error:nil];
+
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 
     self.uploadProgress = progressBlock;
-    
-    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request
-                                                               fromData:fileData
-                                                               progress:^(NSProgress *uploadProgress) {
-                                                                   
-                                                               }
-                                                                  completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error)  {
-                                                                      
-                                                                      if (error)
+
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request
+                                                                       progress:^(NSProgress *progress){
+                                                                           if (progressBlock) {
+                                                                               progressBlock((CGFloat)progress.completedUnitCount,(CGFloat)progress.completedUnitCount,(CGFloat)progress.totalUnitCount);
+                                                                           }
+                                                                       }
+                                                              completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+                                                                  if (error)
+                                                                  {
+                                                                      NSLog(@"Error: %@", error);
+
+                                                                      if (failureBlock)
                                                                       {
-                                                                          NSLog(@"Error: %@", error);
-                                                                          
-                                                                          if (failureBlock)
-                                                                          {
-                                                                              failureBlock(error);
-                                                                          }
+                                                                          failureBlock(error);
                                                                       }
-                                                                      else
+                                                                  }
+                                                                  else
+                                                                  {
+                                                                      NSLog(@"%@", responseObject);
+
+                                                                      if (successBlock)
                                                                       {
-                                                                          NSLog(@"%@", responseObject);
-                                                                          
-                                                                          if (successBlock)
-                                                                          {
-                                                                              successBlock(responseObject);
-                                                                          }
+                                                                          successBlock(responseObject);
                                                                       }
-                                                                  }];
+                                                                  }
+
+                                                              }];
+
+
 
     NSDictionary *dicNew = @{
                              KEY_URLString   : URLString,
                              KEY_operation   : uploadTask
                              };
     [self.paths addObject:dicNew];
-    
+
     [uploadTask resume];
 }
 

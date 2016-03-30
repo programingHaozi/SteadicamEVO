@@ -23,6 +23,6 @@
      cancelButtonTitle:(NSString *)cancelButtonTitle
 destructiveButtonTitle:(NSString *)destructiveButtonTitle
      otherButtonTitles:(NSArray *)otherButtonTitles
-                 block:(void (^)(UIActionSheet *actionSheet, NSInteger buttonIndex))block;
+                 block:(void (^)(NSInteger buttonIndex))block;
 
 @end

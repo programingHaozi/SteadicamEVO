@@ -10,7 +10,7 @@
 
 NSString* tf_getDeviceId()
 {
-    NSString *uuid = kTFUserDefaults.deviceId;
+    NSString *uuid = kTFKeyChain.deviceId;
     if (!uuid||uuid.length==0)
     {
         CFUUIDRef puuid = CFUUIDCreate(nil);
@@ -18,7 +18,7 @@ NSString* tf_getDeviceId()
         uuid = (NSString *)CFBridgingRelease(CFStringCreateCopy(NULL, uuidString));
         CFRelease(puuid);
         CFRelease(uuidString);
-        kTFUserDefaults.deviceId=uuid;
+        kTFKeyChain.deviceId=uuid;
     }
     return uuid;
 }

@@ -30,4 +30,14 @@
  */
 @property (nonatomic,strong) NSString *url;
 
+/**
+ *  title
+ */
+@property (nonatomic,strong) NSString *title;
+
+/**
+ *  content
+ */
+@property (nonatomic,strong) NSString *content;
+
 @end

@@ -35,5 +35,4 @@
     self.textLabel.frame = r;
 }
 
-
 @end

@@ -154,7 +154,7 @@
 
     [self insertSubview:self.placeholderLabel atIndex:0];
 
-    self.placeholderLabel.font          = self.font;
+    self.placeholderLabel.font          = self.placeholderFont ? self.placeholderFont : self.font;;
     self.placeholderLabel.textAlignment = self.textAlignment;
 
     CGFloat lineFragmentPadding = self.textContainer.lineFragmentPadding;;

@@ -1,1 +1,1 @@
-../../../TFUILib_iOS/TFUILib/Classes/Core-3rd/LGProgressHudView/NSString+SelfSize.h
+../../../TFUILib_iOS/TFUILib/Classes/Core-View/TFProgressHudView/NSString+SelfSize.h

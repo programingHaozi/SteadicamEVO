@@ -113,7 +113,7 @@ NSString * const ID = @"cycleCell";
     [collectionView registerClass:[TFImageLoopViewCell class] forCellWithReuseIdentifier:ID];
     collectionView.dataSource                     = self;
     collectionView.delegate                       = self;
-    
+    self.isNeedScroll = YES;
     [self addSubview:collectionView];
     _collectionView = collectionView;
 }
@@ -513,6 +513,7 @@ NSString * const ID = @"cycleCell";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    scrollView.scrollEnabled = self.isNeedScroll;
     int itemIndex = (scrollView.contentOffset.x + self.collectionView.sd_width * 0.5) / self.collectionView.sd_width;
     if (!self.imagesGroup.count) return; // 解决清除timer时偶尔会出现的问题
     int indexOnPageControl = itemIndex % self.imagesGroup.count;
@@ -557,7 +558,7 @@ NSString * const ID = @"cycleCell";
     {
         [self.delegate imageLoopView:self didScrollToIndex:indexOnPageControl];
     }
-
+    
 }
 
 

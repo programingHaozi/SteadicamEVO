@@ -25,4 +25,21 @@
  */
 @property (nonatomic, assign) BOOL isNative;
 
+/**
+ *  method
+ */
+@property (nonatomic, strong) NSString *method;
+
+/**
+ *  h5页面
+ */
+@property (nonatomic, strong) NSString *h5;
+
+/**
+ *  跳转到指定vc
+ */
+@property (nonatomic, strong) NSString *vc;
+
+
+
 @end

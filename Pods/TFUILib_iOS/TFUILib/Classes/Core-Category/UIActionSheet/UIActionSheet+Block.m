@@ -11,7 +11,7 @@
 
 @interface UIActionSheet() <UIActionSheetDelegate>
 
-@property (copy, nonatomic) void (^block)(UIActionSheet *actionSheet, NSInteger buttonIndex);
+@property (copy, nonatomic) void (^block)(NSInteger buttonIndex);
 
 @end
 
@@ -21,7 +21,7 @@
      cancelButtonTitle:(NSString *)cancelButtonTitle
 destructiveButtonTitle:(NSString *)destructiveButtonTitle
      otherButtonTitles:(NSArray *)otherButtonTitles
-                 block:(void (^)(UIActionSheet *, NSInteger))block
+                 block:(void (^)(NSInteger))block
 {
     UIActionSheet *alert = [[UIActionSheet alloc]initWithTitle:title
                                               cancelButtonTitle:cancelButtonTitle
@@ -36,7 +36,7 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
             cancelButtonTitle:(NSString *)cancelButtonTitle
        destructiveButtonTitle:(NSString *)destructiveButtonTitle
             otherButtonTitles:(NSArray *)otherButtonTitles
-                        block:(void (^)(UIActionSheet *, NSInteger))block
+                        block:(void (^)(NSInteger))block
 {
     self = [self initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     if (self)
@@ -73,7 +73,7 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
 }
 
 - (void)showInView:(UIView *)view
-        usingBlock:(void (^)(UIActionSheet *actionSheet, NSInteger buttonIndex))block
+        usingBlock:(void (^)(NSInteger buttonIndex))block
 {
     self.delegate = self;
     self.block = block;
@@ -87,18 +87,18 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
 {
     if (self.block)
     {
-        self.block(actionSheet, buttonIndex);
+        self.block(buttonIndex);
     }
 }
 
 #pragma mark - set get
 
-- (void)setBlock:(void (^)(UIActionSheet *, NSInteger))block
+- (void)setBlock:(void (^)(NSInteger))block
 {
     objc_setAssociatedObject(self, @selector(block), block, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (void (^)(UIActionSheet *, NSInteger))block
+- (void (^)(NSInteger))block
 {
     return objc_getAssociatedObject(self, @selector(block));
 }

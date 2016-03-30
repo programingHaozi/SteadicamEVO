@@ -10,4 +10,21 @@
 
 @implementation TFView
 
+#pragma mark- init autolayout bind
+
+- (void)initViews
+{
+    
+}
+
+- (void)autolayoutViews
+{
+    
+}
+
+- (void)bindData
+{
+    
+}
+
 @end

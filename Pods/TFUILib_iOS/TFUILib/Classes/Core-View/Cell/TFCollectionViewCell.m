@@ -10,37 +10,30 @@
 
 @implementation TFCollectionViewCell
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self initViews];
+        [self autolayoutViews];
+        [self bindData];
+    }
+    return self;
+}
+
 - (void)initViews
 {
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFCollectionViewCell class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
+    
 }
 
 - (void)autolayoutViews
 {
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFCollectionViewCell class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
+    
 }
 
 - (void)bindData
 {
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFCollectionViewCell class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
+    
 }
 
 

@@ -10,4 +10,9 @@
 
 @implementation TFTableSectionModel
 
++ (NSDictionary *)objectClassInArray
+{
+    return @{@"dataArray" : [TFTableRowModel class]};
+}
+
 @end

@@ -24,18 +24,13 @@
 
 - (id) initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier
 {
-    return [self initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:reuseIdentifier];
+    return [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
 }
 
 - (void) layoutSubviews
 {
     [super layoutSubviews];
     _textView.frame = CGRectInset(self.contentView.bounds, 4, 4);
-}
-
-- (void) _colorText:(BOOL)active
-{
-    _textView.textColor = active ? [UIColor whiteColor] : [UIColor blackColor];
 }
 
 - (void) setSelected:(BOOL)selected animated:(BOOL)animated
@@ -48,6 +43,13 @@
 {
     [super setHighlighted:highlight animated:animated];
     [self _colorText:highlight];
+}
+
+#pragma mark- private method
+
+- (void) _colorText:(BOOL)active
+{
+    _textView.textColor = active ? [UIColor whiteColor] : [UIColor blackColor];
 }
 
 @end

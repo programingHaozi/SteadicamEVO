@@ -11,6 +11,31 @@
 #import "TFBaseUtil.h"
 
 /**
+ *  设置屏幕是否常亮
+ *
+ *  @param enable
+ */
+void tf_idleTimerDisabled(BOOL enable);
+
+/**
+ *  从xib中获取view
+ *
+ *  @param className xib的文件名
+ *
+ *  @return 返回view
+ */
+id tf_getViewFromNib(NSString *className);
+
+/**
+ *  从xib中获取VC
+ *
+ *  @param className vc的文件名
+ *
+ *  @return 返回VC
+ */
+id tf_getVCFromNib(NSString *className);
+
+/**
  *  判读是否为空或输入只有空格
  *
  *  @param string string
@@ -40,6 +65,32 @@ BOOL tf_isContainsEmoji(NSString *string);
 
 
 @interface TFBaseUtil (Other)
+
+/**
+ *  设置屏幕是否常亮
+ *
+ *  @param enable
+ */
++ (void)idleTimerDisabled:(BOOL)enable;
+
+/**
+ *  从xib中获取view
+ *
+ *  @param className xib的文件名
+ *
+ *  @return 返回view
+ */
++ (id)getViewFromNib:(NSString *)className;
+
+/**
+ *  从xib中获取VC
+ *
+ *  @param className vc的文件名
+ *
+ *  @return 返回VC
+ */
++ (id)getVCFromNib:(NSString *)className;
+
 /**
  *  判断字符串是否为空
  *

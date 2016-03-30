@@ -34,7 +34,6 @@
     self.frame      = temp;
 }
 
-
 - (CGFloat)sd_y
 {
     return self.frame.origin.y;

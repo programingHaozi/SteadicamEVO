@@ -7,6 +7,15 @@
 //
 
 /**
+ *  设置屏幕是否常亮
+ *
+ *  @param enable
+ *
+ *  @return
+ */
+#define IDLETIMERDISABLED(enable) [[UIApplication sharedApplication] setIdleTimerDisabled:enable]
+
+/**
  *  宽的缩放比例
  */
 #define WIDTH_SCALE ([UIScreen mainScreen].bounds.size.width / 320.0)

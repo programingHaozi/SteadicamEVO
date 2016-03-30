@@ -10,37 +10,30 @@
 
 @implementation TFTableViewCell
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self initViews];
+        [self autolayoutViews];
+        [self bindData];
+    }
+
+    return self;
+}
+
 - (void)initViews
 {
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFTableViewCell class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
+    
 }
 
 - (void)autolayoutViews
 {
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFTableViewCell class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
+    
 }
 
 - (void)bindData
 {
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFTableViewCell class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
+    
 }
 
 -(CGFloat)cellHeight

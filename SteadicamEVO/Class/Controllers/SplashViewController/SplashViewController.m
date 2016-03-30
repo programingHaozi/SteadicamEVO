@@ -131,9 +131,9 @@
 //点击跳过、立即体验
 - (void)dismissButtonClickAction:(id)sender
 {
-    if (self.block)
+    if (self.resultBlock)
     {
-        self.block(nil);
+        self.resultBlock(nil);
     }
 }
 

@@ -19,6 +19,8 @@
 #import "UITableView+Category.h"
 #import "UIScrollView+Category.h"
 #import "UINavigationBar+Category.h"
+#import "UIViewController+Category.h"
+
 
 
 

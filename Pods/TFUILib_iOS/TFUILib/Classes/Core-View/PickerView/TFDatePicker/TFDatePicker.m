@@ -91,7 +91,6 @@
         self.datePicker.backgroundColor = [UIColor whiteColor];
         [self.datePicker setLocale:[NSLocale localeWithLocaleIdentifier:@"zh-CN"]];
         [self.datePicker setDatePickerMode:(int)type];
-        self.datePicker.minimumDate = [NSDate new];
         self.datePicker.minuteInterval = 2;
         [self.alertView addSubview:self.datePicker];
         

@@ -1,5 +1,5 @@
 //
-//  TFCustomTabbar.h
+//  TFCustomTabBar.h
 //  TFUILib
 //
 //  Created by Chen Hao 陈浩 on 16/3/9.
@@ -7,8 +7,8 @@
 //
 
 #import "TFView.h"
-#import "TFCustomTabbarItem.h"
-#import "TFCustomTabbar.h"
+#import "TFCustomTabBarItem.h"
+#import "TFCustomTabBar.h"
 
 /**
  *  选择barItem回调
@@ -23,14 +23,14 @@ typedef void(^SelectBarItemBlock)(NSUInteger idx);
 @protocol TFCustomTabBarSelectDelegate;
 
 /**
- *  TFCustomTabbar
+ *  TFCustomTabBar
  */
-@interface TFCustomTabbar : TFView
+@interface TFCustomTabBar : TFView
 
 /**
  *  代理
  */
-@property (nullable, nonatomic, strong) id<TFCustomTabBarSelectDelegate> delegate;
+@property (nullable, nonatomic, weak) id<TFCustomTabBarSelectDelegate> delegate;
 
 /**
  *  背景图片(设置image为空时，恢复默认半透明效果；image不为空时，没有半透明效果)
@@ -40,7 +40,7 @@ typedef void(^SelectBarItemBlock)(NSUInteger idx);
 /**
  *  BarItems数组
  */
-@property (nullable, nonatomic, strong) NSArray<TFCustomTabbarItem *> *tabbarItems;
+@property (nullable, nonatomic, strong) NSArray<TFCustomTabBarItem *> *tabBarItems;
 
 /**
  *  TabBar标题数组
@@ -58,34 +58,39 @@ typedef void(^SelectBarItemBlock)(NSUInteger idx);
 @property (nullable, nonatomic, strong) NSArray *tabBarNormalImages;
 
 /**
- *  TabBar正常状态标题颜色(统一设置，如需分别设置，请使用VC.tabbarItem.titleNormalColor)
+ *  TabBar正常状态标题颜色(统一设置，如需分别设置，请使用VC.tabBarItem.titleNormalColor)
  */
 @property (nullable, nonatomic, strong) UIColor *tabBarTitleColor;
 
 /**
- *  TabBar选择状态标题颜色(统一设置，如需分别设置，请使用VC.tabbarItem.titleSelectColor)
+ *  TabBar选择状态标题颜色(统一设置，如需分别设置，请使用VC.tabBarItem.titleSelectColor)
  */
 @property (nullable, nonatomic, strong) UIColor *selectedTabBarTitleColor;
 
 /**
- *  TabbarItem正常状态背景色(统一设置，如需分别设置，请使用VC.tabbarItem.backgroundColor)
+ *  TabBarItem正常状态背景色(统一设置，如需分别设置，请使用VC.tabBarItem.backgroundColor)
  */
 @property (nullable, nonatomic, strong) UIColor *tabBarItemBGColor;
 
 /**
- *  TabbarItem选择状态背景色(统一设置，如需分别设置，请使用VC.tabbarItem.selectBackgroundColor)
+ *  TabBarItem选择状态背景色(统一设置，如需分别设置，请使用VC.tabBarItem.selectBackgroundColor)
  */
 @property (nullable, nonatomic, strong) UIColor *selectedTabBarItemBGColor;
 
 /**
- *  Badge背景色(统一设置，如需分别设置，请使用VC.tabbarItem.selectBackgroundColor)
+ *  Badge背景色(统一设置，如需分别设置，请使用VC.tabBarItem.badgeBackgroundColor)
  */
 @property (nullable, nonatomic, strong) UIColor *badgeBackgroundColor;
 
 /**
- *  Badge字体色(统一设置，如需分别设置，请使用VC.tabbarItem.selectBackgroundColor)
+ *  Badge字体色(统一设置，如需分别设置，请使用VC.tabBarItem.badgeStringColor)
  */
 @property (nullable, nonatomic, strong) UIColor *badgeStringColor;
+
+/**
+ *  tabBar是否模糊
+ */
+@property (nonatomic, assign) BOOL translucent;
 
 /**
  *  选中的barItem的index
@@ -125,19 +130,19 @@ typedef void(^SelectBarItemBlock)(NSUInteger idx);
 /**
  *  即将选择子控制器（点击TabBar）
  *
- *  @param index index
- *  @param block 处理方法
+ *  @param index  点击Item的Index
+ *  @param tabBar tabBar实例
  *
- *  @return 是否可选
+ *  @return 改Item是否可点击
  */
-- (BOOL)willSelectItem:(NSUInteger)index tabBar:(TFCustomTabbar * _Nonnull)tabBar;
+- (BOOL)willSelectItem:(NSUInteger)index tabBar:(TFCustomTabBar * _Nonnull)tabBar;
 
 /**
  *  已经选择子控制器（点击TabBar）
  *
- *  @param index index
- *  @param block 处理方法
+ *  @param index  点击Item的Index
+ *  @param tabBar tabBar实例
  */
-- (void)didSelectViewItem:(NSUInteger)index tabBar:(TFCustomTabbar * _Nonnull)tabBar;
+- (void)didSelectViewItem:(NSUInteger)index tabBar:(TFCustomTabBar * _Nonnull)tabBar;
 
 @end

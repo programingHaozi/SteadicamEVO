@@ -1,1 +1,1 @@
-../../../TFUILib_iOS/TFUILib/Classes/Core-CustomControl/Tabbar/TFCustomTabbarController/TFCustomTabbarController.h
+../../../TFUILib_iOS/TFUILib/Classes/Core-CustomControl/Tabbar/TFCustomTabbarController/TFCustomTabBarController.h

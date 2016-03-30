@@ -3,7 +3,7 @@
   "platforms": {
     "ios": "7.0"
   },
-  "version": "2.0.23",
+  "version": "2.0.29",
   "license": "MIT",
   "summary": "LightBundleSDK for cxb.",
   "homepage": "http://git01.dds.com/MP/",
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "http://git01.dds.com/MP/LightBundle_SDK_iOS.git",
-    "tag": "2.0.23"
+    "tag": "2.0.29"
   },
   "source_files": "LightBundle/LightBundle/*.{h,m}",
   "requires_arc": true,

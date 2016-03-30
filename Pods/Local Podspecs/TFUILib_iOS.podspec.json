@@ -49,12 +49,12 @@
       },
       "subspecs": [
         {
-          "name": "LGProgressHudView",
+          "name": "TFProgressHudView",
           "platforms": {
             "ios": null
           },
-          "source_files": "TFUILib/Classes/Core-3rd/LGProgressHudView/*.{h,m}",
-          "public_header_files": "TFUILib/Classes/Core-3rd/LGProgressHudView/*.h",
+          "source_files": "TFUILib/Classes/Core-3rd/TFProgressHudView/*.{h,m}",
+          "public_header_files": "TFUILib/Classes/Core-3rd/TFProgressHudView/*.h",
           "source": {
             "submodules": true
           }
@@ -99,31 +99,33 @@
         "ios": null
       },
       "source_files": "TFUILib/Classes/Core-View/**/*.{h,m}",
-      "public_header_files": "TFUILib/Classes/Core-View/**/*.h"
+      "public_header_files": "TFUILib/Classes/Core-View/**/*.h",
+      "resources": "TFUILib/Classes/Core-View/**/*.{bundle}"
     },
     {
       "name": "Core-Util",
       "platforms": {
         "ios": null
       },
-      "source_files": "TFUILib/Classes/Core-Util/*.{h,m}",
-      "public_header_files": "TFUILib/Classes/Core-Util/*.h"
+      "source_files": "TFUILib/Classes/Core-Util/**/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-Util/**/*.h"
     },
     {
       "name": "Core-ViewController",
       "platforms": {
         "ios": null
       },
-      "source_files": "TFUILib/Classes/Core-ViewController/*.{h,m}",
-      "public_header_files": "TFUILib/Classes/Core-ViewController/*.h"
+      "source_files": "TFUILib/Classes/Core-ViewController/**/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-ViewController/**/*.h",
+      "resources": "TFUILib/Classes/Core-ViewController/**/*.{bundle}"
     },
     {
       "name": "Core-ViewModel",
       "platforms": {
         "ios": null
       },
-      "source_files": "TFUILib/Classes/Core-ViewModel/*.{h,m}",
-      "public_header_files": "TFUILib/Classes/Core-ViewModel/*.h"
+      "source_files": "TFUILib/Classes/Core-ViewModel/**/*.{h,m}",
+      "public_header_files": "TFUILib/Classes/Core-ViewModel/**/*.h"
     }
   ]
 }

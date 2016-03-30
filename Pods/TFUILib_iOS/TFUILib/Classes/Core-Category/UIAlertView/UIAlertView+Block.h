@@ -22,7 +22,7 @@
               message:(NSString *)message
     cancelButtonTitle:(NSString *)cancelButtonTitle
     otherButtonTitles:(NSArray *)otherButtonTitles
-                block:(void (^)(UIAlertView *alertView, NSInteger buttonIndex))block;
+                block:(void (^)(NSInteger buttonIndex))block;
 
 
 @end

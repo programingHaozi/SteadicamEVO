@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, TFImageLoopViewPageContolStyle)
  *  @param index           图片Index
  */
 - (void)imageLoopView:(TFImageLoopView *)loopView
-   didSelectItemAtIndex:(NSInteger)index;
+ didSelectItemAtIndex:(NSInteger)index;
 
 /**
  *  图片滚动回调
@@ -65,7 +65,7 @@ typedef NS_ENUM(NSUInteger, TFImageLoopViewPageContolStyle)
  *  @param index           图片Index
  */
 - (void)imageLoopView:(TFImageLoopView *)loopView
-       didScrollToIndex:(NSInteger)index;
+     didScrollToIndex:(NSInteger)index;
 
 @end
 
@@ -95,6 +95,11 @@ typedef NS_ENUM(NSUInteger, TFImageLoopViewPageContolStyle)
  *  是否自动滚动,默认Yes
  */
 @property(nonatomic,assign) BOOL autoScroll;
+
+/**
+ *  是否需要手势滑动
+ */
+@property(nonatomic,assign) BOOL isNeedScroll;
 
 /**
  *  delegate
@@ -196,8 +201,8 @@ typedef NS_ENUM(NSUInteger, TFImageLoopViewPageContolStyle)
  *  @return 轮播视图
  */
 + (instancetype)loopViewWithFrame:(CGRect)frame
-                     delegate:(id<TFImageLoopViewDelegate>)delegate
-             placeholderImage:(UIImage *)placeholderImage;
+                         delegate:(id<TFImageLoopViewDelegate>)delegate
+                 placeholderImage:(UIImage *)placeholderImage;
 
 /**
  *  初始化轮播图
@@ -219,8 +224,8 @@ typedef NS_ENUM(NSUInteger, TFImageLoopViewPageContolStyle)
  *  @return 轮播视图
  */
 + (instancetype)loopViewWithFrame:(CGRect)frame
-                  imagesGroup:(NSArray *)imagesGroup
-           shouldInfiniteLoop:(BOOL)infiniteLoop;
+                      imagesGroup:(NSArray *)imagesGroup
+               shouldInfiniteLoop:(BOOL)infiniteLoop;
 
 /**
  *  清除图片缓存（此次升级后统一使用SDWebImage管理图片加载和缓存）

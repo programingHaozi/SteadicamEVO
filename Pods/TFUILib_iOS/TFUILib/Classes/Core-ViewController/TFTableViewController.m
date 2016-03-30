@@ -7,6 +7,7 @@
 //
 
 #import "TFTableViewController.h"
+#import "TFTableViewCell.h"
 #import "UIView+Category.h"
 #import "TFTableViewCell.h"
 #import "TFActionModel.h"
@@ -33,65 +34,25 @@
 - (instancetype) initWithStyle:(UITableViewStyle)style
 {
     if(!(self  = [super init])) return nil;
-    self.style = style;
-    self.headerViewHeight=0.1;
-    self.footerViewHeight=0.1;
+    _style = style;
+    _headerViewHeight=0.1;
+    _footerViewHeight=0.1;
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    [self.view addSubview:self.tableView];
-    
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
-    }];
-    
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
     [self registerCell];
 }
 
 #pragma mark- init autolayout bind
 
-- (void)initViews
-{
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFTableViewController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
-
-- (void)autolayoutViews
-{
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFTableViewController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
-
-- (void)bindData
-{
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFTableViewController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
-
 - (void)registerCell
 {
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+    [self.tableView registerClass:[TFTableViewCell class] forCellReuseIdentifier:NSStringFromClass([TFTableViewCell class])];
     NSString *className=NSStringFromClass([self class]);
     NSString *cellClassName   = [className stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewCell"];
     Class cellClass = NSClassFromString(cellClassName);
@@ -99,15 +60,23 @@
     {
         [self.tableView registerClass:cellClass forCellReuseIdentifier:cellClassName];
     }
-    
-    if (![className isEqualToString:NSStringFromClass([TFTableViewController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
 }
 
+- (void)initViews
+{
+    [super initViews];
+    
+    [self.view addSubview:self.tableView];
+}
+
+- (void)autolayoutViews
+{
+    [super autolayoutViews];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+}
 #pragma mark -  UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -117,7 +86,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.isUseTemplate?[self.viewModel numberOfRowsInSection:section]:0;
+    return self.isUseTemplate?[self.viewModel numberOfRowsInSection:section]:1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -221,16 +190,12 @@
 
 - (void)loadNewData
 {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                 userInfo:nil];
+    
 }
 
 - (void)loadMoreData
 {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                 userInfo:nil];
+    
 }
 
 - (void)endLoadData

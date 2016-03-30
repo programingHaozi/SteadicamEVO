@@ -7,8 +7,8 @@
 //
 
 #import "TFViewController.h"
-#import "TFCustomTabbarItem.h"
-#import "TFCustomTabbar.h"
+#import "TFCustomTabBarItem.h"
+#import "TFCustomTabBar.h"
 
 /**
  *  TFTabBarController
@@ -36,32 +36,32 @@
 @property (nullable, nonatomic, strong) NSArray *tabBarNormalImages;
 
 /**
- *  TabBar正常状态标题颜色(统一设置，如需分别设置，请使用VC.tabbarItem.titleNormalColor)
+ *  TabBar正常状态标题颜色(统一设置，如需分别设置，请使用VC.tabBarItem.titleNormalColor)
  */
 @property (nullable, nonatomic, strong) UIColor *tabBarTitleColor;
 
 /**
- *  TabBar选择状态标题颜色(统一设置，如需分别设置，请使用VC.tabbarItem.titleSelectColor)
+ *  TabBar选择状态标题颜色(统一设置，如需分别设置，请使用VC.tabBarItem.titleSelectColor)
  */
 @property (nullable, nonatomic, strong) UIColor *selectedTabBarTitleColor;
 
 /**
- *  TabbarItem正常状态背景色(统一设置，如需分别设置，请使用VC.tabbarItem.backgroundColor)
+ *  TabBarItem正常状态背景色(统一设置，如需分别设置，请使用VC.tabBarItem.backgroundColor)
  */
 @property (nullable, nonatomic, strong) UIColor *tabBarItemBGColor;
 
 /**
- *  TabbarItem选择状态背景色(统一设置，如需分别设置，请使用VC.tabbarItem.selectBackgroundColor)
+ *  TabBarItem选择状态背景色(统一设置，如需分别设置，请使用VC.tabBarItem.selectBackgroundColor)
  */
 @property (nullable, nonatomic, strong) UIColor *selectedTabBarItemBGColor;
 
 /**
- *  Badge背景色(统一设置，如需分别设置，请使用VC.tabbarItem.selectBackgroundColor)
+ *  Badge背景色(统一设置，如需分别设置，请使用VC.tabBarItem.badgeBackgroundColor)
  */
 @property (nullable, nonatomic, strong) UIColor *badgeBackgroundColor;
 
 /**
- *  Badge字体色(统一设置，如需分别设置，请使用VC.tabbarItem.selectBackgroundColor)
+ *  Badge字体色(统一设置，如需分别设置，请使用VC.tabBarItem.badgeStringColor)
  */
 @property (nullable, nonatomic, strong) UIColor *badgeStringColor;
 
@@ -131,9 +131,9 @@
 @interface TFViewController (TFTabBarControllerItem)
 
 /**
- *  tabbarItem
+ *  tabBarItem
  */
-@property (null_resettable, nonatomic, strong) TFCustomTabbarItem *tabbarItem;
+@property (null_resettable, nonatomic, strong) TFCustomTabBarItem *tabBarItem;
 
 /**
  *  tabBarController

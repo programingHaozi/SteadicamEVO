@@ -11,84 +11,88 @@
 #import "TFView.h"
 
 /**
- *  TFSegmentedDelegate
- */
-@protocol TFSegmentedDelegate <NSObject>
-
-@optional
-
-/**
- *  切换点击按钮
+ *  TFSegmentedView点击回调Block
  *
- *  @param selection 按钮Index
+ *  @param title 标题
+ *  @param index index
  */
-- (void)segumentSelectionChange:(NSInteger)selection;
-
-@end
+typedef void (^TFSegmentedControlTouchBlock)(NSString*title, NSInteger index);
 
 /**
- *  TFCustomSegmentedControl
+ *  TFSegmentedView
  */
 @interface TFSegmentedControl : TFView
 
 /**
- *  代理
+ *  标题高度
  */
-@property(nonatomic,weak) id<TFSegmentedDelegate> delegate;
+@property (nonatomic, assign) CGFloat titleHeight;
 
 /**
- *  按钮title数组
+ *  标题颜色
  */
-@property (nonatomic, strong) NSMutableArray *btnTitleSource;
+@property (nonatomic, strong) UIColor *titleColor;
 
 /**
- *  title字体颜色（普通）
+ *  标题选择颜色
  */
-@property (strong, nonatomic) UIColor *titleColor;
+@property (nonatomic, strong) UIColor *titleSelectedColor;
 
 /**
- *  title字体按下颜色
+ *  标题字体
  */
-@property (strong, nonatomic) UIColor *selectColor;
+@property (nonatomic, strong) UIFont *titleFont;
 
 /**
- *  title字体
+ *  标题选择状态字体
  */
-@property (strong, nonatomic) UIFont *titleFont;
+@property (nonatomic, strong) UIFont *titleSelectedFont;
 
 /**
- *  下划线颜色
+ *  中间线条高度
  */
-@property (nonatomic, strong) UIColor *buttonDownColor;
+@property (nonatomic, assign) CGFloat lineHeight;
 
 /**
- *  初始化TFCustomSegmentedControl
+ *  中间线条颜色
+ */
+@property (nonatomic, strong) UIColor *lineColor;
+
+/**
+ *  TFSegmentedControl点击回调Block
+ */
+@property (nonatomic, strong) TFSegmentedControlTouchBlock block;
+
+/**
+ *  初始化TFSegmentedView
  *
- *  @param frame           尺寸
- *  @param titleDataSouece 标题数组
- *  @param backgroundColor 背景色
- *  @param titleColor      标题颜色
- *  @param titleFont       标题字体
- *  @param selectColor     标题选择颜色
- *  @param buttonDownColor 按钮按下颜色
- *  @param delegate        大力
+ *  @param frame    尺寸
+ *  @param titleArr 每个page对应title
+ *  @param viewArr  每个page对应view  view  或者viewController
+ *  @param block    按钮点击事件的回调
  *
- *  @return TFCustomSegmentedControl
+ *  @return TFSegmentedControl
  */
-+ (TFSegmentedControl *)segmentedControlFrame:(CGRect)frame
-                                    titleDataSource:(NSArray *)titleDataSouece
-                                    backgroundColor:(UIColor *)backgroundColor
-                                         titleColor:(UIColor *)titleColor
-                                          titleFont:(UIFont *)titleFont
-                                        selectColor:(UIColor *)selectColor
-                                    buttonDownColor:(UIColor *)buttonDownColor
-                                           delegate:(id)delegate;
+- (id)initWithFrame:(CGRect)frame
+             titles:(NSArray *)titleArr
+              block:(TFSegmentedControlTouchBlock)block;
 
 /**
- *  选择Segment
+ *  初始化TFSegmentedView
  *
- *  @param segument segment index
+ *  @param titleArr 每个page对应title
+ *  @param viewArr  每个page对应view  view  或者viewController
+ *  @param block    按钮点击事件的回调
+ *
+ *  @return TFSegmentedControl
  */
--(void)selectTheSegument:(NSInteger)segument;
+- (id)initWithTitles:(NSArray *)titleArr block:(TFSegmentedControlTouchBlock)block;
+
+/**
+ *  点选标题
+ *
+ *  @param index 标题index
+ */
+- (void)select:(NSInteger)index;
 
 @end

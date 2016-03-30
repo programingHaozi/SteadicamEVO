@@ -64,7 +64,7 @@ typedef NS_ENUM(NSInteger, ResponseSerializerType)
                                   error:(void (^)(NSError *error))errorBlock;
 
 /**
- *  网络请求 默认POST
+ *  网络请求带超时时间 默认POST
  *
  *  @param url          url
  *  @param httpHeader   请求的头
@@ -85,7 +85,7 @@ typedef NS_ENUM(NSInteger, ResponseSerializerType)
                                 timeOut:(int)timeOut;
 
 /**
- *  网络请求 默认POST
+ *  网络请求带自动重连次数 默认POST
  *
  *  @param url          url
  *  @param httpHeader   httpHeader
@@ -106,7 +106,7 @@ typedef NS_ENUM(NSInteger, ResponseSerializerType)
                               autoRetry:(int)timesToRetry;
 
 /**
- *  网络请求 默认POST
+ *  网络请求同时带重连次数和超时时间 默认POST
  *
  *  @param url          url
  *  @param httpHeader   httpHeader
@@ -129,7 +129,7 @@ typedef NS_ENUM(NSInteger, ResponseSerializerType)
                               autoRetry:(int)timesToRetry;
 
 /**
- *  网络请求 默认POST
+ *  网络请求带before 默认POST
  *
  *  @param url
  *  @param parameters
@@ -149,7 +149,7 @@ typedef NS_ENUM(NSInteger, ResponseSerializerType)
                                   error:(void (^)(NSError *error))errorBlock;
 
 /**
- *  网络请求 默认POST
+ *  网络请求自定义请求方式
  *
  *  @param url
  *  @param parameters
@@ -175,7 +175,7 @@ typedef NS_ENUM(NSInteger, ResponseSerializerType)
                                   error:(void (^)(NSError *error))errorBlock;
 
 /**
- *  网络请求 默认POST
+ *  网络请求自定义重连次数和超时时间 默认POST
  *
  *  @param url                    url
  *  @param httpHeader             httpHeader
@@ -204,7 +204,7 @@ typedef NS_ENUM(NSInteger, ResponseSerializerType)
                                 timeOut:(int)timeOut;
 
 /**
- *  网络请求 默认POST
+ *  网络请求自定义请求方式和重连次数 默认POST
  *
  *  @param url                    url
  *  @param httpHeader             httpHeader
@@ -233,7 +233,7 @@ typedef NS_ENUM(NSInteger, ResponseSerializerType)
                               autoRetry:(int)timesToRetry;
 
 /**
- *  网络请求 默认POST
+ *  网络请求所有参数 默认POST
  *
  *  @param url                    url
  *  @param httpHeader             httpHeader
@@ -260,18 +260,18 @@ typedef NS_ENUM(NSInteger, ResponseSerializerType)
                                 success:(void (^)(id data))successBlock
                                 failure:(void (^)(int errorCode, NSString* errorMessage))failureBlock
                                   error:(void (^)(NSError *error))errorBlock
-                              timeOut:(int)timeOut
+                                timeOut:(int)timeOut
                               autoRetry:(int)timesToRetry;
 
 /**
- *  网络请求 默认POST
+ *  网络请求body请求 默认POST
  *
  *  @param url          url
  *  @param parameters   parameters
  *  @param block        block
  *  @param successBlock successBlock
  *  @param failureBlock failureBlock
- *  @param errorBlock   errorBlock 
+ *  @param errorBlock   errorBlock
  *
  *  @return NSURLSessionDataTask
  */

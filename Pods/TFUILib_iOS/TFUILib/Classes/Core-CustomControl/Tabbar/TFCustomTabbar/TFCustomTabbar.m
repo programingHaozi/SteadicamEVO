@@ -1,15 +1,15 @@
 //
-//  TFCustomTabbar.m
+//  TFCustomTabBar.m
 //  TFUILib
 //
 //  Created by Chen Hao 陈浩 on 16/3/9.
 //  Copyright © 2016年 上海赛可电子商务有限公司. All rights reserved.
 //
 
-#import "TFCustomTabbar.h"
+#import "TFCustomTabBar.h"
 #import <TFBaseLib.h>
 
-@interface TFCustomTabbar()
+@interface TFCustomTabBar()
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation TFCustomTabbar
+@implementation TFCustomTabBar
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -56,6 +56,8 @@
     _separateLine.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     _separateLine.tintColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:1];
     [self addSubview:_separateLine];
+    
+    self.clipsToBounds = NO;
 }
 
 - (void)layoutSubviews
@@ -87,13 +89,13 @@
         make.left.equalTo(weakSelf.mas_left).offset(0);
     }];
     
-    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        float leftOffset = idx * weakSelf.width/weakSelf.tabbarItems.count;
+        float leftOffset = idx * weakSelf.width/weakSelf.tabBarItems.count;
         
         [obj mas_remakeConstraints:^(MASConstraintMaker *make) {
             
-            make.width.equalTo(weakSelf.mas_width).dividedBy(weakSelf.tabbarItems.count);
+            make.width.equalTo(weakSelf.mas_width).dividedBy(weakSelf.tabBarItems.count);
             make.height.equalTo(@48);
             make.left.equalTo(weakSelf.mas_left).offset(leftOffset);
             make.bottom.equalTo(weakSelf.mas_bottom).offset(0);
@@ -110,24 +112,29 @@
     [self.backgroundImageView setImage:backgroundImage];
 }
 
-- (void)setTabbarItems:(NSArray<TFCustomTabbarItem *> *)tabbarItems
+- (void)setTabBarItems:(NSArray<TFCustomTabBarItem *> *)tabBarItems
 {
-    [_tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [_tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         [obj removeFromSuperview];
     }];
     
-    _tabbarItems = [NSArray arrayWithArray:tabbarItems];
+    if (tabBarItems.count > 5)
+    {
+        tabBarItems = [tabBarItems subarrayWithRange:NSMakeRange(0, 5)];
+    }
     
-    if (tabbarItems.count > 0)
+    _tabBarItems = [NSArray arrayWithArray:tabBarItems];
+    
+    if (tabBarItems.count > 0)
     {
         
         WS(weakSelf)
-        __block void(^touchActionBlcok)(TFCustomTabbarItem *) = ^(TFCustomTabbarItem *barItem) {
+        __block void(^touchActionBlcok)(TFCustomTabBarItem *) = ^(TFCustomTabBarItem *barItem) {
             
             if ([self.delegate respondsToSelector:@selector(willSelectItem:tabBar:)])
             {
-                BOOL allowSelect = [self.delegate willSelectItem:[weakSelf.tabbarItems indexOfObject:barItem] tabBar:self];
+                BOOL allowSelect = [self.delegate willSelectItem:[weakSelf.tabBarItems indexOfObject:barItem] tabBar:self];
                 
                 if (!allowSelect)
                 {
@@ -139,42 +146,37 @@
             
             if (weakSelf.selectBarItemBlock)
             {
-                weakSelf.selectBarItemBlock([tabbarItems indexOfObject:barItem]);
+                weakSelf.selectBarItemBlock([tabBarItems indexOfObject:barItem]);
             }
             
             if ([self.delegate respondsToSelector:@selector(didSelectViewItem:tabBar:)])
             {
-                [self.delegate didSelectViewItem:[weakSelf.tabbarItems indexOfObject:barItem] tabBar:self];
+                [self.delegate didSelectViewItem:[weakSelf.tabBarItems indexOfObject:barItem] tabBar:self];
             }
         };
         
-        if (tabbarItems.count > 5)
-        {
-            tabbarItems = [tabbarItems subarrayWithRange:NSMakeRange(0, 5)];
-        }
-
-        [tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-
+        [tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
             [self addSubview:obj];
             
             obj.touchActionBlock = touchActionBlcok;
         }];
         
-        self.tabbarItems[0].touchActionBlock(self.tabbarItems[0]);
+        self.tabBarItems[0].touchActionBlock(self.tabBarItems[0]);
         
     }
 }
 
 -(void)setSelectedIndex:(NSUInteger)selectedIndex
 {
-    if (_selectedIndex == selectedIndex || selectedIndex >= self.tabbarItems.count)
+    if (_selectedIndex == selectedIndex || selectedIndex >= self.tabBarItems.count)
     {
         return;
     }
     
     _selectedIndex = selectedIndex;
     
-    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if (idx == selectedIndex)
         {
@@ -193,7 +195,7 @@
 {
     _tabBarTitles = tabBarTitles;
     
-    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.title = tabBarTitles[idx];
     }];
 }
@@ -202,7 +204,7 @@
 {
     _tabBarNormalImages = tabBarNormalImages;
     
-    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.normalImage = tabBarNormalImages[idx];
     }];
 }
@@ -211,7 +213,7 @@
 {
     _tabBarSelectedImages = tabBarSelectedImages;
     
-    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.selectImage = tabBarSelectedImages[idx];
     }];
 }
@@ -220,7 +222,7 @@
 {
     _tabBarTitleColor = tabBarTitleColor;
     
-    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.titleNormalColor = tabBarTitleColor;
     }];
     
@@ -230,7 +232,7 @@
 {
     _selectedTabBarTitleColor = selectedTabBarTitleColor;
     
-    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.titleSelectColor = selectedTabBarTitleColor;
     }];
     
@@ -240,7 +242,7 @@
 {
     _tabBarItemBGColor = tabBarItemBGColor;
     
-    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.normalBackgroundColor = tabBarItemBGColor;
     }];
     
@@ -250,7 +252,7 @@
 {
     _selectedTabBarItemBGColor = selectedTabBarItemBGColor;
     
-    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.selectBackgroundColor = selectedTabBarItemBGColor;
     }];
 }
@@ -259,7 +261,7 @@
 {
     _badgeBackgroundColor = badgeBackgroundColor;
     
-    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.badgeBackgroundColor = badgeBackgroundColor;
     }];
 }
@@ -268,24 +270,37 @@
 {
     _badgeStringColor = badgeStringColor;
     
-    [self.tabbarItems enumerateObjectsUsingBlock:^(TFCustomTabbarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBarItems enumerateObjectsUsingBlock:^(TFCustomTabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.badgeStringColor = badgeStringColor;
     }];
+}
+
+-(void)setTranslucent:(BOOL)translucent
+{
+    _translucent = translucent;
+    
+    self.blurView.hidden = !translucent;
+    
+    self.backgroundColor = translucent ? [UIColor clearColor] : [UIColor whiteColor];
 }
 
 #pragma mark - public Method -
 
 -(void)setBadge:(NSString *)badge atIndex:(NSUInteger)index
 {
-    self.tabbarItems[index].badgeValue = badge;
+    self.tabBarItems[index].badgeValue = badge;
 }
 
 - (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated
 {
     if (animated)
     {
+        [self pop_removeAllAnimations];
+        
         if (hidden)
         {
+            self.center = CGPointMake(self.center.x, self.superview.height - self.height/2);
+            
             POPBasicAnimation *animation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewCenter];
             animation.toValue = [NSValue valueWithCGPoint:CGPointMake(self.centerX, self.centerY + 2 * self.height)];
             animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
@@ -295,6 +310,8 @@
         }
         else
         {
+            self.center = CGPointMake(self.center.x, self.superview.height + 1.5 * self.height);
+            
             POPBasicAnimation *animation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewCenter];
             animation.toValue = [NSValue valueWithCGPoint:CGPointMake(self.centerX, self.centerY - 2 * self.height)];
             animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];

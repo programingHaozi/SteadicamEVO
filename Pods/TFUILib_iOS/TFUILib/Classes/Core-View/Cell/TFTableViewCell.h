@@ -15,12 +15,27 @@
 /**
  *  cell数据
  */
-@property (nonatomic, strong) TFModel *data;
+@property (nonatomic, strong) id data;
 
 /**
  *  cell所属表单
  */
 @property (nonatomic, assign) TFTableView *tableView;
+
+/**
+ *  初始化视图
+ */
+- (void)initViews;
+
+/**
+ *  自动布局视图
+ */
+- (void)autolayoutViews;
+
+/**
+ *  绑定数据
+ */
+- (void)bindData;
 
 /**
  *  返回cell高度

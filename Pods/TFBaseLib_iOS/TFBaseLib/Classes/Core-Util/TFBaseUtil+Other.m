@@ -8,6 +8,23 @@
 
 #import "TFBaseUtil+Other.h"
 
+void tf_idleTimerDisabled(BOOL enable)
+{
+    [TFBaseUtil idleTimerDisabled:enable];
+}
+
+
+UIView* tf_getViewFromNib(NSString *className)
+{
+    return [TFBaseUtil getViewFromNib:className];
+}
+
+id tf_getVCFromNib(NSString *className)
+{
+    return [TFBaseUtil getVCFromNib:className];
+}
+
+
 BOOL tf_isEmpty(NSString *string)
 {
     return [TFBaseUtil isEmpty:string];
@@ -24,6 +41,23 @@ BOOL tf_isContainsEmoji(NSString *string)
 }
 
 @implementation TFBaseUtil (Other)
+
++(void)idleTimerDisabled:(BOOL)enable
+{
+    [UIApplication sharedApplication].idleTimerDisabled = enable;
+}
+
+
++ (UIView *)getViewFromNib:(NSString *)className
+{
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:className owner:nil options:nil];
+    return [nibView objectAtIndex:0];
+}
+
++ (id)getVCFromNib:(NSString *)className
+{
+    return [[NSClassFromString(className) alloc] initWithNibName:className bundle:nil];
+}
 
 +(BOOL) isEmpty:(NSString *)string
 {

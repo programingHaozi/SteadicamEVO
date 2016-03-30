@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SplashViewController.h"
-#import "HomeTabBarController.h"
+#import "HomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,12 +20,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    
+//    [self showADView];
+//    
+//    [self.window makeKeyAndVisible];
     
-    [self showADView];
-    
-    [self.window makeKeyAndVisible];
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     
     return YES;
 }
@@ -47,46 +50,46 @@
     return YES;
 }
 
-/*
- 显示广告页面
- */
-- (void)showADView
-{
-    WS(weakSelf);
-    
-    if ([weakSelf checkIsNewVersion])
-    {
-        [weakSelf showSplashView];
-    }
-    else
-    {
-//        AdViewController *vc = [[AdViewController alloc] initWithBlock:^(id data) {
-//            [self goToRootViewController];
-//        }];
-//        [self.window setRootViewController:[[UINavigationController alloc] initWithRootViewController:vc]];
-        [self goToRootViewController];
-    }
-}
+///*
+// 显示广告页面
+// */
+//- (void)showADView
+//{
+//    WS(weakSelf);
+//    
+//    if ([weakSelf checkIsNewVersion])
+//    {
+//        [weakSelf showSplashView];
+//    }
+//    else
+//    {
+////        AdViewController *vc = [[AdViewController alloc] initWithBlock:^(id data) {
+////            [self goToRootViewController];
+////        }];
+////        [self.window setRootViewController:[[UINavigationController alloc] initWithRootViewController:vc]];
+//        [self goToRootViewController];
+//    }
+//}
 
-/*
- 显示启动页面
- */
-- (void)showSplashView
-{
-    SplashViewController *vc = [[SplashViewController alloc] initWithResultBlock:^(id data) {
-        
-        [self goToRootViewController];
-    }];
-    
-    [self.window setRootViewController:vc];
-}
-
-- (void)goToRootViewController
-{
-    HomeTabBarController *vc =[[HomeTabBarController alloc]init];
-    
-    [self.window setRootViewController:vc];
-}
+///*
+// 显示启动页面
+// */
+//- (void)showSplashView
+//{
+//    SplashViewController *vc = [[SplashViewController alloc] initWithResultBlock:^(id data) {
+//        
+//        [self goToRootViewController];
+//    }];
+//    
+//    [self.window setRootViewController:vc];
+//}
+//
+//- (void)goToRootViewController
+//{
+//    HomeViewController *vc =[[HomeViewController alloc]init];
+//    
+//    [self.window setRootViewController:vc];
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

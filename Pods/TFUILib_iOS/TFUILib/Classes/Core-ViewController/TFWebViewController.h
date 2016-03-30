@@ -13,7 +13,7 @@
 #import "TFWebView.h"
 #import "TFProgressView.h"
 
-@interface TFWebViewController : TFViewController
+@interface TFWebViewController : TFViewController<LBWebViewDelegate>
 
 /**
  *  Progress
@@ -22,7 +22,6 @@
  *  @param needBack       是否需要返回
  *  @param isNeedClose    是否需要关闭
  *  @param title          标题
- *  @param color          进度条的颜色
  *  @param requestBlock   requestBlock
  *  @param didStarBlock   didStarBlock
  *  @param didFinishBlock didFinishBlock
@@ -34,7 +33,6 @@
         isNeedMulilayerBack:(BOOL)needBack
                 isNeedClose:(BOOL)isNeedClose
                       title:(NSString *)title
-             isNeedProgress:(BOOL)isNeedProgress
  shouldStartLoadWithRequest:(void(^)(NSURLRequest *request))requestBlock
                didStartLoad:(void(^)())didStarBlock
               DidFinishLoad:(void(^)())didFinishBlock
@@ -53,7 +51,34 @@
                      didFinishLoad:(void(^)())didFinishBlock
                        didFailLoad:(void(^)(NSError *error))didFailBlock;
 
+/**
+ *  设置返回按钮的样式
+ *
+ *  @param strImage 图片
+ *  @param strTitle 标题
+ *  @param color    标题颜色
+ */
+- (void)initBackButtonImage:(NSString *)strImage
+                      title:(NSString *)strTitle
+                      color:(UIColor *)color;
+
+/**
+ *  设置关闭按钮的颜色
+ *
+ *  @param strImage 图片
+ *  @param strTitle 标题
+ *  @param color    颜色
+ */
+- (void)initCloseButtonImage:(NSString *)strImage
+                       title:(NSString *)strTitle
+                       color:(UIColor *)color;
+
 #pragma mark - 功能开关
+
+/**
+ *  webModel
+ */
+@property (nonatomic, strong) TFWebModel *model;
 
 /**
  *  是否需要关闭按钮
@@ -105,10 +130,6 @@
  */
 @property (nonatomic, strong) UIColor *progressViewColor;
 
-/**
- *  关闭按钮的颜色
- */
-@property (nonatomic, strong) UIColor *closeButtonColor;
 
 /**
  *  LBWebView

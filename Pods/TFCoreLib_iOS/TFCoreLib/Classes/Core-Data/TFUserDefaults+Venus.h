@@ -12,11 +12,6 @@
 @interface TFUserDefaults (Venus)
 
 /**
- *  设备id
- */
-@property (nonatomic, strong) NSString *deviceId;
-
-/**
  *  用户id
  */
 @property (nonatomic, strong) NSString *clientId;

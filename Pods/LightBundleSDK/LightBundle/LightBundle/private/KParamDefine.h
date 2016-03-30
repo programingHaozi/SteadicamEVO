@@ -31,6 +31,8 @@
 #define LB_NAME_SHAREINFO @"shareInfo"  // 分享
 #define LB_NAME_CHECKOUTCOUNTER @"checkoutcounter"  // 支付中心
 #define LB_NAME_CARINFO @"carInfo"      // 获取爱车
+#define LB_NAME_DEVICEINFO @"deviceInfo"      // 获取设备信息
+#define LB_NAME_CLOSEWEBVIEW @"closeWebview"  // 关闭网页
 
 // js-sdk 参数及返回值
 #define LB_RET_callbackId @"callbackId"

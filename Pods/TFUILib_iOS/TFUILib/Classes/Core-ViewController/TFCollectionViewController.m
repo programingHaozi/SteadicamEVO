@@ -7,6 +7,7 @@
 //
 
 #import "TFCollectionViewController.h"
+#import "TFCollectionViewCell.h"
 
 @implementation TFCollectionViewController
 
@@ -18,54 +19,15 @@
     [self.view addSubview:self.collectionView];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
         make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
         
     }];
     
-    [self registerCell];
-}
-
-#pragma mark- init autolayout bind
-
-- (void)initViews
-{
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFCollectionViewController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
-
-- (void)autolayoutViews
-{
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFCollectionViewController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
-
-- (void)bindData
-{
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFCollectionViewController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
-
-- (void)registerCell
-{
-    NSString *className=NSStringFromClass([self class]);
+    [self.collectionView registerClass:[TFCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([TFCollectionViewCell class])];
     
-    NSString *cellClassName   = [className stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewCell"];
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class])];
+    
+    NSString *cellClassName   = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewCell"];
     
     Class cellClass = NSClassFromString(cellClassName);
     if (cellClass)
@@ -73,9 +35,14 @@
         [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:cellClassName];
     }
     
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                 userInfo:nil];
+    [self registerCell];
+}
+
+#pragma mark- init autolayout bind
+
+- (void)registerCell
+{
+    
 }
 
 #pragma mark -  UICollectionViewDataSource

@@ -12,6 +12,8 @@
 #import "UIView+SubView.h"
 #import "UIView+Shake.h"
 #import "UIView+Capture.h"
+#import "UIView+Push.h"
+#import "UIView+ViewController.h"
 
 #import "UIView+Masonry.h"
 #import "UIView+TFToast.h"

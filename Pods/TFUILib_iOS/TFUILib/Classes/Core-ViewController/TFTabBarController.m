@@ -14,7 +14,7 @@
 
 @interface TFTabBarController ()
 
-@property (nonatomic, strong) TFCustomTabbar *tabBar;
+@property (nonatomic, strong) TFCustomTabBar *tabBar;
 
 @end
 
@@ -25,13 +25,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self initTabbar];
+    [self initTabBar];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:self.navigationBarHidden animated:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -40,50 +41,12 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
+#pragma mark - TabBar -
 
-#pragma mark- init autolayout bind
-
-- (void)initViews
+- (void)initTabBar
 {
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFTabBarController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
-
-- (void)autolayoutViews
-{
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFTabBarController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
-
-- (void)bindData
-{
-    NSString *className=NSStringFromClass([self class]);
-    if (![className isEqualToString:NSStringFromClass([TFTabBarController class])])
-    {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in %@", NSStringFromSelector(_cmd), self.class]
-                                     userInfo:nil];
-    }
-}
-
-#pragma mark - Tabbar - 
-
-- (void)initTabbar
-{
-    self.tabBar = [[TFCustomTabbar alloc]init];
-    
+    self.tabBar = [[TFCustomTabBar alloc]init];
     self.tabBar.delegate = self;
-    
     [self.view addSubview:self.tabBar];
     
     WS(weakSelf)
@@ -96,7 +59,6 @@
     }];
     
     self.tabBar.selectBarItemBlock = ^(NSUInteger idx){
-        
         weakSelf.selectedIndex = idx;
     };
 }
@@ -108,7 +70,7 @@
 {
     _tabBarTranslucent = tabBarTranslucent;
     
-    self.tabBar.backgroundColor = tabBarTranslucent ? [UIColor clearColor]: [UIColor whiteColor];
+    self.tabBar.translucent = tabBarTranslucent;
     
     [self setViewControllers:self.viewControllers];
 }
@@ -152,7 +114,7 @@
 {
     _viewControllers = viewControllers;
     
-    __block NSMutableArray<TFCustomTabbarItem *> *barItemsArray = [[NSMutableArray alloc]init];;
+    __block NSMutableArray<TFCustomTabBarItem *> *barItemsArray = [[NSMutableArray alloc]init];;
 
     WS(weakSelf)
     [viewControllers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -165,31 +127,31 @@
             if ([nav.rootViewController isKindOfClass:[TFViewController class]])
             {
                 TFViewController *vc = (TFViewController *)nav.rootViewController;
-                if (!vc.tabbarItem)
+                if (!vc.tabBarItem)
                 {
-                    vc.tabbarItem = [[TFCustomTabbarItem alloc]initWithTitle:nil
+                    vc.tabBarItem = [[TFCustomTabBarItem alloc]initWithTitle:nil
                                                                  normalImage:nil
                                                                selectedImage:nil];
                 }
                 
-                [barItemsArray addObject:vc.tabbarItem];
+                [barItemsArray addObject:vc.tabBarItem];
             }
         }
         else if ([obj isKindOfClass:[TFViewController class]])
         {
             TFViewController *vc = (TFViewController *)obj;
-            if (!vc.tabbarItem)
+            if (!vc.tabBarItem)
             {
-                vc.tabbarItem = [[TFCustomTabbarItem alloc]initWithTitle:nil
+                vc.tabBarItem = [[TFCustomTabBarItem alloc]initWithTitle:nil
                                                              normalImage:nil
                                                            selectedImage:nil];
             }
             
-            [barItemsArray addObject:vc.tabbarItem];
+            [barItemsArray addObject:vc.tabBarItem];
         }
     }];
     
-    self.tabBar.tabbarItems = [NSArray arrayWithArray:barItemsArray];
+    self.tabBar.tabBarItems = [NSArray arrayWithArray:barItemsArray];
 }
 
 - (void)setTabBarTitles:(NSArray *)tabBarTitles
@@ -290,7 +252,7 @@
                     atIndex:(NSUInteger)index
 {
     
-    vc.tabbarItem = [[TFCustomTabbarItem alloc]initWithTitle:title
+    vc.tabBarItem = [[TFCustomTabBarItem alloc]initWithTitle:title
                                                  normalImage:normalImage
                                                selectedImage:selectedImage];
     
@@ -325,21 +287,21 @@
  */
 
 @implementation TFViewController (TFTabBarControllerItem)
-@dynamic tabbarItem;
+@dynamic tabBarItem;
 @dynamic tabBarController;
 
-const void *TF_TABBAR_ITEM_KEY = @"TFTabbarItemKey";
+const void *TF_TAbBar_ITEM_KEY = @"TFTabBarItemKey";
 
-const void *TF_TABBAR_CONTROLLER_KEY = @"TFTabbarControllerKey";
+const void *TF_TAbBar_CONTROLLER_KEY = @"TFTabBarControllerKey";
 
-- (void)setTabbarItem:(TFCustomTabbarItem *)tabbarItem
+- (void)setTabBarItem:(TFCustomTabBarItem *)tabBarItem
 {
-    objc_setAssociatedObject(self, TF_TABBAR_ITEM_KEY, tabbarItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, TF_TAbBar_ITEM_KEY, tabBarItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (TFCustomTabbarItem *)tabbarItem
+- (TFCustomTabBarItem *)tabBarItem
 {
-    return objc_getAssociatedObject(self, TF_TABBAR_ITEM_KEY);
+    return objc_getAssociatedObject(self, TF_TAbBar_ITEM_KEY);
 }
 
 - (TFTabBarController *)tabBarController

@@ -62,6 +62,11 @@
 - (instancetype)initWithStyle:(UITableViewStyle)style;
 
 /**
+ *  注册cell
+ */
+- (void)registerCell;
+
+/**
  *  显示Header
  */
 - (void)showRefreshHeader;

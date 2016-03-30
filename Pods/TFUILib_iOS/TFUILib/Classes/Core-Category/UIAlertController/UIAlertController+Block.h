@@ -26,7 +26,7 @@
               message:(NSString *)message
     cancelButtonTitle:(NSString *)cancelButtonTitle
     otherButtonTitles:(NSArray *)otherButtonTitles
-                block:(void (^)(UIAlertController *alertView, NSInteger buttonIndex))block;
+                block:(void (^)(NSInteger buttonIndex))block;
 
 /**
  *  显示UIActionSheet
@@ -41,7 +41,7 @@
      cancelButtonTitle:(NSString *)cancelButtonTitle
 destructiveButtonTitle:(NSString *)destructiveButtonTitle
      otherButtonTitles:(NSArray *)otherButtonTitles
-                 block:(void (^)(UIAlertController *alertController, NSInteger buttonIndex))block;
+                 block:(void (^)(NSInteger buttonIndex))block;
 
 
 

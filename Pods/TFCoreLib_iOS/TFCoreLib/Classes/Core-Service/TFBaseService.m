@@ -149,7 +149,14 @@
                                  @"userType"     : req.userType,      //注册来源的应用ID 1电商主站应用，默认传0
                                  @"createType"   : @"2",       // 注册来源：1：网站2：手机3:手机快速注册4:保养管家
                                  @"securityType" : tf_levelOfPassword(req.password),  //用户密码安全级别1：高2：中3：低
-                                 @"authURL"      : @"" //authURL验证激活URL，用于邮箱注册，手机 和用户名注册不用填写
+                                 @"authURL"      : @"" ,//authURL验证激活URL，用于邮箱注册，手机 和用户名注册不用填写
+                                 @"deviceId" : tf_getDeviceId(),
+                                 @"userToken" : tf_getUserToken(),
+                                 @"appCode": tf_getAppCode(),//MongoToC
+                                 @"appVersion": tf_getAPPVersion(),//版本号
+                                 @"sourceCode": tf_getSourceCode(),//应用商店Code
+                                 @"deviceManufacturer": tf_getDeviceManufacturer(),//设备制造商
+                                 @"plateformType": tf_getPlateformType()//平台类型
                                  };
     
     NSURLSessionDataTask *operation =[TFVenusHTTPRequestManager
@@ -183,12 +190,30 @@
                                      success:(void (^)(TFBaseUser *model))successBlock
                                      failure:(void (^)(int errorCode, NSString* errorMessage))failureBlock
 {
+//    NSDictionary *agentMap=@{
+//                             @"deviceId" : tf_getDeviceId(),
+//                             @"appVersion" : tf_getAPPVersion(),
+//                             @"plateformType" : tf_getPlateformType(),
+//                             @"clientId" : tf_getClientId(),
+//                             @"sourceCode" : tf_getSourceCode(),
+//                             @"appCode" : tf_getAppCode(),
+//                             @"deviceManufacturer" : tf_getDeviceManufacturer(),
+//                             @"userAccount" : tf_getUserAccount(),
+//                             @"userToken" : tf_getUserToken()
+//                             };
     NSURLSessionDataTask *operation =[TFVenusHTTPRequestManager
                                       doTaskWithURL:kTFURLManager.login_url
                                       parameters:@{
                                                    @"clientId":tf_getClientId(),
-                                                   @"account":req.account,
-                                                   @"password":tf_md5(req.password)
+                                                   @"userAccount":req.account,
+                                                   @"password":tf_md5(req.password),
+                                                   @"deviceId" : tf_getDeviceId(),
+                                                   @"appVersion" : tf_getAPPVersion(),
+                                                   @"plateformType" : tf_getPlateformType(),
+                                                   @"sourceCode" : tf_getSourceCode(),
+                                                   @"appCode" : tf_getAppCode(),
+                                                   @"deviceManufacturer" : tf_getDeviceManufacturer(),
+                                                   @"userToken" : tf_getUserToken()
                                                    }
                                       success:^(id data)
                                       {
@@ -372,15 +397,35 @@
 
 + (NSURLSessionDataTask *)quickLoginWithParameter:(QuickLoginReq *)req success:(void (^)(TFBaseUser *))successBlock failure:(void (^)(int, NSString *))failureBlock
 {
+    
+//    NSDictionary *agentMap=@{
+//                            @"deviceId" : tf_getDeviceId(),
+//                            @"appVersion" : tf_getAPPVersion(),
+//                            @"plateformType" : tf_getPlateformType(),
+//                            @"clientId" : tf_getClientId(),
+//                            @"sourceCode" : tf_getSourceCode(),
+//                            @"appCode" : tf_getAppCode(),
+//                            @"deviceManufacturer" : tf_getDeviceManufacturer(),
+//                            @"userAccount" : tf_getUserAccount(),
+//                            @"userToken" : tf_getUserToken()
+//                            };
+    
     NSDictionary *requestDic = @{
                                  @"clientId":tf_getClientId(),
-                                 @"account" : req.account,
+                                 @"userAccount" : req.account,
                                  @"captcha" : req.SMSCode,    //验证码
                                  @"userType":@"0"        ,    //车享宝(0)
                                  @"createType":@"3"      ,    //1：网站 2：手机 3:手机快速注册 4：保养管家
                                  @"securityType":@"3"    ,    //1：高2：中3：低
                                  @"accountType": @"2"    ,    //1：用户名2：手机 3：网站
-                                 @"appCode":@(2)   //车享宝 = 2
+                                 @"appCode":@(2)         ,   //车享宝 = 2
+                                 @"deviceId" : tf_getDeviceId(),
+                                 @"appVersion" : tf_getAPPVersion(),
+                                 @"plateformType" : tf_getPlateformType(),
+                                 @"sourceCode" : tf_getSourceCode(),
+                                 @"appCodeType" : tf_getAppCode(),
+                                 @"deviceManufacturer" : tf_getDeviceManufacturer(),
+                                 @"userToken" : tf_getUserToken()
                                  };
     
     NSURLSessionDataTask *operation =[TFVenusHTTPRequestManager

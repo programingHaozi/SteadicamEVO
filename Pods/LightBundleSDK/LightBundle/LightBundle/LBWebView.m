@@ -108,13 +108,13 @@
     NSString *locLong = urlParam.locLong;
     NSString *locLat = urlParam.locLat;
     
-    if (!uid || 0 == uid.length)
+    if (!uid || 0 == uid.length || [uid isEqualToString:@"0"])
     {
-        uid = @"0";
+        uid = @"";
     }
     if (!userId || 0 == userId.length)
     {
-        userId = @"0";
+        userId = @"";
     }
     if (!token || 0 == token.length)
     {
@@ -408,12 +408,27 @@
                         [self.delegate LBJsCallOcFunc:LBJsCallOcFuncTypeCarInfo param:[dic objectForKey:LB_RET_PARAM]];
                     }
                 }
+                // 获取设备信息
+                else if ([[dic objectForKey:LB_RET_NAME] isEqualToString:LB_NAME_DEVICEINFO])
+                {
+                    if ([self.delegate respondsToSelector:@selector(LBJsCallOcFunc:param:)])
+                    {
+                        [self.delegate LBJsCallOcFunc:LBJsCallOcFuncTypeDeviceInfo param:[dic objectForKey:LB_RET_PARAM]];
+                    }
+                }
+                // 关闭网页
+                else if ([[dic objectForKey:LB_RET_NAME] isEqualToString:LB_NAME_CLOSEWEBVIEW])
+                {
+                    if ([self.delegate respondsToSelector:@selector(LBJsCallOcFunc:param:)])
+                    {
+                        [self.delegate LBJsCallOcFunc:LBJsCallOcFuncTypeCloseWebview param:[dic objectForKey:LB_RET_PARAM]];
+                    }
+                }
                 // 未匹配
                 else
                 {
                     [_lbBasePlugin showAlert:[NSString stringWithFormat:@"未匹配方法名:%@", [dic objectForKey:LB_RET_NAME]]];
                 }
-                
             }
         }
         

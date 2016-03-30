@@ -1,5 +1,5 @@
 //
-//  TFCustomTabbarController.h
+//  TFCustomTabBarController.h
 //  TFUILib
 //
 //  Created by Chen Hao 陈浩 on 16/3/9.
@@ -8,6 +8,6 @@
 
 #import "TFViewController.h"
 
-@interface TFCustomTabbarController : TFViewController
+@interface TFCustomTabBarController : TFViewController
 
 @end

@@ -105,7 +105,7 @@
     [self.upView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.mas_left);
         make.top.equalTo(weakSelf.mas_top);
-        make.width.equalTo(weakSelf.mas_width);
+        make.right.equalTo(weakSelf.mas_right);
         make.height.equalTo(@(weakSelf.titleHeight));
     }];
     
@@ -114,7 +114,7 @@
     // 中间的线条
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.mas_left);
-        make.top.equalTo(weakSelf.upView.mas_bottom);
+        make.top.equalTo(weakSelf.upView.mas_bottom).offset(-weakSelf.lineHeight);
         make.width.equalTo(weakSelf.mas_width).multipliedBy(1.0/count);
         make.height.equalTo(@(weakSelf.lineHeight));
     }];

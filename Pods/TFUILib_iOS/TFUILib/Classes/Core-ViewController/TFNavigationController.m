@@ -19,16 +19,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)])
-    {
-        self.interactivePopGestureRecognizer.delegate = nil;
-    }
+    self.interactivePopGestureRecognizer.delegate = nil;
+    
+    [self initViews];
+    [self autolayoutViews];
+    [self bindData];
 }
 
-- (void)setNavigationBarBackgroundColor:(UIColor *)color alph:(NSInteger)alph
+- (void)setNavigationBarBackgroundColor:(UIColor *)color alpha:(NSInteger)alpha
 {
     [self.navigationBar setBgColor:color];
-    [self.navigationBar setElementsAlpha:alph];
+    [self.navigationBar setElementsAlpha:alpha];
 }
 
 
@@ -54,7 +55,8 @@
 - (UIViewController *)previousViewController
 {
     UIViewController *previousVC = nil;
-    if (self.viewControllers.count != 0) {
+    if (self.viewControllers.count != 0)
+    {
         previousVC = self.viewControllers[self.viewControllers.count-1];
     }
     

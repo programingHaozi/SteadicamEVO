@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TFButton.h"
 
 @interface TFButtonCell : UITableViewCell
 

@@ -10,7 +10,6 @@
 
 @implementation TFUserDefaults (Venus)
 
-@dynamic deviceId;
 @dynamic clientId;
 @dynamic userInfo;
 

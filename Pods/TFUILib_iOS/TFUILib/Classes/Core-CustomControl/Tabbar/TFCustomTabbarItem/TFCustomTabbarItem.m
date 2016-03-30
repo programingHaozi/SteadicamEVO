@@ -1,14 +1,14 @@
 //
-//  TFCustomTabbarItem.m
+//  TFCustomTabBarItem.m
 //  TFUILib
 //
 //  Created by Chen Hao 陈浩 on 16/3/9.
 //  Copyright © 2016年 上海赛可电子商务有限公司. All rights reserved.
 //
 
-#import "TFCustomTabbarItem.h"
+#import "TFCustomTabBarItem.h"
 
-@interface TFCustomTabbarItem()
+@interface TFCustomTabBarItem()
 
 @property (nonatomic, strong) UILabel * badgeLabel;
 
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation TFCustomTabbarItem
+@implementation TFCustomTabBarItem
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {

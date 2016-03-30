@@ -17,7 +17,7 @@
               message:(NSString *)message
     cancelButtonTitle:(NSString *)cancelButtonTitle
     otherButtonTitles:(NSArray *)otherButtonTitles
-                block:(void (^)(UIAlertController *alertView, NSInteger buttonIndex))block
+                block:(void (^)(NSInteger buttonIndex))block
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                    message:message
@@ -32,7 +32,7 @@
                                                             handler:^(UIAlertAction *action) {
                                                                 if (block!=nil)
                                                                 {
-                                                                    block(alert,start);
+                                                                    block(start);
                                                                 }
                                                             }];
         
@@ -56,7 +56,7 @@
                                                                 handler:^(UIAlertAction *action) {
                                                                     if (block!=nil)
                                                                     {
-                                                                        block(alert,i+start);
+                                                                        block(i+start);
                                                                     }
                                                                     
                                                                 }];
@@ -77,7 +77,7 @@
      cancelButtonTitle:(NSString *)cancelButtonTitle
 destructiveButtonTitle:(NSString *)destructiveButtonTitle
      otherButtonTitles:(NSArray *)otherButtonTitles
-                 block:(void (^)(UIAlertController *, NSInteger))block
+                 block:(void (^)(NSInteger))block
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                    message:nil
@@ -92,7 +92,7 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
                                                             handler:^(UIAlertAction *action) {
                                                                 if (block!=nil)
                                                                 {
-                                                                    block(alert,start);
+                                                                    block(start);
                                                                 }
                                                             }];
         
@@ -113,7 +113,7 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
                                                             handler:^(UIAlertAction *action) {
                                                                 if (block!=nil)
                                                                 {
-                                                                    block(alert,start);
+                                                                    block(start);
                                                                 }
                                                             }];
         
@@ -141,7 +141,7 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
                                                                 handler:^(UIAlertAction *action) {
                                                                     if (block!=nil)
                                                                     {
-                                                                        block(alert,i+start);
+                                                                        block(i+start);
                                                                     }
                                                                     
                                                                 }];
