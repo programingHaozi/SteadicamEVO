@@ -8,6 +8,8 @@
 
 #import "LocalizationManager.h"
 
+#define kUserLanguage @"userLanguage"
+
 #define kUserDefault [NSUserDefaults standardUserDefaults]
 
 @interface LocalizationManager()

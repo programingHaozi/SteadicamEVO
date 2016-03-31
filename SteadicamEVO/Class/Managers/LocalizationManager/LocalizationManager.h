@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define kUserLanguage             @"userLanguage"
-
 #define LocalizedBundle           [LocalizationManager shareInstance].languageBundle
 
 #define LocalizedLanguage         [LocalizationManager shareInstance].userLanguage

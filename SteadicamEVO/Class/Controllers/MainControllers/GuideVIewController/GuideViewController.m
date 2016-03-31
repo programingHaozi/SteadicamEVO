@@ -67,6 +67,8 @@
         CGPoint point = [offset CGPointValue];
         
         self.pageControl.currentPage = point.x/SCREEN_WIDTH;
+        
+        self.pageControl.hidden = point.x/SCREEN_WIDTH == 4;
     }];
 }
 

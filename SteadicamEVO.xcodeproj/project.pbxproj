@@ -34,6 +34,7 @@
 		87C6E9181CABBD43003ACA26 /* CompanyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E9171CABBD43003ACA26 /* CompanyViewModel.m */; };
 		87C6E91C1CABBD65003ACA26 /* LanguageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E91B1CABBD65003ACA26 /* LanguageViewModel.m */; };
 		87C6E9211CABCDB2003ACA26 /* GuideViewCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E9201CABCDB2003ACA26 /* GuideViewCollectionCell.m */; };
+		87E2B7511CACFDE30001AB83 /* PrepareChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E2B7501CACFDE30001AB83 /* PrepareChooseView.m */; };
 		87EF95481C8C36C1002241B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EF953F1C8C36C1002241B2 /* AppDelegate.m */; };
 		87EF95491C8C36C1002241B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87EF95411C8C36C1002241B2 /* Assets.xcassets */; };
 		87EF954A1C8C36C1002241B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87EF95421C8C36C1002241B2 /* LaunchScreen.storyboard */; };
@@ -102,6 +103,8 @@
 		87C6E91B1CABBD65003ACA26 /* LanguageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewModel.m; sourceTree = "<group>"; };
 		87C6E91F1CABCDB2003ACA26 /* GuideViewCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewCollectionCell.h; sourceTree = "<group>"; };
 		87C6E9201CABCDB2003ACA26 /* GuideViewCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewCollectionCell.m; sourceTree = "<group>"; };
+		87E2B74F1CACFDE30001AB83 /* PrepareChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareChooseView.h; sourceTree = "<group>"; };
+		87E2B7501CACFDE30001AB83 /* PrepareChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrepareChooseView.m; sourceTree = "<group>"; };
 		87EF951D1C8C35A3002241B2 /* SteadicamEVO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteadicamEVO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87EF953E1C8C36C1002241B2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87EF953F1C8C36C1002241B2 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -311,6 +314,23 @@
 			path = GuideViewCollectionCell;
 			sourceTree = "<group>";
 		};
+		87E2B74D1CACF9370001AB83 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				87E2B74E1CACFDBB0001AB83 /* PrepareChooseView */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
+		87E2B74E1CACFDBB0001AB83 /* PrepareChooseView */ = {
+			isa = PBXGroup;
+			children = (
+				87E2B74F1CACFDE30001AB83 /* PrepareChooseView.h */,
+				87E2B7501CACFDE30001AB83 /* PrepareChooseView.m */,
+			);
+			path = PrepareChooseView;
+			sourceTree = "<group>";
+		};
 		87EF95141C8C35A3002241B2 = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +371,7 @@
 		87EF95391C8C3601002241B2 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				87E2B74D1CACF9370001AB83 /* VIews */,
 				878B29501C992B83003F2481 /* Category */,
 				87EF956B1C8C4281002241B2 /* Models */,
 				87EF955E1C8C425A002241B2 /* Controllers */,
@@ -677,6 +698,7 @@
 				8700362D1C97E7EF00AAB595 /* BTDeviceModel.m in Sources */,
 				87C6E8F11CAB9B35003ACA26 /* CompanyWebViewController.m in Sources */,
 				87C6E9081CABBC8F003ACA26 /* GuideViewModel.m in Sources */,
+				87E2B7511CACFDE30001AB83 /* PrepareChooseView.m in Sources */,
 				8700361E1C97D3D400AAB595 /* SplashViewController.m in Sources */,
 				87C6E9101CABBCF3003ACA26 /* MenuViewModel.m in Sources */,
 				87C6E9041CABBC6E003ACA26 /* BalanceViewModel.m in Sources */,
