@@ -8,6 +8,24 @@
 
 #import "SCEViewModel.h"
 
+typedef NS_ENUM(NSUInteger, BalanceState)
+{
+    BalanceStateUnFold = 0,
+    BalanceStateInstall,
+    BalanceStateSet,
+    BalanceStateHold,
+    BalanceStatePower,
+    BalanceStateSlide,
+    BalanceStateAdjust,
+    BalanceStateSlideAgain,
+};
+
 @interface BalanceViewModel : SCEViewModel
+
+@property (nonatomic, assign) BalanceState balanceState;
+
+@property (nonatomic, strong) NSString *instruction;
+
+@property (nonatomic, strong) NSString *gifPath;
 
 @end

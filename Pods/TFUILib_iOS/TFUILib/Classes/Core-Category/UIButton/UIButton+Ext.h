@@ -10,4 +10,6 @@
 
 @interface UIButton (Ext)
 
+- (NSString *)title;
+
 @end

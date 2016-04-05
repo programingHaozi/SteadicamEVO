@@ -89,118 +89,118 @@ PODS:
   - SQLCipher/common (3.1.0)
   - SQLCipher/standard (3.1.0):
     - SQLCipher/common
-  - SSKeychain (1.3.1)
-  - TFBaseLib_iOS (0.0.36):
+  - SSKeychain (1.4.0)
+  - TFBaseLib_iOS (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-    - TFBaseLib_iOS/Core-3rd (= 0.0.36)
-    - TFBaseLib_iOS/Core-Category (= 0.0.36)
-    - TFBaseLib_iOS/Core-DataHelper (= 0.0.36)
-    - TFBaseLib_iOS/Core-Macro (= 0.0.36)
-    - TFBaseLib_iOS/Core-Manager (= 0.0.36)
-    - TFBaseLib_iOS/Core-Util (= 0.0.36)
-  - TFBaseLib_iOS/Core-3rd (0.0.36):
+    - SSKeychain (= 1.4.0)
+    - TFBaseLib_iOS/Core-3rd (= 0.0.39)
+    - TFBaseLib_iOS/Core-Category (= 0.0.39)
+    - TFBaseLib_iOS/Core-DataHelper (= 0.0.39)
+    - TFBaseLib_iOS/Core-Macro (= 0.0.39)
+    - TFBaseLib_iOS/Core-Manager (= 0.0.39)
+    - TFBaseLib_iOS/Core-Util (= 0.0.39)
+  - TFBaseLib_iOS/Core-3rd (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-    - TFBaseLib_iOS/Core-3rd/AFNetworking-AutoRetry (= 0.0.36)
-    - TFBaseLib_iOS/Core-3rd/SafeKit (= 0.0.36)
-    - TFBaseLib_iOS/Core-3rd/SafeKitMRC (= 0.0.36)
-  - TFBaseLib_iOS/Core-3rd/AFNetworking-AutoRetry (0.0.36):
+    - SSKeychain (= 1.4.0)
+    - TFBaseLib_iOS/Core-3rd/AFNetworking-AutoRetry (= 0.0.39)
+    - TFBaseLib_iOS/Core-3rd/SafeKit (= 0.0.39)
+    - TFBaseLib_iOS/Core-3rd/SafeKitMRC (= 0.0.39)
+  - TFBaseLib_iOS/Core-3rd/AFNetworking-AutoRetry (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-  - TFBaseLib_iOS/Core-3rd/SafeKit (0.0.36):
+    - SSKeychain (= 1.4.0)
+  - TFBaseLib_iOS/Core-3rd/SafeKit (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-  - TFBaseLib_iOS/Core-3rd/SafeKitMRC (0.0.36):
+    - SSKeychain (= 1.4.0)
+  - TFBaseLib_iOS/Core-3rd/SafeKitMRC (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-  - TFBaseLib_iOS/Core-Category (0.0.36):
+    - SSKeychain (= 1.4.0)
+  - TFBaseLib_iOS/Core-Category (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-  - TFBaseLib_iOS/Core-DataHelper (0.0.36):
+    - SSKeychain (= 1.4.0)
+  - TFBaseLib_iOS/Core-DataHelper (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-    - TFBaseLib_iOS/Core-DataHelper/TFAutoCodingCopying (= 0.0.36)
-    - TFBaseLib_iOS/Core-DataHelper/TFGCDQueue (= 0.0.36)
-    - TFBaseLib_iOS/Core-DataHelper/TFKeyChain (= 0.0.36)
-    - TFBaseLib_iOS/Core-DataHelper/TFUserDefaults (= 0.0.36)
-  - TFBaseLib_iOS/Core-DataHelper/TFAutoCodingCopying (0.0.36):
+    - SSKeychain (= 1.4.0)
+    - TFBaseLib_iOS/Core-DataHelper/TFAutoCodingCopying (= 0.0.39)
+    - TFBaseLib_iOS/Core-DataHelper/TFGCDQueue (= 0.0.39)
+    - TFBaseLib_iOS/Core-DataHelper/TFKeyChain (= 0.0.39)
+    - TFBaseLib_iOS/Core-DataHelper/TFUserDefaults (= 0.0.39)
+  - TFBaseLib_iOS/Core-DataHelper/TFAutoCodingCopying (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-  - TFBaseLib_iOS/Core-DataHelper/TFGCDQueue (0.0.36):
+    - SSKeychain (= 1.4.0)
+  - TFBaseLib_iOS/Core-DataHelper/TFGCDQueue (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-  - TFBaseLib_iOS/Core-DataHelper/TFKeyChain (0.0.36):
+    - SSKeychain (= 1.4.0)
+  - TFBaseLib_iOS/Core-DataHelper/TFKeyChain (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-  - TFBaseLib_iOS/Core-DataHelper/TFUserDefaults (0.0.36):
+    - SSKeychain (= 1.4.0)
+  - TFBaseLib_iOS/Core-DataHelper/TFUserDefaults (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-  - TFBaseLib_iOS/Core-Macro (0.0.36):
+    - SSKeychain (= 1.4.0)
+  - TFBaseLib_iOS/Core-Macro (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-  - TFBaseLib_iOS/Core-Manager (0.0.36):
+    - SSKeychain (= 1.4.0)
+  - TFBaseLib_iOS/Core-Manager (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
-  - TFBaseLib_iOS/Core-Util (0.0.36):
+    - SSKeychain (= 1.4.0)
+  - TFBaseLib_iOS/Core-Util (0.0.39):
     - AFNetworking (= 3.0.4)
     - Aspects (= 1.4.1)
     - CocoaLumberjack (= 2.2.0)
     - MJExtension (= 3.0.10)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
-    - SSKeychain (= 1.3.1)
+    - SSKeychain (= 1.4.0)
   - TFCoreLib_iOS (0.0.18):
     - TFCoreLib_iOS/Core-AOP (= 0.0.18)
     - TFCoreLib_iOS/Core-Data (= 0.0.18)
@@ -367,7 +367,7 @@ CHECKOUT OPTIONS:
     :commit: f394ff75e46f902765f4b445818c630705a18b31
     :git: http://git01.dds.com/MP/LightBundle_SDK_iOS.git
   TFBaseLib_iOS:
-    :commit: 2af9d45fa84f1f0bf20ae291f9fce6b8e1c5aaa6
+    :commit: 3fa92eaac48ae849451509ada341413a7e276d08
     :git: http://git01.dds.com/MP/TFBaseLib_iOS.git
   TFCoreLib_iOS:
     :commit: 4e7f8a5040e61ad6e43687ae886d0cbc43bfd4dc
@@ -379,7 +379,7 @@ CHECKOUT OPTIONS:
     :commit: 6dcac6e36bb58af5d43b735ebedd3d1487a005f3
     :git: http://git01.dds.com/MP/TFThirdLib_iOS.git
   TFUILib_iOS:
-    :commit: 229dc37be1eb2d90d487e120a9c58dbe70b59a5d
+    :commit: 709267cd4a78a92e3264141be8db86b72bab1207
     :git: http://git01.dds.com/MP/TFUILib_iOS.git
   TorqueSDK:
     :branch: develop
@@ -408,8 +408,8 @@ SPEC CHECKSUMS:
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   SQLCipher: 4684434d5791db86512cd7e02172aefba575849e
-  SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
-  TFBaseLib_iOS: fe8f531e434802ad443d7142c54d3147831942b2
+  SSKeychain: c71293fa57216a40ab06c23f4085387583293de4
+  TFBaseLib_iOS: 4d8baabcc1322fe4b9aff2856abd752787183554
   TFCoreLib_iOS: bbe3f306b8cd5de3edf4670b3c5c18ef0e57381a
   TFHotfixLib_iOS: c59f61024d55428b9f6e261db8283edd4bd16cbe
   TFThirdLib_iOS: 0d3b0ca8c43e5ec57a5102620052560cc7555f6c

@@ -14,9 +14,4 @@
  */
 @interface TFTextView : UITextView
 
-/**
- *  text最大长度
- */
-@property (nonatomic, assign) NSUInteger maxLength;
-
 @end

@@ -21,5 +21,6 @@
 #import "LocalizationManager.h"
 #import "BTConnectTypeDefine.h"
 #import "TFUserDefaults+SCE.h"
+#import "Environment.h"
 
 #endif /* PrefixHeader_pch */

@@ -17,7 +17,7 @@
     
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
     _label.backgroundColor = [UIColor clearColor];
-    _label.textAlignment = NSTextAlignmentRight;
+    _label.textAlignment = NSTextAlignmentLeft;
     _label.textColor = [UIColor blackColor];
     _label.highlightedTextColor = [UIColor whiteColor];
     _label.font = [UIFont boldSystemFontOfSize:12.0];
@@ -41,8 +41,8 @@
 {
     [super layoutSubviews];
     
-    CGRect r = CGRectInset(self.contentView.bounds, 8, 8);
-    r.size = CGSizeMake(72,27);
+    CGRect r = CGRectInset(self.contentView.bounds, 8, 0);
+    r.size = CGSizeMake(72,r.size.height);
     _label.frame = r;
 }
 

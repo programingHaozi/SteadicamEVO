@@ -6,8 +6,12 @@
 //  Copyright © 2016年 haozi. All rights reserved.
 //
 
+typedef void(^SelectBlock)(NSInteger idx);
+
 @interface PrepareChooseView : TFView
 
-- (instancetype)initWithLeft:(id)left right:(id)right title:(NSString *)title;
+@property (nonatomic, strong) SelectBlock selectBlock;
+
+- (instancetype)initWithLeft:(NSString *)left right:(NSString *)right title:(NSString *)title;
 
 @end

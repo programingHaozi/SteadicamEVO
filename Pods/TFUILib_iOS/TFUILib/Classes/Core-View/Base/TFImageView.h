@@ -47,20 +47,20 @@
  *
  *  @param actionBlock Pinch事件block
  */
-- (void)PinchAction:(void(^)())actionBlock;
+- (void)pinchAction:(void(^)())actionBlock;
 
 /**
  *  Pan事件
  *
  *  @param actionBlock Pan事件block
  */
-- (void)PanAction:(void(^)())actionBlock;
+- (void)panAction:(void(^)())actionBlock;
 
 /**
  *  DoubleTap事件
  *
  *  @param actionBlock DoubleTap事件block
  */
-- (void)DoubleTapAction:(void(^)())actionBlock;
+- (void)doubleTapAction:(void(^)())actionBlock;
 
 @end

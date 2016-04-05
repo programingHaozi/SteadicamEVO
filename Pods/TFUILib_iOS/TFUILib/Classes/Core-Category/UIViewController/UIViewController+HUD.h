@@ -15,18 +15,18 @@
 /**
  *  显示loadingHUD页面
  */
-- (void)showLoadingHud;
+- (void)showHUD;
 
 /**
  *  显示loadingHUD页面
  *
  *  @param text 提示信息
  */
-- (void)showLoadingHudWithText:(NSString*)text;
+- (void)showHUDWithText:(NSString*)text;
 
 /**
  *  隐藏loadingHUD页面
  */
-- (void)hideLoadingHud;
+- (void)hideHUD;
 
 @end

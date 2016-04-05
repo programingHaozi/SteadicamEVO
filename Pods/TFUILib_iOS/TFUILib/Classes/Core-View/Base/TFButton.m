@@ -47,23 +47,33 @@ alpha:a]
 
 - (instancetype)initWithAlignmentStatus:(TFAlignmentStatus)status
 {
-    self.gapBetween=10;
-    TFButton *fl_button = [[TFButton alloc] init];
-    
-    fl_button.status = status;
-    return fl_button;
+    if (self = [super initWithFrame:CGRectZero])
+    {
+        _gapBetween = 10;
+        _status = status;
+        [self addTarget:self action:@selector(touch:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
+    return self;
 }
 
-- (instancetype)init
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super init];
-    if (self)
+    if (self = [super initWithCoder:aDecoder])
     {
         [self addTarget:self action:@selector(touch:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return self;
 }
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [self initWithAlignmentStatus:TFAlignmentStatusNormal];
+    
+    return self;
+}
+
 -(void)setGapBetween:(CGFloat)gapBetween
 {
     _gapBetween=gapBetween;

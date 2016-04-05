@@ -9,6 +9,7 @@
 #import "TFQRCodeViewController.h"
 #import "LBXScanResult.h"
 #import "LBXScanWrapper.h"
+#import "TFBaseLib.h"
 
 @interface TFQRCodeViewController ()
 
@@ -205,7 +206,15 @@
     
     [_bottomButtonView addSubview:_flashButton];
     [_bottomButtonView addSubview:_photoButton];
-    [_bottomButtonView addSubview:_myQRButton];   
+    [_bottomButtonView addSubview:_myQRButton];
+    
+    WS(weakSelf)
+    [self.bottomButtonView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@0);
+        make.right.equalTo(@0);
+        make.bottom.equalTo(@0);
+        make.height.equalTo(@100);
+    }];
 }
 
 //绘制扫描区域
@@ -213,8 +222,7 @@
 {
     if (!_qRScanView)
     {
-        CGRect rect = self.view.frame;
-        rect.origin = CGPointMake(0, 0);
+        CGRect rect = CGRectMake(0, self.top, self.view.frame.size.width, self.view.frame.size.height);
         
         self.qRScanView = [[LBXScanView alloc]initWithFrame:rect style:_style];
         [self.view addSubview:_qRScanView];

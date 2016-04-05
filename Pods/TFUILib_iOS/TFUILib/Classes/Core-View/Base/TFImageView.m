@@ -18,6 +18,11 @@
 
 @property (nonatomic, strong) UITapGestureRecognizer * doubleTapGesture;
 
+@property (nonatomic, strong) void (^tapActionBlock)();
+@property (nonatomic, strong) void (^pinchActionBlock)();
+@property (nonatomic, strong) void (^panActionBlock)();
+@property (nonatomic, strong) void (^doubleActionBlock)();
+
 @end
 
 @implementation TFImageView
@@ -28,7 +33,7 @@
     {
         [self setUp];
     }
-    
+
     return self;
 }
 
@@ -38,7 +43,7 @@
     {
         [self setUp];
     }
-    
+
     return self;
 }
 
@@ -101,48 +106,72 @@
 
 - (void)setUp
 {
-    self.tapGesture       = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-    self.doubleTapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(DoubleTapAction:)];
-    self.pinchGesture     = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(PinchAction:)];
-    self.panGesture       = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGesture)];
-    
+    self.userInteractionEnabled = YES;
+    self.tapGesture       = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageTapAction:)];
+    self.doubleTapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageDoubleTapAction:)];
+    self.pinchGesture     = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(imagePinchAction:)];
+    self.panGesture       = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(imagePanGesture)];
+
     [self.doubleTapGesture setNumberOfTapsRequired:2];
     [self.tapGesture requireGestureRecognizerToFail:self.doubleTapGesture];
-    
-    
+
+
+}
+
+#pragma mark-action
+
+- (void)imageTapAction:(id)sender
+{
+    if (self.tapActionBlock)
+    {
+        self.tapActionBlock();
+    }
+}
+
+- (void)imageDoubleTapAction:(id)sender
+{
+    if (self.doubleActionBlock)
+    {
+        self.doubleActionBlock();
+    }
+}
+
+- (void)imagePinchAction:(id)sender
+{
+    if (self.pinchActionBlock)
+    {
+        self.pinchActionBlock();
+    }
+}
+
+- (void)imagePanGesture:(id)sender
+{
+    if (self.panActionBlock)
+    {
+        self.panActionBlock();
+    }
 }
 
 #pragma mark - Gestures -
 
 -(void)tapAction:(void (^)())actionBlock
 {
-    if (actionBlock)
-    {
-        actionBlock();
-    }
+    self.tapActionBlock = actionBlock;
 }
 
--(void)PinchAction:(void (^)())actionBlock
+-(void)pinchAction:(void (^)())actionBlock
 {
-    if (actionBlock)
-    {
-        actionBlock();
-    }
+    self.pinchActionBlock = actionBlock;
 }
 
--(void)PanAction:(void (^)())actionBlock
+-(void)panAction:(void (^)())actionBlock
 {
-    if (actionBlock)
-    {
-        actionBlock();
-    }
+    self.panActionBlock = actionBlock;
 }
--(void)DoubleTapAction:(void (^)())actionBlock
+
+-(void)doubleTapAction:(void (^)())actionBlock
 {
-    if (actionBlock)
-    {
-        actionBlock();
-    }
+    self.doubleActionBlock = actionBlock;
 }
 
 @end

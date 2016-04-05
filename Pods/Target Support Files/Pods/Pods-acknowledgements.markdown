@@ -987,7 +987,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ## SSKeychain
 
-Copyright (c) 2010-2014 Sam Soffes, http://soff.es
+Copyright (c) 2010-2016 Sam Soffes, http://soff.es
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

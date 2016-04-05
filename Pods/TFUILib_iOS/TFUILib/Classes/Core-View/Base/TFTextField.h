@@ -9,25 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "UITextField+Category.h"
 
-/**
- *  输入限制类型
- */
-typedef NS_ENUM(NSUInteger, TFTextfieldInputType)
-{
-    /**
-     *  字母和数组
-     */
-    TFTextfieldInputTypeLettersAndNumbersOnly = 0,
-    /**
-     *  大写
-     */
-    TFTextfieldInputTypeAllCharacters,
-    /**
-     *  英文汉字
-     */
-    TFTextfieldInputTypeAllCharactersAndNoPunctuation
-};
-
 @interface TFTextField : UITextField
 
 /**
@@ -39,17 +20,6 @@ typedef NS_ENUM(NSUInteger, TFTextfieldInputType)
  *  底边颜色
  */
 @property (nonatomic, strong) UIColor *bottomBorderColor;
-
-/**
- *  text最大长度
- */
-@property (nonatomic, assign) NSUInteger maxLength;
-
-/**
- *  输入限制类型
- */
-@property (nonatomic, assign) TFTextfieldInputType inputType;
-
 
 /**
  *  初始化Textfield

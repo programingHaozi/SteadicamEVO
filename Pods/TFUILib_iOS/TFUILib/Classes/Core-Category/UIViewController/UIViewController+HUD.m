@@ -13,12 +13,12 @@
 
 #pragma mark HUD
 
-- (void)showLoadingHud
+- (void)showHUD
 {
-    [self showLoadingHudWithText:@""];
+    [self showHUDWithText:@""];
 }
 
-- (void)showLoadingHudWithText:(NSString*)text
+- (void)showHUDWithText:(NSString*)text
 {
     if (text == nil || [text length] == 0)
     {
@@ -31,7 +31,7 @@
                          animated:HudAnimatedTypeNone];
 }
 
-- (void)hideLoadingHud
+- (void)hideHUD
 {
     [TFProgressHud hideAllHudInView:[UIApplication sharedApplication].keyWindow
                            animated:HudAnimatedTypeNone];

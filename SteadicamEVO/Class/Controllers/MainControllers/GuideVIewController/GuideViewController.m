@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
 }
 
 #pragma mark- init autolayout bind
@@ -77,10 +77,10 @@
 - (UICollectionViewLayout *)getCollectionFlowLayout
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize                    = CGSizeMake(SCREEN_WIDTH - 120*2, SCREEN_HEIGHT - 20 - 30 - 64);
-    layout.minimumLineSpacing          = 240;
+    layout.itemSize                    = CGSizeMake(304, 204);
+    layout.minimumLineSpacing          = (SCREEN_WIDTH - 304);
     layout.scrollDirection             = UICollectionViewScrollDirectionHorizontal;
-    layout.sectionInset                = UIEdgeInsetsMake(20, 120, 30, 120);
+    layout.sectionInset                = UIEdgeInsetsMake(20, (SCREEN_WIDTH - 304)/2, 30, (SCREEN_WIDTH - 304)/2);
     
     return layout;
 }
@@ -96,7 +96,17 @@
 {
     GuideViewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GuideViewCollectionCell class]) forIndexPath:indexPath];
     
-    cell.backgroundColor = [UIColor randomColor];
+    [cell removeSelectView];
+    
+    if (indexPath.row == 4)
+    {
+        [cell addSelectViewWithLeft:@"later"
+                              right:@"ok"
+                              title:@"would you like to balance now?"
+                              block:^(NSInteger idx) {
+            NSLog(@"%ld",(long)idx);
+        }];
+    }
     
     return cell;
 }

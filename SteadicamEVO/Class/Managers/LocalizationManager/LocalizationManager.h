@@ -13,7 +13,7 @@
 
 #define LocalizedLanguage         [LocalizationManager shareInstance].userLanguage
 
-#define  Localized(key)           [[LocalizationManager shareInstance] locatizedStringForkey:key]
+#define  Localized(key)           [[LocalizationManager shareInstance] localizedStringForKey:key]
 
 #define LocalizedImage(key)       [[LocalizationManager shareInstance] localizedImageForKey:key]
 

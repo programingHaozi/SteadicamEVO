@@ -1,1 +1,1 @@
-../../../TFUILib_iOS/TFUILib/Classes/Core-ViewController/TFCollectionViewController.h
+../../../TFUILib_iOS/TFUILib/Classes/Core-ViewController/Base/TFCollectionViewController.h

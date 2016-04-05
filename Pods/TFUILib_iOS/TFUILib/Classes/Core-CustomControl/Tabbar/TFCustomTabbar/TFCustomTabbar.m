@@ -8,12 +8,13 @@
 
 #import "TFCustomTabBar.h"
 #import <TFBaseLib.h>
+#import "TFImageView.h"
 
 @interface TFCustomTabBar()
 
-@property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) TFImageView *backgroundImageView;
 
-@property (nonatomic, strong) UIImageView *separateLine;
+@property (nonatomic, strong) TFImageView *separateLine;
 
 @property (nonatomic, strong) UIToolbar   *blurView;
 
@@ -48,11 +49,11 @@
     _blurView = [[UIToolbar alloc]init];
     [self addSubview:_blurView];
     
-    _backgroundImageView = [[UIImageView alloc]init];
+    _backgroundImageView = [[TFImageView alloc]init];
     _backgroundImageView.backgroundColor = [UIColor clearColor];
     [self addSubview:_backgroundImageView];
     
-    _separateLine = [[UIImageView alloc]init];
+    _separateLine = [[TFImageView alloc]init];
     _separateLine.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     _separateLine.tintColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:1];
     [self addSubview:_separateLine];

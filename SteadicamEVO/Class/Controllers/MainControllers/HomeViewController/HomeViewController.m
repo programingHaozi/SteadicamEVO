@@ -19,7 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-  
+    [self setCustomNavigationBarHidden:YES];
 }
 
 #pragma mark- init autolayout bind

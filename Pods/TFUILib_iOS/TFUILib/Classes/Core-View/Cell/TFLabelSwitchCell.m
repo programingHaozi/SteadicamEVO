@@ -38,8 +38,8 @@
 {
     [super layoutSubviews];
     
-    CGRect r = CGRectInset(self.contentView.bounds, 8, 8);
-    r.size = CGSizeMake(72,27);
+    CGRect r = CGRectInset(self.contentView.bounds, 8, 0);
+    r.size = CGSizeMake(72,r.size.height);
     _label.frame = r;
 }
 

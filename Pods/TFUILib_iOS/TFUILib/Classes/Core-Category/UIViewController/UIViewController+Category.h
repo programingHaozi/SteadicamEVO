@@ -12,5 +12,11 @@
 #import "UIViewController+NavigationButton.h"
 #import "UIViewController+Push.h"
 
+#import "UIViewController+TFPopupViewController.h"
+#import "TFPopupViewAnimationFade.h"
+#import "TFPopupViewAnimationSlide.h"
+#import "TFPopupViewAnimationSpring.h"
+#import "TFPopupViewAnimationDrop.h"
+
 
 

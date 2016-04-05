@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C6C0E2C04775566FF389A8E2'
+               BlueprintIdentifier = '128E15E7E2D5069DD877EF9E'
                BlueprintName = 'LightBundleSDK'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libLightBundleSDK.a'>

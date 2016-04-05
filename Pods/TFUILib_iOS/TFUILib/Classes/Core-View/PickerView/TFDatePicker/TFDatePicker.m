@@ -163,31 +163,21 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    
-    NSDate *date                = [self.datePicker date];
-    NSTimeZone *zone            = [NSTimeZone systemTimeZone];
-    NSInteger interval          = [zone secondsFromGMTForDate: date];
-    NSDate *localeDate          = [date dateByAddingTimeInterval: interval];
-    NSString *currentDateString = [dateFormatter stringFromDate:localeDate];
-    
+    NSDate *date = [self.datePicker date];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    NSString *currentDateString = [dateFormatter stringFromDate:date];
     NSLog(@"date=%@",currentDateString);
-    
-    return localeDate;
+    return date;
 }
 
 -(NSString *)currentDateString
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    
-    NSDate *date                = [self.datePicker date];
-    NSTimeZone *zone            = [NSTimeZone systemTimeZone];
-    NSInteger interval          = [zone secondsFromGMTForDate: date];
-    NSDate *localeDate          = [date dateByAddingTimeInterval: interval];
-    NSString *currentDateString = [dateFormatter stringFromDate:localeDate];
-    
+    NSDate *date = [self.datePicker date];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    NSString *currentDateString = [dateFormatter stringFromDate:date];
     NSLog(@"date=%@",currentDateString);
-    
     return currentDateString;
 }
 

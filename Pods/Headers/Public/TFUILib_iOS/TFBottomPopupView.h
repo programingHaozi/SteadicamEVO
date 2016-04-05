@@ -1,1 +1,1 @@
-../../../TFUILib_iOS/TFUILib/Classes/Core-View/TFBottomPopupView/TFBottomPopupView.h
+../../../TFUILib_iOS/TFUILib/Classes/Core-View/PopupView/TFBottomPopupView/TFBottomPopupView.h

@@ -10,5 +10,9 @@
 
 @implementation UIButton (Ext)
 
+-(NSString *)title
+{
+    return self.titleLabel.text;
+}
 
 @end

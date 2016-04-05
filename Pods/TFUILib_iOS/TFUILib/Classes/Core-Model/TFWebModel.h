@@ -59,9 +59,5 @@
  */
 @property (nonatomic, strong) UIColor *progressViewColor;
 
-/**
- *  关闭按钮的颜色
- */
-@property (nonatomic, strong) UIColor *closeButtonColor;
 
 @end

@@ -1,0 +1,1 @@
+../../../TFUILib_iOS/TFUILib/Classes/Core-View/Cell/TFSwipeCell/SWUtilityButtonTapGestureRecognizer.h

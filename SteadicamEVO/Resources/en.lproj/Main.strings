@@ -1,11 +1,17 @@
 /* Class = "UIButton"; normalTitle = "Balance tuner"; ObjectID = "0cY-mS-9PA"; */
 "0cY-mS-9PA.normalTitle" = "Balance tuner";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "0om-F7-XhJ"; */
+"0om-F7-XhJ.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "How to user"; ObjectID = "80I-U4-ROp"; */
 "80I-U4-ROp.normalTitle" = "How to user";
 
 /* Class = "UIButton"; normalTitle = "菜单"; ObjectID = "HF3-UM-ec8"; */
 "HF3-UM-ec8.normalTitle" = "菜单";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "gTH-Gf-Eh3"; */
+"gTH-Gf-Eh3.normalTitle" = "Button";
 
 /* Class = "UIButton"; normalTitle = "Guide setup"; ObjectID = "jDF-o9-6GB"; */
 "jDF-o9-6GB.normalTitle" = "Guide setup";

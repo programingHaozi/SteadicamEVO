@@ -7,18 +7,21 @@
 //
 
 #import "TFCustomTabBarItem.h"
+#import "TFLabel.h"
+#import "TFButton.h"
+#import "TFImageView.h"
 
 @interface TFCustomTabBarItem()
 
-@property (nonatomic, strong) UILabel * badgeLabel;
+@property (nonatomic, strong) TFLabel * badgeLabel;
 
-@property (nonatomic, strong) UIButton * barButton;
+@property (nonatomic, strong) TFButton * barButton;
 
-@property (nonatomic, strong) UIImageView *barImageView;
+@property (nonatomic, strong) TFImageView *barImageView;
 
-@property (nonatomic, strong) UILabel *barTitleLabel;
+@property (nonatomic, strong) TFLabel *barTitleLabel;
 
-@property (nonatomic, strong) UIImageView *backgoundImageView;
+@property (nonatomic, strong) TFImageView *backgoundImageView;
 
 
 @end
@@ -118,25 +121,30 @@
     self.titleNormalColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
     self.titleSelectColor = [UIColor colorWithRed:0.01 green:0.66 blue:0.96 alpha:1];
     
-    self.backgoundImageView = [[UIImageView alloc]init];
+    self.backgoundImageView = [[TFImageView alloc]init];
     [self addSubview:self.backgoundImageView];
     
-    self.barButton = [[UIButton alloc]initWithFrame:self.bounds];
-    [self.barButton addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+    self.barButton = [[TFButton alloc]initWithFrame:self.bounds];
+    
+    WS(weakSelf)
+    [self.barButton touchAction:^{
+        
+        [weakSelf btnClick];
+    }];
     [self addSubview:self.barButton];
     
-    self.barImageView = [[UIImageView alloc]init];
+    self.barImageView = [[TFImageView alloc]init];
     self.barImageView.contentMode            = UIViewContentModeBottom;
     self.barImageView.clipsToBounds          = NO;
     self.barImageView.userInteractionEnabled = NO;
     [self addSubview:self.barImageView];
     
-    self.barTitleLabel = [[UILabel alloc]init];
+    self.barTitleLabel = [[TFLabel alloc]init];
     self.barTitleLabel.font            = [UIFont systemFontOfSize:10.0];
     self.barTitleLabel.textAlignment   = NSTextAlignmentCenter;
     [self addSubview:self.barTitleLabel];
     
-    self.badgeLabel = [[UILabel alloc] init];
+    self.badgeLabel = [[TFLabel alloc] init];
     self.badgeLabel.font            = [UIFont boldSystemFontOfSize:11];
     self.badgeLabel.hidden          = YES;
     self.badgeLabel.textColor       = [UIColor whiteColor];
