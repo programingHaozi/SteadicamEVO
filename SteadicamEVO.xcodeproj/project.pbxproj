@@ -41,6 +41,7 @@
 		87CBA5BE1CB41F40004206B0 /* SCETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBA5BD1CB41F40004206B0 /* SCETableViewController.m */; };
 		87CBA5C21CB41F89004206B0 /* SCETableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBA5C11CB41F89004206B0 /* SCETableViewModel.m */; };
 		87CBA5C61CB420EC004206B0 /* MenuViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 87CBA5C51CB420EC004206B0 /* MenuViewModel.json */; };
+		87CBA5CA1CB43885004206B0 /* MenuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBA5C91CB43885004206B0 /* MenuViewCell.m */; };
 		87E2B7511CACFDE30001AB83 /* PrepareChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E2B7501CACFDE30001AB83 /* PrepareChooseView.m */; };
 		87EF95481C8C36C1002241B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EF953F1C8C36C1002241B2 /* AppDelegate.m */; };
 		87EF95491C8C36C1002241B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87EF95411C8C36C1002241B2 /* Assets.xcassets */; };
@@ -124,6 +125,8 @@
 		87CBA5C01CB41F89004206B0 /* SCETableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCETableViewModel.h; sourceTree = "<group>"; };
 		87CBA5C11CB41F89004206B0 /* SCETableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCETableViewModel.m; sourceTree = "<group>"; };
 		87CBA5C51CB420EC004206B0 /* MenuViewModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MenuViewModel.json; sourceTree = "<group>"; };
+		87CBA5C81CB43885004206B0 /* MenuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewCell.h; sourceTree = "<group>"; };
+		87CBA5C91CB43885004206B0 /* MenuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewCell.m; sourceTree = "<group>"; };
 		87E2B74F1CACFDE30001AB83 /* PrepareChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareChooseView.h; sourceTree = "<group>"; };
 		87E2B7501CACFDE30001AB83 /* PrepareChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrepareChooseView.m; sourceTree = "<group>"; };
 		87EF951D1C8C35A3002241B2 /* SteadicamEVO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteadicamEVO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -403,6 +406,15 @@
 			path = SCETableViewModel;
 			sourceTree = "<group>";
 		};
+		87CBA5C71CB4386F004206B0 /* MenuViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				87CBA5C81CB43885004206B0 /* MenuViewCell.h */,
+				87CBA5C91CB43885004206B0 /* MenuViewCell.m */,
+			);
+			path = MenuViewCell;
+			sourceTree = "<group>";
+		};
 		87E2B74D1CACF9370001AB83 /* VIews */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,6 +577,7 @@
 		87EF95641C8C425A002241B2 /* MenuControllers */ = {
 			isa = PBXGroup;
 			children = (
+				87CBA5C71CB4386F004206B0 /* MenuViewCell */,
 				87C6E90D1CABBCE4003ACA26 /* MenuViewModel */,
 				87EF95651C8C425A002241B2 /* AboutViewController */,
 				87EF95661C8C425A002241B2 /* CompanyWebViewController */,
@@ -808,6 +821,7 @@
 				87C6E9041CABBC6E003ACA26 /* BalanceViewModel.m in Sources */,
 				87C6E8EB1CAB9B09003ACA26 /* MenuViewController.m in Sources */,
 				87CBA5B11CB4174A004206B0 /* IntroductionViewCollectionCell.m in Sources */,
+				87CBA5CA1CB43885004206B0 /* MenuViewCell.m in Sources */,
 				87C6E8F41CAB9B44003ACA26 /* LanguageViewController.m in Sources */,
 				87F5B5B11CB3E65F008695D2 /* GifViews.m in Sources */,
 				870668E11C959D260031381C /* LocalizationManager.m in Sources */,

@@ -1,15 +1,22 @@
 
  [
  {
-     "title": "Company Website",
-     "vc": "CompanyWebViewController"
- },
- {
-     "title": "About App",
-     "vc": "AboutViewController"
- },
- {
-     "title": "Language",
-     "vc": "LanguageViewController"
+     "title": "",
+     "dataArray":
+     [
+     {
+         "title": "Company Website",
+         "vc":"CompanyWebViewController"
+     },
+     {
+         "title": "About App",
+         "vc": "AboutViewController"
+     },
+     {
+         "title": "Language",
+         "vc": "LanguageViewController"
+     }
+     ]
  }
+
  ]

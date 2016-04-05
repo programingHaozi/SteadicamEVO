@@ -45,6 +45,7 @@
     [super initViews];
     
     self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle      = UITableViewCellSeparatorStyleNone;
     
     self.BGImageView = [[UIImageView alloc]init];
     self.BGImageView.image = IMAGE(@"background");
