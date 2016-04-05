@@ -10,4 +10,9 @@
 
 @implementation AboutViewModel
 
+-(NSString *)title
+{
+    return @"About APP";
+}
+
 @end

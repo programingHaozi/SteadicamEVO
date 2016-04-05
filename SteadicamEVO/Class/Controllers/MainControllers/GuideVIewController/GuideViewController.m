@@ -31,7 +31,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
 }
 
 #pragma mark- init autolayout bind
@@ -39,6 +38,8 @@
 - (void)initViews
 {
     [super initViews];
+    
+    self.pageControl.pageIndicatorTintColor = [UIColor colorWithRed:99.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
     
     [self.collectionView registerClass:[GuideViewCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([GuideViewCollectionCell class])];
     
@@ -69,6 +70,17 @@
         self.pageControl.currentPage = point.x/SCREEN_WIDTH;
         
         self.pageControl.hidden = point.x/SCREEN_WIDTH == 4;
+        
+//        if (point.x/SCREEN_WIDTH > 0)
+//        {
+//            [self hideLeftButton];
+//            [self enableRightButton];
+//        }
+//        else
+//        {
+//            [self hideRightButton];
+//            [self enableLeftButton];
+//        }
     }];
 }
 
@@ -100,8 +112,8 @@
     
     if (indexPath.row == 4)
     {
-        [cell addSelectViewWithLeft:@"later"
-                              right:@"ok"
+        [cell addSelectViewWithLeft:@"Later"
+                              right:@"OK"
                               title:@"would you like to balance now?"
                               block:^(NSInteger idx) {
             NSLog(@"%ld",(long)idx);

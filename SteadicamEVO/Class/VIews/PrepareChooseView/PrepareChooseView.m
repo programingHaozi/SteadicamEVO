@@ -71,6 +71,10 @@
         
         weakSelf.selectBlock(0);
     }];
+    [self.leftButton setNormalBackgroundImage:IMAGE(@"blackButtonBg")
+                  hightlightedBackgroundImage:nil
+                      disabledBackgroundImage:nil];
+    
     [self addSubview:self.leftButton];
     
     self.rightButton = [[TFButton alloc]init];
@@ -79,8 +83,14 @@
                             textColor:DefaultDarkColor];
     [self.rightButton touchAction:^{
         
-        weakSelf.selectBlock(1);
+        if (weakSelf.selectBlock)
+        {
+            weakSelf.selectBlock(1);
+        }
     }];
+    [self.rightButton setNormalBackgroundImage:IMAGE(@"redButtonBg")
+                   hightlightedBackgroundImage:nil
+                       disabledBackgroundImage:nil];
     [self addSubview:self.rightButton];
     
     self.titlLabel = [[TFLabel alloc]init];

@@ -11,7 +11,10 @@
 
 @property (nonatomic, strong) NSString *gitPath;
 
-- (void)addSelectViewWithLeft:(NSString *)left right:(NSString *)right title:(NSString *)title block:(void(^)(NSInteger idx))selectBlock;
+- (void)addSelectViewWithLeft:(NSString *)left
+                        right:(NSString *)right
+                        title:(NSString *)title
+                        block:(void(^)(NSInteger idx))selectBlock;
 
 - (void)removeSelectView;
 

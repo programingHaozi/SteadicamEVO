@@ -6,8 +6,8 @@
 //  Copyright © 2016年 haozi. All rights reserved.
 //
 
-#import "SCEViewController.h"
+#import "SCETableViewController.h"
 
-@interface MenuViewController : SCEViewController
+@interface MenuViewController : SCETableViewController
 
 @end

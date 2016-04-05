@@ -8,13 +8,14 @@
 
 #import "GuideViewCollectionCell.h"
 #import "PrepareChooseView.h"
+#import "GifViews.h"
 
 @interface GuideViewCollectionCell()
 
 /**
  *  播放gif视图
  */
-@property (nonatomic, strong) UIWebView *gifView;
+@property (nonatomic, strong) GifViews *gifView;
 
 /**
  *  选择视图
@@ -39,7 +40,7 @@
 
 - (void)initViews
 {
-    self.gifView = [[UIWebView alloc]init];
+    self.gifView = [[GifViews alloc]init];
     [self.contentView addSubview:self.gifView];
 }
 
@@ -68,8 +69,8 @@
     self.gifView.hidden = YES;
     
     self.chooseView = [[PrepareChooseView alloc]initWithLeft:left
-                                                                     right:right
-                                                                     title:title];
+                                                       right:right
+                                                       title:title];
     [self.contentView addSubview:self.chooseView];
     
     WS(weakSelf)

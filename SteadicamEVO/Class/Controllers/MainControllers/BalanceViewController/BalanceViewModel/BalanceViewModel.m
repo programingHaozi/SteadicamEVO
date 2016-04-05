@@ -24,11 +24,38 @@
 {
     if (self = [super init])
     {
-        _instructionAry = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
+        _instructionAry = @[
+                            @"Unfold the evo and install the phone",
+                            @"Install lower weights and adjust lower weight to bottom",
+                            @"Set Fore/Aft to center position",
+                            @"Hold properly during balancing",
+                            @"Power on evo into “Balance Mode”",
+                            @"",
+                            @"Adjust the counterweight to: 0 extra weights",
+                            @""
+                            ];
         
-        _gifPathAry = @[@"",@"",@"",@"",@"",@"",@"",@""];
+        _gifPathAry = @[
+                        @"",
+                        @"",
+                        @"",
+                        @"",
+                        @"",
+                        @"",
+                        @"",
+                        @"",
+                        ];
         
-        _titleAry = @[@"Balance tuner",@"Balance tuner",@"Balance tuner",@"Balance tuner",@"Balance tuner",@"Coarse Adjustment",@"Counterweight Adjustment",@"Fine Adjustment",];
+        _titleAry = @[
+                      @"Balance tuner",
+                      @"Balance tuner",
+                      @"Balance tuner",
+                      @"Balance tuner",
+                      @"Balance tuner",
+                      @"Coarse Adjustment",
+                      @"Counterweight Adjustment",
+                      @"Fine Adjustment",
+                      ];
     }
     
     return self;

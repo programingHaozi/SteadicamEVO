@@ -10,4 +10,9 @@
 
 @implementation IntroductionViewModel
 
+- (NSString *)title
+{
+    return @"How to use";
+}
+
 @end

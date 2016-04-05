@@ -10,4 +10,9 @@
 
 @implementation CompanyViewModel
 
+-(NSString *)title
+{
+    return @"Company Website";
+}
+
 @end

@@ -10,4 +10,9 @@
 
 @implementation MenuViewModel
 
+-(NSString *)title
+{
+    return @"Others";
+}
+
 @end

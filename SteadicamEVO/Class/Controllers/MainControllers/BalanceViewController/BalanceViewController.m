@@ -10,12 +10,15 @@
 #import "PrepareChooseView.h"
 #import "BalanceViewModel.h"
 #import "AdjustmentView.h"
+#import "GifViews.h"
+#import "TipsView.h"
+#import "CompanyWebViewController.h"
 
 @interface BalanceViewController ()
 
 @property (nonatomic, strong) PrepareChooseView *chooseView;
 
-@property (weak, nonatomic) IBOutlet UIWebView *gifView;
+@property (weak, nonatomic) IBOutlet GifViews *gifView;
 
 @property (weak, nonatomic) IBOutlet TFLabel *instructionLabel;
 
@@ -41,15 +44,6 @@
 - (void)initViews
 {
     [super initViews];
-    
-    
-//    //自动调整尺寸
-//    self.gifView.scalesPageToFit = YES;
-//    //禁止滚动
-//    self.gifView.scrollView.scrollEnabled = NO;
-//    //设置透明效果
-//    self.gifView.backgroundColor = [UIColor clearColor];
-//    self.gifView.opaque = 0;
     
     self.adjusetmentView = tf_getViewFromNib(NSStringFromClass([AdjustmentView class]));
     self.adjusetmentView.hidden = YES;
@@ -93,7 +87,7 @@
     
     [self.adjusetmentView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(weakSelf.view.mas_top).offset(44);
+        make.top.equalTo(weakSelf.view.mas_top).offset(64);
         make.left.equalTo(weakSelf.view.mas_left).offset(0);
         make.bottom.equalTo(weakSelf.view.mas_bottom).offset(0);
         make.right.equalTo(weakSelf.view.mas_right).offset(0);
@@ -153,13 +147,32 @@
         NSData *gifData = [NSData dataWithContentsOfFile:path];
         
         //加载数据
-        [self.gifView loadData:gifData MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
+//        [self.gifView loadData:gifData MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
     }];
 }
 
 #pragma mark - Action -
 - (IBAction)nextAction:(id)sender
 {
+    
+    if (self.viewModel.balanceState == 7)
+    {
+        TipsView *tipView = [[TipsView alloc]initWithMessage:@"Balance complete"
+                                                 buttonTitle:@"OK"];
+        tipView.frame = CGRectMake(0, 0, 300, 200);
+        
+        WS(weakSelf)
+        tipView.confirmBlock = ^(){
+            
+            [weakSelf dismissPopupView];
+            [weakSelf back];
+        };
+        
+        [self presentPopupView:tipView
+                     animation:[TFPopupViewAnimationSpring new]
+           backgroundClickable:NO];
+    }
+    
     self.viewModel.balanceState ++;
 }
 

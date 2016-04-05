@@ -8,6 +8,6 @@
 
 #import "SCEViewController.h"
 
-@interface HomeViewController : TFViewController
+@interface HomeViewController : SCEViewController
 
 @end
