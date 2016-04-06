@@ -9,7 +9,7 @@
 
 @interface GuideViewCollectionCell : TFCollectionViewCell
 
-@property (nonatomic, strong) NSString *gitPath;
+@property (nonatomic, strong) NSString *moviePath;
 
 - (void)addSelectViewWithLeft:(NSString *)left
                         right:(NSString *)right

@@ -22,6 +22,12 @@
 		872722EC1CB4B52A0098EBEE /* LanguageViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */; };
 		878B29541C992BC5003F2481 /* TFUserDefaults+SCE.m in Sources */ = {isa = PBXBuildFile; fileRef = 878B29531C992BC5003F2481 /* TFUserDefaults+SCE.m */; };
 		87AED74B1CB4DF9400709C76 /* CompanyWebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AED74A1CB4DF9400709C76 /* CompanyWebViewModel.m */; };
+		87AED74D1CB501DB00709C76 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87AED74C1CB501DB00709C76 /* MediaPlayer.framework */; };
+		87AED7561CB5137500709C76 /* 上电进入调重心模式.mov in Resources */ = {isa = PBXBuildFile; fileRef = 87AED7511CB5137500709C76 /* 上电进入调重心模式.mov */; };
+		87AED7571CB5137500709C76 /* 安装底部配重.mov in Resources */ = {isa = PBXBuildFile; fileRef = 87AED7521CB5137500709C76 /* 安装底部配重.mov */; };
+		87AED7581CB5137500709C76 /* 安装手机.mov in Resources */ = {isa = PBXBuildFile; fileRef = 87AED7531CB5137500709C76 /* 安装手机.mov */; };
+		87AED7591CB5137500709C76 /* 展开.mov in Resources */ = {isa = PBXBuildFile; fileRef = 87AED7541CB5137500709C76 /* 展开.mov */; };
+		87AED75A1CB5137500709C76 /* 调整前后位置.mov in Resources */ = {isa = PBXBuildFile; fileRef = 87AED7551CB5137500709C76 /* 调整前后位置.mov */; };
 		87C6E8CD1CAB68FB003ACA26 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E8CC1CAB68FB003ACA26 /* HomeViewController.m */; };
 		87C6E8E61CAB9949003ACA26 /* BalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E8DF1CAB9949003ACA26 /* BalanceViewController.m */; };
 		87C6E8E71CAB9949003ACA26 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E8E21CAB9949003ACA26 /* GuideViewController.m */; };
@@ -89,6 +95,12 @@
 		878B29531C992BC5003F2481 /* TFUserDefaults+SCE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TFUserDefaults+SCE.m"; sourceTree = "<group>"; };
 		87AED7491CB4DF9400709C76 /* CompanyWebViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyWebViewModel.h; sourceTree = "<group>"; };
 		87AED74A1CB4DF9400709C76 /* CompanyWebViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyWebViewModel.m; sourceTree = "<group>"; };
+		87AED74C1CB501DB00709C76 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		87AED7511CB5137500709C76 /* 上电进入调重心模式.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "上电进入调重心模式.mov"; sourceTree = "<group>"; };
+		87AED7521CB5137500709C76 /* 安装底部配重.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "安装底部配重.mov"; sourceTree = "<group>"; };
+		87AED7531CB5137500709C76 /* 安装手机.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "安装手机.mov"; sourceTree = "<group>"; };
+		87AED7541CB5137500709C76 /* 展开.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "展开.mov"; sourceTree = "<group>"; };
+		87AED7551CB5137500709C76 /* 调整前后位置.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "调整前后位置.mov"; sourceTree = "<group>"; };
 		87C6E8CB1CAB68FB003ACA26 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		87C6E8CC1CAB68FB003ACA26 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		87C6E8CF1CAB6E4B003ACA26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -158,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87AED74D1CB501DB00709C76 /* MediaPlayer.framework in Frameworks */,
 				5B967DFDDC50486EBFDFA6D6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +275,18 @@
 				87AED74A1CB4DF9400709C76 /* CompanyWebViewModel.m */,
 			);
 			path = CompanyWebViewModel;
+			sourceTree = "<group>";
+		};
+		87AED7501CB5137500709C76 /* videos */ = {
+			isa = PBXGroup;
+			children = (
+				87AED7511CB5137500709C76 /* 上电进入调重心模式.mov */,
+				87AED7521CB5137500709C76 /* 安装底部配重.mov */,
+				87AED7531CB5137500709C76 /* 安装手机.mov */,
+				87AED7541CB5137500709C76 /* 展开.mov */,
+				87AED7551CB5137500709C76 /* 调整前后位置.mov */,
+			);
+			path = videos;
 			sourceTree = "<group>";
 		};
 		87C6E8DD1CAB9949003ACA26 /* BalanceViewController */ = {
@@ -527,6 +552,7 @@
 		87EF95401C8C36C1002241B2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				87AED7501CB5137500709C76 /* videos */,
 				87EF95411C8C36C1002241B2 /* Assets.xcassets */,
 				87EF95441C8C36C1002241B2 /* Main.storyboard */,
 				87EF95421C8C36C1002241B2 /* LaunchScreen.storyboard */,
@@ -695,6 +721,7 @@
 		C808C94978E5B9185FC56B69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87AED74C1CB501DB00709C76 /* MediaPlayer.framework */,
 				43686846EEC97D5B9EA405C7 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -764,10 +791,15 @@
 			files = (
 				87EF95491C8C36C1002241B2 /* Assets.xcassets in Resources */,
 				872591E31CB39FF0006DFC4A /* AdjustmentView.xib in Resources */,
+				87AED75A1CB5137500709C76 /* 调整前后位置.mov in Resources */,
 				872722EC1CB4B52A0098EBEE /* LanguageViewModel.json in Resources */,
+				87AED7561CB5137500709C76 /* 上电进入调重心模式.mov in Resources */,
 				870668E61C959D5E0031381C /* Localizable.strings in Resources */,
 				872722E61CB4B4480098EBEE /* AboutViewModel.json in Resources */,
 				87EF954B1C8C36C1002241B2 /* Main.storyboard in Resources */,
+				87AED7581CB5137500709C76 /* 安装手机.mov in Resources */,
+				87AED7571CB5137500709C76 /* 安装底部配重.mov in Resources */,
+				87AED7591CB5137500709C76 /* 展开.mov in Resources */,
 				870668E01C959D260031381C /* Localizable.sh in Resources */,
 				87EF954A1C8C36C1002241B2 /* LaunchScreen.storyboard in Resources */,
 				87CBA5C61CB420EC004206B0 /* MenuViewModel.json in Resources */,

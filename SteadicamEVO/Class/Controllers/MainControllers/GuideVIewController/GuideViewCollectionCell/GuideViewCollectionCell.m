@@ -58,7 +58,11 @@
 
 - (void)bindData
 {
-    
+    WS(weakSelf)
+    [RACObserve(self, moviePath) subscribeNext:^(NSString *path) {
+        
+        weakSelf.gifView.moviePath = path;
+    }];
 }
 
 - (void)addSelectViewWithLeft:(NSString *)left
@@ -94,5 +98,6 @@
         [self.chooseView removeFromSuperview];
     }
 }
+
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "GifViews.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface GifViews()
 
@@ -15,6 +16,8 @@
 @property (nonatomic, strong) UIWebView *gifView;
 
 @property (nonatomic, strong) TFLabel *promptLabel;
+
+@property (nonatomic, strong) MPMoviePlayerController *moviePlayer;
 
 @end
 
@@ -50,26 +53,37 @@
     self.bgImageView.image = IMAGE(@"guideGifBg");
     [self addSubview:self.bgImageView];
     
-    self.gifView = [[UIWebView alloc]init];
+//    self.gifView = [[UIWebView alloc]init];
     
-    //自动调整尺寸
-    self.gifView.scalesPageToFit = YES;
-    //禁止滚动
-    self.gifView.scrollView.scrollEnabled = NO;
-    //设置透明效果
-    self.gifView.backgroundColor = [UIColor clearColor];
-    self.gifView.opaque = 0;
+//    //自动调整尺寸
+//    self.gifView.scalesPageToFit = YES;
+//    //禁止滚动
+//    self.gifView.scrollView.scrollEnabled = NO;
+//    //设置透明效果
+//    self.gifView.backgroundColor = [UIColor clearColor];
+//    self.gifView.opaque = 0;
+//    
+//    [self addSubview:self.gifView];
     
-    [self addSubview:self.gifView];
+   
+    self.moviePlayer = [[MPMoviePlayerController alloc]init];
+    self.moviePlayer.controlStyle = MPMovieControlStyleNone;
+    self.moviePlayer.shouldAutoplay = YES;
+    self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
+    [self.moviePlayer setFullscreen:YES animated:YES];
+    self.moviePlayer.scalingMode = MPMovieScalingModeFill;
     
-    self.promptLabel = [[TFLabel alloc]init];
-    self.promptLabel.backgroundColor = [UIColor clearColor];
-    self.promptLabel.textColor = [UIColor whiteColor];
-    self.promptLabel.numberOfLines = 0;
-    self.promptLabel.verticalTextAlignment = UIControlContentVerticalAlignmentTop;
-    self.promptLabel.text = @"Series of GIFs to show how to use EVO";
+    [self addSubview:self.moviePlayer.view];
     
-    [self addSubview:self.promptLabel];
+    
+//    self.promptLabel = [[TFLabel alloc]init];
+//    self.promptLabel.backgroundColor = [UIColor clearColor];
+//    self.promptLabel.textColor = [UIColor whiteColor];
+//    self.promptLabel.numberOfLines = 0;
+//    self.promptLabel.verticalTextAlignment = UIControlContentVerticalAlignmentTop;
+//    self.promptLabel.text = @"Series of GIFs to show how to use EVO";
+//    
+//    [self addSubview:self.promptLabel];
     
 }
 
@@ -84,29 +98,47 @@
         make.right.equalTo(weakSelf.mas_right).offset(0);
     }];
     
-    [self.gifView mas_makeConstraints:^(MASConstraintMaker *make) {
+//    [self.gifView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        
+//        make.top.equalTo(weakSelf.mas_top).offset(0);
+//        make.left.equalTo(weakSelf.mas_left).offset(0);
+//        make.bottom.equalTo(weakSelf.mas_bottom).offset(0);
+//        make.right.equalTo(weakSelf.mas_right).offset(0);
+//    }];
+    
+    [self.moviePlayer.view mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(weakSelf.mas_top).offset(0);
-        make.left.equalTo(weakSelf.mas_left).offset(0);
-        make.bottom.equalTo(weakSelf.mas_bottom).offset(0);
-        make.right.equalTo(weakSelf.mas_right).offset(0);
+                make.top.equalTo(weakSelf.mas_top).offset(0);
+                make.left.equalTo(weakSelf.mas_left).offset(0);
+                make.bottom.equalTo(weakSelf.mas_bottom).offset(0);
+                make.right.equalTo(weakSelf.mas_right).offset(0);
     }];
     
-    [self.promptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.equalTo(weakSelf.mas_top).offset(65);
-        make.left.equalTo(weakSelf.mas_left).offset(35);
-        make.bottom.equalTo(weakSelf.mas_bottom).offset(0);
-        make.right.equalTo(weakSelf.mas_right).offset(-35);
-    }];
+//    [self.promptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        
+//        make.top.equalTo(weakSelf.mas_top).offset(65);
+//        make.left.equalTo(weakSelf.mas_left).offset(35);
+//        make.bottom.equalTo(weakSelf.mas_bottom).offset(0);
+//        make.right.equalTo(weakSelf.mas_right).offset(-35);
+//    }];
 }
 
 -(void)bindData
 {
-//    [RACObserve(self, promptStr) subscribeNext:^(NSString * str) {
-//        
-//        self.promptLabel.text = str;
-//    }];
+    [RACObserve(self, moviePath) subscribeNext:^(NSString * str) {
+        
+        if (self.moviePlayer && str)
+        {
+//            if (self.moviePlayer.playbackState == MPMoviePlaybackStatePlaying)
+//            {
+//                return ;
+//            }
+            
+            NSURL *url = [NSURL fileURLWithPath:str];
+            [self.moviePlayer setContentURL:url];
+            [self.moviePlayer play];
+        }
+    }];
 }
 
 @end

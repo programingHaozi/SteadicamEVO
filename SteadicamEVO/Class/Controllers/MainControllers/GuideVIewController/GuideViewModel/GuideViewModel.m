@@ -26,4 +26,18 @@
     return @"Guide setup";
 }
 
+-(NSArray *)moviePathAry
+{
+    
+    NSArray *ary = @[
+                     [[NSBundle mainBundle] pathForResource:@"安装底部配重" ofType:@"mov"],
+                     [[NSBundle mainBundle] pathForResource:@"上电进入调重心模式" ofType:@"mov"],
+                     [[NSBundle mainBundle] pathForResource:@"安装手机" ofType:@"mov"],
+                     [[NSBundle mainBundle] pathForResource:@"展开" ofType:@"mov"],
+                     [[NSBundle mainBundle] pathForResource:@"调整前后位置" ofType:@"mov"],
+                     ];
+    
+    return ary;
+}
+
 @end

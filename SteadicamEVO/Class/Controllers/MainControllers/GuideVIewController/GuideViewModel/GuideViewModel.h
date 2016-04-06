@@ -10,4 +10,6 @@
 
 @interface GuideViewModel : SCEViewModel
 
+@property (nonatomic, strong, readonly) NSArray * moviePathAry;
+
 @end

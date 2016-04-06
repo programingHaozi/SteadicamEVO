@@ -8,6 +8,7 @@
 
 #import "GuideViewController.h"
 #import "GuideViewCollectionCell.h"
+#import "GuideViewModel.h"
 
 @interface GuideViewController ()<
                                   UICollectionViewDataSource,
@@ -23,9 +24,12 @@
  */
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
+@property (nonatomic, strong) GuideViewModel *viewModel;
+
 @end
 
 @implementation GuideViewController
+@dynamic viewModel;
 
 - (void)viewDidLoad
 {
@@ -71,16 +75,17 @@
         
         self.pageControl.hidden = point.x/SCREEN_WIDTH == 4;
         
-        if (point.x/SCREEN_WIDTH > 0)
+        if (point.x/SCREEN_WIDTH >= 1)
         {
             [self hideLeftButton];
             [self showRightButton];
         }
-        else
-        {
+        
+       if (point.x/SCREEN_WIDTH == 0)
+       {
             [self hideRightButton];
             [self showLeftButton];
-        }
+       }
     }];
 }
 
@@ -108,6 +113,8 @@
 {
     GuideViewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GuideViewCollectionCell class]) forIndexPath:indexPath];
     
+    
+    
     [cell removeSelectView];
     
     if (indexPath.row == 4)
@@ -119,8 +126,26 @@
                                   [self back];
         }];
     }
+    else
+    {
+//        cell.moviePath = self.viewModel.moviePathAry[indexPath.row];
+    }
     
     return cell;
 }
+
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    GuideViewCollectionCell *tempCell = (GuideViewCollectionCell *)cell;
+    
+    if (indexPath.row != 4)
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            tempCell.moviePath = self.viewModel.moviePathAry[indexPath.row];
+        });
+        
+    }
+}
+
 
 @end
