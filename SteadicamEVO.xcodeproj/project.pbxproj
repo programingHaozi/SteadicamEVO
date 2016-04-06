@@ -21,6 +21,8 @@
 		872722EA1CB4B4D70098EBEE /* LanguageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 872722E91CB4B4D70098EBEE /* LanguageViewCell.m */; };
 		872722EC1CB4B52A0098EBEE /* LanguageViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */; };
 		878B29541C992BC5003F2481 /* TFUserDefaults+SCE.m in Sources */ = {isa = PBXBuildFile; fileRef = 878B29531C992BC5003F2481 /* TFUserDefaults+SCE.m */; };
+		87A65C7F1CB544B0002D7C2C /* 正确手持方式.png in Resources */ = {isa = PBXBuildFile; fileRef = 87A65C7D1CB544B0002D7C2C /* 正确手持方式.png */; };
+		87A65C801CB544B0002D7C2C /* 正确重心位置.png in Resources */ = {isa = PBXBuildFile; fileRef = 87A65C7E1CB544B0002D7C2C /* 正确重心位置.png */; };
 		87AED74B1CB4DF9400709C76 /* CompanyWebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AED74A1CB4DF9400709C76 /* CompanyWebViewModel.m */; };
 		87AED74D1CB501DB00709C76 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87AED74C1CB501DB00709C76 /* MediaPlayer.framework */; };
 		87AED7561CB5137500709C76 /* 上电进入调重心模式.mov in Resources */ = {isa = PBXBuildFile; fileRef = 87AED7511CB5137500709C76 /* 上电进入调重心模式.mov */; };
@@ -93,6 +95,8 @@
 		872BE0231CB3578700A8CD67 /* Environment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		878B29521C992BC5003F2481 /* TFUserDefaults+SCE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TFUserDefaults+SCE.h"; sourceTree = "<group>"; };
 		878B29531C992BC5003F2481 /* TFUserDefaults+SCE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TFUserDefaults+SCE.m"; sourceTree = "<group>"; };
+		87A65C7D1CB544B0002D7C2C /* 正确手持方式.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "正确手持方式.png"; sourceTree = "<group>"; };
+		87A65C7E1CB544B0002D7C2C /* 正确重心位置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "正确重心位置.png"; sourceTree = "<group>"; };
 		87AED7491CB4DF9400709C76 /* CompanyWebViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyWebViewModel.h; sourceTree = "<group>"; };
 		87AED74A1CB4DF9400709C76 /* CompanyWebViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyWebViewModel.m; sourceTree = "<group>"; };
 		87AED74C1CB501DB00709C76 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -280,6 +284,8 @@
 		87AED7501CB5137500709C76 /* videos */ = {
 			isa = PBXGroup;
 			children = (
+				87A65C7D1CB544B0002D7C2C /* 正确手持方式.png */,
+				87A65C7E1CB544B0002D7C2C /* 正确重心位置.png */,
 				87AED7511CB5137500709C76 /* 上电进入调重心模式.mov */,
 				87AED7521CB5137500709C76 /* 安装底部配重.mov */,
 				87AED7531CB5137500709C76 /* 安装手机.mov */,
@@ -762,6 +768,7 @@
 				TargetAttributes = {
 					87EF951C1C8C35A3002241B2 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = W25H29HQNH;
 					};
 				};
 			};
@@ -791,11 +798,13 @@
 			files = (
 				87EF95491C8C36C1002241B2 /* Assets.xcassets in Resources */,
 				872591E31CB39FF0006DFC4A /* AdjustmentView.xib in Resources */,
+				87A65C7F1CB544B0002D7C2C /* 正确手持方式.png in Resources */,
 				87AED75A1CB5137500709C76 /* 调整前后位置.mov in Resources */,
 				872722EC1CB4B52A0098EBEE /* LanguageViewModel.json in Resources */,
 				87AED7561CB5137500709C76 /* 上电进入调重心模式.mov in Resources */,
 				870668E61C959D5E0031381C /* Localizable.strings in Resources */,
 				872722E61CB4B4480098EBEE /* AboutViewModel.json in Resources */,
+				87A65C801CB544B0002D7C2C /* 正确重心位置.png in Resources */,
 				87EF954B1C8C36C1002241B2 /* Main.storyboard in Resources */,
 				87AED7581CB5137500709C76 /* 安装手机.mov in Resources */,
 				87AED7571CB5137500709C76 /* 安装底部配重.mov in Resources */,
@@ -1033,6 +1042,7 @@
 			baseConfigurationReference = DE0669904BB67F47C544095E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;
@@ -1047,6 +1057,7 @@
 			baseConfigurationReference = DC984F69B58C1D9DFA3D12CB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;

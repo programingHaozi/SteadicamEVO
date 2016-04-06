@@ -113,7 +113,7 @@
 {
     GuideViewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GuideViewCollectionCell class]) forIndexPath:indexPath];
     
-    
+//    cell.moviePath = self.viewModel.moviePathAry[indexPath.row];
     
     [cell removeSelectView];
     
@@ -126,26 +126,8 @@
                                   [self back];
         }];
     }
-    else
-    {
-//        cell.moviePath = self.viewModel.moviePathAry[indexPath.row];
-    }
     
     return cell;
 }
-
--(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    GuideViewCollectionCell *tempCell = (GuideViewCollectionCell *)cell;
-    
-    if (indexPath.row != 4)
-    {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            tempCell.moviePath = self.viewModel.moviePathAry[indexPath.row];
-        });
-        
-    }
-}
-
 
 @end

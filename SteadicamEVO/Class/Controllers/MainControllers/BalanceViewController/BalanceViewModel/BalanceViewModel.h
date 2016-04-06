@@ -26,6 +26,6 @@ typedef NS_ENUM(NSUInteger, BalanceState)
 
 @property (nonatomic, strong) NSString *instruction;
 
-@property (nonatomic, strong) NSString *gifPath;
+@property (nonatomic, strong) NSString *moviePath;
 
 @end

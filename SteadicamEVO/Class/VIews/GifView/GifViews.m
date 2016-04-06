@@ -72,6 +72,9 @@
     self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
     [self.moviePlayer setFullscreen:YES animated:YES];
     self.moviePlayer.scalingMode = MPMovieScalingModeFill;
+//    self.moviePlayer.view.backgroundColor = [UIColor clearColor];
+//    UIView *swipableView = [self findView:self.moviePlayer.view withName:@"MPSwipableView"];
+//    swipableView.backgroundColor = [UIColor clearColor];
     
     [self addSubview:self.moviePlayer.view];
     
@@ -129,16 +132,47 @@
         
         if (self.moviePlayer && str)
         {
-//            if (self.moviePlayer.playbackState == MPMoviePlaybackStatePlaying)
-//            {
-//                return ;
-//            }
-            
-            NSURL *url = [NSURL fileURLWithPath:str];
-            [self.moviePlayer setContentURL:url];
-            [self.moviePlayer play];
+            if ([str hasSuffix:@"png"])
+            {
+                [self.moviePlayer stop];
+                [self bringSubviewToFront:self.bgImageView];
+                self.bgImageView.image = [UIImage imageWithContentsOfFile:str];
+            }
+            else if ([str hasSuffix:@"mov"])
+            {
+                self.bgImageView.image = IMAGE(@"guideGifBg");
+                [self bringSubviewToFront:self.moviePlayer.view];
+                NSURL *url = [NSURL fileURLWithPath:str];
+                [self.moviePlayer setContentURL:url];
+                [self.moviePlayer play];
+            }
         }
     }];
+}
+
+#pragma mark - private method -
+
+- (UIView *)findView:(UIView *)aView withName:(NSString *)name
+{
+    Class cl = [aView class];
+    NSString *desc = [cl description];
+    
+    if ([name isEqualToString:desc])
+    {
+        return aView;
+    }
+    
+    for (NSUInteger i = 0; i < [aView.subviews count]; i++)
+    {
+        UIView *subView = [aView.subviews objectAtIndex:i];
+        subView = [self findView:subView withName:name];
+        if (subView)
+        {
+            return subView;
+        }
+    }
+    
+    return nil;
 }
 
 @end

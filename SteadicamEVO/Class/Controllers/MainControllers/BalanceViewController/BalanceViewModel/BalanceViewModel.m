@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) NSArray *instructionAry;
 
-@property (nonatomic, strong) NSArray *gifPathAry;
+@property (nonatomic, strong) NSArray *moviePathAry;
 
 @property (nonatomic, strong) NSArray *titleAry;
 
@@ -35,16 +35,16 @@
                             @""
                             ];
         
-        _gifPathAry = @[
-                        @"",
-                        @"",
-                        @"",
-                        @"",
-                        @"",
-                        @"",
-                        @"",
-                        @"",
-                        ];
+        _moviePathAry = @[
+                         [[NSBundle mainBundle] pathForResource:@"安装手机" ofType:@"mov"],
+                         [[NSBundle mainBundle] pathForResource:@"安装底部配重" ofType:@"mov"],
+                         [[NSBundle mainBundle] pathForResource:@"调整前后位置" ofType:@"mov"],
+                         [[NSBundle mainBundle] pathForResource:@"正确手持方式" ofType:@"png"],
+                         [[NSBundle mainBundle] pathForResource:@"上电进入调重心模式" ofType:@"mov"],
+                         @"",
+                         [[NSBundle mainBundle] pathForResource:@"安装底部配重" ofType:@"mov"],
+                         @""
+                         ];
         
         _titleAry = @[
                       @"Balance tuner",
@@ -77,7 +77,7 @@
     
     self.instruction = self.instructionAry[balanceState];
     
-    self.gifPath = self.gifPathAry[balanceState];
+    self.moviePath = self.moviePathAry[balanceState];
     
 }
 

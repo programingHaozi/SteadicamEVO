@@ -144,15 +144,11 @@
         
     }];
     
-    [RACObserve(self.viewModel, gifPath) subscribeNext:^(NSString *path) {
+    [RACObserve(self.viewModel, moviePath) subscribeNext:^(NSString *path) {
         
         @strongify(self)
     
-        //将图片转为NSData
-        NSData *gifData = [NSData dataWithContentsOfFile:path];
-        
-        //加载数据
-//        [self.gifView loadData:gifData MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
+        self.gifView.moviePath = path;
     }];
 }
 
