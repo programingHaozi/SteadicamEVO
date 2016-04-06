@@ -68,7 +68,7 @@
         self.menuTitle.text = title;
         self.menuTitle.textColor = [UINavigationBar appearance].titleTextAttributes[NSForegroundColorAttributeName];
         self.menuTitle.textAlignment = NSTextAlignmentCenter;
-        self.menuTitle.font = self.configuration.cellTextLabelFont;
+        self.menuTitle.font = self.configuration.cellTextFont;
         [self.menuButton addSubview:self.menuTitle];
         
         self.menuArrow = [[UIImageView alloc] initWithImage:self.configuration.arrowImage];
@@ -76,11 +76,12 @@
         
         // Init table view
         self.tableView = [[TFNavigationDropdownMenutTableView alloc] initWithFrame:CGRectMake(0,
-                                                                       0,
-                                                                       self.mainScreenBounds.size.width,
-                                                                       (CGFloat)(self.items.count) * self.configuration.cellHeight)
-                                                      items:items
-                                              configuration:self.configuration];
+                                                                                              0,
+                                                                                              self.mainScreenBounds.size.width,
+                                                                                              (CGFloat)(self.items.count) * self.configuration.cellHeight)
+                                                                             items:items
+                                                                     configuration:self.configuration];
+        
         __weak typeof(self) weakSelf = self;
         self.tableView.selectRowAtIndexPathHandler = ^(NSUInteger indexPath){
             __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -200,25 +201,25 @@
     self.configuration.cellBackgroundColor = cellBackgroundColor;
 }
 
-- (void)setCellTextLabelColor:(UIColor *)cellTextLabelColor
+- (void)setCellTextColor:(UIColor *)cellTextColor
 {
-    self.configuration.cellTextLabelColor = cellTextLabelColor;
+    self.configuration.cellTextColor = cellTextColor;
 }
 
-- (void)setCellTextLabelFont:(UIFont *)cellTextLabelFont
+- (void)setCellTextFont:(UIFont *)cellTextFont
 {
-    self.configuration.cellTextLabelFont = cellTextLabelFont;
-    self.menuTitle.font = self.configuration.cellTextLabelFont;
+    self.configuration.cellTextFont = cellTextFont;
+    self.menuTitle.font = self.configuration.cellTextFont;
 }
 
-- (void)setCellSelectionColor:(UIColor *)cellSelectionColor
+- (void)setCellSelectedColor:(UIColor *)cellSelectedColor
 {
-    self.configuration.cellSelectionColor = cellSelectionColor;
+    self.configuration.cellSelectedColor = cellSelectedColor;
 }
 
-- (void)setCheckImage:(UIImage *)checkMarkImage
+- (void)setCheckImage:(UIImage *)checkImage
 {
-    self.configuration.checkMarkImage = checkMarkImage;
+    self.configuration.checkImage = checkImage;
 }
 
 - (void)setAnimationDuration:(NSTimeInterval)animationDuration

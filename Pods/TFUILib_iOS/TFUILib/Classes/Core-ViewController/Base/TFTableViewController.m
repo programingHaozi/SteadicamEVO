@@ -101,15 +101,24 @@
         Class cellClass=NSClassFromString(cellClassName);
         if (cellClass)
         {
-            id cell=[[cellClass alloc]init];
-            if ([cell isKindOfClass:[TFTableViewCell class]])
+            if ([cellClass isSubclassOfClass:[TFTableViewCell class]])
             {
-                double (*cellHeight)(id ,SEL);
-                cellHeight = (CGFloat (*)(id,SEL))[cell methodForSelector:NSSelectorFromString(@"cellHeight")];
+                id cell=[[cellClass alloc]init];
+                double (*cellHeight)(id ,SEL)=(CGFloat (*)(id,SEL))[cell methodForSelector:NSSelectorFromString(@"cellHeight")];
                 height = cellHeight(cell, @selector(cellHeight));
             }
         }
     });
+    
+    if (self.defaultCell)
+    {
+        if ([self.defaultCell isSubclassOfClass:[TFTableViewCell class]])
+        {
+            id cell=[[self.defaultCell alloc]init];
+            double (*cellHeight)(id ,SEL) = (CGFloat (*)(id,SEL))[cell methodForSelector:NSSelectorFromString(@"cellHeight")];
+            height = cellHeight(cell, @selector(cellHeight));
+        }
+    }
     
     return height;
 }
@@ -124,19 +133,28 @@
         Class cellClass=NSClassFromString(cellClassName);
         if (cellClass)
         {
-            id cell=[[cellClass alloc]init];
-            if ([cell isKindOfClass:[TFTableViewCell class]])
+            if ([cellClass isSubclassOfClass:[TFTableViewCell class]])
             {
                 exist=YES;
             }
         }
     });
     
+    if (self.defaultCell)
+    {
+        if ([self.defaultCell isSubclassOfClass:[TFTableViewCell class]])
+        {
+            NSString *cellClassName=NSStringFromClass(self.defaultCell);
+            TFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClassName];
+            cell.data=[self.viewModel dataAtIndexPath:indexPath];
+            return cell;
+        }
+    }
+    
     if (exist)
     {
         NSString *className=NSStringFromClass([self class]);
         NSString *cellClassName   = [className stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewCell"];
-        
         TFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClassName];
         cell.data=[self.viewModel dataAtIndexPath:indexPath];
         return cell;
@@ -149,6 +167,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     id data = [self.viewModel dataAtIndexPath:indexPath];
     [self handleData:data];
 }
@@ -305,6 +324,15 @@
     _footerViewHeight=footerViewHeight;
     self.footerView.height    = footerViewHeight;
     self.tableView.tableFooterView = self.footerView;
+}
+
+-(void)setDefaultCell:(Class)defaultCell
+{
+    _defaultCell=defaultCell;
+    if (defaultCell)
+    {
+        [self.tableView registerClass:defaultCell forCellReuseIdentifier:NSStringFromClass(defaultCell)];
+    }
 }
 
 @end

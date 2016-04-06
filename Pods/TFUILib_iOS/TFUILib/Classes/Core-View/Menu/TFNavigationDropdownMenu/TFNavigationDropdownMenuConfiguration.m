@@ -28,10 +28,10 @@
     
     self.cellHeight = 50;
     self.cellBackgroundColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:220/255.0 alpha:1.0];
-    self.cellTextLabelColor = [UIColor whiteColor];
-    self.cellTextLabelFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
-    self.cellSelectionColor = [UIColor colorWithRed:0/255.0 green:160/255.0 blue:195/255.0 alpha: 1.0];
-    self.checkMarkImage = [UIImage imageWithContentsOfFile:checkMarkImagePath];
+    self.cellTextColor = [UIColor whiteColor];
+    self.cellTextFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
+    self.cellSelectedColor = [UIColor colorWithRed:0/255.0 green:160/255.0 blue:195/255.0 alpha: 1.0];
+    self.checkImage = [UIImage imageWithContentsOfFile:checkMarkImagePath];
     self.animationDuration = 0.5;
     self.arrowImage = [UIImage imageWithContentsOfFile:arrowImagePath];
     self.arrowPadding = 15;

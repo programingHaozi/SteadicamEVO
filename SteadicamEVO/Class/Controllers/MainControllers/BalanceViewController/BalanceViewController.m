@@ -39,6 +39,8 @@
     // Do any additional setup after loading the view.
     
     self.viewModel.balanceState = BalanceStateUnFold;
+    
+    [self hideRightButton];
 }
 
 - (void)initViews
@@ -68,6 +70,9 @@
             weakSelf.gifView.hidden          = NO;
             weakSelf.instructionLabel.hidden = NO;
             weakSelf.nextButton.hidden       = NO;
+            
+            [weakSelf hideLeftButton];
+            [weakSelf showRightButton];
         }
     };
 }

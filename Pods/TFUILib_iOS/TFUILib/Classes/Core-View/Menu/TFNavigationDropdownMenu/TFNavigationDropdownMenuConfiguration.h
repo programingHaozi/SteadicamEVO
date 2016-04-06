@@ -11,10 +11,10 @@
 @interface TFNavigationDropdownMenuConfiguration : NSObject
 @property (nonatomic, assign) CGFloat cellHeight;
 @property (nonatomic, strong) UIColor *cellBackgroundColor;
-@property (nonatomic, strong) UIColor *cellTextLabelColor;
-@property (nonatomic, strong) UIFont *cellTextLabelFont;
-@property (nonatomic, strong) UIColor *cellSelectionColor;
-@property (nonatomic, strong) UIImage *checkMarkImage;
+@property (nonatomic, strong) UIColor *cellTextColor;
+@property (nonatomic, strong) UIFont *cellTextFont;
+@property (nonatomic, strong) UIColor *cellSelectedColor;
+@property (nonatomic, strong) UIImage *checkImage;
 @property (nonatomic, strong) UIImage *arrowImage;
 @property (nonatomic, assign) CGFloat arrowPadding;
 @property (nonatomic, assign) NSTimeInterval animationDuration;

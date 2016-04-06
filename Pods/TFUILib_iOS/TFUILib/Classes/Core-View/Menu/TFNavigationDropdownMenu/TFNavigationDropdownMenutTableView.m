@@ -83,7 +83,7 @@
     self.selectRowAtIndexPathHandler(indexPath.row);
     [self reloadData];
     TFNavigationDropdownMenutTableCell *cell = (TFNavigationDropdownMenutTableCell *)[tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = self.configuration.cellSelectionColor;
+    cell.contentView.backgroundColor = self.configuration.cellSelectedColor;
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath

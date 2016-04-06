@@ -21,6 +21,8 @@ UITableViewDataSource
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self hideRightButton];
 }
 
 - (void)initViews
@@ -39,11 +41,5 @@ UITableViewDataSource
     [super bindData];
 }
 
-//#pragma mark - datasource -
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return (SCREEN_HEIGHT - 64)/3;
-//}
 
 @end

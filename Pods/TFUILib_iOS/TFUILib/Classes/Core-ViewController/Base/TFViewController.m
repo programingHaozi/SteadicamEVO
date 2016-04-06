@@ -754,7 +754,7 @@
 
 -(void)showRightButton
 {
-    self.customNavigationItem.leftBarButtonItem.customView.hidden = NO;
+    self.customNavigationItem.rightBarButtonItem.customView.hidden = NO;
 }
 
 - (void)enableLeftButton

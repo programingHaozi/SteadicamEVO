@@ -24,14 +24,14 @@
         self.contentView.backgroundColor = self.configuration.cellBackgroundColor;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.textLabel.textAlignment = NSTextAlignmentLeft;
-        self.textLabel.textColor = self.configuration.cellTextLabelColor;
-        self.textLabel.font = self.configuration.cellTextLabelFont;
+        self.textLabel.textColor = self.configuration.cellTextColor;
+        self.textLabel.font = self.configuration.cellTextFont;
         self.textLabel.frame = CGRectMake(20, 0, self.cellContentFrame.size.width, self.cellContentFrame.size.height);
         
         // Checkmark icon
         self.checkmarkIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.cellContentFrame.size.width - 50, (self.cellContentFrame.size.height - 30)/2, 30, 30)];
         self.checkmarkIcon.hidden = YES;
-        self.checkmarkIcon.image = self.configuration.checkMarkImage;
+        self.checkmarkIcon.image = self.configuration.checkImage;
         self.checkmarkIcon.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:self.checkmarkIcon];
         

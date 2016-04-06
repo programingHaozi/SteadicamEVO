@@ -48,6 +48,11 @@
 @property (nonatomic, assign) CGFloat footerViewHeight;
 
 /**
+ *  tableView默认的cell
+ */
+@property (nonatomic, strong) Class defaultCell;
+
+/**
  *  是否需要使用JSON文件模板
  */
 @property (nonatomic, assign) BOOL isUseTemplate;

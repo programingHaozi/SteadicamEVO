@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '824177805B6ABDD4959945E0'
+               BlueprintIdentifier = 'C7F69358BF45006B4245A9D1'
                BlueprintName = 'TFCoreLib_iOS'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libTFCoreLib_iOS.a'>

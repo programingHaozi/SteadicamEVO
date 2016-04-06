@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '12C47E3CBCAD99B873CFDDB5'
+               BlueprintIdentifier = 'C51DB332706562BACE3A4E32'
                BlueprintName = 'TorqueSDK'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libTorqueSDK.a'>

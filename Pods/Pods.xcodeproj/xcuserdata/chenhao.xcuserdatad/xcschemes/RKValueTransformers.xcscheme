@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6FCEC20F22F4947B753387B0'
+               BlueprintIdentifier = 'B4BD4BA09DBD827839F229A6'
                BlueprintName = 'RKValueTransformers'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libRKValueTransformers.a'>

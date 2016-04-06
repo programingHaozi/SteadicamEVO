@@ -71,16 +71,16 @@
         
         self.pageControl.hidden = point.x/SCREEN_WIDTH == 4;
         
-//        if (point.x/SCREEN_WIDTH > 0)
-//        {
-//            [self hideLeftButton];
-//            [self enableRightButton];
-//        }
-//        else
-//        {
-//            [self hideRightButton];
-//            [self enableLeftButton];
-//        }
+        if (point.x/SCREEN_WIDTH > 0)
+        {
+            [self hideLeftButton];
+            [self showRightButton];
+        }
+        else
+        {
+            [self hideRightButton];
+            [self showLeftButton];
+        }
     }];
 }
 
