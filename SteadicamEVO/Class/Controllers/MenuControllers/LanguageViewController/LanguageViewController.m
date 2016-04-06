@@ -7,31 +7,54 @@
 //
 
 #import "LanguageViewController.h"
+#import "LanguageViewCell.h"
 
 @interface LanguageViewController ()
+
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
 
 @implementation LanguageViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)initViews
+{
+    [super initViews];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)autolayoutViews
+{
+    [super autolayoutViews];
 }
-*/
+
+-(void)bindData
+{
+    [super bindData];
+}
+
+#pragma mark - delegate -
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LanguageViewCell *cell = (LanguageViewCell *)[super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    cell.selectLanguage = self.selectedIndexPath == indexPath;
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedIndexPath = indexPath;
+    
+    [self.tableView reloadData];
+}
 
 @end

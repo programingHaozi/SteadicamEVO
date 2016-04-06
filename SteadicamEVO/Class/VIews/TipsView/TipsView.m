@@ -69,7 +69,7 @@
     
     self.messageLabel               = [[TFLabel alloc]init];
     self.messageLabel.text          = message;
-    self.messageLabel.textColor     = [UIColor blackColor];
+    self.messageLabel.textColor     = HEXCOLOR(0x2d2e2e, 1);
     self.messageLabel.textAlignment = NSTextAlignmentCenter;
     self.messageLabel.font          = [UIFont boldSystemFontOfSize:18];
     [self addSubview:self.messageLabel];
@@ -77,7 +77,7 @@
     self.confirmButton = [[TFButton alloc]init];
     [self.confirmButton setNormalTitle:title
                               textFont:nil
-                             textColor:[UIColor blackColor]];
+                             textColor:HEXCOLOR(0x2d2e2e, 1)];
     [self.confirmButton setNormalBackgroundImage:@"whiteButtonBg1"
                      hightlightedBackgroundImage:@"whiteButtonBg2"
                          disabledBackgroundImage:nil];

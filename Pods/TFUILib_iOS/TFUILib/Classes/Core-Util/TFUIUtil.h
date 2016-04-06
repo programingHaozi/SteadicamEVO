@@ -17,7 +17,6 @@
  */
 #pragma mark - push
 void tf_pushViewController(UIViewController *vc);
-void tf_pushViewControllerFromViewController(UIViewController *vc,UIViewController *fromVC);
 
 #pragma mark - pop
 void tf_popToViewController(UIViewController *vc);
@@ -29,29 +28,20 @@ void tf_popToRootViewController();
 void tf_presentViewController(UIViewController *vc);
 void tf_dismissViewController(UIViewController *vc);
 
-void tf_popModuleViewController();
-
-void tf_back();
-
 UIViewController *tf_getRootViewController();
+
 @interface TFUIUtil : NSObject
 
-+ (BOOL) pushActionViewController:(TFActionModel*)model;
-+ (BOOL) pushActionViewController:(TFActionModel*)model from:(UIViewController *)fromVC;
-
 + (void)pushViewController:(UIViewController *)vc;
-+ (void)pushViewController:(UIViewController *)vc from:(UIViewController *)fromVC;
 + (void)popToViewController:(UIViewController *)vc;
 + (void)popToViewControllerWithClassName:(NSString *)className;
 + (void)popViewController;
 + (void)popToRootViewController;
-+ (void)popModuleViewController;
 
 + (void)presentViewController:(UIViewController *)vc;
 + (void)dismissViewController:(UIViewController *)vc;
 
-+(void) back;
-
 +(UIViewController *) getRootViewController;
+
 
 @end

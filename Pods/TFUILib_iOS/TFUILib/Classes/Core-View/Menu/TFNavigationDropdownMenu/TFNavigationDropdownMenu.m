@@ -9,6 +9,8 @@
 #import "TFNavigationDropdownMenu.h"
 #import "TFNavigationDropdownMenutTableView.h"
 
+#define HEXCOLOR(c,a)        [UIColor colorWithRed:((c>>16)&0xFF)/255.0 green:((c>>8)&0xFF)/255.0 blue:(c&0xFF)/255.0 alpha:a]
+
 @interface TFNavigationDropdownMenu()
 @property (nonatomic, strong) UIView *tableContainerView;
 
@@ -24,6 +26,7 @@
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, assign) CGFloat navigationBarHeight;
 @property (nonatomic, assign) CGRect mainScreenBounds;
+@property (nonatomic, assign) CGFloat offsetY;
 
 @end
 
@@ -34,13 +37,25 @@
                         items:(NSArray *)items
                 containerView:(UIView *)containerView
 {
+    return  [self initWithFrame:frame title:title items:items containerView:containerView offsetY:0];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+                        title:(NSString *)title
+                        items:(NSArray *)items
+                containerView:(UIView *)containerView
+                      offsetY:(CGFloat)offsetY;
+{
     self = [super initWithFrame:frame];
     if (self) {
         // Init properties
+        
+        self.offsetY=offsetY;
+        
         self.configuration = [[TFNavigationDropdownMenuConfiguration alloc] init];
         self.tableContainerView = containerView;
         self.navigationBarHeight = 44;
-        self.mainScreenBounds = [UIScreen mainScreen].bounds;
+        self.mainScreenBounds = CGRectMake(0, self.offsetY, containerView.frame.size.width , containerView.frame.size.height-self.offsetY);
         self.isShown = NO;
         self.items = items;
         
@@ -60,10 +75,10 @@
         [self.menuButton addSubview:self.menuArrow];
         
         // Init table view
-        self.tableView = [[TFNavigationDropdownMenutTableView alloc] initWithFrame:CGRectMake(self.mainScreenBounds.origin.x,
-                                                                       self.mainScreenBounds.origin.y,
+        self.tableView = [[TFNavigationDropdownMenutTableView alloc] initWithFrame:CGRectMake(0,
+                                                                       0,
                                                                        self.mainScreenBounds.size.width,
-                                                                       self.mainScreenBounds.size.height + 300 - 64)
+                                                                       (CGFloat)(self.items.count) * self.configuration.cellHeight)
                                                       items:items
                                               configuration:self.configuration];
         __weak typeof(self) weakSelf = self;
@@ -91,38 +106,35 @@
 
 - (void)showMenu
 {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 300)];
-    headerView.backgroundColor = self.configuration.cellBackgroundColor;
-    self.tableView.tableHeaderView = headerView;
-    
     [self.tableView reloadData];
     
     self.backgroundView = [[UIView alloc] initWithFrame:self.mainScreenBounds];
     self.backgroundView.backgroundColor = self.configuration.maskBackgroundColor;
+    self.backgroundView.clipsToBounds=YES;
     
     [self.tableContainerView addSubview:self.backgroundView];
-    [self.tableContainerView addSubview:self.tableView];
+    [self.backgroundView addSubview:self.tableView];
     
     [self rotateArrow];
     
-    self.backgroundView.alpha = 0;
+    self.backgroundView.backgroundColor = HEXCOLOR(0x000000, 0);
     
     self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                      -(CGFloat)(self.items.count) * self.configuration.cellHeight - 300,
+                                      -(CGFloat)(self.items.count) * self.configuration.cellHeight,
                                       self.tableView.frame.size.width,
                                       self.tableView.frame.size.height);
     
-    [UIView animateWithDuration:self.configuration.animationDuration * 1.5f
+    [UIView animateWithDuration:self.configuration.animationDuration
                           delay:0
          usingSpringWithDamping:.7
-          initialSpringVelocity:.5
+          initialSpringVelocity:.2
                         options:0
                      animations:^{
                          self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                                           -300,
+                                                           0,
                                                            self.tableView.frame.size.width,
                                                            self.tableView.frame.size.height);
-                         self.backgroundView.alpha = self.configuration.maskBackgroundOpacity;
+                         self.backgroundView.backgroundColor = HEXCOLOR(0x000000, self.configuration.maskBackgroundOpacity);
                      }
                      completion:nil];
 }
@@ -130,33 +142,18 @@
 - (void)hideMenu
 {
     [self rotateArrow];
-    
-    self.backgroundView.alpha = self.configuration.maskBackgroundOpacity;
-    
-    [UIView animateWithDuration:self.configuration.animationDuration * 1.5f
-                          delay:0
-         usingSpringWithDamping:.7
-          initialSpringVelocity:.5
-                        options:0
-                     animations:^{
-                         self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                                           -200,
-                                                           self.tableView.frame.size.width,
-                                                           self.tableView.frame.size.height);
-                         self.backgroundView.alpha = self.configuration.maskBackgroundOpacity;
-                         
-                     }
-                     completion:nil];
+
+    self.backgroundView.backgroundColor = HEXCOLOR(0x000000, self.configuration.maskBackgroundOpacity);
     
     [UIView animateWithDuration:self.configuration.animationDuration
                           delay:0
                         options:UIViewAnimationOptionTransitionNone
                      animations:^{
                          self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                                           -(CGFloat)(self.items.count) * self.configuration.cellHeight - 300,
+                                                           -(CGFloat)(self.items.count) * self.configuration.cellHeight,
                                                            self.tableView.frame.size.width,
                                                            self.tableView.frame.size.height);
-                         self.backgroundView.alpha = 0;
+                         self.backgroundView.backgroundColor = HEXCOLOR(0x000000, 0);
                      } completion:^(BOOL finished) {
                          [self.tableView removeFromSuperview];
                          [self.backgroundView removeFromSuperview];
@@ -219,7 +216,7 @@
     self.configuration.cellSelectionColor = cellSelectionColor;
 }
 
-- (void)setCheckMarkImage:(UIImage *)checkMarkImage
+- (void)setCheckImage:(UIImage *)checkMarkImage
 {
     self.configuration.checkMarkImage = checkMarkImage;
 }

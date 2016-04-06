@@ -250,6 +250,16 @@
     [self.customNavigationItem setTitle:title];
 }
 
+-(void)initTitle:(NSString *)title
+           color:(UIColor *)titleColor
+{
+    [self.customNavigationItem setTitle:title];
+    
+    [self.customNavigationBar setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:titleColor,
+      NSForegroundColorAttributeName,nil]];
+}
+
 - (void)initMiddleView:(UIView*)view
 {
     self.customNavigationItem.titleView = view;
@@ -270,7 +280,24 @@
     self.customNavigationItem.leftBarButtonItem = item;
 }
 
-- (void)initLeftImage:(NSString *)strImage selector:(SEL)selector
+-(void)initLeftImage:(NSString *)strImage
+      highLightImage:(NSString *)highLightImage
+{
+    CGRect rect   = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
+    [btn addTarget:self action:@selector(leftButtonEvent) forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    btn.backgroundColor = [UIColor clearColor];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.customNavigationItem.leftBarButtonItem = item;
+}
+
+- (void)initLeftImage:(NSString *)strImage
+             selector:(SEL)selector
 {
     CGRect rect   = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
     UIButton *btn = [[UIButton alloc] initWithFrame:rect];
@@ -278,6 +305,23 @@
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
+    btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    btn.backgroundColor = [UIColor clearColor];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.customNavigationItem.leftBarButtonItem = item;
+}
+
+-(void)initLeftImage:(NSString *)strImage
+      highLightImage:(NSString *)highLightImage
+            selector:(SEL)selector
+{
+    CGRect rect   = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
+    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
     btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
     btn.backgroundColor = [UIColor clearColor];
     
@@ -301,7 +345,8 @@
     
 }
 
-- (void)initLeftTitle:(NSString *)strTitle selector:(SEL)selector
+- (void)initLeftTitle:(NSString *)strTitle
+             selector:(SEL)selector
 {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
     
@@ -316,7 +361,8 @@
     self.customNavigationItem.leftBarButtonItem = item;
 }
 
-- (void)initLeftTitle:(NSString *)strTitle color:(UIColor *)color
+- (void)initLeftTitle:(NSString *)strTitle
+                color:(UIColor *)color
 {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
     
@@ -368,6 +414,27 @@
     self.customNavigationItem.leftBarButtonItem = item;
 }
 
+-(void)initLeftImage:(NSString *)strImage
+      highLightImage:(NSString *)highLightImage
+               title:(NSString *)strTitle
+               color:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
+    [btn addTarget:self action:@selector(leftButtonEvent) forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
+    [btn setTitle:strTitle forState:UIControlStateNormal];
+    [btn setTitleColor:color forState:UIControlStateNormal];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    btn.backgroundColor = [UIColor clearColor];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.customNavigationItem.leftBarButtonItem = item;
+}
+
 - (void)initLeftImage:(NSString *)strImage
                 title:(NSString *)strTitle
                 color:(UIColor *)color
@@ -380,6 +447,28 @@
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
+    [btn setTitle:strTitle forState:UIControlStateNormal];
+    [btn setTitleColor:color forState:UIControlStateNormal];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    btn.backgroundColor = [UIColor clearColor];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.customNavigationItem.leftBarButtonItem = item;
+}
+
+-(void)initLeftImage:(NSString *)strImage
+      highLightImage:(NSString *)highLightImage
+               title:(NSString *)strTitle
+               color:(UIColor *)color
+            selector:(SEL)selector
+{
+    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
+    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
     [btn setTitle:strTitle forState:UIControlStateNormal];
     [btn setTitleColor:color forState:UIControlStateNormal];
     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -405,7 +494,25 @@
     self.customNavigationItem.rightBarButtonItem = item;
 }
 
-- (void)initRightImage:(NSString *)strImage selector:(SEL)selector
+-(void)initRightImage:(NSString *)strImage
+       highLightImage:(NSString *)highLightImage
+{
+    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
+    [btn addTarget:self action:@selector(rightButtonEvent) forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    btn.backgroundColor = [UIColor clearColor];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.customNavigationItem.rightBarButtonItem = item;
+}
+
+- (void)initRightImage:(NSString *)strImage
+              selector:(SEL)selector
 {
     CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
     
@@ -414,6 +521,24 @@
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateHighlighted];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    btn.backgroundColor = [UIColor clearColor];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.customNavigationItem.rightBarButtonItem = item;
+}
+
+-(void)initRightImage:(NSString *)strImage
+       highLightImage:(NSString *)highLightImage
+             selector:(SEL)selector
+{
+    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
+    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     btn.backgroundColor = [UIColor clearColor];
     
@@ -504,6 +629,27 @@
     
 }
 
+-(void)initRightImage:(NSString *)strImage
+       highLightImage:(NSString *)highLightImage
+                title:(NSString *)strTitle
+                color:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
+    [btn addTarget:self action:@selector(rightButtonEvent) forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
+    [btn setTitle:strTitle forState:UIControlStateNormal];
+    [btn setTitleColor:color forState:UIControlStateNormal];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    btn.backgroundColor = [UIColor clearColor];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.customNavigationItem.rightBarButtonItem = item;
+}
+
 - (void)initRightImage:(NSString *)strImage
                  title:(NSString *)strTitle
                  color:(UIColor *)color
@@ -524,6 +670,29 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.customNavigationItem.rightBarButtonItem = item;
 }
+
+-(void)initRightImage:(NSString *)strImage
+       highLightImage:(NSString *)highLightImage
+                title:(NSString *)strTitle
+                color:(UIColor *)color
+             selector:(SEL)selector
+{
+    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
+    
+    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
+    [btn setTitle:strTitle forState:UIControlStateNormal];
+    [btn setTitleColor:color forState:UIControlStateNormal];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    btn.backgroundColor = [UIColor clearColor];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.customNavigationItem.rightBarButtonItem = item;
+}
+
 
 - (void)resetLeftTitle:(NSString*)str
 {
@@ -570,12 +739,22 @@
 
 - (void)hideLeftButton
 {
-    self.customNavigationItem.leftBarButtonItem = nil;
+    self.customNavigationItem.leftBarButtonItem.customView.hidden = YES;
+}
+
+-(void)showLeftButton
+{
+    self.customNavigationItem.leftBarButtonItem.customView.hidden = NO;
 }
 
 - (void)hideRightButton
 {
-    self.customNavigationItem.rightBarButtonItem = nil;
+    self.customNavigationItem.rightBarButtonItem.customView.hidden = YES;
+}
+
+-(void)showRightButton
+{
+    self.customNavigationItem.leftBarButtonItem.customView.hidden = NO;
 }
 
 - (void)enableLeftButton

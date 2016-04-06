@@ -10,6 +10,17 @@
 
 @implementation GuideViewModel
 
+-(instancetype)init
+{
+    if (self = [super init])
+    {
+        
+    
+    }
+    
+    return self;
+}
+
 - (NSString *)title
 {
     return @"Guide setup";

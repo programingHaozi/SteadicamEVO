@@ -25,6 +25,8 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
         self.backgroundColor = [UIColor clearColor];
+        
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     
     return self;
@@ -33,6 +35,8 @@
 - (void)initViews
 {
     [super initViews];
+    
+    self.textLabel.textColor = [UIColor whiteColor];
     
     self.BGImageView = [[UIImageView alloc]init];
     self.BGImageView.backgroundColor = [UIColor clearColor];
@@ -80,6 +84,26 @@
 - (void)bindData
 {
     [super bindData];
+  
+}
+
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    
+}
+
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    if (highlighted)
+    {
+        self.BGImageView.image = IMAGE(@"cell_select_bg");
+        self.accessoryImageVIew.image = IMAGE(@"arrow_right_red");
+    }
+    else
+    {
+        self.BGImageView.image = nil;
+        self.accessoryImageVIew.image = IMAGE(@"arrow_right_gray");
+    }
 }
 
 @end

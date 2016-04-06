@@ -379,7 +379,7 @@ CHECKOUT OPTIONS:
     :commit: 6dcac6e36bb58af5d43b735ebedd3d1487a005f3
     :git: http://git01.dds.com/MP/TFThirdLib_iOS.git
   TFUILib_iOS:
-    :commit: 709267cd4a78a92e3264141be8db86b72bab1207
+    :commit: b45e6395340dff2fd25dcb7f80aff432e329687d
     :git: http://git01.dds.com/MP/TFUILib_iOS.git
   TorqueSDK:
     :branch: develop

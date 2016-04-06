@@ -16,7 +16,12 @@
 		870668E61C959D5E0031381C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870668E81C959D5E0031381C /* Localizable.strings */; };
 		872591E11CB39E35006DFC4A /* AdjustmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872591E01CB39E35006DFC4A /* AdjustmentView.m */; };
 		872591E31CB39FF0006DFC4A /* AdjustmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872591E21CB39FF0006DFC4A /* AdjustmentView.xib */; };
+		872722E41CB4B37F0098EBEE /* AboutViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 872722E31CB4B37F0098EBEE /* AboutViewCell.m */; };
+		872722E61CB4B4480098EBEE /* AboutViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 872722E51CB4B4480098EBEE /* AboutViewModel.json */; };
+		872722EA1CB4B4D70098EBEE /* LanguageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 872722E91CB4B4D70098EBEE /* LanguageViewCell.m */; };
+		872722EC1CB4B52A0098EBEE /* LanguageViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */; };
 		878B29541C992BC5003F2481 /* TFUserDefaults+SCE.m in Sources */ = {isa = PBXBuildFile; fileRef = 878B29531C992BC5003F2481 /* TFUserDefaults+SCE.m */; };
+		87AED74B1CB4DF9400709C76 /* CompanyWebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AED74A1CB4DF9400709C76 /* CompanyWebViewModel.m */; };
 		87C6E8CD1CAB68FB003ACA26 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E8CC1CAB68FB003ACA26 /* HomeViewController.m */; };
 		87C6E8E61CAB9949003ACA26 /* BalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E8DF1CAB9949003ACA26 /* BalanceViewController.m */; };
 		87C6E8E71CAB9949003ACA26 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E8E21CAB9949003ACA26 /* GuideViewController.m */; };
@@ -31,7 +36,6 @@
 		87C6E90C1CABBCB3003ACA26 /* IntroductionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E90B1CABBCB3003ACA26 /* IntroductionViewModel.m */; };
 		87C6E9101CABBCF3003ACA26 /* MenuViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E90F1CABBCF3003ACA26 /* MenuViewModel.m */; };
 		87C6E9141CABBD1E003ACA26 /* AboutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E9131CABBD1E003ACA26 /* AboutViewModel.m */; };
-		87C6E9181CABBD43003ACA26 /* CompanyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E9171CABBD43003ACA26 /* CompanyViewModel.m */; };
 		87C6E91C1CABBD65003ACA26 /* LanguageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E91B1CABBD65003ACA26 /* LanguageViewModel.m */; };
 		87C6E9211CABCDB2003ACA26 /* GuideViewCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E9201CABCDB2003ACA26 /* GuideViewCollectionCell.m */; };
 		87CBA5AD1CB40AF3004206B0 /* TipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBA5AC1CB40AF3004206B0 /* TipsView.m */; };
@@ -74,9 +78,17 @@
 		872591DF1CB39E35006DFC4A /* AdjustmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustmentView.h; sourceTree = "<group>"; };
 		872591E01CB39E35006DFC4A /* AdjustmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustmentView.m; sourceTree = "<group>"; };
 		872591E21CB39FF0006DFC4A /* AdjustmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdjustmentView.xib; sourceTree = "<group>"; };
+		872722E21CB4B37F0098EBEE /* AboutViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewCell.h; sourceTree = "<group>"; };
+		872722E31CB4B37F0098EBEE /* AboutViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewCell.m; sourceTree = "<group>"; };
+		872722E51CB4B4480098EBEE /* AboutViewModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AboutViewModel.json; sourceTree = "<group>"; };
+		872722E81CB4B4D70098EBEE /* LanguageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageViewCell.h; sourceTree = "<group>"; };
+		872722E91CB4B4D70098EBEE /* LanguageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewCell.m; sourceTree = "<group>"; };
+		872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LanguageViewModel.json; sourceTree = "<group>"; };
 		872BE0231CB3578700A8CD67 /* Environment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		878B29521C992BC5003F2481 /* TFUserDefaults+SCE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TFUserDefaults+SCE.h"; sourceTree = "<group>"; };
 		878B29531C992BC5003F2481 /* TFUserDefaults+SCE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TFUserDefaults+SCE.m"; sourceTree = "<group>"; };
+		87AED7491CB4DF9400709C76 /* CompanyWebViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyWebViewModel.h; sourceTree = "<group>"; };
+		87AED74A1CB4DF9400709C76 /* CompanyWebViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyWebViewModel.m; sourceTree = "<group>"; };
 		87C6E8CB1CAB68FB003ACA26 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		87C6E8CC1CAB68FB003ACA26 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		87C6E8CF1CAB6E4B003ACA26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -106,8 +118,6 @@
 		87C6E90F1CABBCF3003ACA26 /* MenuViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewModel.m; sourceTree = "<group>"; };
 		87C6E9121CABBD1E003ACA26 /* AboutViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewModel.h; sourceTree = "<group>"; };
 		87C6E9131CABBD1E003ACA26 /* AboutViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewModel.m; sourceTree = "<group>"; };
-		87C6E9161CABBD43003ACA26 /* CompanyViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyViewModel.h; sourceTree = "<group>"; };
-		87C6E9171CABBD43003ACA26 /* CompanyViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyViewModel.m; sourceTree = "<group>"; };
 		87C6E91A1CABBD65003ACA26 /* LanguageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageViewModel.h; sourceTree = "<group>"; };
 		87C6E91B1CABBD65003ACA26 /* LanguageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewModel.m; sourceTree = "<group>"; };
 		87C6E91F1CABCDB2003ACA26 /* GuideViewCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewCollectionCell.h; sourceTree = "<group>"; };
@@ -202,6 +212,24 @@
 			path = AdjustmentView;
 			sourceTree = "<group>";
 		};
+		872722E11CB4B3690098EBEE /* AboutViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				872722E21CB4B37F0098EBEE /* AboutViewCell.h */,
+				872722E31CB4B37F0098EBEE /* AboutViewCell.m */,
+			);
+			path = AboutViewCell;
+			sourceTree = "<group>";
+		};
+		872722E71CB4B4C10098EBEE /* LanguageViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				872722E81CB4B4D70098EBEE /* LanguageViewCell.h */,
+				872722E91CB4B4D70098EBEE /* LanguageViewCell.m */,
+			);
+			path = LanguageViewCell;
+			sourceTree = "<group>";
+		};
 		872BE0221CB3577400A8CD67 /* Environment */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +253,15 @@
 				878B29531C992BC5003F2481 /* TFUserDefaults+SCE.m */,
 			);
 			path = TFUserDefault;
+			sourceTree = "<group>";
+		};
+		87AED7481CB4DF9400709C76 /* CompanyWebViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				87AED7491CB4DF9400709C76 /* CompanyWebViewModel.h */,
+				87AED74A1CB4DF9400709C76 /* CompanyWebViewModel.m */,
+			);
+			path = CompanyWebViewModel;
 			sourceTree = "<group>";
 		};
 		87C6E8DD1CAB9949003ACA26 /* BalanceViewController */ = {
@@ -310,17 +347,9 @@
 			children = (
 				87C6E9121CABBD1E003ACA26 /* AboutViewModel.h */,
 				87C6E9131CABBD1E003ACA26 /* AboutViewModel.m */,
+				872722E51CB4B4480098EBEE /* AboutViewModel.json */,
 			);
 			path = AboutViewModel;
-			sourceTree = "<group>";
-		};
-		87C6E9151CABBD35003ACA26 /* CompanyViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				87C6E9161CABBD43003ACA26 /* CompanyViewModel.h */,
-				87C6E9171CABBD43003ACA26 /* CompanyViewModel.m */,
-			);
-			path = CompanyViewModel;
 			sourceTree = "<group>";
 		};
 		87C6E9191CABBD58003ACA26 /* LanguageViewModel */ = {
@@ -328,6 +357,7 @@
 			children = (
 				87C6E91A1CABBD65003ACA26 /* LanguageViewModel.h */,
 				87C6E91B1CABBD65003ACA26 /* LanguageViewModel.m */,
+				872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */,
 			);
 			path = LanguageViewModel;
 			sourceTree = "<group>";
@@ -577,6 +607,8 @@
 		87EF95641C8C425A002241B2 /* MenuControllers */ = {
 			isa = PBXGroup;
 			children = (
+				87C6E8E91CAB9B09003ACA26 /* MenuViewController.h */,
+				87C6E8EA1CAB9B09003ACA26 /* MenuViewController.m */,
 				87CBA5C71CB4386F004206B0 /* MenuViewCell */,
 				87C6E90D1CABBCE4003ACA26 /* MenuViewModel */,
 				87EF95651C8C425A002241B2 /* AboutViewController */,
@@ -584,8 +616,6 @@
 				87EF95671C8C425A002241B2 /* LanguageViewController */,
 				87EF95681C8C425A002241B2 /* ProModeSettingViewController */,
 				87EF95691C8C425A002241B2 /* RegisterEVOViewController */,
-				87C6E8E91CAB9B09003ACA26 /* MenuViewController.h */,
-				87C6E8EA1CAB9B09003ACA26 /* MenuViewController.m */,
 			);
 			path = MenuControllers;
 			sourceTree = "<group>";
@@ -593,6 +623,7 @@
 		87EF95651C8C425A002241B2 /* AboutViewController */ = {
 			isa = PBXGroup;
 			children = (
+				872722E11CB4B3690098EBEE /* AboutViewCell */,
 				87C6E9111CABBD06003ACA26 /* AboutViewModel */,
 				87C6E8EC1CAB9B1D003ACA26 /* AboutViewController.h */,
 				87C6E8ED1CAB9B1D003ACA26 /* AboutViewController.m */,
@@ -603,7 +634,7 @@
 		87EF95661C8C425A002241B2 /* CompanyWebViewController */ = {
 			isa = PBXGroup;
 			children = (
-				87C6E9151CABBD35003ACA26 /* CompanyViewModel */,
+				87AED7481CB4DF9400709C76 /* CompanyWebViewModel */,
 				87C6E8EF1CAB9B35003ACA26 /* CompanyWebViewController.h */,
 				87C6E8F01CAB9B35003ACA26 /* CompanyWebViewController.m */,
 			);
@@ -613,6 +644,7 @@
 		87EF95671C8C425A002241B2 /* LanguageViewController */ = {
 			isa = PBXGroup;
 			children = (
+				872722E71CB4B4C10098EBEE /* LanguageViewCell */,
 				87C6E9191CABBD58003ACA26 /* LanguageViewModel */,
 				87C6E8F21CAB9B44003ACA26 /* LanguageViewController.h */,
 				87C6E8F31CAB9B44003ACA26 /* LanguageViewController.m */,
@@ -732,7 +764,9 @@
 			files = (
 				87EF95491C8C36C1002241B2 /* Assets.xcassets in Resources */,
 				872591E31CB39FF0006DFC4A /* AdjustmentView.xib in Resources */,
+				872722EC1CB4B52A0098EBEE /* LanguageViewModel.json in Resources */,
 				870668E61C959D5E0031381C /* Localizable.strings in Resources */,
+				872722E61CB4B4480098EBEE /* AboutViewModel.json in Resources */,
 				87EF954B1C8C36C1002241B2 /* Main.storyboard in Resources */,
 				870668E01C959D260031381C /* Localizable.sh in Resources */,
 				87EF954A1C8C36C1002241B2 /* LaunchScreen.storyboard in Resources */,
@@ -811,6 +845,7 @@
 				87C6E9211CABCDB2003ACA26 /* GuideViewCollectionCell.m in Sources */,
 				87C6E8E71CAB9949003ACA26 /* GuideViewController.m in Sources */,
 				87C6E8E61CAB9949003ACA26 /* BalanceViewController.m in Sources */,
+				87AED74B1CB4DF9400709C76 /* CompanyWebViewModel.m in Sources */,
 				8700362D1C97E7EF00AAB595 /* BTDeviceModel.m in Sources */,
 				87C6E8F11CAB9B35003ACA26 /* CompanyWebViewController.m in Sources */,
 				87C6E9081CABBC8F003ACA26 /* GuideViewModel.m in Sources */,
@@ -820,6 +855,7 @@
 				87C6E9101CABBCF3003ACA26 /* MenuViewModel.m in Sources */,
 				87C6E9041CABBC6E003ACA26 /* BalanceViewModel.m in Sources */,
 				87C6E8EB1CAB9B09003ACA26 /* MenuViewController.m in Sources */,
+				872722EA1CB4B4D70098EBEE /* LanguageViewCell.m in Sources */,
 				87CBA5B11CB4174A004206B0 /* IntroductionViewCollectionCell.m in Sources */,
 				87CBA5CA1CB43885004206B0 /* MenuViewCell.m in Sources */,
 				87C6E8F41CAB9B44003ACA26 /* LanguageViewController.m in Sources */,
@@ -834,7 +870,7 @@
 				872591E11CB39E35006DFC4A /* AdjustmentView.m in Sources */,
 				87EF954D1C8C36C1002241B2 /* main.m in Sources */,
 				87EF95481C8C36C1002241B2 /* AppDelegate.m in Sources */,
-				87C6E9181CABBD43003ACA26 /* CompanyViewModel.m in Sources */,
+				872722E41CB4B37F0098EBEE /* AboutViewCell.m in Sources */,
 				870036291C97DF9200AAB595 /* BTConnectManager.m in Sources */,
 				878B29541C992BC5003F2481 /* TFUserDefaults+SCE.m in Sources */,
 				87C6E8EE1CAB9B1D003ACA26 /* AboutViewController.m in Sources */,

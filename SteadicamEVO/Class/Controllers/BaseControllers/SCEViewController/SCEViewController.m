@@ -29,11 +29,10 @@
     
     [self.customNavigationBar setBackgroundImage:IMAGE(@"navigationBar") forBarMetrics:UIBarMetricsDefault];
     
-    [self.customNavigationBar setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
+    [self initTitle:self.viewModel.title color:[UIColor whiteColor]];
     
-    [self initLeftImage:@"back_white" selector:@selector(back)];
-    [self initRightImage:@"home_white" selector:@selector(home)];
+    [self initLeftImage:@"back_white" highLightImage:@"back_black" selector:@selector(back)];
+    [self initRightImage:@"home_white" highLightImage:@"home_black" selector:@selector(home)];
 }
 
 #pragma mark- init autolayout bind
@@ -54,7 +53,7 @@
     WS(weakSelf)
     [self.BGImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(weakSelf.view.mas_top).offset(0);
+        make.top.equalTo(weakSelf.view.mas_top).offset(44);
         make.left.equalTo(weakSelf.view.mas_left).offset(0);
         make.bottom.equalTo(weakSelf.view.mas_bottom).offset(0);
         make.right.equalTo(weakSelf.view.mas_right).offset(0);
@@ -75,7 +74,7 @@
 
 -(void)home
 {
-    [self popToViewController:[self getRootViewController]];
+    [self popToRootViewController];
 }
 
 @end

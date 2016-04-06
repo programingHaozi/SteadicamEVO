@@ -76,6 +76,17 @@
     [xx popToViewControllerWithClassName:className];
 }
 
+-(void) popToRootViewController
+{
+    UIViewController *xx=[self viewController];
+    if (xx==nil)
+    {
+        return;
+    }
+    
+    [xx popToRootViewController];
+}
+
 #pragma mark - present dismiss
 
 - (void)presentViewController:(UIViewController *)vc

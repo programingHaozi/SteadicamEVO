@@ -116,7 +116,7 @@
                               right:@"OK"
                               title:@"would you like to balance now?"
                               block:^(NSInteger idx) {
-            NSLog(@"%ld",(long)idx);
+                                  [self back];
         }];
     }
     

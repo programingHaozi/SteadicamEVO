@@ -31,6 +31,7 @@
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        self.bounces=NO;
     }
     return self;
 }

@@ -26,8 +26,7 @@ UITableViewDataSource
 - (void)initViews
 {
     [super initViews];
-    
-    self.tableView.rowHeight = (SCREEN_HEIGHT - 64)/3;
+
 }
 
 -(void)autolayoutViews
@@ -40,11 +39,11 @@ UITableViewDataSource
     [super bindData];
 }
 
-#pragma mark - datasource -
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return (SCREEN_HEIGHT - 64)/3;
-}
+//#pragma mark - datasource -
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return (SCREEN_HEIGHT - 64)/3;
+//}
 
 @end

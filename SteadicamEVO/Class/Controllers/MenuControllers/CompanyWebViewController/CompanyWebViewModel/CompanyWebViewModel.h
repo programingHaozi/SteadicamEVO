@@ -1,5 +1,5 @@
 //
-//  CompanyViewModel.h
+//  CompanyWebViewModel.h
 //  SteadicamEVO
 //
 //  Created by Chen Hao 陈浩 on 16/3/30.
@@ -8,6 +8,6 @@
 
 #import "SCEViewModel.h"
 
-@interface CompanyViewModel : SCEViewModel
+@interface CompanyWebViewModel : SCEViewModel
 
 @end

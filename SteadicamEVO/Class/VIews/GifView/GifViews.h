@@ -8,4 +8,6 @@
 
 @interface GifViews : TFView
 
+//@property (nonatomic, strong) NSString *promptStr;
+
 @end

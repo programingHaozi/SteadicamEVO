@@ -58,6 +58,11 @@
  */
 -(void) popToViewControllerWithClassName:(NSString *)className;
 
+/**
+ *  pop到root
+ */
+-(void) popToRootViewController;
+
 #pragma mark- present dismissView
 
 /**

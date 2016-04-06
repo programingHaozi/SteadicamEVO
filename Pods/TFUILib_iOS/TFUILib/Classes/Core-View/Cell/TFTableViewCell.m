@@ -7,6 +7,8 @@
 //
 
 #import "TFTableViewCell.h"
+#import "TFTableRowModel.h"
+#import <TFBaseLib.h>
 
 @implementation TFTableViewCell
 
@@ -23,7 +25,8 @@
 
 - (void)initViews
 {
-    
+    self.textLabel.font      = FONT(14);
+    self.textLabel.textColor = HEXCOLOR(0X333333, 1);
 }
 
 - (void)autolayoutViews
@@ -34,6 +37,17 @@
 - (void)bindData
 {
     
+}
+
+-(void)setData:(id)data
+{
+    _data = data;
+    
+    if ([data isKindOfClass:[TFTableRowModel class]])
+    {
+        TFTableRowModel *model = (TFTableRowModel *)data;
+        self.textLabel.text      = model.title;
+    }
 }
 
 -(CGFloat)cellHeight

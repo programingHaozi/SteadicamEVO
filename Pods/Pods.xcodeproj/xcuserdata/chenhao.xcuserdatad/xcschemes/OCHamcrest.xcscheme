@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '4E6BB3485D2C191D67EAB1E9'
+               BlueprintIdentifier = '3DBF53CDE82288DA0B19CB6B'
                BlueprintName = 'OCHamcrest'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libOCHamcrest.a'>

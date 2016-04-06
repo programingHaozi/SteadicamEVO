@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) UIWebView *gifView;
 
+@property (nonatomic, strong) TFLabel *promptLabel;
+
 @end
 
 @implementation GifViews
@@ -60,6 +62,15 @@
     
     [self addSubview:self.gifView];
     
+    self.promptLabel = [[TFLabel alloc]init];
+    self.promptLabel.backgroundColor = [UIColor clearColor];
+    self.promptLabel.textColor = [UIColor whiteColor];
+    self.promptLabel.numberOfLines = 0;
+    self.promptLabel.verticalTextAlignment = UIControlContentVerticalAlignmentTop;
+    self.promptLabel.text = @"Series of GIFs to show how to use EVO";
+    
+    [self addSubview:self.promptLabel];
+    
 }
 
 -(void)autolayoutViews
@@ -80,11 +91,22 @@
         make.bottom.equalTo(weakSelf.mas_bottom).offset(0);
         make.right.equalTo(weakSelf.mas_right).offset(0);
     }];
+    
+    [self.promptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(weakSelf.mas_top).offset(65);
+        make.left.equalTo(weakSelf.mas_left).offset(35);
+        make.bottom.equalTo(weakSelf.mas_bottom).offset(0);
+        make.right.equalTo(weakSelf.mas_right).offset(-35);
+    }];
 }
 
 -(void)bindData
 {
-    
+//    [RACObserve(self, promptStr) subscribeNext:^(NSString * str) {
+//        
+//        self.promptLabel.text = str;
+//    }];
 }
 
 @end

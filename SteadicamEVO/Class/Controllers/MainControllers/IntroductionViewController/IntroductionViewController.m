@@ -38,7 +38,7 @@
     
     [self.collectionView registerClass:[IntroductionViewCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([IntroductionViewCollectionCell class])];
     
-    self.collectionView.contentSize                    = CGSizeMake(5* SCREEN_WIDTH, 0);
+    self.collectionView.contentSize                    = CGSizeMake(4* SCREEN_WIDTH, 0);
     self.collectionView.bounces                        = NO;
     self.collectionView.pagingEnabled                  = YES;
     self.collectionView.showsHorizontalScrollIndicator = NO;
@@ -64,7 +64,6 @@
         
         self.pageControl.currentPage = point.x/SCREEN_WIDTH;
         
-        self.pageControl.hidden = point.x/SCREEN_WIDTH == 4;
     }];
 }
 
@@ -85,7 +84,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return 4;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

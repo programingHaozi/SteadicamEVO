@@ -125,6 +125,19 @@
     }
 }
 
+-(void) popToRootViewController
+{
+    UIViewController *rootVC = [self getRootViewController];
+    
+    if (![rootVC isKindOfClass:[UINavigationController class]])
+    {
+        return;
+    }
+    
+    UINavigationController *rootNav= (UINavigationController *)rootVC;
+    [rootNav popToRootViewControllerAnimated:YES];
+}
+
 #pragma mark- present dismissView
 - (void)presentViewController:(UIViewController *)vc
 {

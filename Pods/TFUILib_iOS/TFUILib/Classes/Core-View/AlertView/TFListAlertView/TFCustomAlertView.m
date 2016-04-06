@@ -14,9 +14,9 @@
  */
 NSInteger const kAlertElasticityOffset = 50.0f;
 
-NSString *const kAlertShowAnimationKey = @"showAnimation";
+NSString *const kTFAlertShowAnimationKey = @"showAnimation";
 
-NSString *const kAlertHideAnimationKey = @"hideAnimation";
+NSString *const kTFAlertHideAnimationKey = @"hideAnimation";
 
 @interface TFCustomAlertView ()
 
@@ -165,7 +165,7 @@ NSString *const kAlertHideAnimationKey = @"hideAnimation";
                                                    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
                                                    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
             
-            [_containerView.layer addAnimation:transformAnimation forKey:kAlertShowAnimationKey];
+            [_containerView.layer addAnimation:transformAnimation forKey:kTFAlertShowAnimationKey];
         }
             break;
             
@@ -190,7 +190,7 @@ NSString *const kAlertHideAnimationKey = @"hideAnimation";
             
             [positonAnimation setPath:path];
             positonAnimation.delegate = self;
-            [self.containerView.layer addAnimation:positonAnimation forKey:kAlertShowAnimationKey];
+            [self.containerView.layer addAnimation:positonAnimation forKey:kTFAlertShowAnimationKey];
         }
             break;
             
@@ -233,7 +233,7 @@ NSString *const kAlertHideAnimationKey = @"hideAnimation";
             transformAnimation.keyTimes = @[@0.2, @0.5];
             transformAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
-            [self.containerView.layer addAnimation:transformAnimation forKey:kAlertHideAnimationKey];
+            [self.containerView.layer addAnimation:transformAnimation forKey:kTFAlertHideAnimationKey];
         }
             break;
             
@@ -248,7 +248,7 @@ NSString *const kAlertHideAnimationKey = @"hideAnimation";
             positonAnimation.fillMode            = kCAFillModeForwards;
             positonAnimation.delegate            = self;
             
-            [self.containerView.layer addAnimation:positonAnimation forKey:kAlertHideAnimationKey];
+            [self.containerView.layer addAnimation:positonAnimation forKey:kTFAlertHideAnimationKey];
         }
             break;
             
@@ -275,14 +275,14 @@ NSString *const kAlertHideAnimationKey = @"hideAnimation";
 {
     if (flag)
     {
-        if (anim == [self.containerView.layer animationForKey:kAlertShowAnimationKey])
+        if (anim == [self.containerView.layer animationForKey:kTFAlertShowAnimationKey])
         {
             self.containerView.center = CGPointMake(self.containerView.center.x,
                                                        SCREEN_HEIGHT - self.containerView.frame.size.height / 2);
             [self.containerView.layer removeAllAnimations];
             
         }
-        else if (anim == [self.containerView.layer animationForKey:kAlertHideAnimationKey])
+        else if (anim == [self.containerView.layer animationForKey:kTFAlertHideAnimationKey])
         {
             self.containerView.center = self.startPoint;
             [self.containerView.layer removeAllAnimations];

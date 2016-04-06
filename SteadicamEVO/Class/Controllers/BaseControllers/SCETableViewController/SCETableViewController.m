@@ -31,11 +31,10 @@
     
     [self.customNavigationBar setBackgroundImage:IMAGE(@"navigationBar") forBarMetrics:UIBarMetricsDefault];
     
-    [self.customNavigationBar setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
+    [self initTitle:self.viewModel.title color:[UIColor whiteColor]];
     
-    [self initLeftImage:@"back_white" selector:@selector(back)];
-    [self initRightImage:@"home_white" selector:@selector(home)];
+    [self initLeftImage:@"back_white" highLightImage:@"back_black" selector:@selector(back)];
+    [self initRightImage:@"home_white" highLightImage:@"home_black" selector:@selector(home)];
 }
 
 #pragma mark- init autolayout bind
@@ -71,6 +70,13 @@
     [super bindData];
 }
 
+#pragma mark - datasource -
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return (SCREEN_HEIGHT - 64)/[self.viewModel numberOfRowsInSection:indexPath.section];
+}
+
 #pragma mark - return action -
 
 - (void)back
@@ -80,7 +86,7 @@
 
 -(void)home
 {
-    [self popToViewController:[self getRootViewController]];
+    [self popToRootViewController];
 }
 
 @end

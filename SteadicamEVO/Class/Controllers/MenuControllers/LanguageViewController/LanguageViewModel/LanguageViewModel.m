@@ -11,4 +11,9 @@
 
 @implementation LanguageViewModel
 
+-(NSString *)title
+{
+    return @"Language";
+}
+
 @end
