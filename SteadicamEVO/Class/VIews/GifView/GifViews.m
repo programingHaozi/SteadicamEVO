@@ -72,9 +72,10 @@
     self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
     [self.moviePlayer setFullscreen:YES animated:YES];
     self.moviePlayer.scalingMode = MPMovieScalingModeFill;
-//    self.moviePlayer.view.backgroundColor = [UIColor clearColor];
-//    UIView *swipableView = [self findView:self.moviePlayer.view withName:@"MPSwipableView"];
-//    swipableView.backgroundColor = [UIColor clearColor];
+    [self.moviePlayer prepareToPlay];
+    self.moviePlayer.view.backgroundColor = [UIColor clearColor];
+    UIView *swipableView = [self findView:self.moviePlayer.view withName:@"MPSwipableView"];
+    swipableView.backgroundColor = [UIColor clearColor];
     
     [self addSubview:self.moviePlayer.view];
     
@@ -135,13 +136,11 @@
             if ([str hasSuffix:@"png"])
             {
                 [self.moviePlayer stop];
-                [self bringSubviewToFront:self.bgImageView];
                 self.bgImageView.image = [UIImage imageWithContentsOfFile:str];
             }
             else if ([str hasSuffix:@"mov"])
             {
                 self.bgImageView.image = IMAGE(@"guideGifBg");
-                [self bringSubviewToFront:self.moviePlayer.view];
                 NSURL *url = [NSURL fileURLWithPath:str];
                 [self.moviePlayer setContentURL:url];
                 [self.moviePlayer play];
@@ -173,6 +172,12 @@
     }
     
     return nil;
+}
+
+-(void)reset
+{
+    [self.moviePlayer stop];
+    self.bgImageView.image = IMAGE(@"guideGifBg");
 }
 
 @end

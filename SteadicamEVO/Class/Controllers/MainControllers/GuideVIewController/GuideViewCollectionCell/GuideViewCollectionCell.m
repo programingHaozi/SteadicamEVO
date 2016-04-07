@@ -93,6 +93,8 @@
 {
     self.gifView.hidden = NO;
     
+    [self.gifView reset];
+    
     if (self.chooseView)
     {
         [self.chooseView removeFromSuperview];
