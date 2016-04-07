@@ -7,7 +7,7 @@
 //
 
 #import "GifViews.h"
-#import <MediaPlayer/MediaPlayer.h>
+
 
 @interface GifViews()
 
@@ -18,6 +18,14 @@
 @property (nonatomic, strong) TFLabel *promptLabel;
 
 @property (nonatomic, strong) MPMoviePlayerController *moviePlayer;
+
+@property (nonatomic, strong) AVPlayer *player;
+
+@property (nonatomic, strong) AVAsset *movieAsset;
+
+@property (nonatomic, strong) AVPlayerItem *playerItem;
+
+@property (nonatomic, strong) AVPlayerLayer *playerLayer;
 
 @end
 
@@ -80,6 +88,9 @@
     [self addSubview:self.moviePlayer.view];
     
     
+    
+    
+    
 //    self.promptLabel = [[TFLabel alloc]init];
 //    self.promptLabel.backgroundColor = [UIColor clearColor];
 //    self.promptLabel.textColor = [UIColor whiteColor];
@@ -88,6 +99,8 @@
 //    self.promptLabel.text = @"Series of GIFs to show how to use EVO";
 //    
 //    [self addSubview:self.promptLabel];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(runLoopTheMovie:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     
 }
 
@@ -131,21 +144,36 @@
 {
     [RACObserve(self, moviePath) subscribeNext:^(NSString * str) {
         
-        if (self.moviePlayer && str)
-        {
+//        if (self.moviePlayer && str)
+//        {
+        [self reset];
+        
+        
+
+        
             if ([str hasSuffix:@"png"])
             {
-                [self.moviePlayer stop];
+                [self.playerLayer removeFromSuperlayer];
                 self.bgImageView.image = [UIImage imageWithContentsOfFile:str];
             }
             else if ([str hasSuffix:@"mov"])
             {
-                self.bgImageView.image = IMAGE(@"guideGifBg");
+//                self.bgImageView.image = IMAGE(@"guideGifBg");
                 NSURL *url = [NSURL fileURLWithPath:str];
                 [self.moviePlayer setContentURL:url];
                 [self.moviePlayer play];
+                
+//                self.movieAsset               = [AVURLAsset URLAssetWithURL:url options:nil];
+//                self.playerItem               = [AVPlayerItem playerItemWithAsset:self.movieAsset];
+//                self.player                   = [AVPlayer playerWithURL:url];
+//                self.playerLayer              = [AVPlayerLayer playerLayerWithPlayer:self.player];
+//                self.playerLayer.frame        = self.layer.bounds;
+//                self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+//                
+//                [self.layer addSublayer:self.playerLayer];
+//                [self.player play];
             }
-        }
+//        }
     }];
 }
 
@@ -176,8 +204,19 @@
 
 -(void)reset
 {
-    [self.moviePlayer stop];
     self.bgImageView.image = IMAGE(@"guideGifBg");
+    
+    [self.playerLayer removeFromSuperlayer];
+}
+
+- (void)runLoopTheMovie:(NSNotification *)n{
+    //注册的通知  可以自动把 AVPlayerItem 对象传过来，只要接收一下就OK
+    
+    AVPlayerItem * p = [n object];
+    //关键代码
+    [p seekToTime:kCMTimeZero];
+    
+    [self.player play];
 }
 
 @end

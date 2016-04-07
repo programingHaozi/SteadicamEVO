@@ -20,6 +20,7 @@
 		872722E61CB4B4480098EBEE /* AboutViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 872722E51CB4B4480098EBEE /* AboutViewModel.json */; };
 		872722EA1CB4B4D70098EBEE /* LanguageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 872722E91CB4B4D70098EBEE /* LanguageViewCell.m */; };
 		872722EC1CB4B52A0098EBEE /* LanguageViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */; };
+		87341CB91CB5FEBA00B3E14D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87341CB81CB5FEBA00B3E14D /* AVFoundation.framework */; };
 		878B29541C992BC5003F2481 /* TFUserDefaults+SCE.m in Sources */ = {isa = PBXBuildFile; fileRef = 878B29531C992BC5003F2481 /* TFUserDefaults+SCE.m */; };
 		87A65C7F1CB544B0002D7C2C /* 正确手持方式.png in Resources */ = {isa = PBXBuildFile; fileRef = 87A65C7D1CB544B0002D7C2C /* 正确手持方式.png */; };
 		87A65C801CB544B0002D7C2C /* 正确重心位置.png in Resources */ = {isa = PBXBuildFile; fileRef = 87A65C7E1CB544B0002D7C2C /* 正确重心位置.png */; };
@@ -93,6 +94,7 @@
 		872722E91CB4B4D70098EBEE /* LanguageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewCell.m; sourceTree = "<group>"; };
 		872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LanguageViewModel.json; sourceTree = "<group>"; };
 		872BE0231CB3578700A8CD67 /* Environment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
+		87341CB81CB5FEBA00B3E14D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		878B29521C992BC5003F2481 /* TFUserDefaults+SCE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TFUserDefaults+SCE.h"; sourceTree = "<group>"; };
 		878B29531C992BC5003F2481 /* TFUserDefaults+SCE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TFUserDefaults+SCE.m"; sourceTree = "<group>"; };
 		87A65C7D1CB544B0002D7C2C /* 正确手持方式.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "正确手持方式.png"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87341CB91CB5FEBA00B3E14D /* AVFoundation.framework in Frameworks */,
 				87AED74D1CB501DB00709C76 /* MediaPlayer.framework in Frameworks */,
 				5B967DFDDC50486EBFDFA6D6 /* libPods.a in Frameworks */,
 			);
@@ -727,6 +730,7 @@
 		C808C94978E5B9185FC56B69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87341CB81CB5FEBA00B3E14D /* AVFoundation.framework */,
 				87AED74C1CB501DB00709C76 /* MediaPlayer.framework */,
 				43686846EEC97D5B9EA405C7 /* libPods.a */,
 			);

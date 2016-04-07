@@ -10,7 +10,4 @@
 
 @property (nonatomic, strong) NSString *moviePath;
 
-- (void)reset;
-
-
 @end
