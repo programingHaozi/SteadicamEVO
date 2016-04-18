@@ -9,7 +9,6 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "TFActionModel.h"
 #import "Masonry.h"
 
 /**

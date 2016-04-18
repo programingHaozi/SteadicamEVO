@@ -10,14 +10,11 @@
 
 #define LABELTAG 10231
 
-@implementation LoopObj
-
-@synthesize labelName=_labelName;
+@implementation TFNewsLoopViewItem
 
 @end
 
 @interface TFNewsLoopView ()
-
 {
     UIScrollView *abstractScrollview;
     CGPoint _offsetpy;
@@ -27,6 +24,18 @@
     CGFloat _width;
     NSTimer *m_timer;
 }
+
+@property (nonatomic, assign) TFNewsLoopViewScrollDirection loopViewScrollDirection;
+
+/**
+ *   当前位置
+ */
+@property(nonatomic,readonly) CGPoint  currentOffset;
+
+/**
+ *  返回数据
+ */
+@property(nonatomic,strong) NSArray   *itemArray;
 
 - (void)makeselfUI;
 
@@ -46,7 +55,7 @@
     
     CGSize contSize;
     // 根据滚动方向设置ContentSize
-    if (self.loopViewScrollDirection == TFNewsLoopViewScrollDirectionVertical)
+    if (self.loopViewScrollDirection == kNewsLoopViewScrollDirectionVertical)
     {
         contSize = CGSizeMake(self.frame.size.width, ([_itemarray count]+1)*_height);
     }
@@ -62,12 +71,12 @@
     
     for (int i=0; i<[_itemarray count]; i++)
     {
-        LoopObj *obj=(LoopObj*)[_itemarray objectAtIndex:i];
+        TFNewsLoopViewItem *obj=(TFNewsLoopViewItem*)[_itemarray objectAtIndex:i];
         
         
         CGRect labelFram;
         // 根据滚动方向设置ContentSize
-        if (self.loopViewScrollDirection == TFNewsLoopViewScrollDirectionVertical)
+        if (self.loopViewScrollDirection == kNewsLoopViewScrollDirectionVertical)
         {
             labelFram = CGRectMake(0, _height*i, _width, _height);
         }
@@ -78,7 +87,7 @@
         
         UILabel *label=[[UILabel alloc]initWithFrame:labelFram];
         label.backgroundColor = [UIColor clearColor];
-        [label setText:obj.labelName];
+        [label setText:obj.title];
         label.tag=LABELTAG+i;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapInLabel:)];
         [label addGestureRecognizer:tap];
@@ -88,11 +97,11 @@
         if (i==[_itemarray count]-1)
         {
             
-            LoopObj *obj=(LoopObj*)[_itemarray objectAtIndex:0];
+            TFNewsLoopViewItem *obj=(TFNewsLoopViewItem*)[_itemarray objectAtIndex:0];
             
             CGRect lastFrame;
             
-            if (self.loopViewScrollDirection == TFNewsLoopViewScrollDirectionVertical)
+            if (self.loopViewScrollDirection == kNewsLoopViewScrollDirectionVertical)
             {
                 lastFrame = CGRectMake(0, _height*(i+1), _width, _height);
             }
@@ -101,7 +110,7 @@
                 lastFrame = CGRectMake(_width*(i+1), 0, _width, _height);
             }
             UILabel *labelLast=[[UILabel alloc]initWithFrame:lastFrame];
-            [labelLast setText:obj.labelName];
+            [labelLast setText:obj.title];
             labelLast.tag=LABELTAG+i+1;
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapInLabel:)];
             [label addGestureRecognizer:tap];
@@ -115,8 +124,11 @@
 
 - (void)tapInLabel:(UITapGestureRecognizer*)tap
 {
-    
-    self.clickItemOperationBlock(tap.view.tag-LABELTAG);
+    if (self.didSelectItemAtIndexHandler)
+    {
+        self.didSelectItemAtIndexHandler(tap.view.tag-LABELTAG);
+    }
+
     NSLog(@"%ld",tap.view.tag-LABELTAG);
     
 }
@@ -132,8 +144,9 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
-                withItemArray:(NSArray*)teams
-              scrollDirection:(TFNewsLoopViewScrollDirection)scrollDirection;
+                        items:(NSArray*)teams
+                    direction:(TFNewsLoopViewScrollDirection)scrollDirection
+                        block:(void (^)(NSInteger))block
 
 {
     self = [super initWithFrame:frame];
@@ -147,6 +160,7 @@
         
         assert([teams count]!=0);
         self.loopViewScrollDirection = scrollDirection;
+        self.didSelectItemAtIndexHandler = block;
        
         
     }
@@ -156,7 +170,7 @@
 /**
  *  开始时间
  */
-- (void)startTimer
+- (void)start
 {
     if (m_timer == nil)
     {
@@ -168,7 +182,7 @@
 /**
  *  停止时间
  */
-- (void)releaseTimer
+- (void)stop
 {
     if ([m_timer isValid])
     {
@@ -193,7 +207,7 @@
     
     CGPoint pointmiddle=CGPointMake(0,0);
     
-    if (self.loopViewScrollDirection == TFNewsLoopViewScrollDirectionVertical)
+    if (self.loopViewScrollDirection == kNewsLoopViewScrollDirectionVertical)
     {
         if (point.y >=lastlabel.frame.origin.y)
         {
@@ -231,14 +245,14 @@
 - (void)setLoopViewScrollDirection:(TFNewsLoopViewScrollDirection)loopViewScrollDirection
 {
     _loopViewScrollDirection = loopViewScrollDirection;
-    
+
     [self makeselfUI];
-    [self startTimer];
+    [self start];
 }
 
 -(void)dealloc
 {
-    [self releaseTimer];
+    [self stop];
 }
 
 

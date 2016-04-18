@@ -40,4 +40,14 @@
  */
 @property (nonatomic,strong) NSString *content;
 
+/**
+ *  icon
+ */
+@property (nonatomic,strong) NSString *icon;
+
+/**
+ *  webModel
+ */
+@property (nonatomic, strong) id webModel;
+
 @end

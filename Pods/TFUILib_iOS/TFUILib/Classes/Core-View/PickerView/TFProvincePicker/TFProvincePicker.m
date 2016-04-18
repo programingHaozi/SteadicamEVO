@@ -73,7 +73,7 @@
 
 @property (nonatomic, strong) TFProvincePickerBlock block;
 
-@property (nonatomic, strong) UIButton *maskButton;
+@property (nonatomic, strong) UIButton *maskView;
 
 @property (nonatomic, strong) UIView *alertView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -82,7 +82,7 @@
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 @property (nonatomic, strong) NSArray *dataArray;
 
-@property (assign, nonatomic) NSInteger  numOfRow;
+@property (assign, nonatomic) NSInteger numOfRow;
 
 @end
 
@@ -111,7 +111,7 @@
         
         self.numOfRow=8;
         
-        [self addSubview:self.maskButton];
+        [self addSubview:self.backgroundView];
         [self addSubview:self.alertView];
         [self.alertView addSubview:self.titleLabel];
         [self.alertView addSubview:self.collectionView];
@@ -187,7 +187,7 @@
 
 - (void)show:(void (^)(BOOL finished))completion
 {
-    self.maskButton.alpha = 0;
+    self.backgroundView.alpha = 0;
     self.alertView.frame = CGRectMake(0, SCREEN_HEIGHT, self.alertView.frame.size.width, self.alertView.frame.size.height);
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     
@@ -195,7 +195,7 @@
                           delay:0
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                              self.maskButton.alpha = 1;
+                              self.backgroundView.alpha = 1;
                               self.alertView.frame = CGRectMake(0, SCREEN_HEIGHT-self.alertView.frame.size.height, self.alertView.frame.size.width, self.alertView.frame.size.height);
                           } completion:^(BOOL finished) {
                               if (completion) {
@@ -210,7 +210,7 @@
                                    delay:0
                                  options:UIViewKeyframeAnimationOptionLayoutSubviews
                               animations:^{
-                                  self.maskButton.alpha = 0;
+                                  self.backgroundView.alpha = 0;
                                   self.alertView.frame = CGRectMake(0, SCREEN_HEIGHT, self.alertView.frame.size.width, self.alertView.frame.size.height);
                               }
                               completion:^(BOOL finished) {
@@ -243,16 +243,16 @@
     return _dataArray;
 }
 
--(UIButton *)maskButton
+-(UIButton *)backgroundView
 {
-    if (_maskButton==nil)
+    if (_maskView==nil)
     {
-        _maskButton = [[UIButton alloc] initWithFrame:self.frame];
-        _maskButton.backgroundColor = HEXCOLOR(0X000008,0.5);
-        [_maskButton addTarget:self action:@selector(cancelButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        _maskView = [[UIButton alloc] initWithFrame:self.frame];
+        _maskView.backgroundColor = HEXCOLOR(0X000008,0.5);
+        [_maskView addTarget:self action:@selector(cancelButtonClick) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    return _maskButton;
+    return _maskView;
 }
 
 -(UIView *)alertView

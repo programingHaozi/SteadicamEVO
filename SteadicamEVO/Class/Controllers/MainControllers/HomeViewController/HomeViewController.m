@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "BTConnectManager.h"
 
 @interface HomeViewController ()
 
@@ -20,6 +21,16 @@
     // Do any additional setup after loading the view.
     
     [self setCustomNavigationBarHidden:YES];
+    
+   [kBTConnectManager discoverDeviceNext:^BOOL(NSString *deviceName) {
+       return YES;
+    } completion:^(BOOL timeout) {
+        
+    } error:^(NSError *error) {
+        
+    }];
+    
+    
 }
 
 #pragma mark- init autolayout bind

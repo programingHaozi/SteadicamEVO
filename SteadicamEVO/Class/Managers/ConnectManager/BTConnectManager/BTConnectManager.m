@@ -6,7 +6,47 @@
 //  Copyright © 2016年 haozi. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "BTConnectManager.h"
+#import "RKBlueKit.h"
+#import "RKCentralManager.h"
+#import "RKPeripheralManager.h"
+#import "RKPeripheral.h"
+#import "CBUUID+RKBlueKit.h"
+#import "RKBlueBlocks.h"
+
+@interface BTConnectManager()
+
+@property (nonatomic, assign) BOOL isCentralManager;
+@property (nonatomic, copy) NSString *peripheralName;
+@property (nonatomic, copy) NSString *serviceUUID;
+
+/**
+ *  完成回调
+ */
+@property (nonatomic, copy) void (^completionBlock)(NSInteger);
+/**
+ *  断开连接回调
+ */
+@property (nonatomic, copy) void (^disconnectionBlock)(NSError*);
+
+/**
+ *  连接回调
+ */
+@property (nonatomic, copy) void (^connectionBlock)(NSInteger result);
+
+@property (nonatomic,strong) NSArray *services;
+@property (nonatomic,strong) CBService *service;
+
+@property (nonatomic,strong) RKPeripheral *peripheral;
+@property (nonatomic,strong) RKPeripheralManager *peripheralManager;
+@property (nonatomic,strong) RKCentralManager *centralManager;
+@property (nonatomic,strong) CBCharacteristic *readCharacteristic;
+@property (nonatomic,strong) CBCharacteristic *writeCharacteristic;
+
+@property (nonatomic,strong) NSString *pendingValue;
+
+@end
 
 @implementation BTConnectManager
 
@@ -24,142 +64,399 @@
 
 #pragma mark - - - - - - - - - - - - - - - 连接相关 - - - - - - - - - - - - - - -
 
-/**
- *  连接设备
- *
- *  @param completion    连接结束回调
- *  @param disconnection 断开连接回调
- */
-- (void)connectWithDevice:(void(^)(TorqueResult *result))completion
-            disconnection:(void (^)(NSError *error))disconnection
-{
-    __block void (^completionBlock)()    = completion;
-    __block void (^disconnectionBlock)() = disconnection;
-    
-    DeviceInfo *info = [self getOBDDeviceWithBTDevice:self.deviceModel];
-    
-    [kTorqueDevice connectWithDevice:info completion:^(TorqueResult *result) {
-        
-        DDLogDebug(@"discoverDeviceForUser result:%ld, message:%@",
-                   (long)result.result, result.message);
-        
-        if (result.succeed)
+- (void)initCentralManager:(void (^)(BOOL isOk, NSError *error))completion {
+    NSDictionary * opts = nil;
+
+    {
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0)
         {
-            DDLogDebug(@"连接成功");
-            
-            [[NSNotificationCenter defaultCenter]postNotificationName:kNotifactionConnectFinished object:nil];
-            
-            __block TorqueResult *_result = [TorqueResult new];
-            _result.succeed = result.succeed;
-            
-            
+            opts = @{CBCentralManagerOptionShowPowerAlertKey:@YES};
+        }
+        self.centralManager = [[RKCentralManager alloc] initWithQueue:nil
+                                                              options:opts];
+        __weak BTConnectManager * weakSelf = self;
+        
+        if (self.centralManager.state != CBCentralManagerStatePoweredOn)
+        {
+            self.centralManager.onStateChanged = ^(NSError * error)
+            {
+                if (weakSelf.centralManager.state == CBCentralManagerStatePoweredOn)
+                {
+                    
+                    NSLog(@"centralManager is ready!");
+                    
+                    if (completion)
+                    {
+                        completion(YES, nil);
+                    }
+                }
+                else
+                {
+                    
+                    NSLog(@"centralManager is not ready!");
+                    
+                    if (completion)
+                    {
+                        completion(NO, nil);
+                    }
+                }
+            };
         }
         else
         {
-            if (completionBlock)
+            
+            NSLog(@"centralManager is ready!");
+            
+            if (completion)
             {
-                completionBlock(result);
-                completionBlock = nil;
+                completion(YES, nil);
             }
         }
-    } disconnection:^(NSError *error) {
+    }
+}
+
+
+- (void)discoverServiceAndCharacteristic:(RKPeripheral *)peripheral
+                              completion:(void (^)(NSInteger result))completion
+{
+    __weak BTConnectManager * weakSelf = self;
+    
+    [peripheral discoverServices:@[[CBUUID UUIDWithString: kBLEService1UUID]]
+                        onFinish:^(NSError *error)
+    {
+                            weakSelf.service = [peripheral.services firstObject];
         
-        DDLogDebug(@"disconnection error:%@", error.localizedDescription);
+                            NSLog(@"Discovered Service : %@",weakSelf.service);
         
-        if (disconnectionBlock)
+                            [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString: kBLECharacteristicNofiy1],[CBUUID UUIDWithString: kBLECharacteristicWrite]]
+                                                     forService:weakSelf.service
+                                                       onFinish:^(CBService *service, NSError *error){
+                                                           
+                                                           for (CBCharacteristic *characteristic in service.characteristics)
+                                                           {
+                                                               if ((characteristic.properties &CBCharacteristicPropertyWrite) !=0 ||
+                                                                   (characteristic.properties &CBCharacteristicPropertyWriteWithoutResponse) !=0)
+                                                               {
+                                                                   self.writeCharacteristic = characteristic;
+                                                                   
+                                                                   NSLog(@"Discovered Characteristic : %@",self.writeCharacteristic);
+                                                                   
+                                                                   continue;
+                                                               }
+                                                               
+                                                               if ((characteristic.properties & CBCharacteristicPropertyNotify))
+                                                               {
+                                                                   self.readCharacteristic = characteristic;
+                                                                   
+                                                                   NSLog(@"Discovered Characteristic : %@",self.readCharacteristic);
+                                                                   
+                                                                   continue;
+                                                               }
+                                                           }
+                                                           
+                                                           NSLog(@"Set Notify Callback For Characteristic : %@",self.readCharacteristic);
+            
+                                                           [self.peripheral setNotifyValue:YES
+                                                                         forCharacteristic:self.readCharacteristic
+                                                                                 onUpdated:^(CBCharacteristic *characteristic, NSError *error) {
+                                                                                     
+                                                               NSData *data = characteristic.value;
+                                                               Byte *p = (Byte *)[data bytes];
+                                                               NSString *rawValue = nil;
+                                                               
+                                                               if (*p > 0x7f)
+                                                               {
+                                                                   NSLog(@"received raw binary data:%lX",(long)*p);
+                                                                   rawValue = [NSString stringWithFormat:@"%lX\r\n",(long)*p];
+                                                               }
+                                                               else
+                                                               {
+                                                                   rawValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                                                   NSLog(@"received raw data:%@",rawValue);
+                                                               }
+                                                               
+                                                               if (weakSelf.pendingValue)
+                                                               {
+                                                                   if (![rawValue isEqual:@"?"])
+                                                                   {
+                                                                       rawValue = [NSString stringWithFormat:@"%@%@",weakSelf.pendingValue,rawValue];
+                                                                   }
+                                                                   weakSelf.pendingValue = nil;
+                                                               }
+                                                               
+//                                                               NSMutableArray *rawValues = [NSMutableArray arrayWithArray:[rawValue componentsSeparatedByString:kBluetoothValueSplit]];
+//                                                               if (![rawValue hasSuffix:kBluetoothValueSplit]) {
+//                                                                   weakSelf.pendingValue = [rawValues lastObject];
+//                                                                   [rawValues removeObject:weakSelf.pendingValue];
+//                                                               }
+                                                               
+//                                                               for (NSString *value in rawValues) {
+//                                                                   if (dataProcessor.dataReceived && [value length]) {
+//                                                                       dataProcessor.dataReceived(value);
+//                                                                   }
+//                                                               }
+                                                           }];
+                                                           
+                                                           NSLog(@"Did connect to device %@",peripheral.name);
+                                                           if (completion)
+                                                           {
+                                                               completion(0);
+                                                           }
+                                                       }];
+                        }];
+}
+
+- (void)connectPeripheral:(RKPeripheral *)peripheral
+               completion:(void (^)(NSInteger result))completion
+{
+    __weak BTConnectManager * weakSelf = self;
+    // 连接设备时的超时处理
+    __block BOOL timeout = YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (timeout)
         {
-            disconnectionBlock(error);
+            [self.centralManager cancelPeripheralConnection:peripheral onFinished:^(RKPeripheral *peripheral, NSError *error) {
+                
+            }];
+            NSLog(@"Connect to %@ failed!",peripheral.name);
+            if (completion)
+            {
+                completion(2);
+            }
         }
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifactionDisConnected object:nil];
-        
+    });
+    
+    [self.centralManager connectPeripheral:peripheral
+                                   options:nil
+                                onFinished:^(RKPeripheral *peripheral, NSError *error) {
+                                    timeout = NO;
+                                    [weakSelf discoverServiceAndCharacteristic:peripheral
+                                                                    completion:^(NSInteger result) {
+                                                                        
+                                                                        if (result == 0)
+                                                                        {
+                                                                            if (completion)
+                                                                            {
+                                                                                completion(0);
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (completion)
+                                                                            {
+                                                                                completion(2);
+                                                                            }
+                                                                        }
+                                                                    }];
+                                } onDisconnected:^(RKPeripheral *peripheral, NSError *error) {
+                                    NSLog(@"Did disconnect to device %@",peripheral.name);
+                                    if (_disconnectionBlock)
+                                    {
+                                        _disconnectionBlock(error);
+                                        // 将断开连接的回调置为空，防止断开连接时多次回调
+                                        _disconnectionBlock = nil;
+                                    }
+                                }];
+}
+
+#pragma mark - Connector protocol
+
+
+- (void)discoverDevice:(void (^)(NSArray *devices))completion {
+    
+    NSMutableArray *devices = [NSMutableArray array];
+    [self initCentralManager:^(BOOL isOk, NSError *error) {
+        if (isOk)
+        {
+            // 搜索设备时的超时处理
+            __block BOOL end = NO;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kScanPeripheralTimeoutSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                if (!end)
+                {
+                    [self.centralManager stopScan];
+                    NSLog(@"Discover Device End!");
+                    if (completion)
+                    {
+                        completion(devices);
+                    }
+                }
+            });
+            
+            // 如果设备已经连接，直接返回
+            if (self.peripheral.state == CBPeripheralStateConnected && [self.peripheral.name isEqualToString:self.peripheralName])
+            {
+                end = YES;
+                NSLog(@"Discover Device End!");
+                if (completion)
+                {
+                    completion(@[self.peripheral.name]);
+                }
+                return;
+            }
+            
+            // 指定ServiceUUID搜索设备
+            [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString: kBLEService1UUID]]
+                                                        options:nil
+                                                      onUpdated:^(RKPeripheral *peripheral) {
+//                                                          if ([peripheral.name hasPrefix:kBLENamePrefix]) {
+                                                              NSLog(@"Discovered device: %@",peripheral.name);
+                                                              [devices addObject:peripheral.name];
+//                                                          }
+                                                      }];
+        } else {
+            if (completion) {
+                completion(devices);
+            }
+        }
     }];
 }
 
-/**
- *  连接设备(直连)
- *
- *  @param completion    连接完成时的回调block， result： 0 成功，1 未发现设备，2 失败, 3 密码鉴权失败
- *  @param disconnection 连接断开回调
- */
-- (void)connectDevice:(void (^)(TorqueResult *result))completion
-        disconnection:(void (^)(NSError *error))disconnection
+
+- (void)discoverDeviceNext:(BOOL (^)(NSString *deviceName))next
+                completion:(void (^)(BOOL timeout))completion
+                     error:(void (^)(NSError *error))errorBlock
 {
-    
-    __block void (^connectBlock)(TorqueResult *result) = completion;
-    __block void (^disconnectBolck)(NSError *error) = disconnection;
-    
-    DeviceInfo *info = [self getOBDDeviceWithBTDevice:self.deviceModel];
-    
-    // 断开已有连接
-    [self disconnectOBDDevice];
-    
-    // 设置要连接的设备并连接设备
-    kTorqueDevice.obdDevice.deviceInfo = info;
-    
-    [kTorqueDevice connectWithMode:info.mode completion:^(NSInteger result) {
-        
-        if (connectBlock)
+    [self initCentralManager:^(BOOL isOk, NSError *error) {
+        if (isOk)
         {
-            TorqueResult *connectResult = [TorqueResult new];
-            connectResult.result        = result;
+            // 搜索设备时的超时处理
+            __block BOOL timeout = YES;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kScanPeripheralTimeoutSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (timeout) {
+                    [self.centralManager stopScan];
+                    NSLog(@"Discover Device Time Out!");
+                    if (completion) {
+                        completion(timeout);
+                    }
+                }
+            });
             
-            if (connectBlock)
+            // 如果设备已经连接，直接返回
+            if (self.peripheral.state == CBPeripheralStateConnected && [self.peripheral.name isEqualToString:self.peripheralName])
             {
-                connectBlock(connectResult);
-                connectBlock = nil;
+                timeout = NO;
+                NSLog(@"Discovered device: %@",self.peripheral.name);
+                if (next)
+                {
+                    next(self.peripheral.name);
+                    NSLog(@"Discover Device End!");
+                    if (completion) {
+                        completion(timeout);
+                    }
+                }
+                return;
             }
             
+            // 指定ServiceUUID搜索设备
+            [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString: kBLEService1UUID]]
+                                                        options:nil
+                                                      onUpdated:^(RKPeripheral *peripheral) {
+//                                                          if ([peripheral.name hasPrefix:kBLENamePrefix]) {
+                                                              NSLog(@"Discovered device: %@",peripheral.name);
+                                                              if (next) {
+                                                                  BOOL find = NO;
+                                                                  find = next(peripheral.name);
+                                                                  if (find) {
+                                                                      timeout = NO;
+                                                                      NSLog(@"find device timeout %d.",timeout);
+                                                                      [self.centralManager stopScan];
+                                                                      NSLog(@"Discover Device End!");
+                                                                      if (completion) {
+                                                                          completion(timeout);
+                                                                      }
+                                                                  }
+                                                              }
+//                                                          }
+                                                      }];
         }
-    } disconnection:^(NSError *error) {
-        
-        if (disconnectBolck)
+        else
         {
-            if (disconnectBolck)
+            if (errorBlock)
             {
-                disconnectBolck(error);
-                disconnectBolck = nil;
+                NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"蓝牙初始化失败！"
+                                                                     forKey:NSLocalizedDescriptionKey];
+                NSError *aError = [NSError errorWithDomain:ErrorDomain code:1000 userInfo:userInfo];
+                errorBlock(aError);
             }
-            
-            connectBlock = nil;
         }
     }];
 }
 
-/**
- *  断开与OBD设备的连接
- */
-- (void)disconnectOBDDevice
+
+- (void)disconnect
 {
-    [kTorqueDevice disconnect];
+    if (self.peripheral.state != CBPeripheralStateDisconnected)
+    {
+        [self.centralManager cancelPeripheralConnection:self.peripheral
+                                             onFinished:^(RKPeripheral *peripheral, NSError *error) {
+                                                 
+                                             }];
+    }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotifactionDisConnected
-                                                        object:nil];
+    if (_disconnectionBlock)
+    {
+        _disconnectionBlock(nil);
+        _disconnectionBlock = nil;
+    }
 }
 
-#pragma mark - - - - - - - - - - - - - - -  Model Conversion - - - - - - - - - - - - - - -
+- (void)writeCommand:(NSString *)command
+{
+    if (command == nil || [command length] == 0)
+    {
+        return;
+    }
+    
+    NSData * data = [[command stringByAppendingString:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [self.peripheral writeValue:data
+              forCharacteristic:self.writeCharacteristic
+                           type:CBCharacteristicWriteWithoutResponse
+                       onFinish:nil];
+}
 
 /**
- *  车享宝盒子模型与SDK模型转换
+ *  向设备写二进制数据
  *
- *  @param cxDevice 车享宝盒子数据模型
- *
- *  @return SDK盒子数据模型
+ *  @param data 需要写入设备的数据
  */
-- (DeviceInfo *)getOBDDeviceWithBTDevice:(BTDeviceModel *)BTDevice
+- (void)sendData:(NSData *)data
+        onFinish:(void(^)(NSError *error))onFinish
 {
-    DeviceInfo *info     = [[DeviceInfo alloc] init];
-//    info.userId          = cxDevice.userId;
-//    info.sn              = cxDevice.sn;
-//    info.vinCode         = cxDevice.vin;
-    info.passwd          = BTDevice.password;
-    info.name            = BTDevice.name;
-    info.mode            = TorqueDeviceConnetModeBT;
-//    info.deviceId        = cxDevice.deviceId;
-//    info.hardwareVersion = cxDevice.hardwareVersion;
-//    info.softwareVersion = cxDevice.firmwareVersion;
+    if (data == nil)
+    {
+        return;
+    }
     
-    return info;
+    [self.peripheral writeValue:data
+              forCharacteristic:self.writeCharacteristic
+                           type:CBCharacteristicWriteWithResponse
+                       onFinish:^(CBCharacteristic *characteristic, NSError *error) {
+                           
+                  if (onFinish)
+                  {
+                      onFinish(error);
+                  }
+              }];
+}
+
+/**
+ *  向设备写二进制数据
+ *
+ *  @param data 需要写入设备的数据
+ */
+- (void)sendData:(NSData *)data
+{
+    if (data == nil)
+    {
+        return;
+    }
+    [self.peripheral writeValue:data
+              forCharacteristic:self.writeCharacteristic
+                           type:CBCharacteristicWriteWithoutResponse
+                       onFinish:nil];
 }
 
 @end

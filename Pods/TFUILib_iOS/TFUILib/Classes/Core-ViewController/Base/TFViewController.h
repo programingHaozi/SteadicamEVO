@@ -10,13 +10,13 @@
 #import "MJExtension.h"
 #import "Masonry.h"
 #import "TFViewModel.h"
-#import "TFActionModel.h"
 #import "TFWebModel.h"
-#import "UIViewController+HUD.h"
-#import "UIViewController+Loading.h"
-#import "UIViewController+Toast.h"
+#import "UIViewController+TFHUD.h"
+#import "UIViewController+TFLoading.h"
+#import "UIViewController+TFToast.h"
 #import "UIViewController+Push.h"
 #import "UIViewController+HandleAction.h"
+#import "TFView.h"
 
 typedef void (^TFViewControllerResultBlock)(id);
 
@@ -34,6 +34,9 @@ typedef void (^TFViewControllerResultBlock)(id);
 
 @property (nonatomic,strong) UINavigationBar* customNavigationBar;
 @property (nonatomic,strong) UINavigationItem* customNavigationItem;
+
+@property (nonatomic, strong) TFView *customNaviBarView;
+
 @property (nonatomic,assign) BOOL customNavigationBarHidden;
 @property (nonatomic,assign) BOOL customNavigationBarTranslucent;
 
@@ -100,6 +103,21 @@ typedef void (^TFViewControllerResultBlock)(id);
 - (id)initWithViewModel:(id)viewModel
                 nibName:(NSString *)nibName
                  bundle:(NSBundle *)bundle;
+
+/**
+ *  初始化控制器
+ *
+ *  @param viewModel 控制器viewModel
+ *  @param nibName   nib名称
+ *  @param bundle    NSBundle
+ *  @param block     控制器回调
+ *
+ *  @return 控制器
+ */
+- (id)initWithViewModel:(id)viewModel
+                nibName:(NSString *)nibName
+                 bundle:(NSBundle *)bundle
+            resultBlock:(TFViewControllerResultBlock)block;
 
 /**
  *  初始化视图

@@ -7,9 +7,20 @@
 //
 
 #import "UIView+ViewController.h"
+#import "UIViewController+Ext.h"
 #import "TFUIUtil.h"
 
 @implementation UIView (ViewController)
+
+- (UIWindow*)keyWindow
+{
+    return [UIApplication sharedApplication].keyWindow;
+}
+
+- (UIViewController *)topViewController
+{
+    return [[UIApplication sharedApplication].keyWindow.rootViewController topViewController];
+}
 
 - (UIViewController *)viewController
 {

@@ -31,7 +31,8 @@ typedef void (^TFImageAlertViewBlock)(NSInteger index);
  */
 + (void)showWithTitle:(NSString*)title
               message:(NSString*)message
-         buttonTitles:(NSArray*)buttonTitles
+    cancelButtonTitle:(NSString *)cancelButtonTitle
+    otherButtonTitles:(NSArray *)otherButtonTitles
                 block:(TFImageAlertViewBlock)block;
 
 /**
@@ -44,7 +45,8 @@ typedef void (^TFImageAlertViewBlock)(NSInteger index);
  */
 + (void)showWithTitle:(NSString*)title
               image:(NSString*)image
-         buttonTitles:(NSArray*)buttonTitles
+    cancelButtonTitle:(NSString *)cancelButtonTitle
+    otherButtonTitles:(NSArray *)otherButtonTitles
                 block:(TFImageAlertViewBlock)block;
 
 @end

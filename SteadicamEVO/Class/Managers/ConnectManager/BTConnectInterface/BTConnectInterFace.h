@@ -10,29 +10,48 @@
 
 @optional
 
-#pragma mark - - - - - - - - - - - - - - - 连接相关 - - - - - - - - - - - - - - -
-
 /**
- *  连接设备
+ *  搜索设备
  *
- *  @param completion    连接结束回调
- *  @param disconnection 断开连接回调
+ *  @param completion 返回设备列表
  */
-- (void)connectWithDevice:(void(^)(TorqueResult *result))completion
-           disconnection:(void (^)(NSError *error))disconnection;
+- (void)discoverDevice:(void (^)(NSArray *devices))completion;
 
 /**
- *  连接设备 (直连)
+ *  逐个搜索设备
  *
- *  @param completion    连接结束回调 
- *  @param disconnection 断开连接回调
+ *  @param next   搜索到的一个设备的name
+ *  @param completion 搜索是否超时
+ *  @param errorBlock 错误处理block
  */
-- (void)connectWithMode:(void (^)(TorqueResult *result))completion
-        disconnection:(void (^)(NSError *error))disconnection;
+- (void)discoverDeviceNext:(BOOL (^)(NSString *deviceName))next
+                completion:(void (^)(BOOL timeout))completion
+                     error:(void (^)(NSError *error))errorBlock;
 
 /**
- *  断开与OBD设备的连接
+ *  断开连接
  */
-- (void)disconnectOBDDevice;
+- (void)disconnect;
+
+/**
+ *  向设备写AT命令
+ *
+ *  @param command AT命令
+ */
+- (void)writeCommand:(NSString *)command;
+
+/**
+ *  向设备写二进制数据
+ *
+ *  @param data 需要写入设备的数据
+ */
+//- (void)sendData:(NSData *)data onFinish:(void(^)(NSError *error))onFinish;
+
+/**
+ *  向设备写二进制数据
+ *
+ *  @param data 需要写入设备的数据
+ */
+- (void)sendData:(NSData *)data;
 
 @end

@@ -25,7 +25,7 @@
 
 @property (nonatomic, strong) TFImageAlertViewBlock block;
 
-@property (nonatomic, strong) UIButton *maskButton;
+@property (nonatomic, strong) UIButton *maskView;
 
 @property (nonatomic, strong) UIView *alertView;
 
@@ -55,12 +55,14 @@
 
 + (void)showWithTitle:(NSString*)title
               message:(NSString*)message
-         buttonTitles:(NSArray*)buttonTitles
+    cancelButtonTitle:(NSString *)cancelButtonTitle
+    otherButtonTitles:(NSArray *)otherButtonTitles
                 block:(TFImageAlertViewBlock)block
 {
     TFImageAlertView *view = [[TFImageAlertView alloc]initWithTitle:title
                                                             message:message
-                                                       buttonTitles:buttonTitles
+                                                  cancelButtonTitle:cancelButtonTitle
+                                                  otherButtonTitles:otherButtonTitles
                                                               block:block];
     [view show:^(BOOL finished) {
         
@@ -69,12 +71,14 @@
 
 + (void)showWithTitle:(NSString*)title
                 image:(NSString*)image
-         buttonTitles:(NSArray*)buttonTitles
+    cancelButtonTitle:(NSString *)cancelButtonTitle
+    otherButtonTitles:(NSArray *)otherButtonTitles
                 block:(TFImageAlertViewBlock)block
 {
     TFImageAlertView *view=[[TFImageAlertView alloc]initWithTitle:title
                                                             image:image
-                                                     buttonTitles:buttonTitles
+                                                cancelButtonTitle:cancelButtonTitle
+                                                otherButtonTitles:otherButtonTitles
                                                             block:block];
     [view show:^(BOOL finished) {
         
@@ -83,7 +87,8 @@
 
 - (id)initWithTitle:(NSString*)title
             message:(NSString*)message
-       buttonTitles:(NSArray*)buttonTitles
+  cancelButtonTitle:(NSString *)cancelButtonTitle
+  otherButtonTitles:(NSArray *)otherButtonTitles
               block:(TFImageAlertViewBlock)block
 {
     self = [super initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -98,10 +103,10 @@
         
         self.clipsToBounds=YES;
         
-        self.maskButton = [[UIButton alloc] initWithFrame:self.frame];
-        self.maskButton.backgroundColor = HEXCOLOR(0X000008,0.5);
-        [self.maskButton addTarget:self action:@selector(dismissButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.maskButton];
+        self.maskView = [[UIButton alloc] initWithFrame:self.frame];
+        self.maskView.backgroundColor = HEXCOLOR(0X000008,0.5);
+        [self.maskView addTarget:self action:@selector(dismissButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.maskView];
         
         self.alertView = [[UIView alloc] init];
         self.alertView.backgroundColor = HEXCOLOR(0xffffff, 1);
@@ -136,12 +141,23 @@
         self.buttonContainerView.backgroundColor = HEXCOLOR(0XEFEFF4,  1);
         [self.alertView addSubview:self.buttonContainerView];
         
+        NSMutableArray *buttonTitles=[[NSMutableArray alloc]init];
+        if (cancelButtonTitle!=nil)
+        {
+            [buttonTitles addObject:buttonTitles];
+        }
+        
+        for (NSString *item in otherButtonTitles)
+        {
+            [buttonTitles addObject:item];
+        }
+        
         self.buttonArr = [self createButtonArr:buttonTitles];
         self.lineArr = [self createLineArr:buttonTitles];
         
         [self autolayoutViews1];
         
-        self.maskButton.userInteractionEnabled=NO;
+        self.maskView.userInteractionEnabled=NO;
 
         self.block=block;
         
@@ -152,7 +168,8 @@
 
 - (id)initWithTitle:(NSString*)title
               image:(NSString*)image
-       buttonTitles:(NSArray*)buttonTitles
+  cancelButtonTitle:(NSString *)cancelButtonTitle
+  otherButtonTitles:(NSArray *)otherButtonTitles
               block:(TFImageAlertViewBlock)block
 {
     self = [super initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -167,10 +184,10 @@
         
         self.clipsToBounds=YES;
         
-        self.maskButton = [[UIButton alloc] initWithFrame:self.frame];
-        self.maskButton.backgroundColor = HEXCOLOR(0X000008,0.5);
-        [self.maskButton addTarget:self action:@selector(dismissButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.maskButton];
+        self.maskView = [[UIButton alloc] initWithFrame:self.frame];
+        self.maskView.backgroundColor = HEXCOLOR(0X000008,0.5);
+        [self.maskView addTarget:self action:@selector(dismissButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.maskView];
         
         self.alertView = [[UIView alloc] init];
         self.alertView.backgroundColor = HEXCOLOR(0xffffff, 1);
@@ -197,6 +214,17 @@
         self.buttonContainerView = [[UIView alloc] init];
         self.buttonContainerView.backgroundColor = HEXCOLOR(0xffffff, 1);
         [self.alertView addSubview:self.buttonContainerView];
+        
+        NSMutableArray *buttonTitles=[[NSMutableArray alloc]init];
+        if (cancelButtonTitle!=nil)
+        {
+            [buttonTitles addObject:buttonTitles];
+        }
+        
+        for (NSString *item in otherButtonTitles)
+        {
+            [buttonTitles addObject:item];
+        }
         
         self.buttonArr = [self createButtonArr:buttonTitles];
         self.lineArr = [self createLineArr:buttonTitles];
@@ -341,7 +369,7 @@
 
 - (void)show:(void (^)(BOOL finished))completion
 {
-    self.maskButton.alpha = 0;
+    self.maskView.alpha = 0;
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     
     [UIView animateWithDuration:ANIMATION_DURATION_TIME
@@ -349,7 +377,7 @@
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
-                         self.maskButton.alpha = 1;
+                         self.maskView.alpha = 1;
                      } completion:^(BOOL finished) {
                          
                          if (completion)
@@ -370,7 +398,7 @@
                      }
                      completion:^(BOOL finished) {
                          
-                         self.maskButton.alpha = 0;
+                         self.maskView.alpha = 0;
                          [self removeFromSuperview];
                          if (completion)
                          {
@@ -392,7 +420,7 @@
         btn.backgroundColor = [UIColor clearColor];
         [btn setTitle:arr[i] forState:UIControlStateNormal];
         [btn setTitleColor:i==count-1?HEXCOLOR(0X0077DD,  1):HEXCOLOR(0X333333,  1) forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(clickedButton:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         [btn setBackgroundImage:[UIImage imageWithColor:HEXCOLOR(0xffffff, 1)] forState:UIControlStateNormal];
         [btn setBackgroundImage:[UIImage imageWithColor:HEXCOLOR(0xeeeeee, 1)] forState:UIControlStateHighlighted];
         btn.tag=i;
@@ -419,7 +447,7 @@
     return tmpArr;
 }
 
--(void)clickedButton:(UIButton*)sender
+-(void)clickButton:(UIButton*)sender
 {
     WS(weakSelf)
     [self hide:^(BOOL finished) {

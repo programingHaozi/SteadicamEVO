@@ -99,7 +99,7 @@ static CGFloat const kBumpTimeSeconds2 = 0.1;
     countLabel.textColor = [UIColor whiteColor];
     countLabel.backgroundColor = [UIColor clearColor];
     
-    [self setCircleAtFrame:CGRectMake(frame.size.width- (RKNotificationHubDefaultDiameter*2/3), -RKNotificationHubDefaultDiameter/3, RKNotificationHubDefaultDiameter, RKNotificationHubDefaultDiameter)];
+    [self setCircleFrame:CGRectMake(frame.size.width- (RKNotificationHubDefaultDiameter*2/3), -RKNotificationHubDefaultDiameter/3, RKNotificationHubDefaultDiameter, RKNotificationHubDefaultDiameter)];
     
     [view addSubview:redCircle];
     [view addSubview:countLabel];
@@ -109,7 +109,7 @@ static CGFloat const kBumpTimeSeconds2 = 0.1;
     [self checkZero];
 }
 
-- (void)setCircleAtFrame:(CGRect)frame
+- (void)setCircleFrame:(CGRect)frame
 {
     [redCircle setFrame:frame];
     initialCenter = CGPointMake(frame.origin.x+frame.size.width/2, frame.origin.y+frame.size.height/2);
@@ -126,7 +126,7 @@ static CGFloat const kBumpTimeSeconds2 = 0.1;
     CGRect frame = redCircle.frame;
     frame.origin.x += x;
     frame.origin.y += y;
-    [self setCircleAtFrame:frame];
+    [self setCircleFrame:frame];
 }
 
 - (void)scaleCircleBySize:(CGFloat)scale
@@ -138,14 +138,14 @@ static CGFloat const kBumpTimeSeconds2 = 0.1;
     CGFloat hdiff = (fr.size.height - height) / 2;
     
     CGRect frame = CGRectMake(fr.origin.x + wdiff, fr.origin.y + hdiff, width, height);
-    [self setCircleAtFrame:frame];
+    [self setCircleFrame:frame];
 }
 
-- (void)setCircleColor:(UIColor*)circleColor labelColor:(UIColor*)labelColor
+- (void)setCircleColor:(UIColor*)circleColor textColor:(UIColor*)textColor
 {
     redCircle.isUserChangingBackgroundColor = YES;
     redCircle.backgroundColor = circleColor;
-    [countLabel setTextColor:labelColor];
+    [countLabel setTextColor:textColor];
 }
 
 - (void)hideCount
@@ -194,12 +194,12 @@ static CGFloat const kBumpTimeSeconds2 = 0.1;
     [self expandToFitLargerDigits];
 }
 
-- (void)setCountLabelFont:(UIFont *)font
+- (void)setFont:(UIFont *)font
 {
     [countLabel setFont:[UIFont fontWithName:font.fontName size:redCircle.frame.size.width/2]];
 }
 
-- (UIFont *)countLabelFont
+- (UIFont *)font
 {
     return countLabel.font;
 }

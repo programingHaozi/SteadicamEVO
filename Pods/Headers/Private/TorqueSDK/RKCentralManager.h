@@ -1,1 +1,0 @@
-../../../TorqueSDK/TorqueSDK/Classes/RKBluetooth/Central/RKCentralManager.h

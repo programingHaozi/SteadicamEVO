@@ -7,6 +7,7 @@
 //
 
 #import "TFNavigationController.h"
+#import "TFTabBarController.h"
 
 @interface TFNavigationController ()
 
@@ -14,12 +15,38 @@
 
 @implementation TFNavigationController
 
+-(instancetype)initWithRootViewController:(UIViewController *)rootViewController
+{
+    return [super initWithRootViewController:rootViewController];
+}
+
+-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if ([viewController isKindOfClass:[TFTabBarController class]])
+    {
+        ((TFViewController*)viewController).customNavigationBarHidden=YES;
+    }
+    else if ([viewController isKindOfClass:[TFViewController class]])
+    {
+        ((TFViewController*)viewController).customNavigationBarHidden=NO;
+    }
+    
+    [super pushViewController:viewController animated:animated];
+}
+
+-(UIViewController *)popViewControllerAnimated:(BOOL)animated
+{
+    return [super popViewControllerAnimated:animated];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.interactivePopGestureRecognizer.delegate = nil;
+    
+    self.navigationBarHidden=YES;
     
     [self initViews];
     [self autolayoutViews];
@@ -30,12 +57,6 @@
 {
     [self.navigationBar setBgColor:color];
     [self.navigationBar setElementsAlpha:alpha];
-}
-
--(void)loadView
-{
-    [super loadView];
-    self.navigationBarHidden=YES;
 }
 
 #pragma mark- init autolayout bind

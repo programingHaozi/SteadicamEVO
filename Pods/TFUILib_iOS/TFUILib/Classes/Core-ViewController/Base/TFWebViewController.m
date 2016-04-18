@@ -32,13 +32,24 @@
  */
 @property (nonatomic, strong) UIBarButtonItem *closeButtonItem;
 
-@property (nonatomic, assign) BOOL isCanClose;
+
 
 @end
 
 @implementation TFWebViewController
 
 #pragma mark- initMethod
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        self.isNeedProgressView = YES;
+    }
+
+    return self;
+}
 
 - (instancetype)initWithURL:(NSString *)URL
         isNeedMulilayerBack:(BOOL)needBack
@@ -48,13 +59,13 @@
                didStartLoad:(void(^)())didStarBlock
               DidFinishLoad:(void(^)())didFinishBlock
                 didFailLoad:(void(^)(NSError *error))didFailBlock;{
-    self = [super initWithNibName:nil bundle:nil];
+    self = [self initWithNibName:nil bundle:nil];
 
     if (self)
     {
         self.isNeedClose = isNeedClose;
         self.isNeedMulilayerBack = needBack;
-        self.title = title;
+        [self initTitle:title];
         self.urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:URL]];
 
         self.requestBlock = requestBlock;
@@ -133,15 +144,14 @@
     [super initViews];
     [self.view addSubview:self.webView];
     [self initDataWithParam];
-    [self loadUrl];
 }
 
 - (void)autolayoutViews
 {
     [super autolayoutViews];
-    
+
     WS(weakSelf)
-    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.webView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(weakSelf.top, 0, 0, 0));
     }];
 
@@ -158,12 +168,13 @@
         self.isNeedClose = self.model.isNeedClose;
         self.isNeedMulilayerBack = self.model.isNeedMulilayerBack;
         self.urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:self.model.url]];
-        self.fixedTitle = self.model.fixedTitle;
-        self.placeholderTitle = self.model.placeholderTitle;
+        self.fixedTitleStr = self.model.fixedTitle;
+        self.placeholderTitleStr = self.model.placeholderTitle;
         self.progressViewColor = self.model.progressViewColor;
         [self initDataWithParam];
-        [self loadUrl];
     }];
+
+    [self loadUrl];
 }
 
 /**
@@ -171,13 +182,13 @@
  */
 - (void)initDataWithParam
 {
-    if (self.placeholderTitle)
+    if (self.placeholderTitleStr)
     {
-        [self setTitle:self.placeholderTitle];
+        [self initTitle:self.placeholderTitleStr];
     }
-    if (self.fixedTitle)
+    if (self.fixedTitleStr)
     {
-        [self setTitle:self.fixedTitle];
+        [self initTitle:self.fixedTitleStr];
     }
 }
 
@@ -185,10 +196,11 @@
                                     title:(NSString *)strTitle
                                     color:(UIColor *)color;
 {
-    TFButton *btn = [[TFButton alloc] initWithFrame:CGRectMake(0, 0, 50, 40)];
+    TFButton *btn = [[TFButton alloc]  initWithFrame:CGRectZero];
     [btn addTarget:self action:@selector(closeButtonEvent) forControlEvents:UIControlEventTouchUpInside];
     [btn setNormalTitle:strTitle textFont:[UIFont systemFontOfSize: 14.0] textColor:color];
     [btn setNormalImage:strImage hightlightedImage:strImage disabledImage:nil];
+    [btn sizeToFit];
     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     btn.backgroundColor = [UIColor clearColor];
 
@@ -204,9 +216,9 @@
 {
     CGFloat progressBarHeight = 2.f;
     CGRect navigaitonBarBounds = self.navigationController.navigationBar.bounds;
-    CGRect barFrame = CGRectMake(0, navigaitonBarBounds.size.height - progressBarHeight, navigaitonBarBounds.size.width, progressBarHeight);
+    CGRect barFrame = CGRectMake(0, 64 - progressBarHeight, navigaitonBarBounds.size.width, progressBarHeight);
     self.progressView = [[TFProgressView alloc] initWithFrame:barFrame color:proColor];
-    [self.navigationController.navigationBar addSubview:self.progressView];
+    [self.customNavigationBar addSubview:self.progressView];
 }
 
 // 加载url
@@ -235,7 +247,7 @@
     {
         if (self.isNeedClose)
         {
-            self.navigationItem.leftBarButtonItems = @[self.backButtonItem, self.closeButtonItem];
+            self.customNavigationItem.leftBarButtonItems = @[self.backButtonItem, self.closeButtonItem];
         }
     }
 }
@@ -364,13 +376,13 @@
 
 - (void)setNavTitle:(NSString *)title
 {
-    if (self.fixedTitle)
+    if (self.fixedTitleStr)
     {
-        self.title = self.fixedTitle;
+        [self initTitle:self.fixedTitleStr];
     }
     else if (title.length)
     {
-        self.title = title;
+        [self initTitle:title];
     }
 }
 
@@ -382,13 +394,14 @@
         if (self.progressView)
         {
             [self.progressView removeFromSuperview];
-            self.progressView = nil;
+            //            self.progressView = nil;
         }
 
         [self addProgressViewAboveNaviBar:self.progressViewColor ? self.progressViewColor : [UIColor colorWithHexString:@"0X03A9F4"]];
 
     }
 }
+
 
 - (void)setProgressViewColor:(UIColor *)progressViewColor
 {
@@ -408,7 +421,7 @@
 {
     if (!_backButtonItem)
     {
-        _backButtonItem = self.navigationItem.leftBarButtonItem;
+        _backButtonItem = self.customNavigationItem.leftBarButtonItem;
     }
 
     return _backButtonItem;

@@ -11,17 +11,24 @@
 /**
     滑动方向
  */
-typedef enum : NSUInteger {
-    TFNewsLoopViewScrollDirectionVertical, // 竖直方向
-    TFNewsLoopViewScrollDirectionHorizontal, // 水平方向
+typedef enum : NSUInteger
+{
+    /**
+     *  竖直方向
+     */
+    kNewsLoopViewScrollDirectionVertical,
+    /**
+     *  水平方向
+     */
+    kNewsLoopViewScrollDirectionHorizontal,
 } TFNewsLoopViewScrollDirection;
 
-@interface LoopObj : NSObject
+@interface TFNewsLoopViewItem : NSObject
 
 /**
  *  显示的标题
  */
-@property (nonatomic,strong)NSString  *labelName;
+@property (nonatomic,strong)NSString  *title;
 
 @end
 
@@ -31,40 +38,28 @@ typedef enum : NSUInteger {
  *  初始化
  *
  *  @param frame           frame大小
- *  @param teams           teams 里面包含的是 LoopObj 请自行组装LoopOb
+ *  @param teams           teams 里面包含的是 TFNewsLoopViewItem
  *  @param scrollDirection 滑动方向 默认垂直方向
  *
  */
 - (instancetype)initWithFrame:(CGRect)frame
-      withItemArray:(NSArray*)teams
-    scrollDirection:(TFNewsLoopViewScrollDirection)scrollDirection;
-
-@property (nonatomic, assign) TFNewsLoopViewScrollDirection loopViewScrollDirection;
-
-/**
- *   当前位置
- */
-@property(nonatomic,readonly) CGPoint  currentOffset;
-
-/**
- *  返回数据
- */
-@property(nonatomic,strong) NSArray   *itemArray;
+                        items:(NSArray*)teams
+                    direction:(TFNewsLoopViewScrollDirection)scrollDirection
+                        block:(void (^)(NSInteger index))block;
 
 /**
  *   block监听点击方式
  */
-@property (nonatomic, copy) void (^clickItemOperationBlock)(NSInteger currentIndex);
-
+@property (nonatomic, copy) void (^didSelectItemAtIndexHandler)(NSInteger index);
 
 /**
  *  开始时间
  */
-- (void)startTimer;
+- (void)start;
 
 /**
  *  关闭时间
  */
--(void)releaseTimer;
+-(void)stop;
 
 @end

@@ -27,6 +27,7 @@
     
     [self initTabBar];
 
+    self.customNavigationBarHidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -29,7 +29,6 @@ FOUNDATION_EXPORT const unsigned char TFUILibVersionString[];
 #import "TFKeyboardManager.h"
 
 #import "TFModel.h"
-#import "TFActionModel.h"
 #import "TFWebModel.h"
 
 #import "TFViewModel.h"

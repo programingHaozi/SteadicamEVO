@@ -57,6 +57,18 @@ alpha:a]
     return self;
 }
 
+-(instancetype)initWithFrame:(CGRect)frame alignmentStatus:(TFAlignmentStatus)status
+{
+    if (self = [super initWithFrame:frame])
+    {
+        _gapBetween = 10;
+        _status = status;
+        [self addTarget:self action:@selector(touch:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return self;
+}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder])
@@ -69,7 +81,7 @@ alpha:a]
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [self initWithAlignmentStatus:TFAlignmentStatusNormal];
+    self = [self initWithFrame:frame alignmentStatus:TFAlignmentStatusNormal];
     
     return self;
 }
@@ -191,6 +203,11 @@ alpha:a]
     {
         [self alignmentBottom];
     }
+}
+
+-(void)setFontSize:(CGFloat)fontSize
+{
+    self.titleLabel.font = [UIFont systemFontOfSize:fontSize];
 }
 
 #pragma mark - 多边形按钮支持

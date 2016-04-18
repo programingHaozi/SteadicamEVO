@@ -11,9 +11,7 @@
 
 #define BTN_WIDTH 70
 #define BTN_HEIGHT 40
-
 #define DATE_PICK_HEIGHT 220
-
 #define ANIMATION_DURATION_TIME 0.3
 
 @interface TFDatePicker ()
@@ -22,7 +20,7 @@
 
 @property (nonatomic, strong) UIDatePicker *datePicker;
 
-@property (nonatomic, strong) UIButton *maskButton;
+@property (nonatomic, strong) UIButton *maskView;
 
 @property (nonatomic, strong) UIView *alertView;
 
@@ -38,14 +36,22 @@
 
 @implementation TFDatePicker
 
-+ (void)showWithType:(TFDatePickerType)type
-               block:(TFDatePickerBlock)block
++ (void)showWithType:(TFDatePickerType)type block:(TFDatePickerBlock)block
 {
     TFDatePicker *view=[[TFDatePicker alloc]initWithType:type
                                                                block:block];
     [view show:^(BOOL finished) {
         
     }];
+}
+
++ (void)showWithType:(UIDatePickerMode)mode
+             maxDate:(NSDate *)maxDate
+             minDate:(NSDate *)minDate
+         currentDate:(NSDate *)currentDate
+               block:(void (^)(NSDate *date, NSString *dateString))block
+{
+    
 }
 
 - (id)initWithType:(TFDatePickerType)type block:(TFDatePickerBlock)block
@@ -57,10 +63,11 @@
         self.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         self.backgroundColor = [UIColor clearColor];
         self.block = block;
-        self.maskButton = [[UIButton alloc] initWithFrame:self.frame];
-        self.maskButton.backgroundColor = HEXCOLOR(0X000008,0.5);
-        [self.maskButton addTarget:self action:@selector(cancelButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.maskButton];
+        
+        self.maskView = [[UIButton alloc] initWithFrame:self.frame];
+        self.maskView.backgroundColor = HEXCOLOR(0X000008,0.5);
+        [self.maskView addTarget:self action:@selector(cancelButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.maskView];
         
         self.alertView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, BTN_HEIGHT+DATE_PICK_HEIGHT)];
         self.alertView.backgroundColor = HEXCOLOR(0XFAFAFD,  1);
@@ -101,7 +108,7 @@
 
 - (void)show:(void (^)(BOOL finished))completion
 {
-    self.maskButton.alpha = 0;
+    self.maskView.alpha = 0;
     self.alertView.frame = CGRectMake(0, SCREEN_HEIGHT, self.alertView.frame.size.width, self.alertView.frame.size.height);
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     
@@ -109,7 +116,7 @@
                           delay:0
                         options:UIViewAnimationOptionCurveLinear animations:^{
                             
-                              self.maskButton.alpha = 1;
+                              self.maskView.alpha = 1;
                               [self.alertView setFrame:CGRectMake(0, SCREEN_HEIGHT-(DATE_PICK_HEIGHT+STYLE_BY_PIXEL(80, 80 , 120)), self.alertView.frame.size.width, self.alertView.frame.size.height)];
                           } completion:^(BOOL finished) {
                               
@@ -127,7 +134,7 @@
                                  options:UIViewKeyframeAnimationOptionLayoutSubviews
                               animations:^{
                                   
-                                  self.maskButton.alpha = 0;
+                                  self.maskView.alpha = 0;
                                   [self.alertView setFrame:CGRectMake(0, SCREEN_HEIGHT, self.alertView.frame.size.width, self.alertView.frame.size.height)];
                               }
                               completion:^(BOOL finished) {

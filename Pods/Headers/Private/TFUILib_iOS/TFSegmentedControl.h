@@ -1,1 +1,1 @@
-../../../TFUILib_iOS/TFUILib/Classes/Core-View/TFSegmentControl/TFSegmentedControl.h
+../../../TFUILib_iOS/TFUILib/Classes/Core-View/TFSegmentedControl/TFSegmentedControl.h

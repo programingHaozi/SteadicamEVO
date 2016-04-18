@@ -53,7 +53,16 @@
             return;
         }
         
-        [self.navigationController popViewControllerAnimated:YES];
+        UIViewController *rootVC=[self getRootViewController];
+        if ([rootVC isKindOfClass:[UINavigationController class]])
+        {
+            UINavigationController *rootNav= (UINavigationController *)rootVC;
+            [rootNav popViewControllerAnimated:YES];
+        }
+        else
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 

@@ -17,17 +17,17 @@ typedef NS_ENUM(NSInteger, TFDatePickerType)
     /**
      *  显示时间
      */
-    TFDatePickerTypeTime         = 0,
+    kDatePickerTypeTime         = 0,
     
     /**
      *  显示日期
      */
-    TFDatePickerTypeDate         = 1,
+    kDatePickerTypeDate         = 1,
     
     /**
      *  显示时间和日期
      */
-    TFDatePickerTypeDateAndTime  = 2,
+    kDatePickerTypeDateAndTime  = 2,
 };
 
 /**
@@ -49,19 +49,13 @@ typedef void (^TFDatePickerBlock)(NSDate *date, NSString *dateString);
  *  @param type  TFDatePicker类型
  *  @param block 选择时间回调
  */
-+ (void)showWithType:(TFDatePickerType)type
-               block:(TFDatePickerBlock)block;
++ (void)showWithType:(TFDatePickerType)type block:(TFDatePickerBlock)block;
 
-+ (void)showDatePickerWithType:(UIDatePickerMode)mode
-                       maxDate:(NSDate *)maxDate
-                       minDate:(NSDate *)minDate
-                   currentDate:(NSDate *)currentDate
-                  confirmBlock:(void (^)(NSDate *date, NSString *dateString))confirmBlock;
++ (void)showWithType:(UIDatePickerMode)mode
+             maxDate:(NSDate *)maxDate
+             minDate:(NSDate *)minDate
+         currentDate:(NSDate *)currentDate
+               block:(void (^)(NSDate *date, NSString *dateString))block;
 
-+ (instancetype)datePickerWithType:(UIDatePickerMode)mode
-                           maxDate:(NSDate *)maxDate
-                           minDate:(NSDate *)minDate
-                       currentDate:(NSDate *)currentDate
-                      confirmBlock:(void (^)(NSDate *date, NSString *dateString))confirmBlock;
 
 @end

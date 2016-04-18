@@ -1,1 +1,0 @@
-../../../TorqueSDK/TorqueSDK/Classes/RESTKit/Support/RKURLEncodedSerialization.h

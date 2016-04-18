@@ -1,1 +1,0 @@
-../../../TorqueSDK/TorqueSDK/Classes/RESTKit/Search/RKManagedObjectStore+RKSearchAdditions.h

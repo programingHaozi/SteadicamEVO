@@ -1,1 +1,0 @@
-../../../TorqueSDK/TorqueSDK/Classes/CoreDataModel/DetectionItemModel.h

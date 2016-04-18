@@ -76,6 +76,11 @@
 @property (nonatomic, assign) BOOL isNeedClose;
 
 /**
+ *  是否可以显示关闭按钮
+ */
+@property (nonatomic, assign) BOOL isCanClose;
+
+/**
  *  是否需要多层返回
  */
 @property (nonatomic, assign) BOOL isNeedMulilayerBack;
@@ -96,7 +101,7 @@
 /**
  *  固定标题
  */
-@property (nonatomic, strong) NSString *fixedTitle;
+@property (nonatomic, strong) NSString *fixedTitleStr;
 
 /**
  *  UA的参数
@@ -106,7 +111,7 @@
 /**
  *  第一次加载未加载完成显示的标题
  */
-@property (nonatomic, strong) NSString *placeholderTitle;
+@property (nonatomic, strong) NSString *placeholderTitleStr;
 
 #pragma mark - 成员变量
 
@@ -127,6 +132,11 @@
 @property (nonatomic, strong) TFWebView *webView;
 
 #pragma mark -  外部函数
+
+/**
+ *  刷新导航栏按钮
+ */
+- (void)updateLeftAndRightButton;
 
 /**
  *  加载url

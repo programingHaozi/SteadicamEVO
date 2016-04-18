@@ -55,6 +55,11 @@
 		87CBA5C21CB41F89004206B0 /* SCETableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBA5C11CB41F89004206B0 /* SCETableViewModel.m */; };
 		87CBA5C61CB420EC004206B0 /* MenuViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 87CBA5C51CB420EC004206B0 /* MenuViewModel.json */; };
 		87CBA5CA1CB43885004206B0 /* MenuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBA5C91CB43885004206B0 /* MenuViewCell.m */; };
+		87D607D71CC4B13B00632172 /* CBUUID+RKBlueKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607CB1CC4B13B00632172 /* CBUUID+RKBlueKit.m */; };
+		87D607D81CC4B13B00632172 /* RKBlueKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607CD1CC4B13B00632172 /* RKBlueKit.m */; };
+		87D607D91CC4B13B00632172 /* RKCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607D11CC4B13B00632172 /* RKCentralManager.m */; };
+		87D607DA1CC4B13B00632172 /* RKPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607D31CC4B13B00632172 /* RKPeripheral.m */; };
+		87D607DB1CC4B13B00632172 /* RKPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607D61CC4B13B00632172 /* RKPeripheralManager.m */; };
 		87E2B7511CACFDE30001AB83 /* PrepareChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E2B7501CACFDE30001AB83 /* PrepareChooseView.m */; };
 		87EF95481C8C36C1002241B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EF953F1C8C36C1002241B2 /* AppDelegate.m */; };
 		87EF95491C8C36C1002241B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87EF95411C8C36C1002241B2 /* Assets.xcassets */; };
@@ -155,6 +160,17 @@
 		87CBA5C51CB420EC004206B0 /* MenuViewModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MenuViewModel.json; sourceTree = "<group>"; };
 		87CBA5C81CB43885004206B0 /* MenuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewCell.h; sourceTree = "<group>"; };
 		87CBA5C91CB43885004206B0 /* MenuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewCell.m; sourceTree = "<group>"; };
+		87D607CA1CC4B13B00632172 /* CBUUID+RKBlueKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+RKBlueKit.h"; sourceTree = "<group>"; };
+		87D607CB1CC4B13B00632172 /* CBUUID+RKBlueKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+RKBlueKit.m"; sourceTree = "<group>"; };
+		87D607CC1CC4B13B00632172 /* RKBlueKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKBlueKit.h; sourceTree = "<group>"; };
+		87D607CD1CC4B13B00632172 /* RKBlueKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKBlueKit.m; sourceTree = "<group>"; };
+		87D607CF1CC4B13B00632172 /* RKBlueBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKBlueBlocks.h; sourceTree = "<group>"; };
+		87D607D01CC4B13B00632172 /* RKCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCentralManager.h; sourceTree = "<group>"; };
+		87D607D11CC4B13B00632172 /* RKCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCentralManager.m; sourceTree = "<group>"; };
+		87D607D21CC4B13B00632172 /* RKPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKPeripheral.h; sourceTree = "<group>"; };
+		87D607D31CC4B13B00632172 /* RKPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPeripheral.m; sourceTree = "<group>"; };
+		87D607D51CC4B13B00632172 /* RKPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKPeripheralManager.h; sourceTree = "<group>"; };
+		87D607D61CC4B13B00632172 /* RKPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPeripheralManager.m; sourceTree = "<group>"; };
 		87E2B74F1CACFDE30001AB83 /* PrepareChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareChooseView.h; sourceTree = "<group>"; };
 		87E2B7501CACFDE30001AB83 /* PrepareChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrepareChooseView.m; sourceTree = "<group>"; };
 		87EF951D1C8C35A3002241B2 /* SteadicamEVO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteadicamEVO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -479,6 +495,48 @@
 			path = MenuViewCell;
 			sourceTree = "<group>";
 		};
+		87D607C81CC4B13B00632172 /* RKBluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				87D607C91CC4B13B00632172 /* BluethoothKit */,
+				87D607CE1CC4B13B00632172 /* Central */,
+				87D607D41CC4B13B00632172 /* Peripheral */,
+			);
+			path = RKBluetooth;
+			sourceTree = "<group>";
+		};
+		87D607C91CC4B13B00632172 /* BluethoothKit */ = {
+			isa = PBXGroup;
+			children = (
+				87D607CA1CC4B13B00632172 /* CBUUID+RKBlueKit.h */,
+				87D607CB1CC4B13B00632172 /* CBUUID+RKBlueKit.m */,
+				87D607CC1CC4B13B00632172 /* RKBlueKit.h */,
+				87D607CD1CC4B13B00632172 /* RKBlueKit.m */,
+			);
+			path = BluethoothKit;
+			sourceTree = "<group>";
+		};
+		87D607CE1CC4B13B00632172 /* Central */ = {
+			isa = PBXGroup;
+			children = (
+				87D607CF1CC4B13B00632172 /* RKBlueBlocks.h */,
+				87D607D01CC4B13B00632172 /* RKCentralManager.h */,
+				87D607D11CC4B13B00632172 /* RKCentralManager.m */,
+				87D607D21CC4B13B00632172 /* RKPeripheral.h */,
+				87D607D31CC4B13B00632172 /* RKPeripheral.m */,
+			);
+			path = Central;
+			sourceTree = "<group>";
+		};
+		87D607D41CC4B13B00632172 /* Peripheral */ = {
+			isa = PBXGroup;
+			children = (
+				87D607D51CC4B13B00632172 /* RKPeripheralManager.h */,
+				87D607D61CC4B13B00632172 /* RKPeripheralManager.m */,
+			);
+			path = Peripheral;
+			sourceTree = "<group>";
+		};
 		87E2B74D1CACF9370001AB83 /* VIews */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +641,7 @@
 		87EF955A1C8C4130002241B2 /* ConnectManager */ = {
 			isa = PBXGroup;
 			children = (
+				87D607C81CC4B13B00632172 /* RKBluetooth */,
 				870036241C97DF5100AAB595 /* BTConnectInterface */,
 				87EF955D1C8C4130002241B2 /* BTConnectTypeDefine */,
 				87EF955C1C8C4130002241B2 /* BTConnectManager */,
@@ -896,15 +955,20 @@
 				87C6E9081CABBC8F003ACA26 /* GuideViewModel.m in Sources */,
 				87E2B7511CACFDE30001AB83 /* PrepareChooseView.m in Sources */,
 				87CBA5B91CB41EE2004206B0 /* SCEViewController.m in Sources */,
+				87D607DB1CC4B13B00632172 /* RKPeripheralManager.m in Sources */,
 				8700361E1C97D3D400AAB595 /* SplashViewController.m in Sources */,
+				87D607DA1CC4B13B00632172 /* RKPeripheral.m in Sources */,
 				87C6E9101CABBCF3003ACA26 /* MenuViewModel.m in Sources */,
 				87C6E9041CABBC6E003ACA26 /* BalanceViewModel.m in Sources */,
 				87C6E8EB1CAB9B09003ACA26 /* MenuViewController.m in Sources */,
+				87D607D71CC4B13B00632172 /* CBUUID+RKBlueKit.m in Sources */,
 				872722EA1CB4B4D70098EBEE /* LanguageViewCell.m in Sources */,
+				87D607D81CC4B13B00632172 /* RKBlueKit.m in Sources */,
 				87CBA5B11CB4174A004206B0 /* IntroductionViewCollectionCell.m in Sources */,
 				87CBA5CA1CB43885004206B0 /* MenuViewCell.m in Sources */,
 				87C6E8F41CAB9B44003ACA26 /* LanguageViewController.m in Sources */,
 				87F5B5B11CB3E65F008695D2 /* GifViews.m in Sources */,
+				87D607D91CC4B13B00632172 /* RKCentralManager.m in Sources */,
 				870668E11C959D260031381C /* LocalizationManager.m in Sources */,
 				87C6E90C1CABBCB3003ACA26 /* IntroductionViewModel.m in Sources */,
 				87CBA5AD1CB40AF3004206B0 /* TipsView.m in Sources */,
@@ -1051,7 +1115,7 @@
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ch.SteadicamEVO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec1.SteadicamEVO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1066,7 +1130,7 @@
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ch.SteadicamEVO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec1.SteadicamEVO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -1,1 +1,0 @@
-../../../TorqueSDK/TorqueSDK/Classes/RESTKit/CoreData/RKPropertyInspector+CoreData.h

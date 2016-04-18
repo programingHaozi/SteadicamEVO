@@ -10,7 +10,6 @@
 #import "TFTableViewCell.h"
 #import "UIView+Category.h"
 #import "TFTableViewCell.h"
-#import "TFActionModel.h"
 #import "TFBaseMacro+Color.h"
 #import "TFUIUtil.h"
 #import "TFView.h"
@@ -67,6 +66,7 @@
     [super initViews];
     
     [self.view addSubview:self.tableView];
+    self.defaultCell = [TFTableViewCell class];
 }
 
 - (void)autolayoutViews
@@ -74,9 +74,14 @@
     [super autolayoutViews];
     
     WS(weakSelf)
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(weakSelf.top, 0, 0, 0));
     }];
+}
+
+-(void)bindData
+{
+    [super bindData];
 }
 
 #pragma mark -  UITableViewDataSource

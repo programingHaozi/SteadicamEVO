@@ -390,16 +390,4 @@ selector:(SEL)selector
     objc_setAssociatedObject(self, @selector(isNavigationBar), @(navigationBarHidden), OBJC_ASSOCIATION_ASSIGN);
 }
 
-const void *customNavigationBar_key = @"customNavigationBar_key";
-
--(UINavigationBar *)customNavigationBar
-{
-    return objc_getAssociatedObject(self, customNavigationBar_key);
-}
-
--(void)setCustomNavigationBar:(UINavigationBar *)customNavigationBar
-{
-    objc_setAssociatedObject(self,customNavigationBar_key, customNavigationBar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 @end

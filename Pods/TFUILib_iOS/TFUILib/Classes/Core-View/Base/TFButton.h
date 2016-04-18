@@ -59,7 +59,16 @@ typedef NS_ENUM(NSUInteger, TFAlignmentStatus)
  */
 @property(nonatomic, strong) UIBezierPath *path;
 
+/**
+ *  初始化按钮设置图文排列方式
+ *
+ *  @param status 图文排列方式
+ *
+ *  @return TFButton
+ */
 - (instancetype)initWithAlignmentStatus:(TFAlignmentStatus)status;
+
+- (instancetype)initWithFrame:(CGRect)frame alignmentStatus:(TFAlignmentStatus)status;
 
 /**
  *  绑定点击事件
@@ -67,6 +76,13 @@ typedef NS_ENUM(NSUInteger, TFAlignmentStatus)
  *  @param actionBlock 点击事件block
  */
 - (void)touchAction:(void(^)())actionBlock;
+
+/**
+ *  设置title字体大小
+ *
+ *  @param fontSize 字体大小
+ */
+- (void)setFontSize:(CGFloat)fontSize;
 
 /**
  *  设置按钮不同状态下的图片

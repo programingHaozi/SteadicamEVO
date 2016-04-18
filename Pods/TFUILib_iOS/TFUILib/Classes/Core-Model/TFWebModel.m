@@ -10,4 +10,15 @@
 
 @implementation TFWebModel
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        _isNeedProgress = YES;
+    }
+
+    return self;
+}
+
 @end

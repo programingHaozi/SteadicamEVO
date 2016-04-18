@@ -8,6 +8,7 @@
 
 #import "TFBottomPopupView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIView+Category.h"
 
 #define CATransform3DPerspective(t, x, y) (CATransform3DConcat(t, CATransform3DMake(1, 0, 0, x, 0, 1, 0, y, 0, 0, 1, 0, 0, 0, 0, 1)))
 #define CATransform3DMakePerspective(x, y) (CATransform3DPerspective(CATransform3DIdentity, x, y))
@@ -28,10 +29,12 @@ CATransform3DMake(CGFloat m11, CGFloat m12, CGFloat m13, CGFloat m14,
 
 @interface TFBottomPopupView ()
 
-@property (nonatomic, strong) UIView *modalView;
-@property (nonatomic, strong) UIView *blackView;
+@property (nonatomic, assign) TFBottomPopupViewAnimateType type;
+
+@property (nonatomic, strong) UIView *alertView;
+@property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UIView *backgroundShadowView;
-@property (nonatomic, strong) UIImageView *renderImage;
+@property (nonatomic, strong) UIImageView *renderImageView;
 
 @end
 
@@ -50,33 +53,39 @@ CATransform3DMake(CGFloat m11, CGFloat m12, CGFloat m13, CGFloat m14,
             height=[[UIScreen mainScreen]bounds].size.height;
         }
         
-        self.modalView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, height)];
-        self.modalView.backgroundColor = [UIColor clearColor];
-        self.modalView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight |
+        self.alertView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, height)];
+        self.alertView.backgroundColor = [UIColor clearColor];
+        self.alertView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight |
         UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
         UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
         
-        self.blackView = [[UIView alloc] initWithFrame:self.frame];
-        self.blackView.backgroundColor = [UIColor blackColor];
-        self.blackView.autoresizingMask = self.modalView.autoresizingMask;
+        self.backgroundView = [[UIView alloc] initWithFrame:self.frame];
+        self.backgroundView.backgroundColor = [UIColor blackColor];
+        self.backgroundView.autoresizingMask = self.alertView.autoresizingMask;
         
         self.backgroundShadowView = [[UIView alloc] initWithFrame:self.frame];
         self.backgroundShadowView.backgroundColor = [UIColor blackColor];
         self.backgroundShadowView.alpha = 0.0;
-        self.backgroundShadowView.autoresizingMask = self.modalView.autoresizingMask;
+        self.backgroundShadowView.autoresizingMask = self.alertView.autoresizingMask;
         
-        self.renderImage = [[UIImageView alloc] initWithFrame:self.frame];
-        self.renderImage.autoresizingMask = self.modalView.autoresizingMask;
-        self.renderImage.contentMode = UIViewContentModeScaleToFill;
+        self.renderImageView = [[UIImageView alloc] initWithFrame:self.frame];
+        self.renderImageView.autoresizingMask = self.alertView.autoresizingMask;
+        self.renderImageView.contentMode = UIViewContentModeScaleToFill;
         
-        [self.modalView addSubview:popupView];
-        [self addSubview:self.blackView];
-        [self addSubview:self.renderImage];
+        [self.alertView addSubview:popupView];
+        [self addSubview:self.backgroundView];
+        [self addSubview:self.renderImageView];
         [self addSubview:self.backgroundShadowView];
-        [self addSubview:self.modalView];
+        [self addSubview:self.alertView];
     }
     
     return self;
+}
+
+- (void)showWithAnimateType:(TFBottomPopupViewAnimateType)type
+{
+    self.type=type;
+    [self show];
 }
 
 -(void)show
@@ -85,21 +94,21 @@ CATransform3DMake(CGFloat m11, CGFloat m12, CGFloat m13, CGFloat m14,
     UIView *rootView = keyWindow.rootViewController.view;
 
     UIImage *rootViewRenderImage = [self imageWithView:rootView];
-    _renderImage.image = rootViewRenderImage;
+    _renderImageView.image = rootViewRenderImage;
     
     _backgroundShadowView.alpha = 1.0;
     [keyWindow addSubview:self];
-    _modalView.center = CGPointMake(self.frame.size.width/2.0, _modalView.frame.size.height * 1.5);
+    _alertView.center = CGPointMake(self.frame.size.width/2.0, _alertView.frame.size.height * 1.5);
     
     [UIView animateWithDuration:0.5
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         //_modalView.center = self.center;
-                         _modalView.frame=CGRectMake(0,
-                                                     [[UIScreen mainScreen]bounds].size.height-_modalView.frame.size.height,
-                                                     _modalView.frame.size.width,
-                                                     _modalView.frame.size.height);
+                         //_alertView.center = self.center;
+                         _alertView.frame=CGRectMake(0,
+                                                     [[UIScreen mainScreen]bounds].size.height-_alertView.frame.size.height,
+                                                     _alertView.frame.size.width,
+                                                     _alertView.frame.size.height);
                      }
                      completion:^(BOOL finished) {
                          
@@ -111,17 +120,17 @@ CATransform3DMake(CGFloat m11, CGFloat m12, CGFloat m13, CGFloat m14,
                      animations:^{
                          
                          _backgroundShadowView.alpha = 0.4;
-                         _renderImage.layer.transform = CATransform3DMakePerspective(0, -0.0007);
+                         _renderImageView.layer.transform = CATransform3DMakePerspective(0, -0.0007);
                      }
      
                      completion:^(BOOL finished) {
                          
                          [UIView animateWithDuration:0.2
                                           animations:^{
-                                              float newWidht = _renderImage.frame.size.width * 0.7;
-                                              float newHeight = _renderImage.frame.size.height * 0.7;
-                                              _renderImage.frame = CGRectMake(([[UIScreen mainScreen]bounds].size.width - newWidht) / 2, 22, newWidht, newHeight);
-                                              _renderImage.layer.transform = CATransform3DMakePerspective(0, 0);
+                                              float newWidht = _renderImageView.frame.size.width * 0.7;
+                                              float newHeight = _renderImageView.frame.size.height * 0.7;
+                                              _renderImageView.frame = CGRectMake(([[UIScreen mainScreen]bounds].size.width - newWidht) / 2, 22, newWidht, newHeight);
+                                              _renderImageView.layer.transform = CATransform3DMakePerspective(0, 0);
                                           } completion:^(BOOL finished) {
                                               
                                           }];
@@ -136,8 +145,8 @@ CATransform3DMake(CGFloat m11, CGFloat m12, CGFloat m13, CGFloat m14,
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         _modalView.center = CGPointMake(self.frame.size.width/2.0, _modalView.frame.size.height * 1.5);
-                         _modalView.frame=CGRectMake(0, [[UIScreen mainScreen]bounds].size.height, _modalView.frame.size.width, _modalView.frame.size.height);
+                         _alertView.center = CGPointMake(self.frame.size.width/2.0, _alertView.frame.size.height * 1.5);
+                         _alertView.frame=CGRectMake(0, [[UIScreen mainScreen]bounds].size.height, _alertView.frame.size.width, _alertView.frame.size.height);
                      }
                      completion:^(BOOL finished) {
                          
@@ -149,15 +158,15 @@ CATransform3DMake(CGFloat m11, CGFloat m12, CGFloat m13, CGFloat m14,
                      animations:^{
                          
                          _backgroundShadowView.alpha = 0.0;
-                         _renderImage.layer.transform = CATransform3DMakePerspective(0, -0.0007);
+                         _renderImageView.layer.transform = CATransform3DMakePerspective(0, -0.0007);
                      }
      
                      completion:^(BOOL finished) {
 
                          [UIView animateWithDuration:0.2
                                           animations:^{
-                                              _renderImage.frame = [[UIScreen mainScreen]bounds];
-                                              _renderImage.layer.transform = CATransform3DMakePerspective(0, 0);
+                                              _renderImageView.frame = [[UIScreen mainScreen]bounds];
+                                              _renderImageView.layer.transform = CATransform3DMakePerspective(0, 0);
                                           } completion:^(BOOL finished) {
                                               [self removeFromSuperview];
                                           }];
@@ -167,7 +176,7 @@ CATransform3DMake(CGFloat m11, CGFloat m12, CGFloat m13, CGFloat m14,
 -(UIImage *)imageWithView:(UIView *)view
 {
     
-    UIGraphicsBeginImageContextWithOptions(_renderImage.frame.size, view.opaque, [[UIScreen mainScreen] scale]);
+    UIGraphicsBeginImageContextWithOptions(_renderImageView.frame.size, view.opaque, [[UIScreen mainScreen] scale]);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     
     UIImage *backgroundImage = UIGraphicsGetImageFromCurrentImageContext();

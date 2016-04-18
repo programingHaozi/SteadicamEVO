@@ -1,1 +1,0 @@
-../../../../TFThirdLib_iOS/TFThirdLib/Classes/Alipay/AlipaySDK.framework/Headers/APayAuthInfo.h

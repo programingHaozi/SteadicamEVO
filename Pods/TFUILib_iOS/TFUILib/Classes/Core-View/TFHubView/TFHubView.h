@@ -16,7 +16,7 @@
 /**
  *  显示的数字label字体
  */
-@property (nonatomic, strong) UIFont *countLabelFont;
+@property (nonatomic, strong) UIFont *font;
 
 /**
  *  显示的数字
@@ -46,7 +46,7 @@
  *
  *  @param frame 
  */
-- (void)setCircleAtFrame:(CGRect)frame;
+- (void)setCircleFrame:(CGRect)frame;
 
 /**
  *  设置圆点背景色和字体颜色
@@ -54,7 +54,7 @@
  *  @param circleColor 圆点背景
  *  @param labelColor  字体颜色
  */
-- (void)setCircleColor:(UIColor*)circleColor labelColor:(UIColor*)labelColor;
+- (void)setCircleColor:(UIColor*)circleColor textColor:(UIColor*)textColor;
 
 /**
  *  移动小圆点位置
@@ -96,12 +96,12 @@
 - (void)decrementBy:(NSUInteger)amount;
 
 /**
- *  隐藏圆点
+ *  隐藏数字
  */
 - (void)hideCount;
 
 /**
- *  显示圆点
+ *  显示数字
  */
 - (void)showCount;
 

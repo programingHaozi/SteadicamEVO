@@ -11,7 +11,6 @@
 @interface UIViewController (NavigationButton)
 
 @property (nonatomic, getter=isNavigationBar) BOOL navigationBarHidden;
-@property (nonatomic,strong) UINavigationBar* customNavigationBar;
 
 #pragma mark - init button
 

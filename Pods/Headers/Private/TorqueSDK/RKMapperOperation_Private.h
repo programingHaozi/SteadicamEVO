@@ -1,1 +1,0 @@
-../../../TorqueSDK/TorqueSDK/Classes/RESTKit/ObjectMapping/RKMapperOperation_Private.h

@@ -4,13 +4,14 @@
 //
 
 #import "TFCenterPopupView.h"
-
+#import "UIView+Category.h"
 
 @interface TFCenterPopupView ()
 
-@property (nonatomic, strong) UIView *blackView;
-@property (nonatomic, strong) UIView *popupView;
 @property (nonatomic, assign) TFCenterPopupViewAnimateType type;
+
+@property (nonatomic, strong) UIView *alertView;
+@property (nonatomic, strong) UIView *blackgroundView;
 
 @end
 
@@ -28,26 +29,25 @@
         UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
         UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
         
-        self.blackView = [[UIView alloc] initWithFrame:self.frame];
-        self.blackView.backgroundColor = HEXCOLOR(0X000008,0.5);
-        self.blackView.autoresizingMask = autoresizingMask;
+        self.blackgroundView = [[UIView alloc] initWithFrame:self.frame];
+        self.blackgroundView.backgroundColor = HEXCOLOR(0X000008,0.5);
+        self.blackgroundView.autoresizingMask = autoresizingMask;
         
-        self.popupView=popupView;
-        self.popupView.center = self.center;
+        self.alertView=popupView;
+        self.alertView.center = self.center;
         
-        [self addSubview:self.blackView];
+        [self addSubview:self.blackgroundView];
         [self addSubview:popupView];
     }
     
     return self;
 }
 
-- (void)showWithAnimate:(TFCenterPopupViewAnimateType)type
+- (void)showWithAnimateType:(TFCenterPopupViewAnimateType)type
 {
     self.type=type;
     
-    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    [keyWindow addSubview:self];
+    [self.keyWindow addSubview:self];
     
     if (type==kCenterPopupViewAnimateSpring)
     {
@@ -61,23 +61,35 @@
         popAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
                                          [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
                                          [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-        [self.popupView.layer addAnimation:popAnimation forKey:nil];
+        [self.alertView.layer addAnimation:popAnimation forKey:nil];
     }
     else if (type==kCenterPopupViewAnimateFade)
     {
-        self.popupView.alpha = 0.0f;
+        self.alertView.alpha = 0.0f;
+        
+        [UIView animateWithDuration:0.5
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             _alertView.alpha = 1.0f;
+                         }
+                         completion:nil];
+    }
+    else
+    {
+        self.alertView.alpha = 0.0f;
         
         [UIView animateWithDuration:0.5
                          animations:^{
-                             _popupView.alpha = 1.0f;
-                         } completion:nil];
+                             _alertView.alpha = 1.0f;
+                         }
+                         completion:nil];
     }
 }
 
 -(void)show
 {
-    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    [keyWindow addSubview:self];
+    [self.keyWindow addSubview:self];
 }
 
 -(void)hide

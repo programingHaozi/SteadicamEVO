@@ -23,7 +23,6 @@
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(weakSelf.top, 0, 0, 0));
-        
     }];
     
     [self.collectionView registerClass:[TFCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([TFCollectionViewCell class])];
