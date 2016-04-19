@@ -14,6 +14,7 @@
 		870668E01C959D260031381C /* Localizable.sh in Resources */ = {isa = PBXBuildFile; fileRef = 870668DD1C959D260031381C /* Localizable.sh */; };
 		870668E11C959D260031381C /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 870668DF1C959D260031381C /* LocalizationManager.m */; };
 		870668E61C959D5E0031381C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870668E81C959D5E0031381C /* Localizable.strings */; };
+		8723AD801CC634DF00B8FAEF /* GifScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8723AD7F1CC634DF00B8FAEF /* GifScrollView.m */; };
 		872591E11CB39E35006DFC4A /* AdjustmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872591E01CB39E35006DFC4A /* AdjustmentView.m */; };
 		872591E31CB39FF0006DFC4A /* AdjustmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872591E21CB39FF0006DFC4A /* AdjustmentView.xib */; };
 		872722E41CB4B37F0098EBEE /* AboutViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 872722E31CB4B37F0098EBEE /* AboutViewCell.m */; };
@@ -89,6 +90,8 @@
 		870668E71C959D5E0031381C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		870668E91C959D5F0031381C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		870668EA1C959D610031381C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		8723AD7E1CC634DF00B8FAEF /* GifScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifScrollView.h; sourceTree = "<group>"; };
+		8723AD7F1CC634DF00B8FAEF /* GifScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifScrollView.m; sourceTree = "<group>"; };
 		872591DF1CB39E35006DFC4A /* AdjustmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustmentView.h; sourceTree = "<group>"; };
 		872591E01CB39E35006DFC4A /* AdjustmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustmentView.m; sourceTree = "<group>"; };
 		872591E21CB39FF0006DFC4A /* AdjustmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdjustmentView.xib; sourceTree = "<group>"; };
@@ -238,6 +241,15 @@
 			path = LocalizationManager;
 			sourceTree = "<group>";
 		};
+		8723AD7D1CC6348900B8FAEF /* GuideScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				8723AD7E1CC634DF00B8FAEF /* GifScrollView.h */,
+				8723AD7F1CC634DF00B8FAEF /* GifScrollView.m */,
+			);
+			path = GuideScrollView;
+			sourceTree = "<group>";
+		};
 		872591DE1CB39E1E006DFC4A /* AdjustmentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +339,7 @@
 		87C6E8E01CAB9949003ACA26 /* GuideVIewController */ = {
 			isa = PBXGroup;
 			children = (
+				8723AD7D1CC6348900B8FAEF /* GuideScrollView */,
 				87C6E91E1CABCD8A003ACA26 /* GuideViewCollectionCell */,
 				87C6E9051CABBC85003ACA26 /* GuideViewModel */,
 				87C6E8E11CAB9949003ACA26 /* GuideViewController.h */,
@@ -972,6 +985,7 @@
 				870668E11C959D260031381C /* LocalizationManager.m in Sources */,
 				87C6E90C1CABBCB3003ACA26 /* IntroductionViewModel.m in Sources */,
 				87CBA5AD1CB40AF3004206B0 /* TipsView.m in Sources */,
+				8723AD801CC634DF00B8FAEF /* GifScrollView.m in Sources */,
 				87C6E91C1CABBD65003ACA26 /* LanguageViewModel.m in Sources */,
 				87C6E9141CABBD1E003ACA26 /* AboutViewModel.m in Sources */,
 				87CBA5BA1CB41EE2004206B0 /* SCEViewModel.m in Sources */,

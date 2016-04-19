@@ -160,18 +160,18 @@
             {
 //                self.bgImageView.image = IMAGE(@"guideGifBg");
                 NSURL *url = [NSURL fileURLWithPath:str];
-                [self.moviePlayer setContentURL:url];
-                [self.moviePlayer play];
+//                [self.moviePlayer setContentURL:url];
+//                [self.moviePlayer play];
                 
-//                self.movieAsset               = [AVURLAsset URLAssetWithURL:url options:nil];
-//                self.playerItem               = [AVPlayerItem playerItemWithAsset:self.movieAsset];
-//                self.player                   = [AVPlayer playerWithURL:url];
-//                self.playerLayer              = [AVPlayerLayer playerLayerWithPlayer:self.player];
-//                self.playerLayer.frame        = self.layer.bounds;
-//                self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-//                
-//                [self.layer addSublayer:self.playerLayer];
-//                [self.player play];
+                self.movieAsset               = [AVURLAsset URLAssetWithURL:url options:nil];
+                self.playerItem               = [AVPlayerItem playerItemWithAsset:self.movieAsset];
+                self.player                   = [AVPlayer playerWithURL:url];
+                self.playerLayer              = [AVPlayerLayer playerLayerWithPlayer:self.player];
+                self.playerLayer.frame        = self.layer.bounds;
+                self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+                
+                [self.layer addSublayer:self.playerLayer];
+                [self.player play];
             }
 //        }
     }];
