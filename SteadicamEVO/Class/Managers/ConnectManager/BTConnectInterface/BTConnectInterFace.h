@@ -29,6 +29,15 @@
                      error:(void (^)(NSError *error))errorBlock;
 
 /**
+ *  连接设备 ②
+ *
+ *  @param completion    连接回调
+ *  @param disconnection 连接断开回调
+ */
+- (void)connectDeviceWithCompletion:(void (^)(NSInteger result))completion
+                      disconnection:(void (^)(NSError *))disconnection;
+
+/**
  *  断开连接
  */
 - (void)disconnect;
