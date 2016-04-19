@@ -166,8 +166,9 @@
                 self.movieAsset               = [AVURLAsset URLAssetWithURL:url options:nil];
                 self.playerItem               = [AVPlayerItem playerItemWithAsset:self.movieAsset];
                 self.player                   = [AVPlayer playerWithURL:url];
+                self.player.muted             = YES;
                 self.playerLayer              = [AVPlayerLayer playerLayerWithPlayer:self.player];
-                self.playerLayer.frame        = self.layer.bounds;
+                self.playerLayer.frame        = CGRectMake(0, 0, 304, 204);
                 self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
                 
                 [self.layer addSublayer:self.playerLayer];
@@ -207,6 +208,8 @@
     self.bgImageView.image = IMAGE(@"guideGifBg");
     
     [self.playerLayer removeFromSuperlayer];
+    
+    self.playerLayer = nil;
 }
 
 - (void)runLoopTheMovie:(NSNotification *)n{

@@ -34,7 +34,6 @@
                      [[NSBundle mainBundle] pathForResource:@"安装手机" ofType:@"mov"],
                      [[NSBundle mainBundle] pathForResource:@"正确手持方式" ofType:@"png"],
                      [[NSBundle mainBundle] pathForResource:@"正确重心位置" ofType:@"png"],
-                     @"",
                      ];
     
     return ary;

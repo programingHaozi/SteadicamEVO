@@ -9,6 +9,7 @@
 #import "GuideViewController.h"
 #import "GuideViewCollectionCell.h"
 #import "GuideViewModel.h"
+#import "GifScrollView.h"
 
 @interface GuideViewController ()<
                                   UICollectionViewDataSource,
@@ -18,6 +19,9 @@
  *  滚动视图
  */
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (weak, nonatomic) IBOutlet GifScrollView *guideScrollView;
+
 
 /**
  *  标签
@@ -51,6 +55,13 @@
     self.collectionView.bounces                        = NO;
     self.collectionView.pagingEnabled                  = YES;
     self.collectionView.showsHorizontalScrollIndicator = NO;
+    
+//    self.guideScrollView.hidden = YES;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.guideScrollView.dataArray = self.viewModel.moviePathAry;
+
+    });
+    //    self.guideScrollView.showChoose = YES;
 }
 
 - (void)autolayoutViews
@@ -117,7 +128,7 @@
     
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     
-        cell.moviePath = self.viewModel.moviePathAry[indexPath.row];
+//        cell.moviePath = self.viewModel.moviePathAry[indexPath.row];
 //    });
     
     if (indexPath.row == 4)

@@ -67,10 +67,10 @@
         }];
     }
     
-    self.chooseView = [[PrepareChooseView alloc]initWithLeft:@"Later"
-                                                       right:@"Later"
-                                                       title:@"would you like to balance now?"];
-    [self addSubview:self.chooseView];
+//    self.chooseView = [[PrepareChooseView alloc]initWithLeft:@"Later"
+//                                                       right:@"Later"
+//                                                       title:@"would you like to balance now?"];
+//    [self addSubview:self.chooseView];
     
     
 }
@@ -79,8 +79,25 @@
 {
     if (self.subViews)
     {
-        
+        [self.subViews enumerateObjectsUsingBlock:^(GifViews * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [obj mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.width.equalTo(@304);
+                make.height.equalTo(@204);
+                make.top.equalTo(@((SCREEN_HEIGHT - 268)/2 - 10));
+                make.left.equalTo(@(idx * SCREEN_WIDTH + (SCREEN_WIDTH - 304)/2));
+            }];
+        }];
     }
+    
+//    [self.chooseView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        
+//        make.width.equalTo(@304);
+//        make.height.equalTo(@124);
+//        make.top.equalTo(@60);
+//        make.left.equalTo(@((self.subViews.count + 1) * SCREEN_WIDTH + (SCREEN_WIDTH - 304)/2));
+//    }];
     
     
 }
@@ -107,7 +124,7 @@
         
         self.contentSize = CGSizeMake(count* SCREEN_WIDTH, 0);
         
-        self.chooseView.hidden = show;
+//        self.chooseView.hidden = show;
         
     }];
 }

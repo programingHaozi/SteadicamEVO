@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ohB-ei-SK2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ohB-ei-SK2">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -180,6 +180,10 @@
                                     <outlet property="delegate" destination="vCp-6p-yvQ" id="Cdz-uB-BXM"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MGs-gb-L59" customClass="GifScrollView">
+                                <rect key="frame" x="0.0" y="64" width="667" height="311"/>
+                                <color key="backgroundColor" red="1" green="0.78162487859999996" blue="0.3436687665" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="rJJ-Ns-bj3">
                                 <rect key="frame" x="314" y="341" width="39" height="37"/>
                                 <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
@@ -191,17 +195,22 @@
                             </pageControl>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="MGs-gb-L59" firstAttribute="leading" secondItem="mdh-gj-qTz" secondAttribute="leading" id="0VH-aM-ZxL"/>
                             <constraint firstAttribute="trailing" secondItem="QcM-xw-c0R" secondAttribute="trailing" id="5bN-PO-d1E"/>
+                            <constraint firstItem="Xsp-rZ-hnt" firstAttribute="top" secondItem="MGs-gb-L59" secondAttribute="bottom" id="9TC-3B-99e"/>
                             <constraint firstItem="QcM-xw-c0R" firstAttribute="leading" secondItem="mdh-gj-qTz" secondAttribute="leading" id="DfX-VG-d78"/>
                             <constraint firstItem="QcM-xw-c0R" firstAttribute="top" secondItem="Eez-uK-O33" secondAttribute="bottom" constant="44" id="Nna-Rl-1Ux"/>
                             <constraint firstItem="Xsp-rZ-hnt" firstAttribute="top" secondItem="rJJ-Ns-bj3" secondAttribute="bottom" constant="-3" id="Rr8-bI-6at"/>
+                            <constraint firstAttribute="trailing" secondItem="MGs-gb-L59" secondAttribute="trailing" id="T2I-sq-B2p"/>
                             <constraint firstItem="Xsp-rZ-hnt" firstAttribute="top" secondItem="QcM-xw-c0R" secondAttribute="bottom" id="fjQ-mW-fBZ"/>
+                            <constraint firstItem="MGs-gb-L59" firstAttribute="top" secondItem="Eez-uK-O33" secondAttribute="bottom" constant="44" id="gR5-GA-hQ3"/>
                             <constraint firstItem="rJJ-Ns-bj3" firstAttribute="centerX" secondItem="mdh-gj-qTz" secondAttribute="centerX" id="l40-qo-PZ6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Rxd-qR-8dc"/>
                     <connections>
                         <outlet property="collectionView" destination="QcM-xw-c0R" id="LQ3-e3-OL9"/>
+                        <outlet property="guideScrollView" destination="MGs-gb-L59" id="L89-ls-2dA"/>
                         <outlet property="pageControl" destination="rJJ-Ns-bj3" id="hZn-4D-fSA"/>
                     </connections>
                 </viewController>
