@@ -28,8 +28,7 @@
 {
     if (self = [super initWithCoder:aDecoder])
     {
-        [self initViews];
-        [self autolayoutViews];
+        
         [self bindData];
     }
     
@@ -40,8 +39,7 @@
 {
     if (self = [super initWithFrame:frame])
     {
-        [self initViews];
-        [self autolayoutViews];
+        
         [self bindData];
     }
     
@@ -66,11 +64,18 @@
             
         }];
     }
+
+    self.chooseView = [[PrepareChooseView alloc]initWithLeft:@"Later"
+                                                       right:@"OK"
+                                                       title:@"would you like to balance now?"];
     
-//    self.chooseView = [[PrepareChooseView alloc]initWithLeft:@"Later"
-//                                                       right:@"Later"
-//                                                       title:@"would you like to balance now?"];
-//    [self addSubview:self.chooseView];
+    WS(weakSelf)
+    self.chooseView.selectBlock = ^(NSInteger idx){
+        
+        [weakSelf.chooseView.superview.viewController.navigationController popViewControllerAnimated:YES];
+    };
+    
+    [self addSubview:self.chooseView];
     
     
 }
@@ -91,13 +96,13 @@
         }];
     }
     
-//    [self.chooseView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        
-//        make.width.equalTo(@304);
-//        make.height.equalTo(@124);
-//        make.top.equalTo(@60);
-//        make.left.equalTo(@((self.subViews.count + 1) * SCREEN_WIDTH + (SCREEN_WIDTH - 304)/2));
-//    }];
+    [self.chooseView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.width.equalTo(@304);
+        make.height.equalTo(@124);
+        make.top.equalTo(@60);
+        make.left.equalTo(@(self.subViews.count * SCREEN_WIDTH + (SCREEN_WIDTH - 304)/2));
+    }];
     
     
 }
@@ -113,9 +118,12 @@
         self.pagingEnabled                  = YES;
         self.showsHorizontalScrollIndicator = NO;
         
-        [self initViews];
+        if (ary.count != 0)
+        {
+            [self initViews];
+            [self autolayoutViews];
+        }
         
-        [self autolayoutViews];
     }];
     
     [RACObserve(self, showChoose) subscribeNext:^(NSNumber *show) {
@@ -123,8 +131,6 @@
         NSInteger count = self.dataArray.count + [NSNumber numberWithBool:show].integerValue;
         
         self.contentSize = CGSizeMake(count* SCREEN_WIDTH, 0);
-        
-//        self.chooseView.hidden = show;
         
     }];
 }
