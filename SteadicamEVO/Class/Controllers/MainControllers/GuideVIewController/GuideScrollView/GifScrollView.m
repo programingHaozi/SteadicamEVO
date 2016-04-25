@@ -50,6 +50,8 @@
 {
     _subViews = [[NSMutableArray alloc]init];
     
+    
+    WS(weakSelf)
     if (self.dataArray)
     {
         [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -58,9 +60,9 @@
             
             gifView.moviePath = obj;
             
-            [self addSubview:gifView];
+            [weakSelf addSubview:gifView];
             
-            [self.subViews addObject:gifView];
+            [weakSelf.subViews addObject:gifView];
             
         }];
     }
@@ -69,8 +71,9 @@
                                                        right:@"OK"
                                                        title:@"would you like to balance now?"];
     
-    WS(weakSelf)
     self.chooseView.selectBlock = ^(NSInteger idx){
+        
+        weakSelf.contentSize = CGSizeMake(0, 0);
         
         [weakSelf.chooseView.superview.viewController.navigationController popViewControllerAnimated:YES];
     };
@@ -96,12 +99,13 @@
         }];
     }
     
+    WS(weakSelf)
     [self.chooseView mas_remakeConstraints:^(MASConstraintMaker *make) {
         
         make.width.equalTo(@304);
         make.height.equalTo(@124);
         make.top.equalTo(@60);
-        make.left.equalTo(@(self.subViews.count * SCREEN_WIDTH + (SCREEN_WIDTH - 304)/2));
+        make.left.equalTo(@(weakSelf.subViews.count * SCREEN_WIDTH + (SCREEN_WIDTH - 304)/2));
     }];
     
     
@@ -109,7 +113,9 @@
 
 -(void)bindData
 {
+    @weakify(self)
     [RACObserve(self, dataArray) subscribeNext:^(NSArray *ary) {
+        @strongify(self)
         
         NSInteger count = ary.count + [NSNumber numberWithBool:self.showChoose].integerValue;
         
@@ -127,6 +133,7 @@
     }];
     
     [RACObserve(self, showChoose) subscribeNext:^(NSNumber *show) {
+        @strongify(self)
         
         NSInteger count = self.dataArray.count + [NSNumber numberWithBool:show].integerValue;
         

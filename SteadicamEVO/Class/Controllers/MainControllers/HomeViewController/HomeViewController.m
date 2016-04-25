@@ -9,7 +9,9 @@
 #import "HomeViewController.h"
 #import "BTConnectManager.h"
 
-@interface HomeViewController ()
+@interface HomeViewController ()<CBCentralManagerDelegate>
+
+@property (strong, nonatomic) CBCentralManager *centralManger;
 
 @end
 
@@ -22,16 +24,30 @@
     
     [self setCustomNavigationBarHidden:YES];
     
-   [kBTConnectManager discoverDeviceNext:^BOOL(NSString *deviceName) {
-       return YES;
-    } completion:^(BOOL timeout) {
-        
-    } error:^(NSError *error) {
-        
-    }];
-    
+    self.centralManger = [[CBCentralManager alloc] initWithDelegate:self
+                                                              queue:nil];
     
 }
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    if (central.state == CBCentralManagerStatePoweredOn) {
+        [self.centralManger scanForPeripheralsWithServices:nil
+                                                   options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@(YES)}];
+        NSLog(@">>>BLE状态正常");
+    }else{
+        NSLog(@">>>设备不支持BLE或者未打开");
+    }
+}
+
+- (void)centralManager:(CBCentralManager *)central
+ didDiscoverPeripheral:(CBPeripheral *)peripheral
+     advertisementData:(NSDictionary *)advertisementData
+                  RSSI:(NSNumber *)RSSI
+{
+    NSLog(@">>>>扫描周边设备 .. 设备id:%@, rssi: %@",[peripheral.identifier UUIDString],RSSI);
+}
+
 
 #pragma mark- init autolayout bind
 

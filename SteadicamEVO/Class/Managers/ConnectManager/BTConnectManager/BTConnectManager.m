@@ -55,7 +55,7 @@
 
 +(BTConnectManager *)shareInstance
 {
-    static BTConnectManager *manager;
+    static BTConnectManager *manager = nil;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
@@ -424,7 +424,7 @@
             }
             
             // 指定ServiceUUID搜索设备
-            [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString: kBLEService1UUID]]
+            [self.centralManager scanForPeripheralsWithServices:nil
                                                         options:nil
                                                       onUpdated:^(RKPeripheral *peripheral) {
                                                           //                                                          if ([peripheral.name hasPrefix:kBLENamePrefix]) {
