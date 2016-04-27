@@ -374,7 +374,7 @@
              }
              
              // 指定ServiceUUID搜索设备
-             [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString: kBLEService1UUID]]
+             [self.centralManager scanForPeripheralsWithServices:nil
                                                          options:nil
                                                        onUpdated:^(RKPeripheral *peripheral) {
                                                            //                                                          if ([peripheral.name hasPrefix:kBLENamePrefix]) {
@@ -441,7 +441,9 @@
             [self.centralManager scanForPeripheralsWithServices:nil
                                                         options:nil
                                                       onUpdated:^(RKPeripheral *peripheral) {
-                                                          if ([peripheral.name isEqualToString:kDeviceName1]) {
+                                                          
+                                                          if ([peripheral.name isEqualToString:kDeviceName1])
+                                                          {
                                                               NSLog(@"Discovered device: %@",peripheral.name);
                                                               
                                                               if (next)
@@ -566,7 +568,7 @@
                                                               }
                                                           }
                                                           
-                                                          //蓝牙状态更新的时候链接是断开时，回调断开连接
+                                                          // 蓝牙状态更新的时候链接是断开时，回调断开连接
                                                           else if(peripheral == nil && weakSelf.centralManager.state == CBCentralManagerStatePoweredOff)
                                                           {
                                                               if (_disconnectionBlock)
@@ -667,14 +669,16 @@
                        onFinish:nil];
 }
 
+/**
+ *  匹配搜索到的外部设备名称
+ *
+ *  @param name 外部设备名称
+ *
+ *  @return 是否匹配
+ */
 - (BOOL)hasMatchWithName:(NSString *)name
 {
-    if ([name isEqualToString:kDeviceName1] || [name isEqualToString:kDeviceName2])
-    {
-        return YES;
-    }
-    
-    return NO;
+    return ([name isEqualToString:kDeviceName1] || [name isEqualToString:kDeviceName2]);
 }
 
 @end
