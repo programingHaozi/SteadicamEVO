@@ -18,7 +18,9 @@
 @interface BTConnectManager()
 
 @property (nonatomic, assign) BOOL isCentralManager;
-//@property (nonatomic, copy) NSString *peripheralName;
+
+@property (nonatomic, copy) NSString *peripheralName;
+
 @property (nonatomic, copy) NSString *serviceUUID;
 
 /**
@@ -36,15 +38,21 @@
 @property (nonatomic, copy) void (^connectionBlock)(NSInteger result);
 
 @property (nonatomic,strong) NSArray<CBService *> *services;
+
 @property (nonatomic,strong) CBService *service;
 
 @property (nonatomic,strong) RKPeripheral *peripheral;
+
 @property (nonatomic,strong) RKPeripheralManager *peripheralManager;
+
 @property (nonatomic,strong) RKCentralManager *centralManager;
 
 @property (nonatomic,strong) NSMutableArray<CBCharacteristic *> *readCharacteristics;
+
 @property (nonatomic,strong) NSMutableArray<CBCharacteristic *> *writeCharacteristics;
+
 @property (nonatomic,strong) CBCharacteristic *readCharacteristic;
+
 @property (nonatomic,strong) CBCharacteristic *writeCharacteristic;
 
 @property (nonatomic,strong) NSString *pendingValue;
@@ -69,7 +77,7 @@
 {
     if (self = [super init])
     {
-        _readCharacteristics = [[NSMutableArray alloc]init];
+        _readCharacteristics  = [[NSMutableArray alloc]init];
         _writeCharacteristics = [[NSMutableArray alloc]init];
     }
     
@@ -148,6 +156,12 @@
     __weak BTConnectManager * weakSelf = self;
     
     
+    /*
+    NSArray *services = @[
+                          [CBUUID UUIDWithString: kBLEService1UUID],
+                          [CBUUID UUIDWithString: kBLEService2UUID]
+                          ];
+    
     NSArray *characteristics = @[
                                  @[
                                      [CBUUID UUIDWithString: kBLECharacteristicWrite]
@@ -159,11 +173,9 @@
                                      [CBUUID UUIDWithString: kBLECharacteristicNofiy4]
                                      ]
                                  ];
+     */
     
-    [peripheral discoverServices:@[
-                                   [CBUUID UUIDWithString: kBLEService1UUID],
-                                   [CBUUID UUIDWithString: kBLEService2UUID]
-                                   ]
+    [peripheral discoverServices:nil
                         onFinish:^(NSError *error)
      {
          weakSelf.services = [NSArray arrayWithArray:peripheral.services];
@@ -172,7 +184,7 @@
          
          [weakSelf.services enumerateObjectsUsingBlock:^(CBService * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
              
-             [peripheral discoverCharacteristics:characteristics[idx]
+             [peripheral discoverCharacteristics:nil
                                       forService:obj
                                         onFinish:^(CBService *service, NSError *error){
                                             
@@ -183,7 +195,7 @@
                                                 {
                                                     [self.writeCharacteristics addObject:characteristic];
                                                     
-                                                    NSLog(@"Discovered Characteristic : %@",self.writeCharacteristics);
+                                                    NSLog(@"Discovered writeCharacteristic : %@",self.writeCharacteristics);
                                                     
                                                     continue;
                                                 }
@@ -192,13 +204,13 @@
                                                 {
                                                     [self.readCharacteristics addObject:characteristic];
                                                     
-                                                    NSLog(@"Discovered Characteristic : %@",self.readCharacteristics);
+                                                    NSLog(@"Discovered readCharacteristic : %@",self.readCharacteristics);
                                                     
                                                     continue;
                                                 }
                                             }
                                             
-                                            NSLog(@"Set Notify Callback For Characteristic : %@",self.readCharacteristics);
+                                            NSLog(@"Set Notify Callback For readCharacteristic : %@",self.readCharacteristics);
                                             
                                             [self.readCharacteristics enumerateObjectsUsingBlock:^(CBCharacteristic * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                                                 
@@ -206,6 +218,7 @@
                                                               forCharacteristic:obj
                                                                       onUpdated:^(CBCharacteristic *characteristic, NSError *error) {
                                                                           
+                                                                          /*
                                                                           NSData *data = characteristic.value;
                                                                           Byte *p = (Byte *)[data bytes];
                                                                           NSString *rawValue = nil;
@@ -230,6 +243,7 @@
                                                                               
                                                                               weakSelf.pendingValue = nil;
                                                                           }
+                                                                           */
                                                                       }];
                                             }];
                                             
@@ -483,8 +497,6 @@
     
     _connectionBlock = completion;
     
-//    self.peripheralName = kDeviceName1;
-    
     [self initCentralManager:^(BOOL isOk, NSError *error) {
         
         if (isOk)
@@ -533,7 +545,10 @@
                                                               timeout = NO;
                                                               
                                                               [weakSelf.centralManager stopScan];
+                                                              
                                                               weakSelf.peripheral = peripheral;
+                                                              
+                                                              weakSelf.peripheralName = peripheral.name;
                                                               
                                                               if (peripheral.state == CBPeripheralStateDisconnected && _connectionBlock)
                                                               {

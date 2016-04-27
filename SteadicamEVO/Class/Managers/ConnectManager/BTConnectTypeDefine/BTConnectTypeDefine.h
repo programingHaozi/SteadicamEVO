@@ -15,7 +15,7 @@
 #define kDeviceName2                @"BlueNRG"
 
 #define kBLEService1UUID            @"01366E80-CF3A-11E1-9AB4-0002A5D5C51B"
-//#define kBLEService1UUID            @"FFF0"
+
 #define kBLEService2UUID            @"04366E80-CF3A-11E1-9AB4-0002A5D5C51B"
 
 #define kBLECharacteristicWrite     @"02366E80-CF3A-11E1-9AB4-0002A5D5C51B"
