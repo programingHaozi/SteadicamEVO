@@ -7,141 +7,161 @@
 //
 
 #import "UIViewController+HandleAction.h"
-#import "UIViewController+Push.h"
 #import "TFViewController.h"
 #import "TFWebViewController.h"
-#import "TFTableSectionModel.h"
-#import "TFTableRowModel.h"
 
 @implementation UIViewController (HandleAction)
 
--(void) handleData:(id)data
+-(void) handleData:(TFTableRowModel*)data
 {
-    if ([data isKindOfClass:[TFTableRowModel class]])
+    [self handleData:data completion:nil];
+}
+
+-(void) handleData:(TFTableRowModel*)data completion:(void (^)(TFTableRowModel*))completion
+{
+    if (data==nil)
     {
-        TFTableRowModel *item=(TFTableRowModel *)data;
-        
-        Class viewModelClass = NSClassFromString(item.vc);
-        if (viewModelClass!=nil)
+        return;
+    }
+    
+    if (![data isKindOfClass:[TFTableRowModel class]])
+    {
+        return;
+    }
+    
+    //按照vc处理
+    if (data.vc!=nil)
+    {
+        Class vcClass = NSClassFromString(data.vc);
+        if (vcClass!=nil)
         {
-            [self pushViewController:[[viewModelClass alloc]init]];
-            return;
+            [self pushViewController:[[vcClass alloc]init]];
         }
-        
-        SEL selector = NSSelectorFromString(item.method);
+        else
+        {
+            NSCAssert(NO, ([NSString stringWithFormat:@"vc对应%@不存在",vcClass]));
+        }
+        return;
+    }
+    
+    //按照method处理
+    if (data.method!=nil)
+    {
+        SEL selector = NSSelectorFromString(data.method);
         if ([self respondsToSelector:selector])
         {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             [self performSelector:selector withObject:nil withObject:nil];
 #pragma clang diagnostic pop
+        }
+        else
+        {
+            NSCAssert(NO, ([NSString stringWithFormat:@"method对应%@不存在",data.method]));
+        }
+        
+        return;
+    }
+    
+    //app处理
+    //剩下的我处理不来了，交给方法的block处理吧
+    if (completion)
+    {
+        completion(data);
+        return;
+    }
+    
+    //app都不愿意处理，还是我默认处理吧
+    if (data.url)
+    {
+        [self pusWebVCWithData:data.url];
+    }
+    else if (data.webModel)
+    {
+        [self pusWebVCWithData:data.webModel];
+    }
+}
+
+- (void)handleActionModel:(TFTableRowModel*)item
+{
+    NSString *action = item.action;
+    if (action!=nil)
+    {
+        NSString *fielPath = [[NSBundle mainBundle] pathForResource:@"ActionConfig" ofType:@"plist"];
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:fielPath];
+        
+        if (dict==nil)
+        {
             return;
         }
-
-        if (item.url)
+        
+        NSString *vcClassName=[dict objectForKey:action];
+        
+        if (vcClassName==nil||vcClassName.length==0)
         {
-            if ([item.url hasPrefix:@"http"])
+            NSCAssert(NO, @"action对应value为空");
+            return;
+        }
+        
+        Class vcClass = NSClassFromString(vcClassName);
+        if (vcClass==nil)
+        {
+            NSCAssert(NO, ([NSString stringWithFormat:@"%@不存在",vcClassName]));
+            return;
+        }
+        
+        id vc = [[vcClass alloc] init];
+        
+        if (![vc isKindOfClass:[TFViewController class]])
+        {
+            NSCAssert(NO, ([NSString stringWithFormat:@"%@不是TFViewController",vcClassName]));
+            return;
+        }
+        
+        id parameter= item.parameter;
+        
+        // 有parameter参数需要把parameter赋值给ViewModel
+        if (parameter!=nil)
+        {
+            NSString *viewModelClassName= [vcClassName stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewModel"];
+            Class viewModelClass = NSClassFromString(viewModelClassName);
+            if (viewModelClass==nil)
             {
-                [self handleWebURL:item.url];
+                NSCAssert(NO, ([NSString stringWithFormat:@"%@不存在",viewModelClassName]));
                 return;
             }
-        }
-
-        if (item.webModel)
-        {
-            [self handleWebModel:item.webModel];
-        }
-    }
-}
-
-- (void)handleWebModel:(id)webModel
-{
-    NSString *fielPath = [[NSBundle mainBundle] pathForResource:@"ActionConfig" ofType:@"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:fielPath];
-
-    if (dict == nil)
-    {
-        [self pusWebVCWithdata:webModel];
-
-        return;
-    }
-
-    NSString *webVC = dict[@"defaultWebViewController"];
-
-    if (webVC.length>0 || webVC != nil)
-    {
-        Class vcClass = NSClassFromString(webVC);
-
-        id vc = [[vcClass alloc] init];
-
-        if (!vc)
-        {
-            [self pusWebVCWithdata:webModel];
-
-            return;
-        }
-        else
-        {
-            if ([vc isKindOfClass:[TFWebViewController class]])
+            
+            TFViewController *tempViewController = (TFViewController *)vc;
+            if ([parameter isKindOfClass:viewModelClass])
             {
-                ((TFWebViewController*)vc).model = webModel;
-                [self pushViewController:vc];
+                tempViewController.viewModel = [viewModelClass mj_objectWithKeyValues:dict];
             }
-        }
-    }
-    else
-    {
-        
-    }
-}
-
--(void)handleWebURL:(NSString *)url
-{
-    NSString *fielPath = [[NSBundle mainBundle] pathForResource:@"ActionConfig" ofType:@"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:fielPath];
-    
-    if (dict == nil)
-    {
-        [self pusWebVCWithdata:url];
-
-        return;
-    }
-    
-    NSString *webVC = dict[@"defaultWebViewController"];
-    
-    if (webVC.length>0 || webVC != nil)
-    {
-        Class vcClass = NSClassFromString(webVC);
-
-        id vc = [[vcClass alloc] init];
-        
-        if (!vc)
-        {
-            [self pusWebVCWithdata:url];
-
-            return;
-        }
-        else
-        {
-            if ([vc isKindOfClass:[TFWebViewController class]])
+            else if ([parameter isKindOfClass:[NSString class]])
             {
-                ((TFWebViewController*)vc).urlRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-                [self pushViewController:vc];
+                NSDictionary *dict=[[self class] parseString:parameter];
+                if (dict==nil)
+                {
+                    NSCAssert(NO, ([NSString stringWithFormat:@"%@不和规范",parameter]));
+                    return;
+                }
+                else
+                {
+                    tempViewController.viewModel = [viewModelClass mj_objectWithKeyValues:dict];
+                }
             }
             else
             {
-
+                NSCAssert(NO, ([NSString stringWithFormat:@"parameter不符合参数类型"]));
+                return;
             }
         }
-
-    }
-    else
-    {
-
+        
+        [self pushViewController:vc];
+        return;
     }
 }
 
-- (void)pusWebVCWithdata:(id)data
+- (void)pusWebVCWithData:(id)data
 {
     TFWebViewController *vc=[[TFWebViewController alloc]init];
     if ([data isKindOfClass:[NSString class]])
@@ -153,7 +173,7 @@
         vc.model = data;
     }
 
-     [self pushViewController:vc];
+    [self pushViewController:vc];
 }
 
 - (NSDictionary *)parseString:(NSString *)str

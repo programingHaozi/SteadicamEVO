@@ -7,19 +7,18 @@
 //
 
 #import "UIView+ViewController.h"
-#import "UIViewController+Ext.h"
 #import "TFUIUtil.h"
 
 @implementation UIView (ViewController)
 
-- (UIWindow*)keyWindow
+- (UIViewController*)rootViewController
 {
-    return [UIApplication sharedApplication].keyWindow;
+    return [UIApplication sharedApplication].keyWindow.rootViewController;
 }
 
-- (UIViewController *)topViewController
+- (UIViewController*)topViewController
 {
-    return [[UIApplication sharedApplication].keyWindow.rootViewController topViewController];
+    return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
 }
 
 - (UIViewController *)viewController
@@ -33,6 +32,29 @@
         }
     }
     return nil;
+}
+
+- (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController
+{
+    if ([rootViewController isKindOfClass:[UITabBarController class]])
+    {
+        UITabBarController* tabBarController = (UITabBarController*)rootViewController;
+        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
+    }
+    else if ([rootViewController isKindOfClass:[UINavigationController class]])
+    {
+        UINavigationController* nav = (UINavigationController*)rootViewController;
+        return [self topViewControllerWithRootViewController:nav.visibleViewController];
+    }
+    else if (rootViewController.presentedViewController)
+    {
+        UIViewController* presentedViewController = rootViewController.presentedViewController;
+        return [self topViewControllerWithRootViewController:presentedViewController];
+    }
+    else
+    {
+        return rootViewController;
+    }
 }
 
 @end

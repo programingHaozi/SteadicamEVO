@@ -24,10 +24,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self initTabBar];
-
-    self.customNavigationBarHidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -81,13 +78,13 @@
     
     if (selectedIndex < self.viewControllers.count)
     {
-        TFViewController *viewController = [self.viewControllers objectAtIndex:selectedIndex];
+        UIViewController *viewController = [self.viewControllers objectAtIndex:selectedIndex];
         
         if (viewController)
         {
             UIView* currentView = [self.view viewWithTag:SELECTED_VIEW_CONTROLLER_TAG];
             [currentView removeFromSuperview];
-
+            
             viewController.view.tag = SELECTED_VIEW_CONTROLLER_TAG;
             
             [self.view insertSubview:viewController.view belowSubview:self.tabBar];
@@ -95,7 +92,7 @@
             WS(weakSelf)
             [viewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
                 
-                make.top.   equalTo(weakSelf.view.mas_top).offset(weakSelf.top);
+                make.top.   equalTo(weakSelf.view.mas_top).offset(0);
                 make.right. equalTo(weakSelf.view.mas_right).offset(0);
                 make.bottom.equalTo(weakSelf.tabBarTranslucent ? weakSelf.view.mas_bottom : weakSelf.tabBar.mas_top).offset(0);
                 make.left.  equalTo(weakSelf.view.mas_left).offset(0);
@@ -114,39 +111,39 @@
     _viewControllers = viewControllers;
     
     __block NSMutableArray<TFCustomTabBarItem *> *barItemsArray = [[NSMutableArray alloc]init];;
-
+    
     WS(weakSelf)
     [viewControllers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         [weakSelf addChildViewController:obj];
         
-        if ([obj isKindOfClass:[TFNavigationController class]])
+        if ([obj isKindOfClass:[UINavigationController class]])
         {
-            TFNavigationController *nav = obj;
-            if ([nav.rootViewController isKindOfClass:[TFViewController class]])
+            UINavigationController *nav = obj;
+            if ([nav.viewControllers.firstObject isKindOfClass:[UIViewController class]])
             {
-                TFViewController *vc = (TFViewController *)nav.rootViewController;
-                if (!vc.tabBarItem)
+                UIViewController *vc = (UIViewController *)nav.viewControllers.firstObject;
+                if (!vc.tfTabBarItem)
                 {
-                    vc.tabBarItem = [[TFCustomTabBarItem alloc]initWithTitle:nil
-                                                                 normalImage:nil
-                                                               selectedImage:nil];
+                    vc.tfTabBarItem = [[TFCustomTabBarItem alloc]initWithTitle:nil
+                                                                   normalImage:nil
+                                                                 selectedImage:nil];
                 }
                 
-                [barItemsArray addObject:vc.tabBarItem];
+                [barItemsArray addObject:vc.tfTabBarItem];
             }
         }
-        else if ([obj isKindOfClass:[TFViewController class]])
+        else if ([obj isKindOfClass:[UIViewController class]])
         {
-            TFViewController *vc = (TFViewController *)obj;
-            if (!vc.tabBarItem)
+            UIViewController *vc = (UIViewController *)obj;
+            if (!vc.tfTabBarItem)
             {
-                vc.tabBarItem = [[TFCustomTabBarItem alloc]initWithTitle:nil
-                                                             normalImage:nil
-                                                           selectedImage:nil];
+                vc.tfTabBarItem = [[TFCustomTabBarItem alloc]initWithTitle:nil
+                                                               normalImage:nil
+                                                             selectedImage:nil];
             }
             
-            [barItemsArray addObject:vc.tabBarItem];
+            [barItemsArray addObject:vc.tfTabBarItem];
         }
     }];
     
@@ -156,49 +153,49 @@
 - (void)setTabBarTitles:(NSArray *)tabBarTitles
 {
     _tabBarTitles            = tabBarTitles;
-
+    
     self.tabBar.tabBarTitles = tabBarTitles;
 }
 
 - (void)setTabBarNormalImages:(NSArray *)tabBarNormalImages
 {
     _tabBarNormalImages            = tabBarNormalImages;
-
+    
     self.tabBar.tabBarNormalImages = tabBarNormalImages;
 }
 
 - (void)setTabBarSelectedImages:(NSArray *)tabBarSelectedImages
 {
     _tabBarSelectedImages            = tabBarSelectedImages;
-
+    
     self.tabBar.tabBarSelectedImages = tabBarSelectedImages;
 }
 
 - (void)setTabBarTitleColor:(UIColor *)tabBarTitleColor
 {
     _tabBarTitleColor            = tabBarTitleColor;
-
+    
     self.tabBar.tabBarTitleColor = tabBarTitleColor;
 }
 
 - (void)setSelectedTabBarTitleColor:(UIColor *)selectedTabBarTitleColor
 {
     _selectedTabBarTitleColor            = selectedTabBarTitleColor;
-
+    
     self.tabBar.selectedTabBarTitleColor = selectedTabBarTitleColor;
 }
 
 - (void)setTabBarItemBGColor:(UIColor *)tabBarItemBGColor
 {
     _tabBarItemBGColor            = tabBarItemBGColor;
-
+    
     self.tabBar.tabBarItemBGColor = tabBarItemBGColor;
 }
 
 - (void)setSelectedTabBarItemBGColor:(UIColor *)selectedTabBarItemBGColor
 {
     _selectedTabBarItemBGColor            = selectedTabBarItemBGColor;
-
+    
     self.tabBar.selectedTabBarItemBGColor = selectedTabBarItemBGColor;
 }
 
@@ -244,16 +241,16 @@
     self.viewControllers = [NSArray arrayWithArray:tempAry];
 }
 
-- (void)insertViewController:(TFViewController *)vc
-                      title:(NSString *)title
-                normalImage:(UIImage *)normalImage
-              selectedImage:(UIImage *)selectedImage
-                    atIndex:(NSUInteger)index
+- (void)insertViewController:(UIViewController *)vc
+                       title:(NSString *)title
+                 normalImage:(UIImage *)normalImage
+               selectedImage:(UIImage *)selectedImage
+                     atIndex:(NSUInteger)index
 {
     
-    vc.tabBarItem = [[TFCustomTabBarItem alloc]initWithTitle:title
-                                                 normalImage:normalImage
-                                               selectedImage:selectedImage];
+    vc.tfTabBarItem = [[TFCustomTabBarItem alloc]initWithTitle:title
+                                                   normalImage:normalImage
+                                                 selectedImage:selectedImage];
     
     NSMutableArray *tempAry = [[NSMutableArray alloc]initWithArray:self.viewControllers];
     
@@ -285,29 +282,33 @@
  *  用COPY时会崩溃
  */
 
-@implementation TFViewController (TFTabBarControllerItem)
-@dynamic tabBarItem;
-@dynamic tabBarController;
+@implementation UIViewController (TFTabBarControllerItem)
+@dynamic tfTabBarItem;
+@dynamic tfTabBarController;
 
 const void *TF_TAbBar_ITEM_KEY = @"TFTabBarItemKey";
 
 const void *TF_TAbBar_CONTROLLER_KEY = @"TFTabBarControllerKey";
 
-- (void)setTabBarItem:(TFCustomTabBarItem *)tabBarItem
+-(void)setTfTabBarItem:(TFCustomTabBarItem *)tfTabBarItem
 {
-    objc_setAssociatedObject(self, TF_TAbBar_ITEM_KEY, tabBarItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, TF_TAbBar_ITEM_KEY, tfTabBarItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (TFCustomTabBarItem *)tabBarItem
+-(TFCustomTabBarItem *)tfTabBarItem
 {
     return objc_getAssociatedObject(self, TF_TAbBar_ITEM_KEY);
 }
 
-- (TFTabBarController *)tabBarController
+-(TFTabBarController *)tfTabBarController
 {
     if ([self.parentViewController isKindOfClass:[TFTabBarController class]])
     {
         return (TFTabBarController *)self.parentViewController;
+    }
+    else if ([self.parentViewController.parentViewController isKindOfClass:[TFTabBarController class]])
+    {
+        return (TFTabBarController *)self.parentViewController.parentViewController;
     }
     
     return nil;

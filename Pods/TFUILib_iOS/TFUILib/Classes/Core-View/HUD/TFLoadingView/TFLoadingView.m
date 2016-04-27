@@ -112,9 +112,11 @@ activityIndicatorViewStyle:(UIActivityIndicatorViewStyle)indicatorStyle
 
 -(void)hide
 {
+    __weak typeof(self) weakSelf = self;
+    
     [UIView animateWithDuration:0.25
                      animations:^{
-                         self.alpha = 0.f;
+                         weakSelf.alpha = 0.f;
                      }
                      completion:^(BOOL finished) {
                          [self removeFromSuperview];

@@ -46,9 +46,10 @@
 - (void)initViews
 {
     [super initViews];
-    
+
     self.adjusetmentView = tf_getViewFromNib(NSStringFromClass([AdjustmentView class]));
     self.adjusetmentView.hidden = YES;
+    
     [self.view insertSubview:self.adjusetmentView belowSubview:self.nextButton];
     
     self.chooseView = [[PrepareChooseView alloc]initWithLeft:@"Later"
@@ -80,6 +81,8 @@
 -(void)autolayoutViews
 {
     [super autolayoutViews];
+    
+    self.gifView.bounds = CGRectMake(0, 0, 254, 204);
     
     WS(weakSelf)
     [self.chooseView mas_makeConstraints:^(MASConstraintMaker *make) {

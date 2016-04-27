@@ -271,4 +271,20 @@
  *  @return 改变后的image
  */
 - (UIImage *)imageRotatedByDegrees:(CGFloat)degrees;
+
+/**
+ *  图片进行方向矫正
+ *
+ *  @return 改变后的image
+ */
+- (UIImage *)imageCropFixOrientation;
+
+/**
+ *  设置图片高斯效果
+ *
+ *  @param blurRadius 模糊的透明度
+ *
+ *  @return 设置后的图片
+ */
+- (UIImage*)gaussBlur:(CGFloat)blurRadius;
 @end

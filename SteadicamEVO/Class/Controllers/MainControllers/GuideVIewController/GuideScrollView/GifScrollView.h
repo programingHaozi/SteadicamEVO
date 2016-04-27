@@ -8,7 +8,7 @@
 
 #import <TFScrollView.h>
 
-@interface GifScrollView : TFScrollView
+@interface GifScrollView : UIScrollView
 
 @property (nonatomic, strong) NSArray *dataArray;
 

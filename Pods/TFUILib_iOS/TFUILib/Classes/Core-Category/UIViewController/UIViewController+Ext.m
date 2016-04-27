@@ -6,34 +6,41 @@
 //  Copyright © 2016年 上海赛可电子商务有限公司. All rights reserved.
 //
 
-#import <objc/runtime.h>
 #import "UIViewController+Ext.h"
 
 @implementation UIViewController (Ext)
 
-- (UIWindow*)keyWindow
+- (UIViewController*)topViewController
 {
-    return [UIApplication sharedApplication].keyWindow;
+    return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
 }
 
-- (UIViewController *)topViewController
+- (UIViewController*)rootViewController
 {
-    if (self.presentedViewController)
+    return [UIApplication sharedApplication].keyWindow.rootViewController;
+}
+
+- (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController
+{
+    if ([rootViewController isKindOfClass:[UITabBarController class]])
     {
-        return [self.presentedViewController topViewController];
+        UITabBarController* tabBarController = (UITabBarController*)rootViewController;
+        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
     }
-    if ([self isKindOfClass:[UITabBarController class]])
+    else if ([rootViewController isKindOfClass:[UINavigationController class]])
     {
-        UITabBarController *tab = (UITabBarController *)self;
-        return [[tab selectedViewController] topViewController];
+        UINavigationController* nav = (UINavigationController*)rootViewController;
+        return [self topViewControllerWithRootViewController:nav.visibleViewController];
     }
-    if ([self isKindOfClass:[UINavigationController class]])
+    else if (rootViewController.presentedViewController)
     {
-        UINavigationController *nav = (UINavigationController *)self;
-        return [[nav visibleViewController] topViewController];
+        UIViewController* presentedViewController = rootViewController.presentedViewController;
+        return [self topViewControllerWithRootViewController:presentedViewController];
     }
-    
-    return self;
+    else
+    {
+        return rootViewController;
+    }
 }
 
 -(CGFloat)screenWidth

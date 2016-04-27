@@ -38,8 +38,7 @@
 
 + (void)showWithType:(TFDatePickerType)type block:(TFDatePickerBlock)block
 {
-    TFDatePicker *view=[[TFDatePicker alloc]initWithType:type
-                                                               block:block];
+    TFDatePicker *view=[[TFDatePicker alloc]initWithType:type block:block];
     [view show:^(BOOL finished) {
         
     }];
@@ -115,9 +114,8 @@
     [UIView animateWithDuration:ANIMATION_DURATION_TIME
                           delay:0
                         options:UIViewAnimationOptionCurveLinear animations:^{
-                            
-                              self.maskView.alpha = 1;
-                              [self.alertView setFrame:CGRectMake(0, SCREEN_HEIGHT-(DATE_PICK_HEIGHT+STYLE_BY_PIXEL(80, 80 , 120)), self.alertView.frame.size.width, self.alertView.frame.size.height)];
+                            _maskView.alpha = 1;
+                            [_alertView setFrame:CGRectMake(0, SCREEN_HEIGHT-(DATE_PICK_HEIGHT+STYLE_BY_PIXEL(80, 80 , 120)), _alertView.frame.size.width, _alertView.frame.size.height)];
                           } completion:^(BOOL finished) {
                               
                               if (completion)
@@ -133,9 +131,9 @@
                                    delay:0
                                  options:UIViewKeyframeAnimationOptionLayoutSubviews
                               animations:^{
-                                  
-                                  self.maskView.alpha = 0;
-                                  [self.alertView setFrame:CGRectMake(0, SCREEN_HEIGHT, self.alertView.frame.size.width, self.alertView.frame.size.height)];
+
+                                  _maskView.alpha = 0;
+                                  [_alertView setFrame:CGRectMake(0, SCREEN_HEIGHT, _alertView.frame.size.width, _alertView.frame.size.height)];
                               }
                               completion:^(BOOL finished) {
                                   

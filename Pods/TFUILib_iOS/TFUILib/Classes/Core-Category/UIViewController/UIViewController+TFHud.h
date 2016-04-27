@@ -15,18 +15,26 @@
 /**
  *  显示HUD页面
  */
-- (void)showHUD;
+- (void)showHud;
 
 /**
  *  显示HUD页面
  *
  *  @param text 提示信息
  */
-- (void)showHUDWithText:(NSString*)text;
+- (void)showHudWithText:(NSString*)text;
 
 /**
  *  隐藏HUD页面
  */
-- (void)hideHUD;
+- (void)hideHud;
+
+/**
+ *  显示HUD页面
+ *
+ *  @param text 提示信息
+ *  @param delay 延迟消失时间
+ */
+- (void)showHudWithText:(NSString*)text dismissAfter:(NSTimeInterval)delay;
 
 @end

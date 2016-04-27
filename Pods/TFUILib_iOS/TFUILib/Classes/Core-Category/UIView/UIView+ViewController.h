@@ -11,18 +11,21 @@
 @interface UIView (ViewController)
 
 /**
- *  获取keywindow
+ *  获取最顶层vc
  */
-@property (nonatomic, strong, readonly) UIWindow *keyWindow;
+- (UIViewController*)topViewController;
 
 /**
  *  获取最顶层vc
+ *
+ *  @return
  */
-@property (nonatomic, strong, readonly) UIViewController *topViewController;
+- (UIViewController*)rootViewController;
 
 /**
  *  获取UIView所在的视图控制器（ViewController）
  */
-@property (nonatomic, strong, readonly) UIViewController *viewController;
+- (UIViewController *)viewController;
+
 
 @end

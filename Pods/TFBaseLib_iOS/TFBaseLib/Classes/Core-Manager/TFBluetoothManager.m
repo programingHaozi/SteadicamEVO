@@ -16,11 +16,6 @@
 
 @implementation TFBluetoothManager
 
-+ (void)load
-{
-    [super load];
-    [TFBluetoothManager sharedManager];
-}
 
 + (instancetype) sharedManager
 {

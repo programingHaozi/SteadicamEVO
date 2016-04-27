@@ -7,6 +7,7 @@
 //
 
 #import "TFBaseUtil+AES.h"
+#import "TFBaseUtil+Other.h"
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonKeyDerivation.h>
 
@@ -45,7 +46,12 @@ NSString*  tf_aes256DecryptByKey(NSString* base64EncodedString, const void *key)
 @implementation TFBaseUtil (AES)
 
 + (NSData *)aesKeyForPassword:(NSString *)password{                  //Derive a key from a text password/passphrase
-    
+
+    if (tf_isEmpty(password))
+    {
+        return nil;
+    }
+
     NSMutableData *derivedKey = [NSMutableData dataWithLength:kAlgorithmKeySize_TF];
     
     NSData *salt = [NSData dataWithBytes:saltBuff length:kCCKeySizeAES128];
@@ -82,6 +88,11 @@ NSString*  tf_aes256DecryptByKey(NSString* base64EncodedString, const void *key)
 
 + (NSString *)aes256Encrypt:(NSString *)message keyByte:(const void *)keyByte
 {
+    if (tf_isEmpty(message))
+    {
+        return nil;
+    }
+
     NSData *plainText = [message dataUsingEncoding:NSUTF8StringEncoding];
     // 'key' should be 32 bytes for AES256, will be null-padded otherwise
     char keyPtr[kCCKeySizeAES128+1]; // room for terminator (unused)
@@ -112,6 +123,12 @@ NSString*  tf_aes256DecryptByKey(NSString* base64EncodedString, const void *key)
 
 + (NSString *)aes256Decrypt:(NSString *)base64EncodedString keyByte:(const void *)keyByte
 {
+
+    if (tf_isEmpty(base64EncodedString))
+    {
+        return nil;
+    }
+
     NSData *cipherData =  [[NSData alloc]initWithBase64EncodedString:base64EncodedString options:0];
     // 'key' should be 32 bytes for AES256, will be null-padded otherwise
     char keyPtr[kCCKeySizeAES128+1]; // room for terminator (unused)

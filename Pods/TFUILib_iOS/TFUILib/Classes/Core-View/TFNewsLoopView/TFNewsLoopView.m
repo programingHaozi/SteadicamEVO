@@ -7,6 +7,7 @@
 //
 
 #import "TFNewsLoopView.h"
+#import "TFBaseMacro.h"
 
 #define LABELTAG 10231
 
@@ -46,13 +47,13 @@
 -(void)makeselfUI
 {
     autoIndex=0;
-    
+
     if (abstractScrollview)
     {
         [abstractScrollview removeFromSuperview];
         abstractScrollview = nil;
     }
-    
+
     CGSize contSize;
     // 根据滚动方向设置ContentSize
     if (self.loopViewScrollDirection == kNewsLoopViewScrollDirectionVertical)
@@ -63,17 +64,16 @@
     {
         contSize = CGSizeMake(([_itemarray count]+1)*_width, self.frame.size.height);
     }
-    
+
     abstractScrollview=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0,_width , _height)];
     [self addSubview:abstractScrollview];
     abstractScrollview.showsVerticalScrollIndicator = NO;
     [abstractScrollview setContentSize:contSize];
-    
+
     for (int i=0; i<[_itemarray count]; i++)
     {
         TFNewsLoopViewItem *obj=(TFNewsLoopViewItem*)[_itemarray objectAtIndex:i];
-        
-        
+
         CGRect labelFram;
         // 根据滚动方向设置ContentSize
         if (self.loopViewScrollDirection == kNewsLoopViewScrollDirectionVertical)
@@ -84,23 +84,25 @@
         {
             labelFram = CGRectMake(_width*i, 0, _width, _height);
         }
-        
+
         UILabel *label=[[UILabel alloc]initWithFrame:labelFram];
         label.backgroundColor = [UIColor clearColor];
         [label setText:obj.title];
+        label.font = FONT_BY_PIXEL(28, 30 , 44);
+        label.textColor= HEXCOLOR(0X333333,  1) ;
         label.tag=LABELTAG+i;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapInLabel:)];
         [label addGestureRecognizer:tap];
         label.userInteractionEnabled = YES;
         [abstractScrollview addSubview:label];
-        
+
         if (i==[_itemarray count]-1)
         {
-            
+
             TFNewsLoopViewItem *obj=(TFNewsLoopViewItem*)[_itemarray objectAtIndex:0];
-            
+
             CGRect lastFrame;
-            
+
             if (self.loopViewScrollDirection == kNewsLoopViewScrollDirectionVertical)
             {
                 lastFrame = CGRectMake(0, _height*(i+1), _width, _height);
@@ -118,7 +120,7 @@
             [abstractScrollview addSubview:labelLast];
         }
     }
-    
+
     abstractScrollview.contentOffset=CGPointMake(0, 0);
 }
 
@@ -130,7 +132,7 @@
     }
 
     NSLog(@"%ld",tap.view.tag-LABELTAG);
-    
+
 }
 
 -(CGPoint)currentOffset
@@ -154,15 +156,15 @@
     {
         _itemarray=teams;
         _offsetpy=CGPointMake(0, 0);
-        
+
         _width=self.frame.size.width;
         _height=self.frame.size.height;
-        
+
         assert([teams count]!=0);
         self.loopViewScrollDirection = scrollDirection;
         self.didSelectItemAtIndexHandler = block;
-       
-        
+
+
     }
     return self;
 }
@@ -189,7 +191,6 @@
         [m_timer invalidate];
         m_timer = nil;
     }
-    
 }
 
 - (void)updateTitle
@@ -198,15 +199,15 @@
     UIView *topLabel = (UIView *)[abstractScrollview viewWithTag:LABELTAG];
     CGPoint point1 = CGPointMake(0, 0);
     point1 = topLabel.frame.origin;
-    
+
     // 最后标签位置
     UIView *lastlabel=(UIView *)[abstractScrollview viewWithTag:LABELTAG+[_itemarray count]];
-    
+
     // 当前标签位置
     CGPoint point = [abstractScrollview contentOffset];
-    
+
     CGPoint pointmiddle=CGPointMake(0,0);
-    
+
     if (self.loopViewScrollDirection == kNewsLoopViewScrollDirectionVertical)
     {
         if (point.y >=lastlabel.frame.origin.y)
@@ -214,7 +215,7 @@
             autoIndex=0;
             abstractScrollview.contentOffset = point1;
         }
-        
+
         UIView *view=(UIView*)[abstractScrollview viewWithTag:autoIndex+LABELTAG+1];
         pointmiddle=CGPointMake(0, view.frame.origin.y);
     }
@@ -228,18 +229,18 @@
         UIView *view=(UIView*)[abstractScrollview viewWithTag:autoIndex+LABELTAG+1];
         pointmiddle=CGPointMake(view.frame.origin.x, 0);
     }
-    
-    
+
+
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.0];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDelegate:self];
-    
+
     autoIndex +=1;
     abstractScrollview.contentOffset = pointmiddle;
-    
+
     [UIView commitAnimations];
-    
+
 }
 
 - (void)setLoopViewScrollDirection:(TFNewsLoopViewScrollDirection)loopViewScrollDirection

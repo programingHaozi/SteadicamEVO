@@ -9,7 +9,6 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "Masonry.h"
 
 /**
  push pop present到rootViewController;
@@ -25,22 +24,15 @@ void tf_popToRootViewController();
 
 #pragma mark - present dismiss
 void tf_presentViewController(UIViewController *vc);
-void tf_dismissViewController(UIViewController *vc);
 
+#pragma mark - RootViewController
 UIViewController *tf_getRootViewController();
+UIView *tf_getRootView();
+
+#pragma mark - toast
+void tf_showToast(NSString *text);
+void tf_showToastWithText(NSString *text);
 
 @interface TFUIUtil : NSObject
-
-+ (void)pushViewController:(UIViewController *)vc;
-+ (void)popToViewController:(UIViewController *)vc;
-+ (void)popToViewControllerWithClassName:(NSString *)className;
-+ (void)popViewController;
-+ (void)popToRootViewController;
-
-+ (void)presentViewController:(UIViewController *)vc;
-+ (void)dismissViewController:(UIViewController *)vc;
-
-+(UIViewController *) getRootViewController;
-
 
 @end

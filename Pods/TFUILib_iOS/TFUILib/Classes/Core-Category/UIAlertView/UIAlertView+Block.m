@@ -32,6 +32,19 @@
     [alert showUsingBlock:block];
 }
 
++ (void)showWithTitle:(NSString *)title
+              message:(NSString *)message
+         buttonTitles:(NSArray *)buttonTitles
+                block:(void (^)(NSInteger buttonIndex))block
+{
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:title
+                                                 message:message
+                                       cancelButtonTitle:nil
+                                       otherButtonTitles:buttonTitles
+                                                   block:block];
+    [alert showUsingBlock:block];
+}
+
 - (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message
             cancelButtonTitle:(NSString *)cancelButtonTitle

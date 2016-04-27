@@ -47,7 +47,6 @@
 		87C6E9101CABBCF3003ACA26 /* MenuViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E90F1CABBCF3003ACA26 /* MenuViewModel.m */; };
 		87C6E9141CABBD1E003ACA26 /* AboutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E9131CABBD1E003ACA26 /* AboutViewModel.m */; };
 		87C6E91C1CABBD65003ACA26 /* LanguageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E91B1CABBD65003ACA26 /* LanguageViewModel.m */; };
-		87C6E9211CABCDB2003ACA26 /* GuideViewCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E9201CABCDB2003ACA26 /* GuideViewCollectionCell.m */; };
 		87CBA5AD1CB40AF3004206B0 /* TipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBA5AC1CB40AF3004206B0 /* TipsView.m */; };
 		87CBA5B11CB4174A004206B0 /* IntroductionViewCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBA5B01CB4174A004206B0 /* IntroductionViewCollectionCell.m */; };
 		87CBA5B91CB41EE2004206B0 /* SCEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBA5B51CB41EE2004206B0 /* SCEViewController.m */; };
@@ -146,8 +145,6 @@
 		87C6E9131CABBD1E003ACA26 /* AboutViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewModel.m; sourceTree = "<group>"; };
 		87C6E91A1CABBD65003ACA26 /* LanguageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageViewModel.h; sourceTree = "<group>"; };
 		87C6E91B1CABBD65003ACA26 /* LanguageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewModel.m; sourceTree = "<group>"; };
-		87C6E91F1CABCDB2003ACA26 /* GuideViewCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewCollectionCell.h; sourceTree = "<group>"; };
-		87C6E9201CABCDB2003ACA26 /* GuideViewCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewCollectionCell.m; sourceTree = "<group>"; };
 		87CBA5AB1CB40AF3004206B0 /* TipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsView.h; sourceTree = "<group>"; };
 		87CBA5AC1CB40AF3004206B0 /* TipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsView.m; sourceTree = "<group>"; };
 		87CBA5AF1CB4174A004206B0 /* IntroductionViewCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionViewCollectionCell.h; sourceTree = "<group>"; };
@@ -340,7 +337,6 @@
 			isa = PBXGroup;
 			children = (
 				8723AD7D1CC6348900B8FAEF /* GuideScrollView */,
-				87C6E91E1CABCD8A003ACA26 /* GuideViewCollectionCell */,
 				87C6E9051CABBC85003ACA26 /* GuideViewModel */,
 				87C6E8E11CAB9949003ACA26 /* GuideViewController.h */,
 				87C6E8E21CAB9949003ACA26 /* GuideViewController.m */,
@@ -423,15 +419,6 @@
 				872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */,
 			);
 			path = LanguageViewModel;
-			sourceTree = "<group>";
-		};
-		87C6E91E1CABCD8A003ACA26 /* GuideViewCollectionCell */ = {
-			isa = PBXGroup;
-			children = (
-				87C6E91F1CABCDB2003ACA26 /* GuideViewCollectionCell.h */,
-				87C6E9201CABCDB2003ACA26 /* GuideViewCollectionCell.m */,
-			);
-			path = GuideViewCollectionCell;
 			sourceTree = "<group>";
 		};
 		87CBA5AA1CB40AE9004206B0 /* TipsView */ = {
@@ -959,7 +946,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87C6E9211CABCDB2003ACA26 /* GuideViewCollectionCell.m in Sources */,
 				87C6E8E71CAB9949003ACA26 /* GuideViewController.m in Sources */,
 				87C6E8E61CAB9949003ACA26 /* BalanceViewController.m in Sources */,
 				87AED74B1CB4DF9400709C76 /* CompanyWebViewModel.m in Sources */,
@@ -1129,7 +1115,7 @@
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec1.SteadicamEVO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec2.SteadicamEVO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1144,7 +1130,7 @@
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec1.SteadicamEVO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec2.SteadicamEVO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -6,6 +6,34 @@
 //  Copyright (c) 2015年 上海赛可电子商务有限公司. All rights reserved.
 //
 
+typedef void (^VoidBlock)(void);
+
+typedef void (^ErrorBlock)(NSError *error);
+typedef void (^ErrorMsgBlock)(NSError *error, NSString *errorMsg);
+
+typedef void (^NotificationBlock)(NSNotification *notification);
+
+typedef void (^BoolBlock)(BOOL result);
+typedef void (^BoolMsgBlock)(BOOL result, NSString *errorMsg);
+
+typedef void (^ArrayBlock)(NSArray *resultList);
+typedef void (^ArrayMsgBlock)(NSArray *resultList, NSString *errorMsg);
+
+typedef void (^DictionaryBlock)(NSDictionary *resultDict);
+typedef void (^DictionaryMsgBlock)(NSDictionary *resultDict, NSString *errorMsg);
+
+typedef void (^NumberBlock)(NSNumber *resultNumber);
+typedef void (^NumberMsgBlock)(NSNumber *resultNumber, NSString *errorMsg);
+
+typedef void (^IntegerBlock)(NSInteger resultNumber);
+typedef void (^IntegerMsgBlock)(NSInteger resultNumber, NSString *errorMsg);
+
+typedef void (^StringBlock)(NSString *result);
+typedef void (^StringMsgBlock)(NSString *result, NSString *errorMsg);
+
+typedef void (^ObjectBlock)(id sender);
+typedef void (^ObjectMsgBlock)(id result, NSString *errorMsg);
+
 /**
  *  设置屏幕是否常亮
  *
@@ -59,6 +87,8 @@
  *  @return UIImage对象
  */
 #define IMAGE(name) [UIImage imageNamed:name]
+
+
 
 /**
  *  创建alter

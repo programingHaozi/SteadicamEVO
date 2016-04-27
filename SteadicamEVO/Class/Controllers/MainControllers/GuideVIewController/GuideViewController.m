@@ -7,7 +7,6 @@
 //
 
 #import "GuideViewController.h"
-#import "GuideViewCollectionCell.h"
 #import "GuideViewModel.h"
 #import "GifScrollView.h"
 
@@ -15,9 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet GifScrollView *guideScrollView;
 
-/**
- *  标签
- */
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @property (nonatomic, strong) GuideViewModel *viewModel;
@@ -79,7 +75,18 @@
     }];
 }
 
+-(void)back
+{
+    self.guideScrollView.contentSize = CGSizeMake(0, 0);
+    
+    [super back];
+}
 
-
+-(void)popToRootViewController
+{
+    self.guideScrollView.contentSize = CGSizeMake(0, 0);
+    
+    [super popToRootViewController];
+}
 
 @end

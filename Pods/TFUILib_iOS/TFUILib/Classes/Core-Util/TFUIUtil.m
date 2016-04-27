@@ -12,50 +12,34 @@
 #import "TFNavigationController.h"
 #import "TFViewController.h"
 
-#pragma mark - push
+@interface TFUIUtil()
 
-void tf_pushViewController(UIViewController *vc)
-{
-    [TFUIUtil pushViewController:vc];
-}
++ (void)pushViewController:(UIViewController *)vc;
++ (void)popToViewController:(UIViewController *)vc;
++ (void)popToViewControllerWithClassName:(NSString *)className;
++ (void)popViewController;
++ (void)popToRootViewController;
 
-#pragma mark - pop
-void tf_popToViewController(UIViewController *vc)
-{
-    [TFUIUtil popToViewController:vc];
-}
++ (void)presentViewController:(UIViewController *)vc;
 
-void tf_popToViewControllerWithClassName(NSString *className)
-{
-    [TFUIUtil popToViewControllerWithClassName:className];
-}
++ (UIViewController *) getRootViewController;
++ (UIView *) getRootView;
 
-void tf_popViewController()
-{
-    [TFUIUtil popViewController];
-}
+/**
+ *  在顶部显示一个Toast，持续2.5秒
+ *
+ *  @param text 要显示的文字
+ */
++ (void)showToast:(NSString*)text;
 
-void tf_popToRootViewController()
-{
-    [TFUIUtil popToRootViewController];
-}
+/**
+ *   在顶部显示一个Toast，持续2.5秒
+ *
+ *  @param text text
+ */
++ (void)showToastWithText:(NSString*)text;
 
-#pragma mark - present dismiss
-void tf_presentViewController(UIViewController *vc)
-{
-    [TFUIUtil presentViewController:vc];
-}
-
-void tf_dismissViewController(UIViewController *vc)
-{
-    [TFUIUtil dismissViewController:vc];
-}
-
-UIViewController *tf_getRootViewController()
-{
-    return [TFUIUtil getRootViewController];
-}
-
+@end
 
 @implementation TFUIUtil
 
@@ -101,18 +85,84 @@ UIViewController *tf_getRootViewController()
     [rootVC presentViewController:vc];
 }
 
-+ (void)dismissViewController:(UIViewController *)vc
-{
-    [vc dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
 + (UIViewController *)getRootViewController
 {
     UIViewController *rootVC=[[UIApplication sharedApplication].delegate window].rootViewController;
     return rootVC;
 }
 
++ (UIView *)getRootView
+{
+    UIView *rootVC=[[UIApplication sharedApplication].delegate window].rootViewController.view;
+    return rootVC;
+}
+
+#pragma mark toast
+
++ (void)showToast:(NSString*)text
+{
+    UIViewController *rootVC = [TFUIUtil getRootViewController];
+    [rootVC showToast:text];
+}
+
++ (void)showToastWithText:(NSString*)text
+{
+    UIViewController *rootVC = [TFUIUtil getRootViewController];
+    [rootVC showToastWithText:text];
+}
+
 @end
 
+#pragma mark - push
+
+void tf_pushViewController(UIViewController *vc)
+{
+    [TFUIUtil pushViewController:vc];
+}
+
+#pragma mark - pop
+void tf_popToViewController(UIViewController *vc)
+{
+    [TFUIUtil popToViewController:vc];
+}
+
+void tf_popToViewControllerWithClassName(NSString *className)
+{
+    [TFUIUtil popToViewControllerWithClassName:className];
+}
+
+void tf_popViewController()
+{
+    [TFUIUtil popViewController];
+}
+
+void tf_popToRootViewController()
+{
+    [TFUIUtil popToRootViewController];
+}
+
+#pragma mark - present dismiss
+void tf_presentViewController(UIViewController *vc)
+{
+    [TFUIUtil presentViewController:vc];
+}
+
+UIViewController *tf_getRootViewController()
+{
+    return [TFUIUtil getRootViewController];
+}
+
+UIView *tf_getRootView()
+{
+    return [TFUIUtil getRootView];
+}
+
+void tf_showToast(NSString *text)
+{
+    return [TFUIUtil showToast:text];
+}
+
+void tf_showToastWithText(NSString *text)
+{
+    return [TFUIUtil showToastWithText:text];
+}

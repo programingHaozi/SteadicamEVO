@@ -298,13 +298,13 @@ CHECKOUT OPTIONS:
     :commit: f394ff75e46f902765f4b445818c630705a18b31
     :git: http://git01.dds.com/MP/LightBundle_SDK_iOS.git
   TFBaseLib_iOS:
-    :commit: 3fa92eaac48ae849451509ada341413a7e276d08
+    :commit: 943ce7ed6d483036d2d1a8c40816ea08b4291e83
     :git: http://git01.dds.com/MP/TFBaseLib_iOS.git
   TFCoreLib_iOS:
     :commit: 4e7f8a5040e61ad6e43687ae886d0cbc43bfd4dc
     :git: http://git01.dds.com/MP/TFCoreLib_iOS.git
   TFUILib_iOS:
-    :commit: 8950053311bcd711a6e9caead103dae27d9372e1
+    :commit: 6c02f11dd823805e8db7d4b33d42f6120ec2baf8
     :git: http://git01.dds.com/MP/TFUILib_iOS.git
 
 SPEC CHECKSUMS:

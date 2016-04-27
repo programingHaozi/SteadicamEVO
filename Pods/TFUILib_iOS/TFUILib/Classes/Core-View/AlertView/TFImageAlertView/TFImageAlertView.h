@@ -36,6 +36,19 @@ typedef void (^TFImageAlertViewBlock)(NSInteger index);
                 block:(TFImageAlertViewBlock)block;
 
 /**
+ *  显示带messageAlertView
+ *
+ *  @param title        标题
+ *  @param message      信息
+ *  @param buttonTitles 按钮数组
+ *  @param block        点击回调
+ */
++ (void)showWithTitle:(NSString*)title
+              message:(NSString*)message
+    buttonTitles:(NSArray *)buttonTitles
+                block:(TFImageAlertViewBlock)block;
+
+/**
  *  显示带imageAlertView
  *
  *  @param title        标题
@@ -47,6 +60,19 @@ typedef void (^TFImageAlertViewBlock)(NSInteger index);
               image:(NSString*)image
     cancelButtonTitle:(NSString *)cancelButtonTitle
     otherButtonTitles:(NSArray *)otherButtonTitles
+                block:(TFImageAlertViewBlock)block;
+
+/**
+ *  显示带imageAlertView
+ *
+ *  @param title        标题
+ *  @param image        图片
+ *  @param buttonTitles 按钮数组
+ *  @param block        点击回调
+ */
++ (void)showWithTitle:(NSString*)title
+                image:(NSString*)image
+    buttonTitles:(NSArray *)buttonTitles
                 block:(TFImageAlertViewBlock)block;
 
 @end

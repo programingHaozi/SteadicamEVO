@@ -112,5 +112,7 @@ CGPoint CGRectGetRightCenterPoint(CGRect rect);
 
 CGPoint CGRectGetCenter(CGRect rect);
 
+- (void)setBorderWithCornerRadius:(CGFloat)radius width:(CGFloat)width color:(UIColor *)color;
+
 
 @end

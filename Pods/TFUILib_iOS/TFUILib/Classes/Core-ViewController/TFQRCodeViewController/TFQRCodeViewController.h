@@ -16,7 +16,7 @@
  */
 typedef enum TFQPresetScanType
 {
-    TFQPresetScanType_QQ=1,//
+    TFQPresetScanType_QQ=0,//
     TFQPresetScanType_Alipay,//
     TFQPresetScanType_WX,   ///
     TFQPresetScanType_NOBORDER,//

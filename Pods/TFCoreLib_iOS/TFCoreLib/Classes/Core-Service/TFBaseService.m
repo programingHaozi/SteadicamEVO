@@ -79,7 +79,7 @@
                                       }
                                       failure:^(int errorCode, NSString *errorMessage)
                                       {
-                                          NSLog(@"regDevice failure");
+//                                          NSLog(@"regDevice failure");
                                           
                                           if (failureBlock)
                                           {

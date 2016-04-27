@@ -238,7 +238,7 @@
     self = [super initWithFrame:CGRectMake(0, 0, 120, 44)];
     if (self) {
         
-        self.offsetY=64;
+        self.offsetY=0;
         self.configuration = [[TFNavigationMenuConfiguration alloc] init];
         self.items = items;
         
@@ -320,11 +320,13 @@
           initialSpringVelocity:.2
                         options:0
                      animations:^{
-                         self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
+                         __strong typeof(weakSelf) strongSelf = weakSelf;
+                         
+                         strongSelf.tableView.frame = CGRectMake(strongSelf.tableView.frame.origin.x,
                                                            0,
-                                                           self.tableView.frame.size.width,
-                                                           self.tableView.frame.size.height);
-                         self.maskView.backgroundColor = HEXCOLOR(0x000000, self.configuration.maskBackgroundOpacity);
+                                                           strongSelf.tableView.frame.size.width,
+                                                           strongSelf.tableView.frame.size.height);
+                         strongSelf.maskView.backgroundColor = HEXCOLOR(0x000000, strongSelf.configuration.maskBackgroundOpacity);
                      }
                      completion:nil];
 }
@@ -335,18 +337,22 @@
 
     self.maskView.backgroundColor = HEXCOLOR(0x000000, self.configuration.maskBackgroundOpacity);
     
+    __weak typeof(self) weakSelf = self;
+    
     [UIView animateWithDuration:self.configuration.animationDuration
                           delay:0
                         options:UIViewAnimationOptionTransitionNone
                      animations:^{
-                         self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                                           -(CGFloat)(self.items.count) * self.configuration.cellHeight,
-                                                           self.tableView.frame.size.width,
-                                                           self.tableView.frame.size.height);
-                         self.maskView.backgroundColor = HEXCOLOR(0x000000, 0);
+                         __strong typeof(weakSelf) strongSelf = weakSelf;
+                         
+                         strongSelf.tableView.frame = CGRectMake(strongSelf.tableView.frame.origin.x,
+                                                           -(CGFloat)(strongSelf.items.count) * strongSelf.configuration.cellHeight,
+                                                           strongSelf.tableView.frame.size.width,
+                                                           strongSelf.tableView.frame.size.height);
+                         strongSelf.maskView.backgroundColor = HEXCOLOR(0x000000, 0);
                      }
                      completion:^(BOOL finished) {
-                         [self.maskView removeFromSuperview];
+                         [weakSelf.maskView removeFromSuperview];
                      }];
     
 }
@@ -354,6 +360,7 @@
 - (void)rotateArrow
 {
     __weak typeof(self) weakSelf = self;
+    
     [UIView animateWithDuration:self.configuration.animationDuration
                      animations:^{
                          __strong typeof(weakSelf) strongSelf = weakSelf;

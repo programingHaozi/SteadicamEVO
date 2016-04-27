@@ -12,7 +12,8 @@
 /**
  *  箭头的位置
  */
-typedef NS_ENUM(NSUInteger, TFPopoverViewPosition) {
+typedef NS_ENUM(NSUInteger, TFPopoverViewPosition)
+{
     /**
      *  在上边
      */
@@ -26,7 +27,8 @@ typedef NS_ENUM(NSUInteger, TFPopoverViewPosition) {
 /**
  *  背景遮层的颜色
  */
-typedef NS_ENUM(NSUInteger, TFPopoverViewMaskType) {
+typedef NS_ENUM(NSUInteger, TFPopoverViewMaskType)
+{
     /**
      *  黑色
      */
@@ -100,6 +102,8 @@ typedef NS_ENUM(NSUInteger, TFPopoverViewMaskType) {
  */
 @property (nonatomic, copy) dispatch_block_t didDismissHandler;
 
+#pragma mark- atpoint
+
 /**
  *  显示
  *
@@ -109,38 +113,50 @@ typedef NS_ENUM(NSUInteger, TFPopoverViewMaskType) {
  *  @param containerView 显示内容的view
  */
 - (void)showAtPoint:(CGPoint)point
-     popoverPostion:(TFPopoverViewPosition)position
-    withContentView:(UIView *)contentView
-             inView:(UIView *)containerView;
+             inView:(UIView *)containerView
+withContentView:(UIView *)contentView
+     popoverPostion:(TFPopoverViewPosition)position;
 
 /**
  *  显示
  *
- *  @param atView        开显示的位置.
+ *  @param point         开始的位置.
  *  @param position      箭头的位置
  *  @param contentView   呈现的view
  *  @param containerView 显示内容的view
  */
+- (void)showAtPoint:(CGPoint)point
+             inView:(UIView *)containerView
+withText:(NSAttributedString *)text
+     popoverPostion:(TFPopoverViewPosition)position;
+
+- (void)showAtPoint:(CGPoint)point
+             inView:(UIView *)containerView
+    withContentView:(UIView *)contentView;
+
+- (void)showAtPoint:(CGPoint)point
+             inView:(UIView *)containerView
+           withText:(NSAttributedString *)text;
+
+#pragma mark- atview
+
 - (void)showAtView:(UIView *)atView
-    popoverPostion:(TFPopoverViewPosition)position
-   withContentView:(UIView *)contentView
-            inView:(UIView *)containerView;
+             inView:(UIView *)containerView
+    withContentView:(UIView *)contentView
+     popoverPostion:(TFPopoverViewPosition)position;
 
-/**
- *  显示
- *
- *  @param atView        开显示的位置.
- *  @param contentView   呈现的view
- */
-- (void)showAtView:(UIView *)atView withContentView:(UIView *)contentView;
+- (void)showAtView:(UIView *)atView
+            inView:(UIView *)containerView
+   withText:(NSAttributedString *)text
+    popoverPostion:(TFPopoverViewPosition)position;
 
-/**
- *  显示文字
- *
- *  @param atView 显示的位置
- *  @param abs    现实的文字富文本
- */
-- (void)showAtView:(UIView *)atView withText:(NSAttributedString *)text;
+- (void)showAtView:(UIView *)atView
+            inView:(UIView *)containerView
+          withContentView:(UIView *)contentView;
+
+- (void)showAtView:(UIView *)atView
+            inView:(UIView *)containerView
+          withText:(NSAttributedString *)text;
 
 /**
  *  消失

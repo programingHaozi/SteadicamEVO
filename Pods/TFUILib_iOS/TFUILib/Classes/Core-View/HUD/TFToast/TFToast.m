@@ -73,17 +73,17 @@ static const NSInteger  MessageToastContentTag          = 10087;
     TFToast *toast=[[TFToast alloc]initWithText:text];
     [atView addSubview:toast];
     toast.centerX=atView.centerX;
-    toast.top=64;
+    toast.centerX=atView.centerX;
     
     if (type==kToastTypeTop)
     {
-        toast.top=64;
+        toast.top=[atView isKindOfClass:[UIWindow class]]?64:0;
     }
     else if (type==kToastTypeBottom)
     {
         toast.bottom=49;
     }
-    else if (type==kToastTypeTop)
+    else if (type==kToastTypeCenter)
     {
         toast.center=atView.center;
     }
@@ -122,7 +122,6 @@ static const NSInteger  MessageToastContentTag          = 10087;
     self = [super init];
     if (self)
     {
-        
         self.text=text;
         
         self.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin);
@@ -131,7 +130,7 @@ static const NSInteger  MessageToastContentTag          = 10087;
         self.layer.shadowOpacity = 0.8;
         self.layer.shadowRadius = MessageToastCornerRadius;
         self.layer.shadowOffset = CGSizeMake(0, 0);
-        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.6];
         
         UILabel *messageLabel = [[UILabel alloc] init];
         messageLabel.numberOfLines = 0;

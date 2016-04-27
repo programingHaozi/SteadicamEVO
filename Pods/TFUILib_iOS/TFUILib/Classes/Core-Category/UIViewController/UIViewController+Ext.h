@@ -11,25 +11,27 @@
 @interface UIViewController (Ext)
 
 /**
- *  获取keywindow
+ *  获取最顶层vc
+ *
+ *  @return
  */
-@property (nonatomic, strong, readonly) UIWindow* keyWindow;
+- (UIViewController*)topViewController;
 
 /**
  *  获取最顶层vc
  *
  *  @return
  */
-@property (nonatomic, strong, readonly) UIViewController* topViewController;
+- (UIViewController*)rootViewController;
 
 /**
  *  屏幕宽度
  */
-@property(nonatomic,readonly) CGFloat screenWidth;
+-(CGFloat)screenWidth;
 
 /**
  *  屏幕高度
  */
-@property(nonatomic,readonly) CGFloat screenHeight;
+-(CGFloat)screenHeight;
 
 @end

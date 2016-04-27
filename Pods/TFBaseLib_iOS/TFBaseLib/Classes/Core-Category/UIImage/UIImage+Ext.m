@@ -1034,6 +1034,115 @@ CGFloat tf_RadiansToDegrees(CGFloat radians) {return radians * 180/M_PI;};
     
 }
 
+/**
+ *  相册中取出的照片需要进行方向的效正
+ */
+- (UIImage *)imageCropFixOrientation {
+
+    if (self.imageOrientation == UIImageOrientationUp) return self;
+
+    CGAffineTransform transform = CGAffineTransformIdentity;
+
+    UIImageOrientation io = self.imageOrientation;
+    if (io == UIImageOrientationDown || io == UIImageOrientationDownMirrored) {
+        transform = CGAffineTransformTranslate(transform, self.size.width, self.size.height);
+        transform = CGAffineTransformRotate(transform, M_PI);
+    }else if (io == UIImageOrientationLeft || io == UIImageOrientationLeftMirrored) {
+        transform = CGAffineTransformTranslate(transform, self.size.width, 0);
+        transform = CGAffineTransformRotate(transform, M_PI_2);
+    }else if (io == UIImageOrientationRight || io == UIImageOrientationRightMirrored) {
+        transform = CGAffineTransformTranslate(transform, 0, self.size.height);
+        transform = CGAffineTransformRotate(transform, -M_PI_2);
+
+    }
+
+    if (io == UIImageOrientationUpMirrored || io == UIImageOrientationDownMirrored) {
+        transform = CGAffineTransformTranslate(transform, self.size.width, 0);
+        transform = CGAffineTransformScale(transform, -1, 1);
+    }else if (io == UIImageOrientationLeftMirrored || io == UIImageOrientationRightMirrored) {
+        transform = CGAffineTransformTranslate(transform, self.size.height, 0);
+        transform = CGAffineTransformScale(transform, -1, 1);
+
+    }
+
+    CGContextRef ctx = CGBitmapContextCreate(NULL, self.size.width, self.size.height,
+                                             CGImageGetBitsPerComponent(self.CGImage), 0,
+                                             CGImageGetColorSpace(self.CGImage),
+                                             CGImageGetBitmapInfo(self.CGImage));
+    CGContextConcatCTM(ctx, transform);
+
+    if (io == UIImageOrientationLeft || io == UIImageOrientationLeftMirrored || io == UIImageOrientationRight || io == UIImageOrientationRightMirrored) {
+        CGContextDrawImage(ctx, CGRectMake(0,0,self.size.height,self.size.width), self.CGImage);
+    }else{
+        CGContextDrawImage(ctx, CGRectMake(0,0,self.size.width,self.size.height), self.CGImage);
+    }
+
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+    UIImage *img = [UIImage imageWithCGImage:cgimg];
+    CGContextRelease(ctx);
+    CGImageRelease(cgimg);
+    return img;
+}
+
+- (UIImage*)gaussBlur:(CGFloat)blurRadius
+{
+    if ((blurRadius <= 0.0f) || (blurRadius > 1.0f))
+    {
+        blurRadius = 0.5f;
+    }
+
+    int boxSize = (int)(blurRadius * 100);
+    boxSize -= (boxSize % 2) + 1;
+
+    CGImageRef rawImage = self.CGImage;
+
+    vImage_Buffer inBuffer, outBuffer;
+    vImage_Error error;
+    void *pixelBuffer;
+
+    CGDataProviderRef inProvider = CGImageGetDataProvider(rawImage);
+    CFDataRef inBitmapData = CGDataProviderCopyData(inProvider);
+
+    inBuffer.width = CGImageGetWidth(rawImage);
+    inBuffer.height = CGImageGetHeight(rawImage);
+    inBuffer.rowBytes = CGImageGetBytesPerRow(rawImage);
+    inBuffer.data = (void*)CFDataGetBytePtr(inBitmapData);
+
+    pixelBuffer = malloc(CGImageGetBytesPerRow(rawImage) * CGImageGetHeight(rawImage));
+
+    outBuffer.data = pixelBuffer;
+    outBuffer.width = CGImageGetWidth(rawImage);
+    outBuffer.height = CGImageGetHeight(rawImage);
+    outBuffer.rowBytes = CGImageGetBytesPerRow(rawImage);
+
+    error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, NULL,
+                                       0, 0, boxSize, boxSize, NULL,
+                                       kvImageEdgeExtend);
+
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef ctx = CGBitmapContextCreate(outBuffer.data,
+                                             outBuffer.width,
+                                             outBuffer.height,
+                                             8,
+                                             outBuffer.rowBytes,
+                                             colorSpace,
+                                             CGImageGetBitmapInfo(self.CGImage));
+
+    CGImageRef imageRef = CGBitmapContextCreateImage (ctx);
+    UIImage *returnImage = [UIImage imageWithCGImage:imageRef];
+
+    //clean up
+    CGContextRelease(ctx);
+    CGColorSpaceRelease(colorSpace);
+
+    free(pixelBuffer);
+    CFRelease(inBitmapData);
+
+    CGImageRelease(imageRef);
+
+    return returnImage;
+}
+
 + (NSString *)contentTypeForImageData:(NSData *)data
 {
     uint8_t c;

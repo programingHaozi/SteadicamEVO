@@ -13,7 +13,7 @@
 
 #pragma mark - alertview
 
-+ (void)showWithTitle:(NSString *)title
++ (void)showAlertViewWithTitle:(NSString *)title
               message:(NSString *)message
     cancelButtonTitle:(NSString *)cancelButtonTitle
     otherButtonTitles:(NSArray *)otherButtonTitles
@@ -71,9 +71,17 @@
     });
 }
 
++ (void)showAlertViewWithTitle:(NSString *)title
+                       message:(NSString *)message
+                  buttonTitles:(NSArray *)buttonTitles
+                         block:(void (^)(NSInteger buttonIndex))block
+{
+    [UIAlertController showAlertViewWithTitle:title message:message cancelButtonTitle:nil otherButtonTitles:buttonTitles block:block];
+}
+
 #pragma mark - actionsheet
 
-+ (void) showWithTitle:(NSString *)title
++ (void) showActionSheetWithTitle:(NSString *)title
      cancelButtonTitle:(NSString *)cancelButtonTitle
 destructiveButtonTitle:(NSString *)destructiveButtonTitle
      otherButtonTitles:(NSArray *)otherButtonTitles
@@ -154,6 +162,22 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
         
         [alert show];
     });
+}
+
++ (void) showActionSheetWithTitle:(NSString *)title
+                cancelButtonTitle:(NSString *)cancelButtonTitle
+           destructiveButtonTitle:(NSString *)destructiveButtonTitle
+                            block:(void (^)(NSInteger))block
+{
+    [UIAlertController showActionSheetWithTitle:title cancelButtonTitle:cancelButtonTitle destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil block:block];
+}
+
++ (void) showActionSheetWithTitle:(NSString *)title
+                cancelButtonTitle:(NSString *)cancelButtonTitle
+                otherButtonTitles:(NSArray *)otherButtonTitles
+                            block:(void (^)(NSInteger))block
+{
+    [UIAlertController showActionSheetWithTitle:title cancelButtonTitle:cancelButtonTitle destructiveButtonTitle:nil otherButtonTitles:otherButtonTitles block:block];
 }
 
 - (void)show

@@ -127,11 +127,13 @@
     self.alertView.frame = CGRectMake(0, SCREEN_HEIGHT, self.alertView.frame.size.width, self.alertView.frame.size.height);
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     
+    __weak typeof(self) weakSelf = self;
+    
     [UIView animateWithDuration:ANIMATION_DURATION_TIME
                           delay:0
                         options:UIViewAnimationOptionCurveLinear animations:^{
-                            self.maskView.alpha = 1;
-                            [self.alertView setFrame:CGRectMake(0, SCREEN_HEIGHT-(DATE_PICK_HEIGHT+BTN_HEIGHT), self.alertView.frame.size.width, self.alertView.frame.size.height)];
+                            weakSelf.maskView.alpha = 1;
+                            [_alertView setFrame:CGRectMake(0, SCREEN_HEIGHT-(DATE_PICK_HEIGHT+BTN_HEIGHT), _alertView.frame.size.width, _alertView.frame.size.height)];
                         } completion:^(BOOL finished) {
                             if (completion) {
                                 completion(finished);
@@ -141,12 +143,14 @@
 
 - (void)hide:(void (^)(BOOL finished))completion
 {
+    __weak typeof(self) weakSelf = self;
+    
     [UIView animateKeyframesWithDuration:ANIMATION_DURATION_TIME
                                    delay:0
                                  options:UIViewKeyframeAnimationOptionLayoutSubviews
                               animations:^{
-                                  self.maskView.alpha = 0;
-                                  [self.alertView setFrame:CGRectMake(0, SCREEN_HEIGHT, self.alertView.frame.size.width, self.alertView.frame.size.height)];
+                                  weakSelf.maskView.alpha = 0;
+                                  [_alertView setFrame:CGRectMake(0, SCREEN_HEIGHT, _alertView.frame.size.width, _alertView.frame.size.height)];
                               }
                               completion:^(BOOL finished) {
                                   [self removeFromSuperview];

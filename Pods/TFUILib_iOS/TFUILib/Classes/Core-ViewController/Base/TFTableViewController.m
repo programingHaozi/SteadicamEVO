@@ -66,7 +66,6 @@
     [super initViews];
     
     [self.view addSubview:self.tableView];
-    self.defaultCell = [TFTableViewCell class];
 }
 
 - (void)autolayoutViews
@@ -75,7 +74,7 @@
     
     WS(weakSelf)
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(weakSelf.top, 0, 0, 0));
+        make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
 }
 
@@ -109,7 +108,7 @@
             if ([cellClass isSubclassOfClass:[TFTableViewCell class]])
             {
                 id cell=[[cellClass alloc]init];
-                double (*cellHeight)(id ,SEL)=(CGFloat (*)(id,SEL))[cell methodForSelector:NSSelectorFromString(@"cellHeight")];
+                CGFloat (*cellHeight)(id ,SEL)=(CGFloat (*)(id,SEL))[cell methodForSelector:NSSelectorFromString(@"cellHeight")];
                 height = cellHeight(cell, @selector(cellHeight));
             }
         }
@@ -120,7 +119,7 @@
         if ([self.defaultCell isSubclassOfClass:[TFTableViewCell class]])
         {
             id cell=[[self.defaultCell alloc]init];
-            double (*cellHeight)(id ,SEL) = (CGFloat (*)(id,SEL))[cell methodForSelector:NSSelectorFromString(@"cellHeight")];
+            CGFloat (*cellHeight)(id ,SEL) = (CGFloat (*)(id,SEL))[cell methodForSelector:NSSelectorFromString(@"cellHeight")];
             height = cellHeight(cell, @selector(cellHeight));
         }
     }
@@ -144,7 +143,16 @@
             }
         }
     });
-    
+
+    if (exist)
+    {
+        NSString *className=NSStringFromClass([self class]);
+        NSString *cellClassName   = [className stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewCell"];
+        TFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClassName];
+        cell.data=[self.viewModel dataAtIndexPath:indexPath];
+        return cell;
+    }
+
     if (self.defaultCell)
     {
         if ([self.defaultCell isSubclassOfClass:[TFTableViewCell class]])
@@ -154,15 +162,6 @@
             cell.data=[self.viewModel dataAtIndexPath:indexPath];
             return cell;
         }
-    }
-    
-    if (exist)
-    {
-        NSString *className=NSStringFromClass([self class]);
-        NSString *cellClassName   = [className stringByReplacingOccurrencesOfString:@"ViewController" withString:@"ViewCell"];
-        TFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClassName];
-        cell.data=[self.viewModel dataAtIndexPath:indexPath];
-        return cell;
     }
     
     UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class])];

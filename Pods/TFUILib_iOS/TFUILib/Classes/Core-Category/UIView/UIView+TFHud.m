@@ -27,6 +27,17 @@
                         atView:self];
 }
 
+- (void)showHUDWithText:(NSString*)text dismissAfter:(NSTimeInterval)delay
+{
+    [self showHudWithText:text];
+    
+    __weak __typeof(&*self)weakSelf = self;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf hideHud];
+    });
+}
+
 - (void)hideHud
 {
     [TFHud hideInView:self];

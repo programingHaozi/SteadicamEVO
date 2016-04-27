@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 上海赛可电子商务有限公司. All rights reserved.
 //
 
+#import "NSObject+Category.h"
 #import "UITextField+Category.h"
 #import "UITextView+Category.h"
 #import "UIAlertController+Category.h"

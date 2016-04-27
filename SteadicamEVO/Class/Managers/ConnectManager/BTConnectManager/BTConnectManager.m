@@ -18,7 +18,7 @@
 @interface BTConnectManager()
 
 @property (nonatomic, assign) BOOL isCentralManager;
-@property (nonatomic, copy) NSString *peripheralName;
+//@property (nonatomic, copy) NSString *peripheralName;
 @property (nonatomic, copy) NSString *serviceUUID;
 
 /**
@@ -150,14 +150,14 @@
     
     NSArray *characteristics = @[
                                  @[
-                                   [CBUUID UUIDWithString: kBLECharacteristicWrite]
-                                  ],
+                                     [CBUUID UUIDWithString: kBLECharacteristicWrite]
+                                     ],
                                  @[
-                                   [CBUUID UUIDWithString: kBLECharacteristicNofiy1],
-                                   [CBUUID UUIDWithString: kBLECharacteristicNofiy2],
-                                   [CBUUID UUIDWithString: kBLECharacteristicNofiy3],
-                                   [CBUUID UUIDWithString: kBLECharacteristicNofiy4]
-                                  ]
+                                     [CBUUID UUIDWithString: kBLECharacteristicNofiy1],
+                                     [CBUUID UUIDWithString: kBLECharacteristicNofiy2],
+                                     [CBUUID UUIDWithString: kBLECharacteristicNofiy3],
+                                     [CBUUID UUIDWithString: kBLECharacteristicNofiy4]
+                                     ]
                                  ];
     
     [peripheral discoverServices:@[
@@ -168,7 +168,7 @@
      {
          weakSelf.services = [NSArray arrayWithArray:peripheral.services];
          
-         NSLog(@"Discovered Service : %@",weakSelf.service);
+         NSLog(@"Discovered Service : %@,,,,%@",weakSelf.services,peripheral.services);
          
          [weakSelf.services enumerateObjectsUsingBlock:^(CBService * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
              
@@ -223,7 +223,7 @@
                                                                           
                                                                           if (weakSelf.pendingValue)
                                                                           {
-                                                                              if (![rawValue isEqual:@"?"])
+                                                                              if (![rawValue isEqualToString:@"?"])
                                                                               {
                                                                                   rawValue = [NSString stringWithFormat:@"%@%@",weakSelf.pendingValue,rawValue];
                                                                               }
@@ -259,13 +259,13 @@
     // 连接设备时的超时处理
     __block BOOL timeout = YES;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (timeout)
         {
             [self.centralManager cancelPeripheralConnection:peripheral
                                                  onFinished:^(RKPeripheral *peripheral, NSError *error) {
-                
-            }];
+                                                     
+                                                 }];
             
             NSLog(@"Connect to %@ failed!",peripheral.name);
             
@@ -302,16 +302,16 @@
                                 }
                             onDisconnected:^(RKPeripheral *peripheral, NSError *error) {
                                 
-                                    NSLog(@"Did disconnect to device %@",peripheral.name);
+                                NSLog(@"Did disconnect to device %@",peripheral.name);
                                 
-                                    if (_disconnectionBlock)
-                                    {
-                                        _disconnectionBlock(error);
-                                        
-                                        // 将断开连接的回调置为空，防止断开连接时多次回调
-                                        _disconnectionBlock = nil;
-                                    }
-                                }];
+                                if (_disconnectionBlock)
+                                {
+                                    _disconnectionBlock(error);
+                                    
+                                    // 将断开连接的回调置为空，防止断开连接时多次回调
+                                    _disconnectionBlock = nil;
+                                }
+                            }];
 }
 
 #pragma mark - Connector protocol
@@ -327,57 +327,57 @@
     NSMutableArray *devices = [NSMutableArray array];
     
     [self initCentralManager:^(BOOL isOk, NSError *error)
-    {
-        if (isOk)
-        {
-            // 搜索设备时的超时处理
-            __block BOOL end = NO;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kScanPeripheralTimeoutSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                if (!end)
-                {
-                    [self.centralManager stopScan];
-                    NSLog(@"Discover Device End!");
-                    if (completion)
-                    {
-                        completion(devices);
-                    }
-                }
-            });
-            
-            // 如果设备已经连接，直接返回
-            if (self.peripheral.state == CBPeripheralStateConnected && [self.peripheral.name isEqualToString:self.peripheralName])
-            {
-                end = YES;
-                NSLog(@"Discover Device End!");
-                
-                if (completion)
-                {
-                    completion(@[self.peripheral.name]);
-                }
-                
-                return;
-            }
-            
-            // 指定ServiceUUID搜索设备
-            [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString: kBLEService1UUID]]
-                                                        options:nil
-                                                      onUpdated:^(RKPeripheral *peripheral) {
-                                                          //                                                          if ([peripheral.name hasPrefix:kBLENamePrefix]) {
-                                                          NSLog(@"Discovered device: %@",peripheral.name);
-                                                          
-                                                          [devices addObject:peripheral.name];
-                                                          //                                                          }
-                                                      }];
-        }
-        else
-        {
-            if (completion)
-            {
-                completion(devices);
-            }
-        }
-    }];
+     {
+         if (isOk)
+         {
+             // 搜索设备时的超时处理
+             __block BOOL end = NO;
+             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kScanPeripheralTimeoutSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                 
+                 if (!end)
+                 {
+                     [self.centralManager stopScan];
+                     NSLog(@"Discover Device End!");
+                     if (completion)
+                     {
+                         completion(devices);
+                     }
+                 }
+             });
+             
+             // 如果设备已经连接，直接返回
+             if (self.peripheral.state == CBPeripheralStateConnected && [self hasMatchWithName:self.peripheral.name])
+             {
+                 end = YES;
+                 NSLog(@"Discover Device End!");
+                 
+                 if (completion)
+                 {
+                     completion(@[self.peripheral.name]);
+                 }
+                 
+                 return;
+             }
+             
+             // 指定ServiceUUID搜索设备
+             [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString: kBLEService1UUID]]
+                                                         options:nil
+                                                       onUpdated:^(RKPeripheral *peripheral) {
+                                                           //                                                          if ([peripheral.name hasPrefix:kBLENamePrefix]) {
+                                                           NSLog(@"Discovered device: %@",peripheral.name);
+                                                           
+                                                           [devices addObject:peripheral.name];
+                                                           //                                                          }
+                                                       }];
+         }
+         else
+         {
+             if (completion)
+             {
+                 completion(devices);
+             }
+         }
+     }];
 }
 
 /**
@@ -408,7 +408,7 @@
             });
             
             // 如果设备已经连接，直接返回
-            if (self.peripheral.state == CBPeripheralStateConnected && [self.peripheral.name isEqualToString:self.peripheralName])
+            if (self.peripheral.state == CBPeripheralStateConnected && [self hasMatchWithName:self.peripheral.name])
             {
                 timeout = NO;
                 NSLog(@"Discovered device: %@",self.peripheral.name);
@@ -427,31 +427,31 @@
             [self.centralManager scanForPeripheralsWithServices:nil
                                                         options:nil
                                                       onUpdated:^(RKPeripheral *peripheral) {
-                                                          //                                                          if ([peripheral.name hasPrefix:kBLENamePrefix]) {
-                                                          NSLog(@"Discovered device: %@",peripheral.name);
-                                                          
-                                                          if (next)
-                                                          {
-                                                              BOOL find = NO;
-                                                              find = next(peripheral.name);
+                                                          if ([peripheral.name isEqualToString:kDeviceName1]) {
+                                                              NSLog(@"Discovered device: %@",peripheral.name);
                                                               
-                                                              if (find)
+                                                              if (next)
                                                               {
-                                                                  timeout = NO;
+                                                                  BOOL find = NO;
+                                                                  find = next(peripheral.name);
                                                                   
-                                                                  NSLog(@"find device timeout %d.",timeout);
-                                                                  
-                                                                  [self.centralManager stopScan];
-                                                                  
-                                                                  NSLog(@"Discover Device End!");
-                                                                  
-                                                                  if (completion)
+                                                                  if (find)
                                                                   {
-                                                                      completion(timeout);
+                                                                      timeout = NO;
+                                                                      
+                                                                      NSLog(@"find device timeout %d.",timeout);
+                                                                      
+                                                                      [self.centralManager stopScan];
+                                                                      
+                                                                      NSLog(@"Discover Device End!");
+                                                                      
+                                                                      if (completion)
+                                                                      {
+                                                                          completion(timeout);
+                                                                      }
                                                                   }
                                                               }
                                                           }
-                                                          //                                                          }
                                                       }];
         }
         else
@@ -483,7 +483,7 @@
     
     _connectionBlock = completion;
     
-    self.peripheralName = kDeviceName1;
+//    self.peripheralName = kDeviceName1;
     
     [self initCentralManager:^(BOOL isOk, NSError *error) {
         
@@ -508,7 +508,7 @@
             });
             
             // 如果设备已经连接，直接返回
-            if (self.peripheral.state == CBPeripheralStateConnected && [self.peripheral.name isEqualToString:self.peripheralName])
+            if (self.peripheral.state == CBPeripheralStateConnected && [self hasMatchWithName:self.peripheral.name])
             {
                 timeout = NO;
                 if (_connectionBlock)
@@ -522,13 +522,13 @@
             // 指定ServiceUUID搜索设备，并连接
             __weak BTConnectManager * weakSelf = self;
             
-            [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString: kBLEService1UUID]]
+            [self.centralManager scanForPeripheralsWithServices:nil
                                                         options:nil
                                                       onUpdated:^(RKPeripheral *peripheral) {
                                                           
                                                           NSLog(@"Discovered device: %@",peripheral.name);
                                                           
-                                                          if ([peripheral.name isEqual:weakSelf.peripheralName])
+                                                          if ([self hasMatchWithName:peripheral.name])
                                                           {
                                                               timeout = NO;
                                                               
@@ -650,6 +650,16 @@
               forCharacteristic:self.writeCharacteristic
                            type:CBCharacteristicWriteWithoutResponse
                        onFinish:nil];
+}
+
+- (BOOL)hasMatchWithName:(NSString *)name
+{
+    if ([name isEqualToString:kDeviceName1] || [name isEqualToString:kDeviceName2])
+    {
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

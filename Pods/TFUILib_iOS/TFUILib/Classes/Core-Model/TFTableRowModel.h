@@ -16,6 +16,16 @@
 @interface TFTableRowModel : TFModel
 
 /**
+ *  action
+ */
+@property (nonatomic,strong) NSString *action;
+
+/**
+ *  附加参数
+ */
+@property (nonatomic, strong) NSString *parameter;
+
+/**
  *  vc
  */
 @property (nonatomic,strong) NSString *vc;

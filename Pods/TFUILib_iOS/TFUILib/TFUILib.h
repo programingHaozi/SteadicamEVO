@@ -56,6 +56,7 @@ FOUNDATION_EXPORT const unsigned char TFUILibVersionString[];
 #import "TFYearPicker.h"
 #import "TFActionSheet.h"
 #import "TFAlertView.h"
+#import "TFImageCropView.h"
 
 #import "TFTableViewCell.h"
 #import "TFCollectionViewCell.h"

@@ -9,4 +9,6 @@
 
 @interface SCETableViewController : TFTableViewController
 
+@property (nonatomic, strong) UINavigationBar *customNavigationBar;
+
 @end

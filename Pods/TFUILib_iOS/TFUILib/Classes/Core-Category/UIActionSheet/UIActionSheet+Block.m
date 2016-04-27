@@ -32,6 +32,47 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
     [alert showInView:[[self class] getTopViewController].view usingBlock:block];
 }
 
++ (void) showWithTitle:(NSString *)title
+     cancelButtonTitle:(NSString *)cancelButtonTitle
+     otherButtonTitles:(NSArray *)otherButtonTitles
+                 block:(void (^)(NSInteger))block
+{
+    UIActionSheet *alert = [[UIActionSheet alloc]initWithTitle:title
+                                             cancelButtonTitle:cancelButtonTitle
+                                        destructiveButtonTitle:nil
+                                             otherButtonTitles:otherButtonTitles
+                                                         block:block];
+    
+    [alert showInView:[[self class] getTopViewController].view usingBlock:block];
+}
+
++ (void) showWithTitle:(NSString *)title
+     cancelButtonTitle:(NSString *)cancelButtonTitle
+destructiveButtonTitle:(NSString *)destructiveButtonTitle
+                 block:(void (^)(NSInteger))block
+{
+    UIActionSheet *alert = [[UIActionSheet alloc]initWithTitle:title
+                                             cancelButtonTitle:cancelButtonTitle
+                                        destructiveButtonTitle:destructiveButtonTitle
+                                             otherButtonTitles:nil
+                                                         block:block];
+    
+    [alert showInView:[[self class] getTopViewController].view usingBlock:block];
+}
+
++ (void) showWithTitle:(NSString *)title
+     buttonTitles:(NSArray *)buttonTitles
+                 block:(void (^)(NSInteger))block
+{
+    UIActionSheet *alert = [[UIActionSheet alloc]initWithTitle:title
+                                             cancelButtonTitle:nil
+                                        destructiveButtonTitle:nil
+                                             otherButtonTitles:buttonTitles
+                                                         block:block];
+    
+    [alert showInView:[[self class] getTopViewController].view usingBlock:block];
+}
+
 - (instancetype)initWithTitle:(NSString *)title
             cancelButtonTitle:(NSString *)cancelButtonTitle
        destructiveButtonTitle:(NSString *)destructiveButtonTitle
@@ -62,6 +103,42 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
         }
         
         self.block = block;
+    }
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title
+            cancelButtonTitle:(NSString *)cancelButtonTitle
+       destructiveButtonTitle:(NSString *)destructiveButtonTitle
+                        block:(void (^)(NSInteger))block
+{
+    self = [self initWithTitle:title cancelButtonTitle:cancelButtonTitle destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil block:block];
+    if (self)
+    {
+    }
+    return self;
+}
+
+
+- (instancetype)initWithTitle:(NSString *)title
+            cancelButtonTitle:(NSString *)cancelButtonTitle
+            otherButtonTitles:(NSArray *)otherButtonTitles
+                        block:(void (^)(NSInteger))block
+{
+    self = [self initWithTitle:title cancelButtonTitle:cancelButtonTitle destructiveButtonTitle:nil otherButtonTitles:otherButtonTitles block:block];
+    if (self)
+    {
+    }
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title
+            buttonTitles:(NSArray *)buttonTitles
+                        block:(void (^)(NSInteger))block
+{
+    self = [self initWithTitle:title cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:buttonTitles block:block];
+    if (self)
+    {
     }
     return self;
 }

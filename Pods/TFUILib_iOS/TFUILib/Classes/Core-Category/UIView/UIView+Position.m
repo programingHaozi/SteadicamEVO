@@ -269,5 +269,20 @@
     self.layer.shadowColor = shadowColor.CGColor;
 }
 
+- (void)setBorderWithCornerRadius:(CGFloat)radius width:(CGFloat)width color:(UIColor *)color
+{
+    if (radius >= 0.0) {
+        self.cornerRadius = radius;
+    }
+    
+    if (width >= 0.0) {
+        self.borderWidth = width;
+    }
+    
+    self.borderColor = color;
+    
+    self.clipsToBounds = radius > 0.0;
+}
+
 
 @end

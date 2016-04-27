@@ -22,15 +22,6 @@
 
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if ([viewController isKindOfClass:[TFTabBarController class]])
-    {
-        ((TFViewController*)viewController).customNavigationBarHidden=YES;
-    }
-    else if ([viewController isKindOfClass:[TFViewController class]])
-    {
-        ((TFViewController*)viewController).customNavigationBarHidden=NO;
-    }
-    
     [super pushViewController:viewController animated:animated];
 }
 
@@ -45,8 +36,6 @@
     // Do any additional setup after loading the view.
     
     self.interactivePopGestureRecognizer.delegate = nil;
-    
-    self.navigationBarHidden=YES;
     
     [self initViews];
     [self autolayoutViews];

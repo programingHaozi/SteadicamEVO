@@ -58,6 +58,8 @@
             
             GifViews * gifView = [[GifViews alloc]init];
             
+            gifView.bounds = CGRectMake(0, 0, 304, 204);
+            
             gifView.moviePath = obj;
             
             [weakSelf addSubview:gifView];

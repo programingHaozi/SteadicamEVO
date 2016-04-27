@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 上海赛可电子商务有限公司. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "TFViewController.h"
 #import "TFCustomTabBarItem.h"
 #import "TFCustomTabBar.h"
@@ -68,7 +69,7 @@
 /**
  *  选中的VC
  */
-@property (nullable, nonatomic, readonly,strong) TFViewController *selectedViewController;
+@property (nullable, nonatomic, readonly,strong) UIViewController *selectedViewController;
 
 /**
  *  选中的Index
@@ -101,10 +102,10 @@
  *  @param selectedImage 选中状态图片
  *  @param index         插入Index
  */
-- (void)insertViewController:(TFViewController * _Nullable)vc
+- (void)insertViewController:(UIViewController * _Nullable)vc
                        title:(NSString * _Nullable)title
-                       normalImage:(UIImage * _Nullable)normalImage
-                       selectedImage:(UIImage * _Nullable)selectedImage
+                 normalImage:(UIImage * _Nullable)normalImage
+               selectedImage:(UIImage * _Nullable)selectedImage
                      atIndex:(NSUInteger)index;
 
 /**
@@ -128,16 +129,16 @@
 /**
  *  TFViewController的TFTabBarControllerItem分类
  */
-@interface TFViewController (TFTabBarControllerItem)
+@interface UIViewController (TFTabBarControllerItem)
 
 /**
  *  tabBarItem
  */
-@property (null_resettable, nonatomic, strong) TFCustomTabBarItem *tabBarItem;
+@property (null_resettable, nonatomic, strong) TFCustomTabBarItem *tfTabBarItem;
 
 /**
  *  tabBarController
  */
-@property (nullable, nonatomic, readonly, strong) TFTabBarController *tabBarController;
+@property (nullable, nonatomic, readonly, strong) TFTabBarController *tfTabBarController;
 
 @end

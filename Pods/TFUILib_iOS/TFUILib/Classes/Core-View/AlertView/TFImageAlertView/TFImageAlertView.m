@@ -70,6 +70,21 @@
 }
 
 + (void)showWithTitle:(NSString*)title
+              message:(NSString*)message
+         buttonTitles:(NSArray *)buttonTitles
+                block:(TFImageAlertViewBlock)block
+{
+    TFImageAlertView *view = [[TFImageAlertView alloc]initWithTitle:title
+                                                            message:message
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:buttonTitles
+                                                              block:block];
+    [view show:^(BOOL finished) {
+        
+    }];
+}
+
++ (void)showWithTitle:(NSString*)title
                 image:(NSString*)image
     cancelButtonTitle:(NSString *)cancelButtonTitle
     otherButtonTitles:(NSArray *)otherButtonTitles
@@ -79,6 +94,21 @@
                                                             image:image
                                                 cancelButtonTitle:cancelButtonTitle
                                                 otherButtonTitles:otherButtonTitles
+                                                            block:block];
+    [view show:^(BOOL finished) {
+        
+    }];
+}
+
++ (void)showWithTitle:(NSString*)title
+                image:(NSString*)image
+    buttonTitles:(NSArray *)buttonTitles
+                block:(TFImageAlertViewBlock)block
+{
+    TFImageAlertView *view=[[TFImageAlertView alloc]initWithTitle:title
+                                                            image:image
+                                                cancelButtonTitle:nil
+                                                otherButtonTitles:buttonTitles
                                                             block:block];
     [view show:^(BOOL finished) {
         
@@ -372,12 +402,13 @@
     self.maskView.alpha = 0;
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     
+    __weak typeof(self) weakSelf = self;
+    
     [UIView animateWithDuration:ANIMATION_DURATION_TIME
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         
-                         self.maskView.alpha = 1;
+                         weakSelf.maskView.alpha = 1;
                      } completion:^(BOOL finished) {
                          
                          if (completion)
@@ -390,15 +421,14 @@
 
 - (void)hide:(void (^)(BOOL finished))completion
 {
+    __weak typeof(self) weakSelf = self;
+    
     [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         
-                     }
+                     animations:^{}
                      completion:^(BOOL finished) {
-                         
-                         self.maskView.alpha = 0;
+                         weakSelf.maskView.alpha = 0;
                          [self removeFromSuperview];
                          if (completion)
                          {

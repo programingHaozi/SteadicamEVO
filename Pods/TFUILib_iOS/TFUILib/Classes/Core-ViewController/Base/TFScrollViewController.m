@@ -33,7 +33,7 @@
     
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(weakSelf.top, 0, 0, 0));
+        make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
 }
 

@@ -11,9 +11,4 @@
 
 @implementation UIView (Ext)
 
-+ (CGRect)mainFrame
-{
-    return CGRectMake(0, 0, [[UIScreen mainScreen] applicationFrame].size.width, [[UIScreen mainScreen] applicationFrame].size.height - 20 - 44);
-}
-
 @end

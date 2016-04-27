@@ -47,7 +47,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
+    [self initRightTitle:@"相册" selector:@selector(openPhoto)];
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
     {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -222,7 +223,7 @@
 {
     if (!_qRScanView)
     {
-        CGRect rect = CGRectMake(0, self.top, self.view.frame.size.width, self.view.frame.size.height);
+        CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         
         self.qRScanView = [[LBXScanView alloc]initWithFrame:rect style:_style];
         [self.view addSubview:_qRScanView];
@@ -423,7 +424,6 @@
     style.animationImage = [UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_light_green"];
     
     self.style = style;
-    self.showButton = YES;
 }
 
 //模仿支付宝

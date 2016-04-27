@@ -23,6 +23,14 @@
 -(void)showHudWithText:(NSString *)text;
 
 /**
+ *  显示HUD页面
+ *
+ *  @param text 提示信息
+ *  @param delay 延迟消失时间
+ */
+- (void)showHUDWithText:(NSString*)text dismissAfter:(NSTimeInterval)delay;
+
+/**
  *  隐藏Loading视图
  */
 -(void)hideHud;

@@ -47,7 +47,7 @@
 {
     self.type=type;
     
-    [self.keyWindow addSubview:self];
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
     
     if (type==kCenterPopupViewAnimateSpring)
     {
@@ -89,7 +89,7 @@
 
 -(void)show
 {
-    [self.keyWindow addSubview:self];
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
 }
 
 -(void)hide

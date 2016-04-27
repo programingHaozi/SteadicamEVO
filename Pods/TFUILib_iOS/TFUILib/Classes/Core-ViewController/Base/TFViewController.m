@@ -15,8 +15,6 @@
 
 @interface TFViewController ()<UINavigationBarDelegate>
 
-@property(nonatomic,strong)NSMutableArray *activeRequests;
-
 @property(nonatomic,strong)UIView *headView;
 
 @property(nonatomic,strong)UIView *footView;
@@ -106,7 +104,6 @@
     return self;
 }
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -118,21 +115,20 @@
     
     return self;
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     //[self.navigationController.view sendSubviewToBack:self.navigationController.navigationBar];
-    
-    UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
-    navigationBar.delegate = self;
-    [self.view addSubview:navigationBar];
-    
-    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@""];
-    [navigationBar pushNavigationItem:navigationItem animated:NO];
-    self.customNavigationItem=navigationItem;
-    self.customNavigationBar=navigationBar;
     
     self.view.backgroundColor = UIColor.whiteColor;
     
@@ -149,7 +145,7 @@
     //statusbar改白色
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     //self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.automaticallyAdjustsScrollViewInsets           = NO;
+    self.automaticallyAdjustsScrollViewInsets           = YES;
     self.navigationController.navigationBar.translucent = NO;
     
     [self initViews];
@@ -173,7 +169,7 @@
 
 - (void)initViews
 {
-    
+
 }
 
 - (void)autolayoutViews
@@ -195,7 +191,7 @@
 
 - (void)endLoadData
 {
-    [self hideHUD];
+    [self hideHud];
 }
 
 -(void)showCustomNaviBar:(TFView *)customNaviBar
@@ -241,425 +237,6 @@
     return _viewModel;
 }
 
-#pragma mark init button
-
--(void)setCustomNavigationBarHidden:(BOOL)customNavigationBarHidden
-{
-    
-    _customNavigationBarHidden = customNavigationBarHidden;
-    
-    self.customNavigationBar.hidden=customNavigationBarHidden;
-    
-    if (customNavigationBarHidden)
-    {
-        self.top=0;
-    }
-    else
-    {
-        self.top=65;
-    }
-    
-    if([self view]==nil)
-    {
-        return;
-    }
-    
-    if (self.view.superview!=nil)
-    {
-        [self autolayoutViews];
-        
-        // 告诉self.view约束需要更新
-        [self.view setNeedsUpdateConstraints];
-        
-        // 调用此方法告诉self.view检测是否需要更新约束，若需要则更新，下面添加动画效果才起作用
-        [self.view updateConstraintsIfNeeded];
-        
-        [self.view layoutIfNeeded];
-    }
-
-}
-
--(void)initTitle:(NSString*)title
-{
-    [self.customNavigationItem setTitle:title];
-}
-
--(void)initTitle:(NSString *)title
-           color:(UIColor *)titleColor
-{
-    [self.customNavigationItem setTitle:title];
-    
-    [self.customNavigationBar setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:titleColor,
-      NSForegroundColorAttributeName,nil]];
-}
-
-- (void)initMiddleView:(UIView*)view
-{
-    self.customNavigationItem.titleView = view;
-}
-
-- (void)initLeftImage:(NSString *)strImage
-{
-    [self initLeftImage:strImage
-         highLightImage:strImage
-               selector:@selector(leftButtonEvent)];
-}
-
--(void)initLeftImage:(NSString *)strImage
-      highLightImage:(NSString *)highLightImage
-{
-    [self initLeftImage:strImage
-         highLightImage:highLightImage
-               selector:@selector(leftButtonEvent)];
-}
-
-- (void)initLeftImage:(NSString *)strImage
-             selector:(SEL)selector
-{
-    [self initLeftImage:strImage
-         highLightImage:strImage
-               selector:selector];
-}
-
--(void)initLeftImage:(NSString *)strImage
-      highLightImage:(NSString *)highLightImage
-            selector:(SEL)selector
-{
-    CGRect rect   = CGRectMake(0, -2*SCREEN_WIDTH/320, [UIImage imageNamed:strImage].size.width, 44);
-    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
-
-    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
-    btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
-    btn.backgroundColor = [UIColor clearColor];
-
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.customNavigationItem.leftBarButtonItem = item;
-}
-
-- (void)initLeftTitle:(NSString *)strTitle
-{
-    [self initLeftTitle:strTitle selector:@selector(leftButtonEvent)];
-    
-}
-
-- (void)initLeftTitle:(NSString *)strTitle
-             selector:(SEL)selector
-{
-    [self initLeftTitle:strTitle
-                  color:[UIColor blackColor]
-               selector:selector];
-}
-
-- (void)initLeftTitle:(NSString *)strTitle
-                color:(UIColor *)color
-{
-    [self initLeftTitle:strTitle
-                  color:color
-               selector:@selector(leftButtonEvent)];
-}
-
-- (void)initLeftTitle:(NSString *)strTitle
-                color:(UIColor *)color
-             selector:(SEL)selector
-{
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
-    
-    [btn setTitle:strTitle forState:UIControlStateNormal];
-    [btn setTitleColor:color forState:UIControlStateNormal];
-    btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
-    [btn sizeToFit];
-    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [btn setTintColor:[UIColor whiteColor]];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.customNavigationItem.leftBarButtonItem = item;
-}
-
-- (void)initLeftImage:(NSString *)strImage
-                title:(NSString *)strTitle
-                color:(UIColor *)color
-{
-    [self initLeftImage:strImage
-                  title:strTitle
-                  color:color
-               selector:@selector(leftButtonEvent)];
-}
-
--(void)initLeftImage:(NSString *)strImage
-      highLightImage:(NSString *)highLightImage
-               title:(NSString *)strTitle
-               color:(UIColor *)color
-{
-    [self initLeftImage:strImage
-         highLightImage:highLightImage
-                  title:strTitle
-                  color:color
-               selector:@selector(leftButtonEvent)];
-}
-
-- (void)initLeftImage:(NSString *)strImage
-                title:(NSString *)strTitle
-                color:(UIColor *)color
-             selector:(SEL)selector
-{
-    [self initLeftImage:strImage
-         highLightImage:strImage
-                  title:strTitle
-                  color:color
-               selector:selector];
-}
-
--(void)initLeftImage:(NSString *)strImage
-      highLightImage:(NSString *)highLightImage
-               title:(NSString *)strTitle
-               color:(UIColor *)color
-            selector:(SEL)selector
-{
-    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
-    
-    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
-    
-    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
-    [btn setTitle:strTitle forState:UIControlStateNormal];
-    [btn setTitleColor:color forState:UIControlStateNormal];
-    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    btn.backgroundColor = [UIColor clearColor];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.customNavigationItem.leftBarButtonItem = item;
-}
-
-- (void)initRightImage:(NSString *)strImage
-{
-    [self initRightImage:strImage highLightImage:strImage];
-}
-
--(void)initRightImage:(NSString *)strImage
-       highLightImage:(NSString *)highLightImage
-{
-    [self initRightImage:strImage
-          highLightImage:highLightImage
-                selector:@selector(rightButtonEvent)];
-}
-
-- (void)initRightImage:(NSString *)strImage
-              selector:(SEL)selector
-{
-    [self initRightImage:strImage
-          highLightImage:strImage
-                selector:selector];
-}
-
--(void)initRightImage:(NSString *)strImage
-       highLightImage:(NSString *)highLightImage
-             selector:(SEL)selector
-{
-    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, [UIImage imageNamed:strImage].size.width, 44);
-    
-    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
-    
-    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
-    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    btn.backgroundColor = [UIColor clearColor];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.customNavigationItem.rightBarButtonItem = item;
-}
-
-- (void)initRightTitle:(NSString *)strTitle
-{
-    [self initRightTitle:strTitle color:[UIColor blackColor]];
-}
-
-- (void)initRightTitle:(NSString *)strTitle selector:(SEL)selector
-{
-    [self initRightTitle:strTitle
-                   color:[UIColor blackColor]
-                selector:selector];
-}
-
-- (void)initRightTitle:(NSString *)strTitle color:(UIColor *)color;
-{
-    [self initRightTitle:strTitle
-                   color:color
-                selector:@selector(rightButtonEvent)];
-}
-
-- (void)initRightTitle:(NSString *)strTitle
-                 color:(UIColor *)color
-              selector:(SEL)selector
-{
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
-    
-    [btn setTitle:strTitle forState:UIControlStateNormal];
-    [btn setTitleColor:color forState:UIControlStateNormal];
-    btn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
-    [btn sizeToFit];
-    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [btn setTintColor:[UIColor whiteColor]];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.customNavigationItem.rightBarButtonItem = item;
-}
-
-- (void)initRightImage:(NSString *)strImage
-                 title:(NSString *)strTitle
-                 color:(UIColor *)color
-{
-    [self initRightImage:strImage
-          highLightImage:strImage
-                   title:strTitle color:color];
-}
-
--(void)initRightImage:(NSString *)strImage
-       highLightImage:(NSString *)highLightImage
-                title:(NSString *)strTitle
-                color:(UIColor *)color
-{
-    [self initRightImage:strImage
-          highLightImage:highLightImage
-                   title:strTitle
-                   color:color
-                selector:@selector(rightButtonEvent)];
-}
-
-- (void)initRightImage:(NSString *)strImage
-                 title:(NSString *)strTitle
-                 color:(UIColor *)color
-              selector:(SEL)selector
-{
-    [self initRightImage:strImage
-          highLightImage:strImage
-                   title:strTitle
-                   color:color
-                selector:selector];
-}
-
--(void)initRightImage:(NSString *)strImage
-       highLightImage:(NSString *)highLightImage
-                title:(NSString *)strTitle
-                color:(UIColor *)color
-             selector:(SEL)selector
-{
-    CGRect rect = CGRectMake(0, -2*SCREEN_WIDTH/320, 60, 44);
-    
-    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
-    
-    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:highLightImage] forState:UIControlStateHighlighted];
-    [btn setTitle:strTitle forState:UIControlStateNormal];
-    [btn setTitleColor:color forState:UIControlStateNormal];
-    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    btn.backgroundColor = [UIColor clearColor];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.customNavigationItem.rightBarButtonItem = item;
-}
-
-
-- (void)resetLeftTitle:(NSString*)str
-{
-    self.customNavigationItem.leftBarButtonItem.title = str;
-}
-
-- (void)resetRightTitle:(NSString*)str
-{
-    self.customNavigationItem.rightBarButtonItem.title = str;
-}
-
-- (void)initBackButton
-{
-    UIViewController *rootVC=[self getRootViewController];
-    
-    if (![rootVC isKindOfClass:[UINavigationController class]])
-    {
-        return;
-    }
-    
-    UINavigationController *rootNav= (UINavigationController *)rootVC;
-    if (rootNav.viewControllers.count>=1 && self!=rootNav.viewControllers.firstObject)
-    {
-        [self initLeftTitle:NSLocalizedString(@"back", @"返回")];
-    }
-}
-
-#pragma mark event
-
-- (void)leftButtonEvent
-{
-    if ([self respondsToSelector:@selector(back)])
-    {
-        [self back];
-    }
-}
-
-- (void)rightButtonEvent
-{
-    
-}
-
-#pragma mark button event
-
-- (void)hideLeftButton
-{
-    self.customNavigationItem.leftBarButtonItem.customView.hidden = YES;
-}
-
--(void)showLeftButton
-{
-    self.customNavigationItem.leftBarButtonItem.customView.hidden = NO;
-}
-
-- (void)hideRightButton
-{
-    self.customNavigationItem.rightBarButtonItem.customView.hidden = YES;
-}
-
--(void)showRightButton
-{
-    self.customNavigationItem.rightBarButtonItem.customView.hidden = NO;
-}
-
-- (void)enableLeftButton
-{
-    if (self.customNavigationItem.leftBarButtonItem)
-    {
-        self.customNavigationItem.leftBarButtonItem.enabled = YES;
-    }
-}
-
-- (void)enableRightButton
-{
-    if (self.customNavigationItem.rightBarButtonItem)
-    {
-        self.customNavigationItem.rightBarButtonItem.enabled = YES;
-    }
-}
-
-- (void)disableLeftButton
-{
-    if (self.customNavigationItem.leftBarButtonItem)
-    {
-        self.customNavigationItem.leftBarButtonItem.enabled = NO;
-    }
-}
-
-- (void)disableRightButton
-{
-    if (self.customNavigationItem.rightBarButtonItem)
-    {
-        self.customNavigationItem.rightBarButtonItem.enabled = NO;
-    }
-}
-
 #pragma mark - privite method -
 
 -(UIView *)findInView:(UIView *)aView withName:(NSString *)name
@@ -682,16 +259,6 @@
         }
     }
     return nil;
-}
-
--(void)setTitle:(NSString *)title
-{
-    [self initTitle:title];
-}
-
--(NSString *)title
-{
-    return self.customNavigationItem.title;
 }
 
 @end

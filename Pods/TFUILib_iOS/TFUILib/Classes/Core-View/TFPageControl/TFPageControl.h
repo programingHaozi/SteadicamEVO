@@ -14,56 +14,86 @@
 @interface TFPageControl : UIControl
 
 
-@property (nonatomic) Class dotViewClass;
+/**
+ * Dot view customization properties
+ */
 
 /**
- *  dot普通状态下image
+ *  The Class of your custom UIView, make sure to respect the TFAbstractDotView class.
+ */
+@property (nonatomic) Class dotViewClass;
+
+
+/**
+ *  UIImage to represent a dot.
  */
 @property (nonatomic) UIImage *dotImage;
 
+
 /**
- *  dot选中状态下image
+ *  UIImage to represent current page dot.
  */
 @property (nonatomic) UIImage *currentDotImage;
 
+
 /**
- *  dot普通状态下size
+ *  Dot size for dot views. Default is 8 by 8.
  */
 @property (nonatomic) CGSize dotSize;
 
-/**
- *  dot选中状态下size
- */
+
 @property (nonatomic, strong) UIColor *dotColor;
 
 /**
- *  dot间距
+ *  Spacing between two dot views. Default is 8.
  */
 @property (nonatomic) NSInteger spacingBetweenDots;
 
+
 /**
- *  TFPageControl的代理
+ * Page control setup properties
+ */
+
+
+/**
+ * Delegate for TFPageControl
  */
 @property(nonatomic,assign) id<TFPageControlDelegate> delegate;
 
+
 /**
- *  总页数
+ *  Number of pages for control. Default is 0.
  */
 @property (nonatomic) NSInteger numberOfPages;
 
+
 /**
- *  当前页
+ *  Current page on which control is active. Default is 0.
  */
 @property (nonatomic) NSInteger currentPage;
 
 
+/**
+ *  Hide the control if there is only one page. Default is NO.
+ */
 @property (nonatomic) BOOL hidesForSinglePage;
 
 
+/**
+ *  Let the control know if should grow bigger by keeping center, or just get longer (right side expanding). By default YES.
+ */
 @property (nonatomic) BOOL shouldResizeFromCenter;
 
 
+/**
+ *  Return the minimum size required to display control properly for the given page count.
+ *
+ *  @param pageCount Number of dots that will require display
+ *
+ *  @return The CGSize being the minimum size required.
+ */
 - (CGSize)sizeForNumberOfPages:(NSInteger)pageCount;
+
 
 @end
 

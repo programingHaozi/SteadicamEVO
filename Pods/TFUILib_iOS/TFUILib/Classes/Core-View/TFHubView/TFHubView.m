@@ -313,7 +313,8 @@ static CGFloat const kBumpTimeSeconds2 = 0.1;
 
 - (void)bump
 {
-    if (!CGPointEqualToPoint(initialCenter,redCircle.center)) {
+    if (!CGPointEqualToPoint(initialCenter,redCircle.center))
+    {
         //%%% canel previous animation
     }
     

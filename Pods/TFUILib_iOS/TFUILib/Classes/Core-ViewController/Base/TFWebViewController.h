@@ -81,7 +81,7 @@
 @property (nonatomic, assign) BOOL isCanClose;
 
 /**
- *  是否需要多层返回
+ *  是否需要多层返回(当前webView有多级web时)
  */
 @property (nonatomic, assign) BOOL isNeedMulilayerBack;
 

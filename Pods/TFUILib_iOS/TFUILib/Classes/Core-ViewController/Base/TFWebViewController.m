@@ -92,13 +92,15 @@
                        title:(NSString *)strTitle
                        color:(UIColor *)color;
 {
-    self.closeButtonItem = [self cretCloseButtonImage:strImage title:strTitle color:color];
+    self.closeButtonItem = [self createCloseButtonImage:strImage title:strTitle color:color];
 }
 
 #pragma mark- cycle
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     if (self.model)
     {
         self.isNeedProgressView = self.model.isNeedProgress;
@@ -150,9 +152,8 @@
 {
     [super autolayoutViews];
 
-    WS(weakSelf)
     [self.webView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(weakSelf.top, 0, 0, 0));
+        make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
 
 }
@@ -192,7 +193,7 @@
     }
 }
 
-- (UIBarButtonItem *)cretCloseButtonImage:(NSString *)strImage
+- (UIBarButtonItem *)createCloseButtonImage:(NSString *)strImage
                                     title:(NSString *)strTitle
                                     color:(UIColor *)color;
 {
@@ -216,9 +217,9 @@
 {
     CGFloat progressBarHeight = 2.f;
     CGRect navigaitonBarBounds = self.navigationController.navigationBar.bounds;
-    CGRect barFrame = CGRectMake(0, 64 - progressBarHeight, navigaitonBarBounds.size.width, progressBarHeight);
+    CGRect barFrame = CGRectMake(0, navigaitonBarBounds.size.height - progressBarHeight, navigaitonBarBounds.size.width, progressBarHeight);
     self.progressView = [[TFProgressView alloc] initWithFrame:barFrame color:proColor];
-    [self.customNavigationBar addSubview:self.progressView];
+    [self.navigationController.navigationBar addSubview:self.progressView];
 }
 
 // 加载url
@@ -247,7 +248,7 @@
     {
         if (self.isNeedClose)
         {
-            self.customNavigationItem.leftBarButtonItems = @[self.backButtonItem, self.closeButtonItem];
+            self.navigationItem.leftBarButtonItems = @[self.backButtonItem, self.closeButtonItem];
         }
     }
 }
@@ -394,7 +395,6 @@
         if (self.progressView)
         {
             [self.progressView removeFromSuperview];
-            //            self.progressView = nil;
         }
 
         [self addProgressViewAboveNaviBar:self.progressViewColor ? self.progressViewColor : [UIColor colorWithHexString:@"0X03A9F4"]];
@@ -421,7 +421,7 @@
 {
     if (!_backButtonItem)
     {
-        _backButtonItem = self.customNavigationItem.leftBarButtonItem;
+        _backButtonItem = self.navigationItem.leftBarButtonItem;
     }
 
     return _backButtonItem;
@@ -442,7 +442,7 @@
 {
     if (!_closeButtonItem)
     {
-        _closeButtonItem = [self cretCloseButtonImage:@"" title:@"关闭" color:[UIColor blackColor]];
+        _closeButtonItem = [self createCloseButtonImage:@"" title:@"关闭" color:[UIColor blackColor]];
     }
     
     return _closeButtonItem;

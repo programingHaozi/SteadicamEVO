@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+Ext.h"
+#import "UIImage+Adapt.h"
 
 
 

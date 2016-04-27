@@ -59,7 +59,7 @@
 
 -(void)show
 {
-    [self.keyWindow addSubview:self];
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
     
     _alertView.frame = CGRectMake(0, -_alertView.frame.size.height, _alertView.frame.size.width, _alertView.frame.size.height);
     

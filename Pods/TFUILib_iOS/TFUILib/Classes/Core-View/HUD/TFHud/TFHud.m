@@ -400,6 +400,8 @@
 // 动画效果 活动视图出现时的动画
 - (void)loadingHudAppearAnimated:(TFHudAnimatedType)animatedType inView:(UIView *)view
 {
+    __weak typeof(self) weakSelf = self;
+    
     switch (animatedType)
     {
         case kHudAnimatedTypeNone:
@@ -408,7 +410,7 @@
         {
             self.frame = CGRectMake(-self.frame.size.width,0, self.frame.size.width, self.frame.size.height);
             [UIView animateWithDuration:0.5 animations:^{
-                self.frame = CGRectMake(0,0, self.frame.size.width, self.frame.size.height);
+                weakSelf.frame = CGRectMake(0,0, weakSelf.frame.size.width, weakSelf.frame.size.height);
             }];
             break;
         }
@@ -416,7 +418,7 @@
         {
             self.frame = CGRectMake(self.frame.size.width,0, self.frame.size.width, self.frame.size.height);
             [UIView animateWithDuration:0.5 animations:^{
-                self.frame = CGRectMake(0,0, self.frame.size.width, self.frame.size.height);
+                weakSelf.frame = CGRectMake(0,0, weakSelf.frame.size.width, weakSelf.frame.size.height);
             }];
             break;
         }
@@ -424,7 +426,7 @@
         {
             self.frame = CGRectMake(0,-self.frame.size.height, self.frame.size.width, self.frame.size.height);
             [UIView animateWithDuration:0.5 animations:^{
-                self.frame = CGRectMake(0,0, self.frame.size.width, self.frame.size.height);
+                weakSelf.frame = CGRectMake(0,0, weakSelf.frame.size.width, weakSelf.frame.size.height);
             }];
             break;
         }
@@ -432,7 +434,7 @@
         {
             self.frame = CGRectMake(0,self.frame.size.height, self.frame.size.width, self.frame.size.height);
             [UIView animateWithDuration:0.5 animations:^{
-                self.frame = CGRectMake(0,0, self.frame.size.width, self.frame.size.height);
+                weakSelf.frame = CGRectMake(0,0, weakSelf.frame.size.width, weakSelf.frame.size.height);
             }];
             break;
         }
@@ -440,7 +442,7 @@
         {
             self.alpha = 0;
             [UIView animateWithDuration:1.5 animations:^{
-                self.alpha = 1;
+                weakSelf.alpha = 1;
             } completion:^(BOOL finished) {
                 
             }];
@@ -455,15 +457,19 @@
 // 活动视图消失时的动画
 - (void)loadingHudDisappearAnimated:(TFHudAnimatedType)animatedType
 {
+    __weak typeof(self) weakSelf = self;
+    
     switch (animatedType)
     {
         case kHudAnimatedTypeNone:
+        {
             [self removeFromSuperview];
+        }
             break;
         case kHudAnimatedTypeLeft:
         {
             [UIView animateWithDuration:0.5 animations:^{
-                self.frame = CGRectMake(-self.frame.size.width, 0, self.frame.size.width, self.frame.size.height);
+                weakSelf.frame = CGRectMake(-weakSelf.frame.size.width, 0, weakSelf.frame.size.width, weakSelf.frame.size.height);
             } completion:^(BOOL finished) {
                 [self removeFromSuperview];
             }];
@@ -472,7 +478,7 @@
         case kHudAnimatedTypeRight:
         {
             [UIView animateWithDuration:0.5 animations:^{
-                self.frame = CGRectMake(self.frame.size.width,0, self.frame.size.width, self.frame.size.height);
+                weakSelf.frame = CGRectMake(self.frame.size.width,0, weakSelf.frame.size.width, weakSelf.frame.size.height);
             } completion:^(BOOL finished) {
                 [self removeFromSuperview];
             }];
@@ -481,7 +487,7 @@
         case kHudAnimatedTypeTop:
         {
             [UIView animateWithDuration:0.5 animations:^{
-                self.frame = CGRectMake(0, -self.frame.size.height, self.frame.size.width, self.frame.size.height);
+                weakSelf.frame = CGRectMake(0, -weakSelf.frame.size.height, weakSelf.frame.size.width, weakSelf.frame.size.height);
             } completion:^(BOOL finished) {
                 [self removeFromSuperview];
             }];
@@ -490,7 +496,7 @@
         case kHudAnimatedTypeBottom:
         {
             [UIView animateWithDuration:0.5 animations:^{
-                self.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height);
+                weakSelf.frame = CGRectMake(0, weakSelf.frame.size.height, weakSelf.frame.size.width, weakSelf.frame.size.height);
             } completion:^(BOOL finished) {
                 [self removeFromSuperview];
             }];
@@ -499,7 +505,7 @@
         case kHudAnimatedTypeChangeGradually:
         {
             [UIView animateWithDuration:1.5 animations:^{
-                self.alpha = 0;
+                weakSelf.alpha = 0;
             } completion:^(BOOL finished) {
                 [self removeFromSuperview];
             }];
