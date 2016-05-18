@@ -60,6 +60,8 @@
 		87D607D91CC4B13B00632172 /* RKCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607D11CC4B13B00632172 /* RKCentralManager.m */; };
 		87D607DA1CC4B13B00632172 /* RKPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607D31CC4B13B00632172 /* RKPeripheral.m */; };
 		87D607DB1CC4B13B00632172 /* RKPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607D61CC4B13B00632172 /* RKPeripheralManager.m */; };
+		87E01D8C1CEC34C800F66FBE /* AdjustmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E01D8B1CEC34C800F66FBE /* AdjustmentViewController.m */; };
+		87E01D8F1CEC34E000F66FBE /* AdjustmentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E01D8E1CEC34E000F66FBE /* AdjustmentViewModel.m */; };
 		87E2B7511CACFDE30001AB83 /* PrepareChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E2B7501CACFDE30001AB83 /* PrepareChooseView.m */; };
 		87EF95481C8C36C1002241B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EF953F1C8C36C1002241B2 /* AppDelegate.m */; };
 		87EF95491C8C36C1002241B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87EF95411C8C36C1002241B2 /* Assets.xcassets */; };
@@ -171,6 +173,10 @@
 		87D607D31CC4B13B00632172 /* RKPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPeripheral.m; sourceTree = "<group>"; };
 		87D607D51CC4B13B00632172 /* RKPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKPeripheralManager.h; sourceTree = "<group>"; };
 		87D607D61CC4B13B00632172 /* RKPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPeripheralManager.m; sourceTree = "<group>"; };
+		87E01D8A1CEC34C800F66FBE /* AdjustmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustmentViewController.h; sourceTree = "<group>"; };
+		87E01D8B1CEC34C800F66FBE /* AdjustmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustmentViewController.m; sourceTree = "<group>"; };
+		87E01D8D1CEC34E000F66FBE /* AdjustmentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustmentViewModel.h; sourceTree = "<group>"; };
+		87E01D8E1CEC34E000F66FBE /* AdjustmentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustmentViewModel.m; sourceTree = "<group>"; };
 		87E2B74F1CACFDE30001AB83 /* PrepareChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareChooseView.h; sourceTree = "<group>"; };
 		87E2B7501CACFDE30001AB83 /* PrepareChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrepareChooseView.m; sourceTree = "<group>"; };
 		87EF951D1C8C35A3002241B2 /* SteadicamEVO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteadicamEVO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -537,6 +543,25 @@
 			path = Peripheral;
 			sourceTree = "<group>";
 		};
+		87E01D881CEC347D00F66FBE /* AdjustmentViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87E01D891CEC34A600F66FBE /* AdjustmentViewModel */,
+				87E01D8A1CEC34C800F66FBE /* AdjustmentViewController.h */,
+				87E01D8B1CEC34C800F66FBE /* AdjustmentViewController.m */,
+			);
+			path = AdjustmentViewController;
+			sourceTree = "<group>";
+		};
+		87E01D891CEC34A600F66FBE /* AdjustmentViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				87E01D8D1CEC34E000F66FBE /* AdjustmentViewModel.h */,
+				87E01D8E1CEC34E000F66FBE /* AdjustmentViewModel.m */,
+			);
+			path = AdjustmentViewModel;
+			sourceTree = "<group>";
+		};
 		87E2B74D1CACF9370001AB83 /* VIews */ = {
 			isa = PBXGroup;
 			children = (
@@ -680,6 +705,7 @@
 		87EF955F1C8C425A002241B2 /* MainControllers */ = {
 			isa = PBXGroup;
 			children = (
+				87E01D881CEC347D00F66FBE /* AdjustmentViewController */,
 				87EF95621C8C425A002241B2 /* HomeViewController */,
 				87C6E8DD1CAB9949003ACA26 /* BalanceViewController */,
 				87C6E8E01CAB9949003ACA26 /* GuideVIewController */,
@@ -973,6 +999,7 @@
 				87CBA5AD1CB40AF3004206B0 /* TipsView.m in Sources */,
 				8723AD801CC634DF00B8FAEF /* GifScrollView.m in Sources */,
 				87C6E91C1CABBD65003ACA26 /* LanguageViewModel.m in Sources */,
+				87E01D8C1CEC34C800F66FBE /* AdjustmentViewController.m in Sources */,
 				87C6E9141CABBD1E003ACA26 /* AboutViewModel.m in Sources */,
 				87CBA5BA1CB41EE2004206B0 /* SCEViewModel.m in Sources */,
 				87CBA5BE1CB41F40004206B0 /* SCETableViewController.m in Sources */,
@@ -986,6 +1013,7 @@
 				87CBA5C21CB41F89004206B0 /* SCETableViewModel.m in Sources */,
 				87C6E8E81CAB9949003ACA26 /* IntroductionViewController.m in Sources */,
 				87C6E9001CABBC3D003ACA26 /* HomeViewModel.m in Sources */,
+				87E01D8F1CEC34E000F66FBE /* AdjustmentViewModel.m in Sources */,
 				87C6E8CD1CAB68FB003ACA26 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@
 #import "GifViews.h"
 #import "TipsView.h"
 #import "CompanyWebViewController.h"
+#import "AdjustmentViewController.h"
 
 @interface BalanceViewController ()
 
@@ -109,7 +110,7 @@
     @weakify(self)
     [RACObserve(self.viewModel, balanceState) subscribeNext:^(NSNumber *num) {
         
-        [self initTitle:self.viewModel.title];
+        [self initTitle:self.viewModel.title color:[UIColor whiteColor]];
         
         @strongify(self)
         [self.nextButton setNormalTitle:@"Next"
@@ -169,7 +170,11 @@
         tipView.confirmBlock = ^(){
             
             [weakSelf dismissPopupView];
-            [weakSelf back];
+            
+            UIStoryboard *storyboard        = [UIStoryboard storyboardWithName: @"Main"bundle:nil];
+            SCEViewController *adjustMentVc = [storyboard instantiateViewControllerWithIdentifier:@"AdjustmentViewController"];
+            
+            [self pushViewController:adjustMentVc];
         };
         
         [self presentPopupView:tipView

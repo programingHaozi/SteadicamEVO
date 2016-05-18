@@ -1,9 +1,24 @@
 /* Class = "UIButton"; normalTitle = "Balance Tuner"; ObjectID = "0cY-mS-9PA"; */
 "0cY-mS-9PA.normalTitle" = "Balance Tuner";
 
+/* Class = "UILabel"; text = "Fore/Aft"; ObjectID = "73K-tp-m8g"; */
+"73K-tp-m8g.text" = "Fore/Aft";
+
 /* Class = "UIButton"; normalTitle = "How to use"; ObjectID = "80I-U4-ROp"; */
 "80I-U4-ROp.normalTitle" = "How to use";
 
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "Axd-zq-4Te"; */
+"Axd-zq-4Te.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "Please don't tune phone when motors are running."; ObjectID = "d4I-02-esk"; */
+"d4I-02-esk.text" = "Please don't tune phone when motors are running.";
+
+/* Class = "UILabel"; text = "weight"; ObjectID = "fny-fI-15t"; */
+"fny-fI-15t.text" = "weight";
+
 /* Class = "UIButton"; normalTitle = "Guide setup"; ObjectID = "jDF-o9-6GB"; */
 "jDF-o9-6GB.normalTitle" = "Guide setup";
+
+/* Class = "UIButton"; normalTitle = "Finish"; ObjectID = "we6-Mb-D4B"; */
+"we6-Mb-D4B.normalTitle" = "Finish";
 
