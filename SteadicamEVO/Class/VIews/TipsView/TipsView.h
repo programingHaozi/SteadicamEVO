@@ -10,11 +10,16 @@
 
 typedef void(^ConfirmBlock)();
 
+typedef void(^CancelBlock)();
+
 @interface TipsView : TFView
 
 @property (nonatomic, strong) ConfirmBlock confirmBlock;
 
+@property (nonatomic, strong) CancelBlock cancelBlock;
+
 - (instancetype)initWithMessage:(NSString *)message
-            buttonTitle:(NSString *)title;
+            buttonArray:(NSArray *)titleAry;
+
 
 @end

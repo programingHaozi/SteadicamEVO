@@ -29,6 +29,8 @@
 
 @property (nonatomic, strong) AdjustmentView *adjusetmentView;
 
+@property (nonatomic, strong) SCEViewController *adjustMentVc;
+
 @end
 
 @implementation BalanceViewController
@@ -42,6 +44,9 @@
     self.viewModel.balanceState = BalanceStateUnFold;
     
     [self hideRightButton];
+    
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"bundle:nil];
+//    self.adjustMentVc        = [storyboard instantiateViewControllerWithIdentifier:@"AdjustmentViewController"];
 }
 
 - (void)initViews
@@ -163,7 +168,7 @@
     if (self.viewModel.balanceState == 7)
     {
         TipsView *tipView = [[TipsView alloc]initWithMessage:@"Balance complete"
-                                                 buttonTitle:@"OK"];
+                                                 buttonArray:@[@"OK"]];
         tipView.frame = CGRectMake(0, 0, 300, 200);
         
         WS(weakSelf)
@@ -171,10 +176,11 @@
             
             [weakSelf dismissPopupView];
             
-            UIStoryboard *storyboard        = [UIStoryboard storyboardWithName: @"Main"bundle:nil];
-            SCEViewController *adjustMentVc = [storyboard instantiateViewControllerWithIdentifier:@"AdjustmentViewController"];
             
-            [self pushViewController:adjustMentVc];
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"bundle:nil];
+                self.adjustMentVc        = [storyboard instantiateViewControllerWithIdentifier:@"AdjustmentViewController"];
+
+            [weakSelf pushViewController:self.adjustMentVc];
         };
         
         [self presentPopupView:tipView

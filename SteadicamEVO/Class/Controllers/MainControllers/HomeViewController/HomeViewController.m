@@ -24,11 +24,11 @@
     
     self.customNavigationBar.hidden = YES;
 
-    [kBTConnectManager connectDeviceWithCompletion:^(NSInteger result) {
-        
-    } disconnection:^(NSError *error) {
-        
-    }];
+//    [kBTConnectManager connectDeviceWithCompletion:^(NSInteger result) {
+//        
+//    } disconnection:^(NSError *error) {
+//        
+//    }];
     
 }
 
