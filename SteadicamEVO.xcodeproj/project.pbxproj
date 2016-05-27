@@ -548,6 +548,7 @@
 		87E01D881CEC347D00F66FBE /* AdjustmentViewController */ = {
 			isa = PBXGroup;
 			children = (
+				87EF956B1C8C4281002241B2 /* Models */,
 				87E01D891CEC34A600F66FBE /* AdjustmentViewModel */,
 				87E01D8A1CEC34C800F66FBE /* AdjustmentViewController.h */,
 				87E01D8B1CEC34C800F66FBE /* AdjustmentViewController.m */,
@@ -628,7 +629,6 @@
 				872BE0221CB3577400A8CD67 /* Environment */,
 				87E2B74D1CACF9370001AB83 /* VIews */,
 				878B29501C992B83003F2481 /* Category */,
-				87EF956B1C8C4281002241B2 /* Models */,
 				87EF955E1C8C425A002241B2 /* Controllers */,
 				87EF95591C8C4130002241B2 /* Managers */,
 			);
@@ -803,7 +803,8 @@
 			children = (
 				8700362A1C97E7D600AAB595 /* BTDeviceModel */,
 			);
-			path = Models;
+			name = Models;
+			path = ../../../Models;
 			sourceTree = "<group>";
 		};
 		87F5B5AE1CB3E64A008695D2 /* GifView */ = {

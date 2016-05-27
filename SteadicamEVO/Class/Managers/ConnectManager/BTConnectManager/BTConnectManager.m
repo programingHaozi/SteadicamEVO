@@ -663,7 +663,7 @@
         return;
     }
     [self.peripheral writeValue:data
-              forCharacteristic:self.writeCharacteristic
+              forCharacteristic:self.writeCharacteristics[0]
                            type:CBCharacteristicWriteWithoutResponse
                        onFinish:nil];
 }
