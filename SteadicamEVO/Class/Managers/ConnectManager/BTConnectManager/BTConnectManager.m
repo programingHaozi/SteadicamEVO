@@ -218,6 +218,12 @@
                                                               forCharacteristic:obj
                                                                       onUpdated:^(CBCharacteristic *characteristic, NSError *error) {
                                                                           
+                                                                          NSString *result = [[NSString alloc] initWithData:characteristic.value  encoding:NSUTF8StringEncoding];
+                                                                          
+                                                                          NSLog(@" notify back : %@",characteristic);
+                                                                          
+                                                                          NSLog(@"value : %@",result);
+                                                                          
                                                                           /*
                                                                           NSData *data = characteristic.value;
                                                                           Byte *p = (Byte *)[data bytes];
@@ -248,7 +254,7 @@
                                             }];
                                             
                                             NSLog(@"Did connect to device %@",peripheral.name);
-                                            if (completion)
+                                            if (completion && idx == weakSelf.services.count - 1)
                                             {
                                                 completion(0);
                                             }
