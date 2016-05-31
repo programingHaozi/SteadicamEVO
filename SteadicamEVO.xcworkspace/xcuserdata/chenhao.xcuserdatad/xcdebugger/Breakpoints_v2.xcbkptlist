@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SteadicamEVO/Class/Managers/ConnectManager/BTConnectManager/BTConnectManager.m"
-            timestampString = "486223341.90556"
+            timestampString = "486369898.124427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "671"
-            endingLineNumber = "671"
+            startingLineNumber = "675"
+            endingLineNumber = "675"
             landmarkName = "-sendData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -67,54 +67,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SteadicamEVO/Class/Controllers/MainControllers/HomeViewController/HomeViewController.m"
-            timestampString = "486027743.667387"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[HomeViewController viewDidLoad]"
-                  moduleName = "SteadicamEVO"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Class/Controllers/MainControllers/HomeViewController/HomeViewController.m"
-                  timestampString = "486223454.531874"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "160">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__33-[HomeViewController viewDidLoad]_block_invoke"
-                  moduleName = "SteadicamEVO"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Class/Controllers/MainControllers/HomeViewController/HomeViewController.m"
-                  timestampString = "486223454.532136"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "32">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "SteadicamEVO/Class/Managers/ConnectManager/RKBluetooth/Central/RKPeripheral.m"
             timestampString = "486027988.905316"
             startingColumnNumber = "9223372036854775807"
@@ -148,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SteadicamEVO/Class/Managers/ConnectManager/BTConnectManager/BTConnectManager.m"
-            timestampString = "486222183.063683"
+            timestampString = "486369898.124427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "-discoverServiceAndCharacteristic:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -164,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SteadicamEVO/Class/Managers/ConnectManager/BTConnectManager/BTConnectManager.m"
-            timestampString = "486222248.083974"
+            timestampString = "486369898.124427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-discoverServiceAndCharacteristic:completion:"
             landmarkType = "5">
             <Locations>
@@ -180,7 +132,7 @@
                   moduleName = "SteadicamEVO"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Class/Managers/ConnectManager/BTConnectManager/BTConnectManager.m"
-                  timestampString = "486223454.536212"
+                  timestampString = "486367691.157182"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "191"
@@ -195,7 +147,7 @@
                   moduleName = "SteadicamEVO"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Class/Managers/ConnectManager/BTConnectManager/BTConnectManager.m"
-                  timestampString = "486223454.537373"
+                  timestampString = "486367691.15733"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "191"
@@ -234,22 +186,6 @@
             startingLineNumber = "242"
             endingLineNumber = "242"
             landmarkName = "-peripheral:didUpdateValueForCharacteristic:error:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SteadicamEVO/Class/Managers/ConnectManager/BTConnectManager/BTConnectManager.m"
-            timestampString = "486223330.000149"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "-discoverServiceAndCharacteristic:completion:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -9,8 +9,6 @@
 #ifndef BTConnectTypeDefine_h
 #define BTConnectTypeDefine_h
 
-#define kBTConnectManager [BTConnectManager shareInstance]
-
 #define kDeviceName1                @"eVo    "
 #define kDeviceName2                @"BlueNRG"
 

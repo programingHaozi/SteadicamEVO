@@ -15,10 +15,17 @@
  */
 @interface BTConnectManager : NSObject <BTConnectInterFace>
 
+#define kBTConnectManager ([BTConnectManager shareInstance])
+
 /**
  *  蓝牙设备Model
  */
 @property (nonatomic, strong) BTDeviceModel *deviceModel;
+
+/**
+ *  返回信息
+ */
+@property (nonatomic, strong) NSString *notifyInfoStr;
 
 /**
  *  单例方法

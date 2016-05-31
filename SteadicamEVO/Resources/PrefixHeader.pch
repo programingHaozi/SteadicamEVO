@@ -23,5 +23,6 @@
 #import "BTConnectTypeDefine.h"
 #import "TFUserDefaults+SCE.h"
 #import "Environment.h"
+#import "BTConnectManager.h"
 
 #endif /* PrefixHeader_pch */

@@ -14,7 +14,6 @@
 		870668E01C959D260031381C /* Localizable.sh in Resources */ = {isa = PBXBuildFile; fileRef = 870668DD1C959D260031381C /* Localizable.sh */; };
 		870668E11C959D260031381C /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 870668DF1C959D260031381C /* LocalizationManager.m */; };
 		870668E61C959D5E0031381C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870668E81C959D5E0031381C /* Localizable.strings */; };
-		870FC3211CEEB3C800A48B01 /* AdjustmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 870FC3201CEEB3C800A48B01 /* AdjustmentViewController.xib */; };
 		8723AD801CC634DF00B8FAEF /* GifScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8723AD7F1CC634DF00B8FAEF /* GifScrollView.m */; };
 		872591E11CB39E35006DFC4A /* AdjustmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872591E01CB39E35006DFC4A /* AdjustmentView.m */; };
 		872591E31CB39FF0006DFC4A /* AdjustmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872591E21CB39FF0006DFC4A /* AdjustmentView.xib */; };
@@ -92,7 +91,6 @@
 		870668E71C959D5E0031381C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		870668E91C959D5F0031381C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		870668EA1C959D610031381C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		870FC3201CEEB3C800A48B01 /* AdjustmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdjustmentViewController.xib; sourceTree = "<group>"; };
 		8723AD7E1CC634DF00B8FAEF /* GifScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifScrollView.h; sourceTree = "<group>"; };
 		8723AD7F1CC634DF00B8FAEF /* GifScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifScrollView.m; sourceTree = "<group>"; };
 		872591DF1CB39E35006DFC4A /* AdjustmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustmentView.h; sourceTree = "<group>"; };
@@ -552,7 +550,6 @@
 				87E01D891CEC34A600F66FBE /* AdjustmentViewModel */,
 				87E01D8A1CEC34C800F66FBE /* AdjustmentViewController.h */,
 				87E01D8B1CEC34C800F66FBE /* AdjustmentViewController.m */,
-				870FC3201CEEB3C800A48B01 /* AdjustmentViewController.xib */,
 			);
 			path = AdjustmentViewController;
 			sourceTree = "<group>";
@@ -898,7 +895,6 @@
 				870668E61C959D5E0031381C /* Localizable.strings in Resources */,
 				872722E61CB4B4480098EBEE /* AboutViewModel.json in Resources */,
 				87A65C801CB544B0002D7C2C /* 正确重心位置.png in Resources */,
-				870FC3211CEEB3C800A48B01 /* AdjustmentViewController.xib in Resources */,
 				87EF954B1C8C36C1002241B2 /* Main.storyboard in Resources */,
 				87AED7581CB5137500709C76 /* 安装手机.mov in Resources */,
 				87AED7571CB5137500709C76 /* 安装底部配重.mov in Resources */,
@@ -1148,7 +1144,7 @@
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec2.SteadicamEVO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec3.SteadicamEVO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1163,7 +1159,7 @@
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec2.SteadicamEVO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec3.SteadicamEVO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

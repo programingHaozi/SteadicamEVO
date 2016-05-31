@@ -42,7 +42,9 @@
 
 @property (strong, nonatomic)  UIImageView *downArrowImageView;
 
-@property (nonatomic, strong) AdjustmentViewModel *viewModel;
+@property (strong, nonatomic)  UILabel *notifyLabel;
+
+@property (nonatomic, strong)  AdjustmentViewModel *viewModel;
 
 @end
 
@@ -144,6 +146,12 @@
     self.downArrowImageView.hidden = YES;
     [self.view addSubview:self.downArrowImageView];
     
+    self.notifyLabel = [[UILabel alloc]init];
+    self.notifyLabel.numberOfLines = 0;
+    self.notifyLabel.textColor = [UIColor whiteColor];
+    self.notifyLabel.font = [UIFont systemFontOfSize:10];
+    [self.view addSubview:self.notifyLabel];
+    
 }
 
 -(void)autolayoutViews
@@ -174,6 +182,14 @@
         make.height.equalTo(@64);
         make.left.equalTo(@50);
         make.top.equalTo(@104);
+    }];
+    
+    [self.notifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.width.equalTo(@210);
+        make.height.equalTo(@40);
+        make.left.equalTo(@50);
+        make.top.equalTo(@64);
     }];
    
     
@@ -289,7 +305,10 @@
 {
     [super bindData];
     
+    @weakify(self)
     [RACObserve(self.viewModel, adjustState) subscribeNext:^(NSNumber * state) {
+        
+        @strongify(self)
         
         self.instructionLabel.text = self.viewModel.instruction;
         
@@ -414,6 +433,14 @@
             default:
                 break;
         }
+    }];
+    
+    
+    [RACObserve(kBTConnectManager, notifyInfoStr) subscribeNext:^(NSString * info) {
+    
+    @strongify(self)
+        
+        self.notifyLabel.text = info;
     }];
 }
 

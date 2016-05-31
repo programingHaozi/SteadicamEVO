@@ -57,6 +57,8 @@
 
 @property (nonatomic,strong) NSString *pendingValue;
 
+
+
 @end
 
 @implementation BTConnectManager
@@ -193,28 +195,28 @@
                                                 if ((characteristic.properties &CBCharacteristicPropertyWrite) !=0 ||
                                                     (characteristic.properties &CBCharacteristicPropertyWriteWithoutResponse) !=0)
                                                 {
-                                                    [self.writeCharacteristics addObject:characteristic];
+                                                    [weakSelf.writeCharacteristics addObject:characteristic];
                                                     
-                                                    NSLog(@"Discovered writeCharacteristic : %@",self.writeCharacteristics);
+                                                    NSLog(@"Discovered writeCharacteristic : %@",weakSelf.writeCharacteristics);
                                                     
                                                     continue;
                                                 }
                                                 
                                                 if ((characteristic.properties & CBCharacteristicPropertyNotify))
                                                 {
-                                                    [self.readCharacteristics addObject:characteristic];
+                                                    [weakSelf.readCharacteristics addObject:characteristic];
                                                     
-                                                    NSLog(@"Discovered readCharacteristic : %@",self.readCharacteristics);
+                                                    NSLog(@"Discovered readCharacteristic : %@",weakSelf.readCharacteristics);
                                                     
                                                     continue;
                                                 }
                                             }
                                             
-                                            NSLog(@"Set Notify Callback For readCharacteristic : %@",self.readCharacteristics);
+                                            NSLog(@"Set Notify Callback For readCharacteristic : %@",weakSelf.readCharacteristics);
                                             
-                                            [self.readCharacteristics enumerateObjectsUsingBlock:^(CBCharacteristic * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                            [weakSelf.readCharacteristics enumerateObjectsUsingBlock:^(CBCharacteristic * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                                                 
-                                                [self.peripheral setNotifyValue:YES
+                                                [weakSelf.peripheral setNotifyValue:YES
                                                               forCharacteristic:obj
                                                                       onUpdated:^(CBCharacteristic *characteristic, NSError *error) {
                                                                           
@@ -223,6 +225,8 @@
                                                                           NSLog(@" notify back : %@",characteristic);
                                                                           
                                                                           NSLog(@"value : %@",result);
+                                                                          
+                                                                          weakSelf.notifyInfoStr = result;
                                                                           
                                                                           /*
                                                                           NSData *data = characteristic.value;
