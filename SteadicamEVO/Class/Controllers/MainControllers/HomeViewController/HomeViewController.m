@@ -23,17 +23,6 @@
     // Do any additional setup after loading the view.
     
     self.customNavigationBar.hidden = YES;
-
-    [kBTConnectManager connectDeviceWithCompletion:^(NSInteger result) {
-        
-        NSString *str = @"$eVo,startmotor:do\r\n";
-        NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-        [kBTConnectManager sendData:data];
-        
-    } disconnection:^(NSError *error) {
-        
-    }];
-    
 }
 
 

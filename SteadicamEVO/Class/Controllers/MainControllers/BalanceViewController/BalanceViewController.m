@@ -44,9 +44,7 @@
     self.viewModel.balanceState = BalanceStateUnFold;
     
     [self hideRightButton];
-    
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"bundle:nil];
-//    self.adjustMentVc        = [storyboard instantiateViewControllerWithIdentifier:@"AdjustmentViewController"];
+
 }
 
 - (void)initViews
@@ -162,7 +160,7 @@
 }
 
 #pragma mark - Action -
-- (IBAction)nextAction:(id)sender
+- (IBAction)nextAction:(UIButton *)sender
 {
     
     if (self.viewModel.balanceState == 7)
@@ -177,8 +175,8 @@
             [weakSelf dismissPopupView];
             
             
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"bundle:nil];
-                self.adjustMentVc        = [storyboard instantiateViewControllerWithIdentifier:@"AdjustmentViewController"];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"bundle:nil];
+            self.adjustMentVc        = [storyboard instantiateViewControllerWithIdentifier:@"AdjustmentViewController"];
 
             [weakSelf pushViewController:self.adjustMentVc];
         };
@@ -188,7 +186,36 @@
            backgroundClickable:NO];
     }
     
-    self.viewModel.balanceState ++;
+    if (self.viewModel.balanceState == 4)
+    {
+        
+        sender.enabled = NO;
+        
+        WS(weakSelf)
+        [kBTConnectManager connectDeviceWithCompletion:^(NSInteger result) {
+            
+            if (result != 0)
+            {
+                [TFAlertView showWithTitle:@"提示" message:@"连接设备超时，请重试" buttonTitles:@[@"确定"] block:^(NSInteger buttonIndex) {
+                    
+                }];
+            }
+            else
+            {
+                self.viewModel.balanceState ++;
+                [weakSelf nextAction:sender];
+            }
+            
+            sender.enabled = YES;
+            
+        } disconnection:^(NSError *error) {
+            
+        }];
+    }
+    else
+    {
+        self.viewModel.balanceState ++;
+    }
 }
 
 @end

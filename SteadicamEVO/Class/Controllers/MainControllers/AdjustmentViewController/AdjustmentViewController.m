@@ -58,6 +58,10 @@
     self.viewModel.adjustState = AdjustStateZero;
     
     [self hideRightButton];
+    
+    NSString *str = @"$eVo,startmotor:do\r\n";
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [kBTConnectManager sendData:data];
 }
 
 -(void)initViews
