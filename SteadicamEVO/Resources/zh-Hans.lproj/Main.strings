@@ -4,6 +4,9 @@
 /* Class = "UIButton"; normalTitle = "How to use"; ObjectID = "80I-U4-ROp"; */
 "80I-U4-ROp.normalTitle" = "How to use";
 
+/* Class = "UIButton"; normalTitle = "BT Connection"; ObjectID = "XTO-hV-gYi"; */
+"XTO-hV-gYi.normalTitle" = "BT Connection";
+
 /* Class = "UIButton"; normalTitle = "Guide setup"; ObjectID = "jDF-o9-6GB"; */
 "jDF-o9-6GB.normalTitle" = "Guide setup";
 

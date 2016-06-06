@@ -190,11 +190,13 @@
     
     [self.notifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.width.equalTo(@210);
-        make.height.equalTo(@40);
         make.left.equalTo(@50);
         make.top.equalTo(@64);
     }];
+    [self.notifyLabel setContentHuggingPriority:UILayoutPriorityRequired
+                                     forAxis:UILayoutConstraintAxisHorizontal];
+    [self.notifyLabel setContentHuggingPriority:UILayoutPriorityRequired
+                                     forAxis:UILayoutConstraintAxisVertical];
    
     
     [self.tiplabel mas_makeConstraints:^(MASConstraintMaker *make) {

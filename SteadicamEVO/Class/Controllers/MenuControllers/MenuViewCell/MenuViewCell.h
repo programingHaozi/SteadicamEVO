@@ -8,4 +8,8 @@
 
 @interface MenuViewCell : TFTableViewCell
 
+@property (nonatomic, strong) UIImageView *accessoryImageVIew;
+
+@property (nonatomic, strong) UIImageView *BGImageView;
+
 @end

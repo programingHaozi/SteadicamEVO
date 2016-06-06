@@ -28,10 +28,27 @@
 @property (nonatomic, strong) NSString *notifyInfoStr;
 
 /**
+ *  是否已连接
+ */
+@property (nonatomic, assign, readonly) BOOL isBTConnected;
+
+/**
+ *  已连接的设备的名称
+ */
+@property (nonatomic, strong, readonly) NSString *connectName;
+
+/**
+ *  正在连接的设备名
+ */
+@property (nonatomic, strong) NSString *needConnectName;
+
+/**
  *  单例方法
  *
  *  @return BTConnectManager
  */
 + (BTConnectManager *)shareInstance;
+
+- (void)stopScan;
 
 @end

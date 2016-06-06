@@ -10,10 +10,6 @@
 
 @interface MenuViewCell()
 
-@property (nonatomic, strong) UIImageView *BGImageView;
-
-@property (nonatomic, strong) UIImageView *accessoryImageVIew;
-
 @property (nonatomic, strong) UIImageView *seperateLine;
 
 @end

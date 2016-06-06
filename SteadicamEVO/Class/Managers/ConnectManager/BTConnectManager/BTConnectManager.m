@@ -226,7 +226,11 @@
                                                                           
                                                                           NSLog(@"value : %@",result);
                                                                           
-                                                                          weakSelf.notifyInfoStr = result;
+                                                                          NSMutableString * uuidStr = [[NSMutableString alloc]initWithString:characteristic.UUID.UUIDString];
+                                                                          
+                                                                          [uuidStr appendString:result];
+                                                                          
+                                                                          weakSelf.notifyInfoStr = uuidStr;
                                                                           
                                                                           /*
                                                                           NSData *data = characteristic.value;
@@ -354,33 +358,33 @@
          if (isOk)
          {
              // 搜索设备时的超时处理
-             __block BOOL end = NO;
-             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kScanPeripheralTimeoutSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                 
-                 if (!end)
-                 {
-                     [self.centralManager stopScan];
-                     NSLog(@"Discover Device End!");
-                     if (completion)
-                     {
-                         completion(devices);
-                     }
-                 }
-             });
+//             __block BOOL end = NO;
+//             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kScanPeripheralTimeoutSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                 
+//                 if (!end)
+//                 {
+//                     [self.centralManager stopScan];
+//                     NSLog(@"Discover Device End!");
+//                     if (completion)
+//                     {
+//                         completion(devices);
+//                     }
+//                 }
+//             });
              
              // 如果设备已经连接，直接返回
-             if (self.peripheral.state == CBPeripheralStateConnected && [self hasMatchWithName:self.peripheral.name])
-             {
-                 end = YES;
-                 NSLog(@"Discover Device End!");
-                 
-                 if (completion)
-                 {
-                     completion(@[self.peripheral.name]);
-                 }
-                 
-                 return;
-             }
+//             if (self.peripheral.state == CBPeripheralStateConnected && [self hasMatchWithName:self.peripheral.name])
+//             {
+//                 end = YES;
+//                 NSLog(@"Discover Device End!");
+//                 
+//                 if (completion)
+//                 {
+//                     completion(@[self.peripheral.name]);
+//                 }
+//                 
+//                 return;
+//             }
              
              // 指定ServiceUUID搜索设备
              [self.centralManager scanForPeripheralsWithServices:nil
@@ -391,6 +395,11 @@
                                                            
                                                            [devices addObject:peripheral.name];
                                                            //                                                          }
+                                                           
+                                                           if (completion)
+                                                           {
+                                                               completion(devices);
+                                                           }
                                                        }];
          }
          else
@@ -526,6 +535,7 @@
                     if (_connectionBlock)
                     {
                         _connectionBlock(1);
+                        _completionBlock = nil;
                     }
                 }
             });
@@ -537,6 +547,7 @@
                 if (_connectionBlock)
                 {
                     _connectionBlock(0);
+                    _completionBlock = nil;
                 }
                 
                 return;
@@ -678,6 +689,11 @@
                        onFinish:nil];
 }
 
+-(void)stopScan
+{
+    [self.centralManager stopScan];
+}
+
 /**
  *  匹配搜索到的外部设备名称
  *
@@ -687,7 +703,18 @@
  */
 - (BOOL)hasMatchWithName:(NSString *)name
 {
-    return ([name isEqualToString:kDeviceName1] || [name isEqualToString:kDeviceName2]);
+//    return ([name isEqualToString:kDeviceName1] || [name isEqualToString:kDeviceName2]);
+    return self.needConnectName;
+}
+
+-(BOOL)isBTConnected
+{
+    return (self.peripheral.state == CBPeripheralStateConnected);
+}
+
+-(NSString *)connectName
+{
+    return self.peripheral.name;
 }
 
 @end

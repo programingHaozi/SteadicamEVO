@@ -188,29 +188,45 @@
     
     if (self.viewModel.balanceState == 4)
     {
-        
-        sender.enabled = NO;
-        
         WS(weakSelf)
-        [kBTConnectManager connectDeviceWithCompletion:^(NSInteger result) {
-            
-            if (result != 0)
-            {
-                [TFAlertView showWithTitle:@"提示" message:@"连接设备超时，请重试" buttonTitles:@[@"确定"] block:^(NSInteger buttonIndex) {
-                    
-                }];
-            }
-            else
+        if (kBTConnectManager.isBTConnected)
+        {
+            if ([kBTConnectManager.connectName isEqualToString:kDeviceName1] || [kBTConnectManager.connectName isEqualToString:kDeviceName2])
             {
                 self.viewModel.balanceState ++;
                 [weakSelf nextAction:sender];
             }
+            else
+            {
+                [TFAlertView showWithTitle:@"提示" message:@"请连接正确的设备！" buttonTitles:@[@"确定"] block:^(NSInteger buttonIndex) {
+                    
+                }];
+            }
+        }
+        else
+        {
+            sender.enabled = NO;
             
-            sender.enabled = YES;
-            
-        } disconnection:^(NSError *error) {
-            
-        }];
+            [kBTConnectManager connectDeviceWithCompletion:^(NSInteger result) {
+                
+                if (result != 0)
+                {
+                    [TFAlertView showWithTitle:@"提示" message:@"连接设备超时，请重试！" buttonTitles:@[@"确定"] block:^(NSInteger buttonIndex) {
+                        
+                    }];
+                }
+                else
+                {
+                    self.viewModel.balanceState ++;
+                    [weakSelf nextAction:sender];
+                }
+                
+                sender.enabled = YES;
+                
+            } disconnection:^(NSError *error) {
+                
+            }];
+        }
     }
     else
     {

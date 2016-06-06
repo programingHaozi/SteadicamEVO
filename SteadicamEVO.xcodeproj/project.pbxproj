@@ -22,6 +22,9 @@
 		872722EA1CB4B4D70098EBEE /* LanguageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 872722E91CB4B4D70098EBEE /* LanguageViewCell.m */; };
 		872722EC1CB4B52A0098EBEE /* LanguageViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */; };
 		87341CB91CB5FEBA00B3E14D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87341CB81CB5FEBA00B3E14D /* AVFoundation.framework */; };
+		876952951D0155040094E68E /* BTConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 876952941D0155040094E68E /* BTConnectionViewController.m */; };
+		876952981D0155200094E68E /* BTConnectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 876952971D0155200094E68E /* BTConnectionViewModel.m */; };
+		8769529C1D0156530094E68E /* BTConnectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8769529B1D0156530094E68E /* BTConnectionViewCell.m */; };
 		878B29541C992BC5003F2481 /* TFUserDefaults+SCE.m in Sources */ = {isa = PBXBuildFile; fileRef = 878B29531C992BC5003F2481 /* TFUserDefaults+SCE.m */; };
 		87A65C7F1CB544B0002D7C2C /* 正确手持方式.png in Resources */ = {isa = PBXBuildFile; fileRef = 87A65C7D1CB544B0002D7C2C /* 正确手持方式.png */; };
 		87A65C801CB544B0002D7C2C /* 正确重心位置.png in Resources */ = {isa = PBXBuildFile; fileRef = 87A65C7E1CB544B0002D7C2C /* 正确重心位置.png */; };
@@ -104,6 +107,12 @@
 		872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LanguageViewModel.json; sourceTree = "<group>"; };
 		872BE0231CB3578700A8CD67 /* Environment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		87341CB81CB5FEBA00B3E14D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		876952931D0155040094E68E /* BTConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectionViewController.h; sourceTree = "<group>"; };
+		876952941D0155040094E68E /* BTConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTConnectionViewController.m; sourceTree = "<group>"; };
+		876952961D0155200094E68E /* BTConnectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectionViewModel.h; sourceTree = "<group>"; };
+		876952971D0155200094E68E /* BTConnectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTConnectionViewModel.m; sourceTree = "<group>"; };
+		8769529A1D0156530094E68E /* BTConnectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectionViewCell.h; sourceTree = "<group>"; };
+		8769529B1D0156530094E68E /* BTConnectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTConnectionViewCell.m; sourceTree = "<group>"; };
 		878B29521C992BC5003F2481 /* TFUserDefaults+SCE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TFUserDefaults+SCE.h"; sourceTree = "<group>"; };
 		878B29531C992BC5003F2481 /* TFUserDefaults+SCE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TFUserDefaults+SCE.m"; sourceTree = "<group>"; };
 		87A65C7D1CB544B0002D7C2C /* 正确手持方式.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "正确手持方式.png"; sourceTree = "<group>"; };
@@ -287,6 +296,35 @@
 				872BE0231CB3578700A8CD67 /* Environment.h */,
 			);
 			path = Environment;
+			sourceTree = "<group>";
+		};
+		876952911D0154900094E68E /* BTConnectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				876952991D0156300094E68E /* BTConnectionViewCell */,
+				876952921D0154900094E68E /* BTConnectionViewModel */,
+				876952931D0155040094E68E /* BTConnectionViewController.h */,
+				876952941D0155040094E68E /* BTConnectionViewController.m */,
+			);
+			path = BTConnectionViewController;
+			sourceTree = "<group>";
+		};
+		876952921D0154900094E68E /* BTConnectionViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				876952961D0155200094E68E /* BTConnectionViewModel.h */,
+				876952971D0155200094E68E /* BTConnectionViewModel.m */,
+			);
+			path = BTConnectionViewModel;
+			sourceTree = "<group>";
+		};
+		876952991D0156300094E68E /* BTConnectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				8769529A1D0156530094E68E /* BTConnectionViewCell.h */,
+				8769529B1D0156530094E68E /* BTConnectionViewCell.m */,
+			);
+			path = BTConnectionViewCell;
 			sourceTree = "<group>";
 		};
 		878B29501C992B83003F2481 /* Category */ = {
@@ -705,6 +743,7 @@
 		87EF955F1C8C425A002241B2 /* MainControllers */ = {
 			isa = PBXGroup;
 			children = (
+				876952911D0154900094E68E /* BTConnectionViewController */,
 				87E01D881CEC347D00F66FBE /* AdjustmentViewController */,
 				87EF95621C8C425A002241B2 /* HomeViewController */,
 				87C6E8DD1CAB9949003ACA26 /* BalanceViewController */,
@@ -999,6 +1038,7 @@
 				87C6E90C1CABBCB3003ACA26 /* IntroductionViewModel.m in Sources */,
 				87CBA5AD1CB40AF3004206B0 /* TipsView.m in Sources */,
 				8723AD801CC634DF00B8FAEF /* GifScrollView.m in Sources */,
+				876952981D0155200094E68E /* BTConnectionViewModel.m in Sources */,
 				87C6E91C1CABBD65003ACA26 /* LanguageViewModel.m in Sources */,
 				87E01D8C1CEC34C800F66FBE /* AdjustmentViewController.m in Sources */,
 				87C6E9141CABBD1E003ACA26 /* AboutViewModel.m in Sources */,
@@ -1010,9 +1050,11 @@
 				872722E41CB4B37F0098EBEE /* AboutViewCell.m in Sources */,
 				870036291C97DF9200AAB595 /* BTConnectManager.m in Sources */,
 				878B29541C992BC5003F2481 /* TFUserDefaults+SCE.m in Sources */,
+				8769529C1D0156530094E68E /* BTConnectionViewCell.m in Sources */,
 				87C6E8EE1CAB9B1D003ACA26 /* AboutViewController.m in Sources */,
 				87CBA5C21CB41F89004206B0 /* SCETableViewModel.m in Sources */,
 				87C6E8E81CAB9949003ACA26 /* IntroductionViewController.m in Sources */,
+				876952951D0155040094E68E /* BTConnectionViewController.m in Sources */,
 				87C6E9001CABBC3D003ACA26 /* HomeViewModel.m in Sources */,
 				87E01D8F1CEC34E000F66FBE /* AdjustmentViewModel.m in Sources */,
 				87C6E8CD1CAB68FB003ACA26 /* HomeViewController.m in Sources */,

@@ -23,7 +23,7 @@
 #define kBLECharacteristicNofiy3    @"07366E80-CF3A-11E1-9AB4-0002A5D5C51B"
 #define kBLECharacteristicNofiy4    @"08366E80-CF3A-11E1-9AB4-0002A5D5C51B"
 
-#define kScanPeripheralTimeoutSeconds   (40)
+#define kScanPeripheralTimeoutSeconds   (20)
 
 #define ErrorDomain                 @"com.yuneec.SteadicamEVO"
 

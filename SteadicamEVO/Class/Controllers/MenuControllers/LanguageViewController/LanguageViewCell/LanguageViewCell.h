@@ -6,8 +6,9 @@
 //  Copyright © 2016年 haozi. All rights reserved.
 //
 
+#import "MenuViewCell.h"
 
-@interface LanguageViewCell : TFTableViewCell
+@interface LanguageViewCell : MenuViewCell
 
 @property (nonatomic, assign) BOOL selectLanguage;
 

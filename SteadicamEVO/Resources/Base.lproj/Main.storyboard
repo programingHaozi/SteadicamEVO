@@ -51,22 +51,22 @@
                                     <segue destination="Nzu-hc-5vg" kind="push" id="ybK-xx-l7H"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jDF-o9-6GB">
-                                <rect key="frame" x="146" y="75" width="375" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTO-hV-gYi">
+                                <rect key="frame" x="146" y="66" width="375" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="uPE-RS-HJy"/>
+                                    <constraint firstAttribute="height" constant="60" id="0nU-wg-NxT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <state key="normal" title="Guide setup" backgroundImage="home_blackButtonBg"/>
+                                <state key="normal" title="BT Connection" backgroundImage="home_blackButtonBg"/>
                                 <state key="highlighted" backgroundImage="home_redButtonBg">
                                     <color key="titleColor" red="0.1764705882" green="0.18039215689999999" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vCp-6p-yvQ" kind="push" id="6e2-nA-LHu"/>
+                                    <segue destination="pm7-7g-Cww" kind="push" id="by1-fq-49S"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cY-mS-9PA">
-                                <rect key="frame" x="146" y="173" width="375" height="60"/>
+                                <rect key="frame" x="146" y="206" width="375" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="w4y-aK-vcQ"/>
                                 </constraints>
@@ -80,7 +80,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80I-U4-ROp">
-                                <rect key="frame" x="146" y="270" width="375" height="60"/>
+                                <rect key="frame" x="146" y="276" width="375" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="GJb-kW-86X"/>
                                 </constraints>
@@ -93,19 +93,36 @@
                                     <segue destination="CIu-uv-fWB" kind="push" id="VST-Gh-q4c"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jDF-o9-6GB">
+                                <rect key="frame" x="146" y="136" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="uPE-RS-HJy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <state key="normal" title="Guide setup" backgroundImage="home_blackButtonBg"/>
+                                <state key="highlighted" backgroundImage="home_redButtonBg">
+                                    <color key="titleColor" red="0.1764705882" green="0.18039215689999999" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vCp-6p-yvQ" kind="push" id="6e2-nA-LHu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="0cY-mS-9PA" firstAttribute="centerY" secondItem="5tf-pr-oqd" secondAttribute="centerY" constant="48" id="2kZ-rG-QML"/>
                             <constraint firstAttribute="trailing" secondItem="80I-U4-ROp" secondAttribute="trailing" constant="146" id="6TW-WE-mkh"/>
-                            <constraint firstItem="0cY-mS-9PA" firstAttribute="centerY" secondItem="3oM-Xu-KZO" secondAttribute="centerY" constant="5" id="9PL-ed-IdB"/>
-                            <constraint firstItem="jDF-o9-6GB" firstAttribute="top" secondItem="cLj-kO-k9M" secondAttribute="bottom" constant="55" id="BNv-zm-zjU"/>
                             <constraint firstAttribute="trailing" secondItem="3oM-Xu-KZO" secondAttribute="trailing" id="D7j-Ss-9xP"/>
                             <constraint firstItem="80I-U4-ROp" firstAttribute="leading" secondItem="5tf-pr-oqd" secondAttribute="leading" constant="146" id="GUT-as-X3H"/>
                             <constraint firstItem="3oM-Xu-KZO" firstAttribute="leading" secondItem="5tf-pr-oqd" secondAttribute="leading" id="RkZ-hS-uCn"/>
                             <constraint firstItem="YsV-9N-DM2" firstAttribute="top" secondItem="3oM-Xu-KZO" secondAttribute="bottom" id="UQC-CV-vfS"/>
-                            <constraint firstItem="YsV-9N-DM2" firstAttribute="top" secondItem="80I-U4-ROp" secondAttribute="bottom" constant="45" id="YSM-Pu-b8T"/>
                             <constraint firstItem="HF3-UM-ec8" firstAttribute="top" secondItem="cLj-kO-k9M" secondAttribute="bottom" constant="15" id="d09-h8-NNB"/>
+                            <constraint firstItem="jDF-o9-6GB" firstAttribute="centerY" secondItem="5tf-pr-oqd" secondAttribute="centerY" constant="-22" id="ieq-7n-B23"/>
+                            <constraint firstItem="XTO-hV-gYi" firstAttribute="leading" secondItem="5tf-pr-oqd" secondAttribute="leading" constant="146" id="ih0-m7-V1B"/>
+                            <constraint firstItem="XTO-hV-gYi" firstAttribute="centerY" secondItem="5tf-pr-oqd" secondAttribute="centerY" constant="-92" id="l15-td-Vrg"/>
+                            <constraint firstItem="80I-U4-ROp" firstAttribute="centerY" secondItem="5tf-pr-oqd" secondAttribute="centerY" constant="118" id="mbA-QL-gMq"/>
                             <constraint firstAttribute="trailing" secondItem="HF3-UM-ec8" secondAttribute="trailing" constant="30" id="nay-Id-dei"/>
                             <constraint firstItem="jDF-o9-6GB" firstAttribute="leading" secondItem="5tf-pr-oqd" secondAttribute="leading" constant="146" id="pCQ-Eh-cKP"/>
+                            <constraint firstAttribute="trailing" secondItem="XTO-hV-gYi" secondAttribute="trailing" constant="146" id="pkU-sf-dNr"/>
                             <constraint firstItem="0cY-mS-9PA" firstAttribute="leading" secondItem="5tf-pr-oqd" secondAttribute="leading" constant="146" id="sRe-1f-Vh5"/>
                             <constraint firstItem="3oM-Xu-KZO" firstAttribute="top" secondItem="cLj-kO-k9M" secondAttribute="bottom" id="t8X-RG-Q40"/>
                             <constraint firstAttribute="trailing" secondItem="0cY-mS-9PA" secondAttribute="trailing" constant="146" id="wcU-L9-bwa"/>
@@ -141,6 +158,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5TR-Ig-cVb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-601.5" y="516.5"/>
+        </scene>
+        <!--Connection View Controller-->
+        <scene sceneID="nJb-Vv-4jB">
+            <objects>
+                <viewController id="pm7-7g-Cww" customClass="BTConnectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Psn-2f-P8W"/>
+                        <viewControllerLayoutGuide type="bottom" id="dJt-fc-kLM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="niT-ea-i1z">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AWu-XF-SRa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t9i-GC-2Lf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140.5" y="-1391.5"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="0oQ-Kl-XdQ">
