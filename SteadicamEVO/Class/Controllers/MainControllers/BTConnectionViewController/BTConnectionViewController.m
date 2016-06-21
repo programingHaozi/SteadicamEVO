@@ -154,7 +154,7 @@
     [self.graybar mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.height.equalTo(@1.5);
-        make.bottom.equalTo(weakSelf.tableView.mas_bottom).offset(-1.5);
+        make.bottom.equalTo(weakSelf.tableView.mas_bottom).offset(0);
         make.left.equalTo(weakSelf.tableView.mas_left).offset(24);
         make.right.equalTo(weakSelf.tableView.mas_right).offset(-24);
     }];

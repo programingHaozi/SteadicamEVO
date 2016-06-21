@@ -162,7 +162,7 @@
         <!--Connection View Controller-->
         <scene sceneID="nJb-Vv-4jB">
             <objects>
-                <viewController id="pm7-7g-Cww" customClass="BTConnectionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BTConnectionViewController" id="pm7-7g-Cww" customClass="BTConnectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Psn-2f-P8W"/>
                         <viewControllerLayoutGuide type="bottom" id="dJt-fc-kLM"/>

@@ -205,27 +205,10 @@
         }
         else
         {
-            sender.enabled = NO;
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"bundle:nil];
+            self.adjustMentVc        = [storyboard instantiateViewControllerWithIdentifier:@"BTConnectionViewController"];
             
-            [kBTConnectManager connectDeviceWithCompletion:^(NSInteger result) {
-                
-                if (result != 0)
-                {
-                    [TFAlertView showWithTitle:@"提示" message:@"连接设备超时，请重试！" buttonTitles:@[@"确定"] block:^(NSInteger buttonIndex) {
-                        
-                    }];
-                }
-                else
-                {
-                    self.viewModel.balanceState ++;
-                    [weakSelf nextAction:sender];
-                }
-                
-                sender.enabled = YES;
-                
-            } disconnection:^(NSError *error) {
-                
-            }];
+            [weakSelf pushViewController:self.adjustMentVc];
         }
     }
     else

@@ -59,9 +59,13 @@
     
     [self hideRightButton];
     
-    NSString *str = @"$eVo,startmotor:do\r\n";
+    NSString *str = @"$eVo,stopmotor:do\r\n";
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-    [kBTConnectManager sendData:data];
+    
+    char byteArray[] = {0xAA ,0x55 ,0x01, 0xFF};
+    NSData *datas = [NSData dataWithBytes:byteArray length:sizeof(byteArray)];
+    
+    [kBTConnectManager sendData:datas];
 }
 
 -(void)initViews
