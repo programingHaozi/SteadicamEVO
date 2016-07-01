@@ -22,6 +22,8 @@
 		872722EA1CB4B4D70098EBEE /* LanguageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 872722E91CB4B4D70098EBEE /* LanguageViewCell.m */; };
 		872722EC1CB4B52A0098EBEE /* LanguageViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */; };
 		87341CB91CB5FEBA00B3E14D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87341CB81CB5FEBA00B3E14D /* AVFoundation.framework */; };
+		8767BBD61D2500BA002291AE /* VersionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8767BBD51D2500BA002291AE /* VersionViewController.m */; };
+		8767BBD91D2500D4002291AE /* VersionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8767BBD81D2500D4002291AE /* VersionViewModel.m */; };
 		876952951D0155040094E68E /* BTConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 876952941D0155040094E68E /* BTConnectionViewController.m */; };
 		876952981D0155200094E68E /* BTConnectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 876952971D0155200094E68E /* BTConnectionViewModel.m */; };
 		8769529C1D0156530094E68E /* BTConnectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8769529B1D0156530094E68E /* BTConnectionViewCell.m */; };
@@ -107,6 +109,10 @@
 		872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LanguageViewModel.json; sourceTree = "<group>"; };
 		872BE0231CB3578700A8CD67 /* Environment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		87341CB81CB5FEBA00B3E14D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8767BBD41D2500BA002291AE /* VersionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionViewController.h; sourceTree = "<group>"; };
+		8767BBD51D2500BA002291AE /* VersionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionViewController.m; sourceTree = "<group>"; };
+		8767BBD71D2500D4002291AE /* VersionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionViewModel.h; sourceTree = "<group>"; };
+		8767BBD81D2500D4002291AE /* VersionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionViewModel.m; sourceTree = "<group>"; };
 		876952931D0155040094E68E /* BTConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectionViewController.h; sourceTree = "<group>"; };
 		876952941D0155040094E68E /* BTConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTConnectionViewController.m; sourceTree = "<group>"; };
 		876952961D0155200094E68E /* BTConnectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectionViewModel.h; sourceTree = "<group>"; };
@@ -296,6 +302,25 @@
 				872BE0231CB3578700A8CD67 /* Environment.h */,
 			);
 			path = Environment;
+			sourceTree = "<group>";
+		};
+		8767BBD21D250076002291AE /* VersionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8767BBD31D25009C002291AE /* VersionViewModel */,
+				8767BBD41D2500BA002291AE /* VersionViewController.h */,
+				8767BBD51D2500BA002291AE /* VersionViewController.m */,
+			);
+			path = VersionViewController;
+			sourceTree = "<group>";
+		};
+		8767BBD31D25009C002291AE /* VersionViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8767BBD71D2500D4002291AE /* VersionViewModel.h */,
+				8767BBD81D2500D4002291AE /* VersionViewModel.m */,
+			);
+			path = VersionViewModel;
 			sourceTree = "<group>";
 		};
 		876952911D0154900094E68E /* BTConnectionViewController */ = {
@@ -782,6 +807,7 @@
 		87EF95651C8C425A002241B2 /* AboutViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8767BBD21D250076002291AE /* VersionViewController */,
 				872722E11CB4B3690098EBEE /* AboutViewCell */,
 				87C6E9111CABBD06003ACA26 /* AboutViewModel */,
 				87C6E8EC1CAB9B1D003ACA26 /* AboutViewController.h */,
@@ -1043,11 +1069,13 @@
 				87E01D8C1CEC34C800F66FBE /* AdjustmentViewController.m in Sources */,
 				87C6E9141CABBD1E003ACA26 /* AboutViewModel.m in Sources */,
 				87CBA5BA1CB41EE2004206B0 /* SCEViewModel.m in Sources */,
+				8767BBD91D2500D4002291AE /* VersionViewModel.m in Sources */,
 				87CBA5BE1CB41F40004206B0 /* SCETableViewController.m in Sources */,
 				872591E11CB39E35006DFC4A /* AdjustmentView.m in Sources */,
 				87EF954D1C8C36C1002241B2 /* main.m in Sources */,
 				87EF95481C8C36C1002241B2 /* AppDelegate.m in Sources */,
 				872722E41CB4B37F0098EBEE /* AboutViewCell.m in Sources */,
+				8767BBD61D2500BA002291AE /* VersionViewController.m in Sources */,
 				870036291C97DF9200AAB595 /* BTConnectManager.m in Sources */,
 				878B29541C992BC5003F2481 /* TFUserDefaults+SCE.m in Sources */,
 				8769529C1D0156530094E68E /* BTConnectionViewCell.m in Sources */,

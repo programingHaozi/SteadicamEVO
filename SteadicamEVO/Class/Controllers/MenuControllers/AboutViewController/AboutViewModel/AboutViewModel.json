@@ -5,19 +5,19 @@
  [
   {
   "title": "Version",
-  "vc":""
+  "vc":"VersionViewController"
   },
   {
   "title": "Function",
-  "vc":""
+ 
   },
   {
   "title": "Help",
-  "vc": ""
+  
   },
   {
   "title": "FeedBack",
-  "vc": ""
+  
   }
   ]
  }

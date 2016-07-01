@@ -163,38 +163,40 @@
 - (IBAction)nextAction:(UIButton *)sender
 {
     
-    if (self.viewModel.balanceState == 7)
-    {
-        TipsView *tipView = [[TipsView alloc]initWithMessage:@"Balance complete"
-                                                 buttonArray:@[@"OK"]];
-        tipView.frame = CGRectMake(0, 0, 300, 200);
-        
-        WS(weakSelf)
-        tipView.confirmBlock = ^(){
-            
-            [weakSelf dismissPopupView];
-            
-            
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"bundle:nil];
-            self.adjustMentVc        = [storyboard instantiateViewControllerWithIdentifier:@"AdjustmentViewController"];
-
-            [weakSelf pushViewController:self.adjustMentVc];
-        };
-        
-        [self presentPopupView:tipView
-                     animation:[TFPopupViewAnimationSpring new]
-           backgroundClickable:NO];
-    }
-    
+//    if (self.viewModel.balanceState == 7)
+//    {
+//        TipsView *tipView = [[TipsView alloc]initWithMessage:@"Balance complete"
+//                                                 buttonArray:@[@"OK"]];
+//        tipView.frame = CGRectMake(0, 0, 300, 200);
+//        
+//        WS(weakSelf)
+//        tipView.confirmBlock = ^(){
+//            
+//            [weakSelf dismissPopupView];
+//            
+//            
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"bundle:nil];
+//            self.adjustMentVc        = [storyboard instantiateViewControllerWithIdentifier:@"AdjustmentViewController"];
+//
+//            [weakSelf pushViewController:self.adjustMentVc];
+//        };
+//        
+//        [self presentPopupView:tipView
+//                     animation:[TFPopupViewAnimationSpring new]
+//           backgroundClickable:NO];
+//    }
+//    
     if (self.viewModel.balanceState == 4)
     {
         WS(weakSelf)
         if (kBTConnectManager.isBTConnected)
         {
-            if ([kBTConnectManager.connectName isEqualToString:kDeviceName1] || [kBTConnectManager.connectName isEqualToString:kDeviceName2])
+            if ([kBTConnectManager.connectName rangeOfString:@"evo"].location != NSNotFound || [kBTConnectManager.connectName rangeOfString:@"EVO"].location != NSNotFound)
             {
-                self.viewModel.balanceState ++;
-                [weakSelf nextAction:sender];
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"bundle:nil];
+                self.adjustMentVc        = [storyboard instantiateViewControllerWithIdentifier:@"AdjustmentViewController"];
+                
+                [weakSelf pushViewController:self.adjustMentVc];
             }
             else
             {

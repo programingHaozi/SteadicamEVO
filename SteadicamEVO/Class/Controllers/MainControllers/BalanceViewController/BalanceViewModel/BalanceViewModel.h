@@ -15,9 +15,9 @@ typedef NS_ENUM(NSUInteger, BalanceState)
     BalanceStateSet = 2,
     BalanceStateHold = 3,
     BalanceStatePower = 4,
-    BalanceStateSlide = 5,
-    BalanceStateAdjust = 6,
-    BalanceStateSlideAgain = 7,
+//    BalanceStateSlide = 5,
+//    BalanceStateAdjust = 6,
+//    BalanceStateSlideAgain = 7,
 };
 
 @interface BalanceViewModel : SCEViewModel

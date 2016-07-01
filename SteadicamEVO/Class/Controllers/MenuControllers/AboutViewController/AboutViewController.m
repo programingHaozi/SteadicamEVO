@@ -36,11 +36,5 @@
     [super bindData];
 }
 
-//#pragma mark - datasource -
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return (SCREEN_HEIGHT - 64)/4;
-//}
 
 @end

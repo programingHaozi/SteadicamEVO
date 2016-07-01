@@ -220,17 +220,32 @@
                                                               forCharacteristic:obj
                                                                       onUpdated:^(CBCharacteristic *characteristic, NSError *error) {
                                                                           
-                                                                          NSString *result = [[NSString alloc] initWithData:characteristic.value  encoding:NSUTF8StringEncoding];
+                                                                          NSString *result = [self hexStringFromData:characteristic.value];
+                                                                          
+//                                                                          NSString *result = [[NSString alloc] initWithData:characteristic.value  encoding:NSUTF8StringEncoding];
+                                                                       
+                                                                          
+                                                                          
+                                                                          result = [NSString stringWithFormat:@"包类型：%lu\n roll电流值：%lu\n pitch电流：%lu\n yaw电流值：%lu\n roll欧拉角：%lu\n pitch欧拉角：%lu\n yaw欧拉角：%lu\n 到达时间：%lu",
+                                                                                    strtoul([[result substringWithRange:NSMakeRange(6,2)] UTF8String], 0, 16),
+                                                                                    strtoul([[result substringWithRange:NSMakeRange(8,4)] UTF8String], 0, 16),
+                                                                                    strtoul([[result substringWithRange:NSMakeRange(12,4)] UTF8String], 0, 16),
+                                                                                    strtoul([[result substringWithRange:NSMakeRange(16,4)] UTF8String], 0, 16),
+                                                                                    strtoul([[result substringWithRange:NSMakeRange(20,4)] UTF8String], 0, 16),
+                                                                                    strtoul([[result substringWithRange:NSMakeRange(24,4)] UTF8String], 0, 16),
+                                                                                    strtoul([[result substringWithRange:NSMakeRange(28,4)] UTF8String], 0, 16),
+                                                                                    strtoul([[result substringWithRange:NSMakeRange(32,4)] UTF8String], 0, 16)];
+                                                                          
                                                                           
                                                                           NSLog(@" notify back : %@",characteristic);
                                                                           
                                                                           NSLog(@"value : %@",result);
                                                                           
-                                                                          NSMutableString * uuidStr = [[NSMutableString alloc]initWithString:characteristic.UUID.UUIDString];
+//                                                                          NSMutableString * uuidStr = [[NSMutableString alloc]initWithString:characteristic.UUID.UUIDString];
+//                                                                          
+//                                                                          [uuidStr appendString:result];
                                                                           
-                                                                          [uuidStr appendString:result];
-                                                                          
-                                                                          weakSelf.notifyInfoStr = uuidStr;
+                                                                          weakSelf.notifyInfoStr = result;
                                                                           
                                                                           /*
                                                                           NSData *data = characteristic.value;
@@ -390,11 +405,13 @@
              [self.centralManager scanForPeripheralsWithServices:nil
                                                          options:nil
                                                        onUpdated:^(RKPeripheral *peripheral) {
-                                                           //                                                          if ([peripheral.name hasPrefix:kBLENamePrefix]) {
+                                                        
+                                                        if (!tf_isEmpty(peripheral.name) && ([peripheral.name rangeOfString:@"evo"].location != NSNotFound || [peripheral.name rangeOfString:@"EVO"].location != NSNotFound))
+                                                        {
                                                            NSLog(@"Discovered device: %@",peripheral.name);
                                                            
                                                            [devices addObject:peripheral.name];
-                                                           //                                                          }
+                                                        }
                                                            
                                                            if (completion)
                                                            {
@@ -703,8 +720,7 @@
  */
 - (BOOL)hasMatchWithName:(NSString *)name
 {
-//    return ([name isEqualToString:kDeviceName1] || [name isEqualToString:kDeviceName2]);
-    return self.needConnectName;
+    return [self.needConnectName isEqualToString:name];
 }
 
 -(BOOL)isBTConnected
@@ -716,5 +732,18 @@
 {
     return self.peripheral.name;
 }
+
+
+
+#pragma mark - 16进制nsdata转string -
+
+- (NSString *)hexStringFromData:(NSData*)data
+{
+    return [[[[NSString stringWithFormat:@"%@",data]
+              stringByReplacingOccurrencesOfString: @"<" withString: @""]
+             stringByReplacingOccurrencesOfString: @">" withString: @""]
+            stringByReplacingOccurrencesOfString: @" " withString: @""];
+}
+
 
 @end

@@ -10,7 +10,6 @@
 
 @implementation BTConnectionViewModel
 
-
 -(NSString *)title
 {
     return @"BT Connection";

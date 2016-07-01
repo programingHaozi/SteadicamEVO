@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SteadicamEVO/Class/Managers/ConnectManager/BTConnectManager/BTConnectManager.m"
-            timestampString = "486875528.692508"
+            timestampString = "488369822.170827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-discoverServiceAndCharacteristic:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SteadicamEVO/Class/Managers/ConnectManager/BTConnectManager/BTConnectManager.m"
-            timestampString = "486875528.692508"
+            timestampString = "488963428.711081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "584"
-            endingLineNumber = "584"
+            startingLineNumber = "601"
+            endingLineNumber = "601"
             landmarkName = "-connectDeviceWithCompletion:disconnection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SteadicamEVO/Class/Managers/ConnectManager/BTConnectManager/BTConnectManager.m"
-            timestampString = "486875528.692508"
+            timestampString = "488369822.170827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "-discoverServiceAndCharacteristic:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -96,16 +96,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SteadicamEVO/Class/Controllers/MainControllers/AdjustmentViewController/AdjustmentViewController.m"
-            timestampString = "488180664.892207"
+            filePath = "SteadicamEVO/Class/Controllers/MenuControllers/AboutViewController/VersionViewController/VersionViewController.m"
+            timestampString = "488965778.413254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "-bindData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SteadicamEVO/Class/Managers/ConnectManager/BTConnectManager/BTConnectManager.m"
+            timestampString = "488966898.159772"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "409"
+            endingLineNumber = "409"
+            landmarkName = "-discoverDevice:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

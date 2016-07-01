@@ -59,13 +59,29 @@
     
     [self hideRightButton];
     
-    NSString *str = @"$eVo,stopmotor:do\r\n";
-    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     char byteArray[] = {0xAA ,0x55 ,0x01, 0xFF};
     NSData *datas = [NSData dataWithBytes:byteArray length:sizeof(byteArray)];
     
     [kBTConnectManager sendData:datas];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    char byteArray[] = {0xAA ,0x55 ,0x02, 0xFF};
+    NSData *datas = [NSData dataWithBytes:byteArray length:sizeof(byteArray)];
+    
+    [kBTConnectManager sendData:datas];
+    
 }
 
 -(void)initViews
@@ -194,7 +210,7 @@
     
     [self.notifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(@50);
+        make.left.equalTo(@250);
         make.top.equalTo(@64);
     }];
     [self.notifyLabel setContentHuggingPriority:UILayoutPriorityRequired
