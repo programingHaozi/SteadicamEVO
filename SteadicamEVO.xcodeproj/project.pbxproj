@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5B967DFDDC50486EBFDFA6D6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43686846EEC97D5B9EA405C7 /* libPods.a */; };
 		8700361E1C97D3D400AAB595 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8700361D1C97D3D400AAB595 /* SplashViewController.m */; };
-		870036291C97DF9200AAB595 /* BTConnectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 870036281C97DF9200AAB595 /* BTConnectManager.m */; };
 		8700362D1C97E7EF00AAB595 /* BTDeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8700362C1C97E7EF00AAB595 /* BTDeviceModel.m */; };
 		870668E01C959D260031381C /* Localizable.sh in Resources */ = {isa = PBXBuildFile; fileRef = 870668DD1C959D260031381C /* Localizable.sh */; };
 		870668E11C959D260031381C /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 870668DF1C959D260031381C /* LocalizationManager.m */; };
@@ -22,6 +21,7 @@
 		872722EA1CB4B4D70098EBEE /* LanguageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 872722E91CB4B4D70098EBEE /* LanguageViewCell.m */; };
 		872722EC1CB4B52A0098EBEE /* LanguageViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */; };
 		87341CB91CB5FEBA00B3E14D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87341CB81CB5FEBA00B3E14D /* AVFoundation.framework */; };
+		875D7C621D36310E001DE510 /* libBTConnectManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 875D7C611D36310E001DE510 /* libBTConnectManager.a */; };
 		8767BBD61D2500BA002291AE /* VersionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8767BBD51D2500BA002291AE /* VersionViewController.m */; };
 		8767BBD91D2500D4002291AE /* VersionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8767BBD81D2500D4002291AE /* VersionViewModel.m */; };
 		876952951D0155040094E68E /* BTConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 876952941D0155040094E68E /* BTConnectionViewController.m */; };
@@ -60,11 +60,6 @@
 		87CBA5C21CB41F89004206B0 /* SCETableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBA5C11CB41F89004206B0 /* SCETableViewModel.m */; };
 		87CBA5C61CB420EC004206B0 /* MenuViewModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 87CBA5C51CB420EC004206B0 /* MenuViewModel.json */; };
 		87CBA5CA1CB43885004206B0 /* MenuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBA5C91CB43885004206B0 /* MenuViewCell.m */; };
-		87D607D71CC4B13B00632172 /* CBUUID+RKBlueKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607CB1CC4B13B00632172 /* CBUUID+RKBlueKit.m */; };
-		87D607D81CC4B13B00632172 /* RKBlueKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607CD1CC4B13B00632172 /* RKBlueKit.m */; };
-		87D607D91CC4B13B00632172 /* RKCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607D11CC4B13B00632172 /* RKCentralManager.m */; };
-		87D607DA1CC4B13B00632172 /* RKPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607D31CC4B13B00632172 /* RKPeripheral.m */; };
-		87D607DB1CC4B13B00632172 /* RKPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D607D61CC4B13B00632172 /* RKPeripheralManager.m */; };
 		87E01D8C1CEC34C800F66FBE /* AdjustmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E01D8B1CEC34C800F66FBE /* AdjustmentViewController.m */; };
 		87E01D8F1CEC34E000F66FBE /* AdjustmentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E01D8E1CEC34E000F66FBE /* AdjustmentViewModel.m */; };
 		87E2B7511CACFDE30001AB83 /* PrepareChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E2B7501CACFDE30001AB83 /* PrepareChooseView.m */; };
@@ -82,10 +77,6 @@
 		8700361C1C97D3D400AAB595 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		8700361D1C97D3D400AAB595 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		870036211C97D7E800AAB595 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		870036251C97DF5100AAB595 /* BTConnectInterFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectInterFace.h; sourceTree = "<group>"; };
-		870036261C97DF6B00AAB595 /* BTConnectTypeDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTConnectTypeDefine.h; sourceTree = "<group>"; };
-		870036271C97DF9200AAB595 /* BTConnectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectManager.h; sourceTree = "<group>"; };
-		870036281C97DF9200AAB595 /* BTConnectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTConnectManager.m; sourceTree = "<group>"; };
 		8700362B1C97E7EF00AAB595 /* BTDeviceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDeviceModel.h; sourceTree = "<group>"; };
 		8700362C1C97E7EF00AAB595 /* BTDeviceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDeviceModel.m; sourceTree = "<group>"; };
 		870668DD1C959D260031381C /* Localizable.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = Localizable.sh; sourceTree = "<group>"; };
@@ -109,6 +100,13 @@
 		872722EB1CB4B52A0098EBEE /* LanguageViewModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LanguageViewModel.json; sourceTree = "<group>"; };
 		872BE0231CB3578700A8CD67 /* Environment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		87341CB81CB5FEBA00B3E14D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		875D7C5B1D36310E001DE510 /* BTConnectInterFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectInterFace.h; sourceTree = "<group>"; };
+		875D7C5C1D36310E001DE510 /* BTConnectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectManager.h; sourceTree = "<group>"; };
+		875D7C5D1D36310E001DE510 /* BTConnectTypeDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConnectTypeDefine.h; sourceTree = "<group>"; };
+		875D7C5E1D36310E001DE510 /* TFBaseLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFBaseLib.h; sourceTree = "<group>"; };
+		875D7C5F1D36310E001DE510 /* TFCoreLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFCoreLib.h; sourceTree = "<group>"; };
+		875D7C601D36310E001DE510 /* TFUILib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUILib.h; sourceTree = "<group>"; };
+		875D7C611D36310E001DE510 /* libBTConnectManager.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBTConnectManager.a; sourceTree = "<group>"; };
 		8767BBD41D2500BA002291AE /* VersionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionViewController.h; sourceTree = "<group>"; };
 		8767BBD51D2500BA002291AE /* VersionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionViewController.m; sourceTree = "<group>"; };
 		8767BBD71D2500D4002291AE /* VersionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionViewModel.h; sourceTree = "<group>"; };
@@ -177,17 +175,6 @@
 		87CBA5C51CB420EC004206B0 /* MenuViewModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MenuViewModel.json; sourceTree = "<group>"; };
 		87CBA5C81CB43885004206B0 /* MenuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewCell.h; sourceTree = "<group>"; };
 		87CBA5C91CB43885004206B0 /* MenuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewCell.m; sourceTree = "<group>"; };
-		87D607CA1CC4B13B00632172 /* CBUUID+RKBlueKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+RKBlueKit.h"; sourceTree = "<group>"; };
-		87D607CB1CC4B13B00632172 /* CBUUID+RKBlueKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+RKBlueKit.m"; sourceTree = "<group>"; };
-		87D607CC1CC4B13B00632172 /* RKBlueKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKBlueKit.h; sourceTree = "<group>"; };
-		87D607CD1CC4B13B00632172 /* RKBlueKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKBlueKit.m; sourceTree = "<group>"; };
-		87D607CF1CC4B13B00632172 /* RKBlueBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKBlueBlocks.h; sourceTree = "<group>"; };
-		87D607D01CC4B13B00632172 /* RKCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCentralManager.h; sourceTree = "<group>"; };
-		87D607D11CC4B13B00632172 /* RKCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCentralManager.m; sourceTree = "<group>"; };
-		87D607D21CC4B13B00632172 /* RKPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKPeripheral.h; sourceTree = "<group>"; };
-		87D607D31CC4B13B00632172 /* RKPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPeripheral.m; sourceTree = "<group>"; };
-		87D607D51CC4B13B00632172 /* RKPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKPeripheralManager.h; sourceTree = "<group>"; };
-		87D607D61CC4B13B00632172 /* RKPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPeripheralManager.m; sourceTree = "<group>"; };
 		87E01D8A1CEC34C800F66FBE /* AdjustmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustmentViewController.h; sourceTree = "<group>"; };
 		87E01D8B1CEC34C800F66FBE /* AdjustmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustmentViewController.m; sourceTree = "<group>"; };
 		87E01D8D1CEC34E000F66FBE /* AdjustmentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustmentViewModel.h; sourceTree = "<group>"; };
@@ -215,6 +202,7 @@
 			files = (
 				87341CB91CB5FEBA00B3E14D /* AVFoundation.framework in Frameworks */,
 				87AED74D1CB501DB00709C76 /* MediaPlayer.framework in Frameworks */,
+				875D7C621D36310E001DE510 /* libBTConnectManager.a in Frameworks */,
 				5B967DFDDC50486EBFDFA6D6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,14 +217,6 @@
 				DC984F69B58C1D9DFA3D12CB /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		870036241C97DF5100AAB595 /* BTConnectInterface */ = {
-			isa = PBXGroup;
-			children = (
-				870036251C97DF5100AAB595 /* BTConnectInterFace.h */,
-			);
-			path = BTConnectInterface;
 			sourceTree = "<group>";
 		};
 		8700362A1C97E7D600AAB595 /* BTDeviceModel */ = {
@@ -302,6 +282,28 @@
 				872BE0231CB3578700A8CD67 /* Environment.h */,
 			);
 			path = Environment;
+			sourceTree = "<group>";
+		};
+		875D7C591D36310E001DE510 /* BT&TFLib */ = {
+			isa = PBXGroup;
+			children = (
+				875D7C5A1D36310E001DE510 /* include */,
+				875D7C611D36310E001DE510 /* libBTConnectManager.a */,
+			);
+			path = "BT&TFLib";
+			sourceTree = "<group>";
+		};
+		875D7C5A1D36310E001DE510 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				875D7C5B1D36310E001DE510 /* BTConnectInterFace.h */,
+				875D7C5C1D36310E001DE510 /* BTConnectManager.h */,
+				875D7C5D1D36310E001DE510 /* BTConnectTypeDefine.h */,
+				875D7C5E1D36310E001DE510 /* TFBaseLib.h */,
+				875D7C5F1D36310E001DE510 /* TFCoreLib.h */,
+				875D7C601D36310E001DE510 /* TFUILib.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 		8767BBD21D250076002291AE /* VersionViewController */ = {
@@ -564,48 +566,6 @@
 			path = MenuViewCell;
 			sourceTree = "<group>";
 		};
-		87D607C81CC4B13B00632172 /* RKBluetooth */ = {
-			isa = PBXGroup;
-			children = (
-				87D607C91CC4B13B00632172 /* BluethoothKit */,
-				87D607CE1CC4B13B00632172 /* Central */,
-				87D607D41CC4B13B00632172 /* Peripheral */,
-			);
-			path = RKBluetooth;
-			sourceTree = "<group>";
-		};
-		87D607C91CC4B13B00632172 /* BluethoothKit */ = {
-			isa = PBXGroup;
-			children = (
-				87D607CA1CC4B13B00632172 /* CBUUID+RKBlueKit.h */,
-				87D607CB1CC4B13B00632172 /* CBUUID+RKBlueKit.m */,
-				87D607CC1CC4B13B00632172 /* RKBlueKit.h */,
-				87D607CD1CC4B13B00632172 /* RKBlueKit.m */,
-			);
-			path = BluethoothKit;
-			sourceTree = "<group>";
-		};
-		87D607CE1CC4B13B00632172 /* Central */ = {
-			isa = PBXGroup;
-			children = (
-				87D607CF1CC4B13B00632172 /* RKBlueBlocks.h */,
-				87D607D01CC4B13B00632172 /* RKCentralManager.h */,
-				87D607D11CC4B13B00632172 /* RKCentralManager.m */,
-				87D607D21CC4B13B00632172 /* RKPeripheral.h */,
-				87D607D31CC4B13B00632172 /* RKPeripheral.m */,
-			);
-			path = Central;
-			sourceTree = "<group>";
-		};
-		87D607D41CC4B13B00632172 /* Peripheral */ = {
-			isa = PBXGroup;
-			children = (
-				87D607D51CC4B13B00632172 /* RKPeripheralManager.h */,
-				87D607D61CC4B13B00632172 /* RKPeripheralManager.m */,
-			);
-			path = Peripheral;
-			sourceTree = "<group>";
-		};
 		87E01D881CEC347D00F66FBE /* AdjustmentViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,6 +627,7 @@
 		87EF951F1C8C35A3002241B2 /* SteadicamEVO */ = {
 			isa = PBXGroup;
 			children = (
+				875D7C591D36310E001DE510 /* BT&TFLib */,
 				87EF95391C8C3601002241B2 /* Class */,
 				87EF953D1C8C36C1002241B2 /* APPDelegate */,
 				87EF95401C8C36C1002241B2 /* Resources */,
@@ -721,37 +682,8 @@
 			isa = PBXGroup;
 			children = (
 				870668DC1C959D260031381C /* LocalizationManager */,
-				87EF955A1C8C4130002241B2 /* ConnectManager */,
 			);
 			path = Managers;
-			sourceTree = "<group>";
-		};
-		87EF955A1C8C4130002241B2 /* ConnectManager */ = {
-			isa = PBXGroup;
-			children = (
-				87D607C81CC4B13B00632172 /* RKBluetooth */,
-				870036241C97DF5100AAB595 /* BTConnectInterface */,
-				87EF955D1C8C4130002241B2 /* BTConnectTypeDefine */,
-				87EF955C1C8C4130002241B2 /* BTConnectManager */,
-			);
-			path = ConnectManager;
-			sourceTree = "<group>";
-		};
-		87EF955C1C8C4130002241B2 /* BTConnectManager */ = {
-			isa = PBXGroup;
-			children = (
-				870036271C97DF9200AAB595 /* BTConnectManager.h */,
-				870036281C97DF9200AAB595 /* BTConnectManager.m */,
-			);
-			path = BTConnectManager;
-			sourceTree = "<group>";
-		};
-		87EF955D1C8C4130002241B2 /* BTConnectTypeDefine */ = {
-			isa = PBXGroup;
-			children = (
-				870036261C97DF6B00AAB595 /* BTConnectTypeDefine.h */,
-			);
-			path = BTConnectTypeDefine;
 			sourceTree = "<group>";
 		};
 		87EF955E1C8C425A002241B2 /* Controllers */ = {
@@ -1046,20 +978,15 @@
 				87C6E9081CABBC8F003ACA26 /* GuideViewModel.m in Sources */,
 				87E2B7511CACFDE30001AB83 /* PrepareChooseView.m in Sources */,
 				87CBA5B91CB41EE2004206B0 /* SCEViewController.m in Sources */,
-				87D607DB1CC4B13B00632172 /* RKPeripheralManager.m in Sources */,
 				8700361E1C97D3D400AAB595 /* SplashViewController.m in Sources */,
-				87D607DA1CC4B13B00632172 /* RKPeripheral.m in Sources */,
 				87C6E9101CABBCF3003ACA26 /* MenuViewModel.m in Sources */,
 				87C6E9041CABBC6E003ACA26 /* BalanceViewModel.m in Sources */,
 				87C6E8EB1CAB9B09003ACA26 /* MenuViewController.m in Sources */,
-				87D607D71CC4B13B00632172 /* CBUUID+RKBlueKit.m in Sources */,
 				872722EA1CB4B4D70098EBEE /* LanguageViewCell.m in Sources */,
-				87D607D81CC4B13B00632172 /* RKBlueKit.m in Sources */,
 				87CBA5B11CB4174A004206B0 /* IntroductionViewCollectionCell.m in Sources */,
 				87CBA5CA1CB43885004206B0 /* MenuViewCell.m in Sources */,
 				87C6E8F41CAB9B44003ACA26 /* LanguageViewController.m in Sources */,
 				87F5B5B11CB3E65F008695D2 /* GifViews.m in Sources */,
-				87D607D91CC4B13B00632172 /* RKCentralManager.m in Sources */,
 				870668E11C959D260031381C /* LocalizationManager.m in Sources */,
 				87C6E90C1CABBCB3003ACA26 /* IntroductionViewModel.m in Sources */,
 				87CBA5AD1CB40AF3004206B0 /* TipsView.m in Sources */,
@@ -1076,7 +1003,6 @@
 				87EF95481C8C36C1002241B2 /* AppDelegate.m in Sources */,
 				872722E41CB4B37F0098EBEE /* AboutViewCell.m in Sources */,
 				8767BBD61D2500BA002291AE /* VersionViewController.m in Sources */,
-				870036291C97DF9200AAB595 /* BTConnectManager.m in Sources */,
 				878B29541C992BC5003F2481 /* TFUserDefaults+SCE.m in Sources */,
 				8769529C1D0156530094E68E /* BTConnectionViewCell.m in Sources */,
 				87C6E8EE1CAB9B1D003ACA26 /* AboutViewController.m in Sources */,
@@ -1214,7 +1140,12 @@
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec.SteadicamEVO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SteadicamEVO",
+					"$(PROJECT_DIR)/SteadicamEVO/BT&TFLib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec3.SteadicamEVO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1229,7 +1160,12 @@
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec.SteadicamEVO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SteadicamEVO",
+					"$(PROJECT_DIR)/SteadicamEVO/BT&TFLib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec3.SteadicamEVO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
