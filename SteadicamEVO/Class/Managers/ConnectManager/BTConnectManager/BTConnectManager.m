@@ -226,15 +226,15 @@
                                                                        
                                                                           
                                                                           
-                                                                          result = [NSString stringWithFormat:@"包类型：%lu\n roll电流值：%lu\n pitch电流：%lu\n yaw电流值：%lu\n roll欧拉角：%lu\n pitch欧拉角：%lu\n yaw欧拉角：%lu\n 到达时间：%lu",
-                                                                                    strtoul([[result substringWithRange:NSMakeRange(6,2)] UTF8String], 0, 16),
-                                                                                    strtoul([[result substringWithRange:NSMakeRange(8,4)] UTF8String], 0, 16),
-                                                                                    strtoul([[result substringWithRange:NSMakeRange(12,4)] UTF8String], 0, 16),
-                                                                                    strtoul([[result substringWithRange:NSMakeRange(16,4)] UTF8String], 0, 16),
-                                                                                    strtoul([[result substringWithRange:NSMakeRange(20,4)] UTF8String], 0, 16),
-                                                                                    strtoul([[result substringWithRange:NSMakeRange(24,4)] UTF8String], 0, 16),
-                                                                                    strtoul([[result substringWithRange:NSMakeRange(28,4)] UTF8String], 0, 16),
-                                                                                    strtoul([[result substringWithRange:NSMakeRange(32,4)] UTF8String], 0, 16)];
+//                                                                          result = [NSString stringWithFormat:@"包类型：%lu\n roll电流值：%lu\n pitch电流：%lu\n yaw电流值：%lu\n roll欧拉角：%lu\n pitch欧拉角：%lu\n yaw欧拉角：%lu\n 到达时间：%lu",
+//                                                                                    strtoul([[result substringWithRange:NSMakeRange(6,2)] UTF8String], 0, 16),
+//                                                                                    strtoul([[result substringWithRange:NSMakeRange(8,4)] UTF8String], 0, 16),
+//                                                                                    strtoul([[result substringWithRange:NSMakeRange(12,4)] UTF8String], 0, 16),
+//                                                                                    strtoul([[result substringWithRange:NSMakeRange(16,4)] UTF8String], 0, 16),
+//                                                                                    strtoul([[result substringWithRange:NSMakeRange(20,4)] UTF8String], 0, 16),
+//                                                                                    strtoul([[result substringWithRange:NSMakeRange(24,4)] UTF8String], 0, 16),
+//                                                                                    strtoul([[result substringWithRange:NSMakeRange(28,4)] UTF8String], 0, 16),
+//                                                                                    strtoul([[result substringWithRange:NSMakeRange(32,4)] UTF8String], 0, 16)];
                                                                           
                                                                           
                                                                           NSLog(@" notify back : %@",characteristic);
@@ -406,7 +406,7 @@
                                                          options:nil
                                                        onUpdated:^(RKPeripheral *peripheral) {
                                                         
-                                                        if (!tf_isEmpty(peripheral.name) && ([peripheral.name rangeOfString:@"evo"].location != NSNotFound || [peripheral.name rangeOfString:@"EVO"].location != NSNotFound))
+                                                        if (!tf_isEmpty(peripheral.name) && ([[peripheral.name lowercaseString] rangeOfString:@"evo"].location != NSNotFound ))
                                                         {
                                                            NSLog(@"Discovered device: %@",peripheral.name);
                                                            

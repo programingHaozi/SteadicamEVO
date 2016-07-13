@@ -24,6 +24,8 @@
 
 @property (strong, nonatomic)  UIImageView *arrowImageView1;
 
+@property (strong, nonatomic)  UIImageView *arrowImageView2;
+
 @property (strong, nonatomic)  UIImageView *phoneImageView1;
 
 @property (strong, nonatomic)  UIView *imageContainer2;
@@ -46,6 +48,12 @@
 
 @property (nonatomic, strong)  AdjustmentViewModel *viewModel;
 
+@property (nonatomic, strong)  NSString *originResult;
+
+@property (nonatomic, assign)  BOOL rollAdjustComplete;
+
+@property (nonatomic, assign)  BOOL picthAdjustComplete;
+
 @end
 
 @implementation AdjustmentViewController
@@ -65,12 +73,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    char byteArray[] = {0xAA ,0x55 ,0x01, 0xFF};
-    NSData *datas = [NSData dataWithBytes:byteArray length:sizeof(byteArray)];
-    
-    [kBTConnectManager sendData:datas];
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -92,6 +94,7 @@
     
     self.startButton = [[TFButton alloc]init];
     [self.startButton setNormalTitle:@"Start" textFont:nil textColor:[UIColor whiteColor]];
+    [self.startButton setTitleColor:HEXCOLOR(0x7e7e7e, 1) forState:UIControlStateDisabled];
     [self.startButton setBackgroundImage:IMAGE(@"blackButtonBg") forState:UIControlStateNormal];
     [self.startButton touchAction:^{
         
@@ -100,12 +103,14 @@
     [self.view addSubview:self.startButton];
     
     self.finishiButton = [[TFButton alloc]init];
-    [self.finishiButton setNormalTitle:@"Finish" textFont:nil textColor:HEXCOLOR(0x7e7e7e, 1)];
+    [self.finishiButton setNormalTitle:@"Finish" textFont:nil textColor:[UIColor whiteColor]];
+    [self.finishiButton setTitleColor:HEXCOLOR(0x7e7e7e, 1) forState:UIControlStateDisabled];
     [self.finishiButton setBackgroundImage:IMAGE(@"blackButtonBg") forState:UIControlStateNormal];
     [self.finishiButton touchAction:^{
         
         [weakSelf finishAction:weakSelf.finishiButton];
     }];
+    self.finishiButton.enabled = NO;
     [self.view addSubview:self.finishiButton];
     
     self.instructionLabel = [[UILabel alloc]init];
@@ -124,9 +129,14 @@
     [self.view addSubview:self.imageContainer1];
     
     self.arrowImageView1 = [[UIImageView alloc]init];
-    self.arrowImageView1.image = IMAGE(@"arrow_left_yellow_s");
+    self.arrowImageView1.image = IMAGE(@"arrow_leftAdjust_yellow");
     self.arrowImageView1.hidden = YES;
     [self.imageContainer1 addSubview:self.arrowImageView1];
+    
+    self.arrowImageView2 = [[UIImageView alloc]init];
+    self.arrowImageView2.image = IMAGE(@"arrow_tripleRight_yellow");
+    self.arrowImageView2.hidden = YES;
+    [self.imageContainer1 addSubview:self.arrowImageView2];
     
     self.phoneImageView1 = [[UIImageView alloc]init];
     self.phoneImageView1.image = IMAGE(@"adjust_phone");
@@ -239,11 +249,20 @@
     
     [self.arrowImageView1 mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.width.equalTo(@27);
-        make.height.equalTo(@13);
+        make.width.equalTo(@32);
+        make.height.equalTo(@27);
         make.left.equalTo(@0);
         make.centerY.equalTo(@0);
 
+    }];
+    
+    [self.arrowImageView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.width.equalTo(@32);
+        make.height.equalTo(@27);
+        make.left.equalTo(@160);
+        make.centerY.equalTo(@0);
+        
     }];
     
     [self.phoneImageView1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -343,21 +362,61 @@
         switch (state.intValue) {
             case 0:
             {
-                
             }
                 break;
             case 1:
             {
-                
+                [self.startButton setTitle:@"Stop" forState:UIControlStateNormal];
             }
                 break;
             case 2:
             {
-                self.arrowImageView1.hidden = NO;
+                [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
+                
+                if (!tf_isEmpty(self.originResult))
+                {
+                    int rollCurrentValue = [[NSString stringWithFormat:@"%lu",strtoul([[self.originResult substringWithRange:NSMakeRange(8,4)] UTF8String], 0, 16)] intValue] / 100;
+                    
+                    if (rollCurrentValue < 0)
+                    {
+                        self.arrowImageView1.hidden = NO;
+                       
+                        if (rollCurrentValue <= -19 && rollCurrentValue > -30)
+                        {
+                            self.arrowImageView1.image = IMAGE(@"arrow_leftAdjust_yellow");
+                        }
+                        else if (rollCurrentValue <= -30 && rollCurrentValue > -50)
+                        {
+                            self.arrowImageView1.image = IMAGE(@"arrow_doubleLeft_yellow");
+                        }
+                        else if (rollCurrentValue <= -50)
+                        {
+                            self.arrowImageView1.image = IMAGE(@"arrow_tripleLeft_yellow");
+                        }
+                    }
+                    else
+                    {
+                        self.arrowImageView2.hidden = NO;
+                        
+                        if (rollCurrentValue <= 30 && rollCurrentValue > 19)
+                        {
+                            self.arrowImageView1.image = IMAGE(@"arrow_rightAdjust_yellow");
+                        }
+                        else if (rollCurrentValue <= 50 && rollCurrentValue > 30)
+                        {
+                            self.arrowImageView1.image = IMAGE(@"arrow_doubleRight_yellow");
+                        }
+                        else if (rollCurrentValue >= 50)
+                        {
+                            self.arrowImageView1.image = IMAGE(@"arrow_tripleRight_yellow");
+                        }
+                    }
+                }
             }
                 break;
             case 3:
             {
+                [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
                 
                 [self.instructionLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
                     
@@ -371,11 +430,12 @@
                 
                 self.downArrowImageView.hidden = NO;
                 
+                self.finishiButton.enabled = YES;
+                
             }
                 break;
             case 4:
             {
-                
                 
                 TipsView *tipView = [[TipsView alloc]initWithMessage:@"Does the red mark digned?"
                                                          buttonArray:@[@"Yes",@"No"]];
@@ -401,6 +461,10 @@
                 break;
             case 5:
             {
+                [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
+                
+                self.finishiButton.enabled = NO;
+                
                 [self.instructionLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
                     
                     make.width.equalTo(@250);
@@ -436,12 +500,58 @@
                 break;
             case 6:
             {
-                
+                [self.startButton setTitle:@"Stop" forState:UIControlStateNormal];
             }
                 break;
             case 7:
             {
-                [self.downArrowImageView2 setImage:IMAGE(@"arrow_down_yellow")];
+                
+                [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
+                
+                if (!tf_isEmpty(self.originResult))
+                {
+                    int rollCurrentValue = [[NSString stringWithFormat:@"%lu",strtoul([[self.originResult substringWithRange:NSMakeRange(12,4)] UTF8String], 0, 16)] intValue] / 100;
+                    
+                    if (rollCurrentValue < 0)
+                    {
+                        
+                        if (rollCurrentValue <= -19 && rollCurrentValue > -30)
+                        {
+                            self.upArrowImageView2.image = IMAGE(@"arrow_up_yellow");
+                            self.downArrowImageView2.image = IMAGE(@"arrow_down_gray");
+                        }
+                        else if (rollCurrentValue <= -30 && rollCurrentValue > -50)
+                        {
+                            self.upArrowImageView2.image = IMAGE(@"arrow_doubleup_yellow");
+                            self.downArrowImageView2.image = IMAGE(@"arrow_doubledown_gray");
+                        }
+                        else if (rollCurrentValue <= -50)
+                        {
+                            self.upArrowImageView2.image = IMAGE(@"arrow_tripleUp_yellow");
+                            self.downArrowImageView2.image = IMAGE(@"arrow_tripleDown_gray");
+                        }
+                    }
+                    else
+                    {
+                        
+                        if (rollCurrentValue <= 30 && rollCurrentValue > 19)
+                        {
+                            self.downArrowImageView2.image = IMAGE(@"arrow_down_yellow");
+                            self.upArrowImageView2.image = IMAGE(@"arrow_up_gray");
+                        }
+                        else if (rollCurrentValue <= 50 && rollCurrentValue > 30)
+                        {
+                            self.downArrowImageView2.image = IMAGE(@"arrow_doubledown_yellow");
+                            self.upArrowImageView2.image = IMAGE(@"arrow_doubleup_gray");
+                        }
+                        else if (rollCurrentValue >= 50)
+                        {
+                            self.downArrowImageView2.image = IMAGE(@"arrow_tripleDown_yellow");
+                            self.upArrowImageView2.image = IMAGE(@"arrow_tripleUp_gray");
+                        }
+                    }
+                }
+
             }
                 break;
                 case 8:
@@ -453,6 +563,10 @@
                 self.arrowImageView1.hidden = YES;
                 
                 [self.phoneImageView1 setImage:IMAGE(@"adjust_complete")];
+                
+                self.finishiButton.enabled = YES;
+                
+                self.startButton.enabled = NO;
             }
                 break;
                 
@@ -462,11 +576,25 @@
     }];
     
     
-    [RACObserve(kBTConnectManager, notifyInfoStr) subscribeNext:^(NSString * info) {
+    [RACObserve(kBTConnectManager, notifyInfoStr) subscribeNext:^(NSString * result) {
     
     @strongify(self)
         
-        self.notifyLabel.text = info;
+        if (!tf_isEmpty(result))
+        {
+            self.originResult = result;
+            
+            self.notifyLabel.text = [NSString stringWithFormat:@"包类型：%lu\n roll电流值：%lu\n pitch电流：%lu\n yaw电流值：%lu\n roll欧拉角：%lu\n pitch欧拉角：%lu\n yaw欧拉角：%lu\n 到达时间：%lu",
+                                     strtoul([[result substringWithRange:NSMakeRange(6,2)] UTF8String], 0, 16),
+                                     strtoul([[result substringWithRange:NSMakeRange(8,4)] UTF8String], 0, 16),
+                                     strtoul([[result substringWithRange:NSMakeRange(12,4)] UTF8String], 0, 16),
+                                     strtoul([[result substringWithRange:NSMakeRange(16,4)] UTF8String], 0, 16),
+                                     strtoul([[result substringWithRange:NSMakeRange(20,4)] UTF8String], 0, 16),
+                                     strtoul([[result substringWithRange:NSMakeRange(24,4)] UTF8String], 0, 16),
+                                     strtoul([[result substringWithRange:NSMakeRange(28,4)] UTF8String], 0, 16),
+                                     strtoul([[result substringWithRange:NSMakeRange(32,4)] UTF8String], 0, 16)];
+        }
+        
     }];
 }
 
@@ -477,11 +605,93 @@
         return;
     }
     
+    if ([self.startButton.title isEqualToString:@"Start"])
+    {
+        char byteArray[] = {0xAA ,0x55 ,0x01, 0xFF};
+        NSData *datas = [NSData dataWithBytes:byteArray length:sizeof(byteArray)];
+        
+        [kBTConnectManager sendData:datas];
+    }
+    else
+    {
+        char byteArray[] = {0xAA ,0x55 ,0x02, 0xFF};
+        NSData *datas = [NSData dataWithBytes:byteArray length:sizeof(byteArray)];
+        
+        [kBTConnectManager sendData:datas];
+        
+        if (!tf_isEmpty(self.originResult))
+        {
+            int rollCurrentValue;
+            
+            if (self.viewModel.adjustState == 1)
+            {
+                rollCurrentValue = [[NSString stringWithFormat:@"%lu",strtoul([[self.originResult substringWithRange:NSMakeRange(8,4)] UTF8String], 0, 16)] intValue] / 100;
+                
+                if (abs(rollCurrentValue) < 19)
+                {
+                    self.rollAdjustComplete = YES;
+                    
+                    self.finishiButton.enabled = YES;
+                    
+                    [TFAlertView showWithTitle:@"提示" message:@"水平位置正确，请点击finish进入下一步调节" buttonTitles:@[@"确定"] block:nil];
+                    
+                    return;
+                }
+            }
+            else if (self.viewModel.adjustState == 6)
+            {
+                rollCurrentValue = [[NSString stringWithFormat:@"%lu",strtoul([[self.originResult substringWithRange:NSMakeRange(12,4)] UTF8String], 0, 16)] intValue] / 100;
+                
+                if (abs(rollCurrentValue) < 19)
+                {
+                    self.rollAdjustComplete = YES;
+                    
+                    self.finishiButton.enabled = YES;
+                    
+                    [TFAlertView showWithTitle:@"提示" message:@"垂直调节正确，请点击finish完成调节" buttonTitles:@[@"确定"] block:nil];
+                    
+                    return;
+                }
+
+            }
+        }
+    }
+    
+    if (self.viewModel.adjustState == 2 || self.viewModel.adjustState == 7)
+    {
+        self.viewModel.adjustState --;
+        
+        return;
+    }
+    
     self.viewModel.adjustState ++;
 }
+
 - (void)finishAction:(id)sender
 {
-    [super popToRootViewController];
+    char byteArray[] = {0xAA ,0x55 ,0x02, 0xFF};
+    NSData *datas = [NSData dataWithBytes:byteArray length:sizeof(byteArray)];
+    
+    [kBTConnectManager sendData:datas];
+    
+    if (self.viewModel.adjustState < 3)
+    {
+        self.viewModel.adjustState = 3;
+    }
+    else if (self.viewModel.adjustState >= 3 && self.viewModel.adjustState < 5)
+    {
+        self.viewModel.adjustState = 5;
+    }
+    else if (self.viewModel.adjustState >= 5 && self.viewModel.adjustState < 8)
+    {
+        self.viewModel.adjustState = 8;
+    }
+    else
+    {
+        [kBTConnectManager disconnect];
+        
+        [super popToRootViewController];
+    }
 }
 
 @end

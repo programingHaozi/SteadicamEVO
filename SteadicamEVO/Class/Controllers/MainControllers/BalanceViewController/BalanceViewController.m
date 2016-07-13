@@ -191,7 +191,7 @@
         WS(weakSelf)
         if (kBTConnectManager.isBTConnected)
         {
-            if ([kBTConnectManager.connectName rangeOfString:@"evo"].location != NSNotFound || [kBTConnectManager.connectName rangeOfString:@"EVO"].location != NSNotFound)
+            if ([[kBTConnectManager.connectName lowercaseString] rangeOfString:@"evo"].location != NSNotFound)
             {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"bundle:nil];
                 self.adjustMentVc        = [storyboard instantiateViewControllerWithIdentifier:@"AdjustmentViewController"];

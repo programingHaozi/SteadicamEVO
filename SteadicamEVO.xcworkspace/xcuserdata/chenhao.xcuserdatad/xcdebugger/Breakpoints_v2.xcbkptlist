@@ -116,12 +116,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SteadicamEVO/Class/Managers/ConnectManager/BTConnectManager/BTConnectManager.m"
-            timestampString = "488966898.159772"
+            timestampString = "490001621.524636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
-            landmarkName = "-discoverDevice:"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "-discoverServiceAndCharacteristic:completion:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -1214,7 +1214,7 @@
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec3.SteadicamEVO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec.SteadicamEVO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1229,7 +1229,7 @@
 				GCC_PREFIX_HEADER = /Users/chenhao/Documents/SteadicamEVO/SteadicamEVO/Resources/PrefixHeader.pch;
 				INFOPLIST_FILE = SteadicamEVO/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec3.SteadicamEVO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuneec.SteadicamEVO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
